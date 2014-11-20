@@ -7,7 +7,7 @@
  * @param $srubrique
  * @return void
  *
- * @usage require_once('../../lib/lib_fournitures.php');
+ * @usage require_once(LIB.'/lib_fournitures.php');
  * afficherFournitures([$rubriques], [$srubriques]);
  *
  */
@@ -28,7 +28,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$requete .= ' AND sc.scat = \''.$srubrique.'\'';
 	}
 
-	$co = mysqli_connect('localhost', 'root', '', 'projet_ecole'); // HOST, USER, PASS, DB
+	$co = mysqli_connect(HOST, USER, PASS, DB);
 	$res = mysqli_query($co, $requete);
 
 	echo "<table>

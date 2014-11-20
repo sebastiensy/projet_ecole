@@ -1,15 +1,12 @@
 <?php
 
-require_once('../../inc/header.inc.php');
-require_once('../../lib/lib_fournitures.php');
+require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_fournitures.php');
 
 ?>
 
-<!-- Remplacer ce code par le header/footer -->
 <body>
 	<?php
-		afficherFournitures("DICTIONNAIRES-BESCHERELLES-CALCULATRICES","","");
+		afficherFournitures("","","Calc");
+		require_once('../../inc/footer.inc.php');
 	?>
-</body>
-</html>
-<!-- Remplacer ce code par le header/footer -->
