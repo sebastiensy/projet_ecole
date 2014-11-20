@@ -28,7 +28,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$requete .= ' AND sc.scat = \''.$srubrique.'\'';
 	}
 
-	$co = mysqli_connect('localhost', 'root', '', 'ecole2'); // HOST, USER, PASS, DB
+	$co = mysqli_connect('localhost', 'root', '', 'projet_ecole'); // HOST, USER, PASS, DB
 	$res = mysqli_query($co, $requete);
 
 	echo "<table>
