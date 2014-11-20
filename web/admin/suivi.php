@@ -35,7 +35,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			  </table>";*/
 		echo '<br>';
 		echo $suiv->nom_parent;
-		echo '<INPUT type="radio" name="suivi" value="1"> en cours de validation
+		echo '<INPUT type="radio" name="suivi" value=.$suiv->etat> en cours de validation
 		  <INPUT type="radio" name="suivi" value="2"> valide
 		  <INPUT type="radio" name="suivi" value="3"> commande fournisseur
 		  <INPUT type="radio" name="suivi" value="4"> en cours de livraison 
