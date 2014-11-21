@@ -23,61 +23,34 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	$res = mysqli_query($co, $requete);
 
 	echo 'Suivi des commandes';
-	
 
+	echo "<table>
+			<tr>
+				<th>Parent</th>
+				<th>En cours de validation</th>
+				<th>Valide</th>
+				<th>Commande fournisseur</th>
+				<th>En cours de livraison</th>
+				<th>Livre</th>
+			</tr>";
+	
 	while($suiv = mysqli_fetch_object($res))
 	{
-		/*echo "<table>
-				<tr>
-					<td>".$suiv->nom_parent."</td>
-					<td>".$suiv->etat."</td>
-			  	</tr>
-			  </table>";*/
-		echo '<br>';
-		echo $suiv->nom_parent;
-		echo '<INPUT type="radio" name="suivi" value=.$suiv->etat> en cours de validation
-		  <INPUT type="radio" name="suivi" value="2"> valide
-		  <INPUT type="radio" name="suivi" value="3"> commande fournisseur
-		  <INPUT type="radio" name="suivi" value="4"> en cours de livraison 
-		  <INPUT type="radio" name="suivi" value="5"> livre';
-
-		switch ($suiv->etat) {
-			case '1':
-				
-				break;
-
-			case '2':
-				# code...
-				break;
-
-			case '3':
-				# code...
-				break;
-
-			case '4':
-				# code...
-				break;
-
-			case '5':
-				# code...
-				break;
-			
-			default:
-				# code...
-				break;
-		}
-
-		while () {
-			# code...
-		}
-	
+		echo "<tr><td>".$suiv->nom_parent."</td>";
 		
-		echo '<br>';
+		for ($i=1; $i<=5; $i++) {
+			if($suiv->etat == $i)
+			{
+				echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+			}
+			else
+			{
+				echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+			}		
+		}
 
-
-
+		echo "</tr>";
 	}
 
-
-
+	echo "</table>";
 ?>
