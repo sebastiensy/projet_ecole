@@ -8,7 +8,7 @@ require_once('../../inc/data.inc.php');
 
 	<div id="banner">
 	</div>
-	
+
 	<div class="menu">
 		<div id="menu">
 			<div id="menu1">
@@ -19,7 +19,7 @@ require_once('../../inc/data.inc.php');
 				</div>
 			</div>
 	</div>
-	
+
 	<div id="page">
 	TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
 	TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST

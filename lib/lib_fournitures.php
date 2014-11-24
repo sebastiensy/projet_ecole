@@ -27,10 +27,29 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 		if(!empty($srubrique))
 			$requete .= ' AND sc.scat = \''.$srubrique.'\'';
 	}
-
 	$db = new DB_connection();
+
+	$db->DB_query($requete);
+	$nb_elems = 30; // nombre d'éléments par page
+	$nb_pages = ceil($db->DB_count() / $nb_elems);
+
+	if(!empty($_GET["page"]))
+	{
+		$page = $_GET["page"];
+		if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
+			$page = 1;
+	}
+	else
+		$page = 1;
+
+	$debut = ($page - 1) * $nb_elems;
+
+	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
+
 	$db->DB_query($requete);
 
+	echo "<div id=\"produits\">";
+	
 	echo "<table>
 			<tr>
 				<th>Référence</th>
@@ -46,12 +65,12 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				<td>".$mat->desc_mat."</td>
 				<td>".$mat->prix_mat." €</td>
 				<td><input class=\"spinner\" name=\".$mat->ref_mat.\" size=\"1\" min=\"1\" max=\"999\"></td>
-				<td><a href=\"index.php?ref=".$mat->ref_mat."\">Ajouter au panier</td>
+				<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."\">Ajouter au panier</td>
 			</tr>";
 	}
 	echo "</table>";
 
-	//mysqli_free_result($res);
+	echo "</div>";
 
 	// ajouter vérification d'erreurs si la réf n'existe pas
 	if(!empty($_GET["ref"]))
@@ -68,7 +87,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
 			$res = mysqli_query($co, $requete);
 			mysqli_free_result($res);
-			
+
 			// ajouter un param à l'url pour récupérer res
 			header('Location: index.php');
 		}
@@ -80,6 +99,17 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$res = mysqli_query($co, $requete);
 		}*/
 	}
+
+	// affichage des pages
+	echo "<div id=\"pages\">";
+	for($i=1; $i <= $nb_pages; ++$i)
+	{
+		if($page == $i)
+			echo "<a href=\"index.php?page=".$i."\"><span style=\"font-weight:bold; color:black\">".$i."</span></a> | ";
+		else
+			echo "<a href=\"index.php?page=".$i."\">".$i."</a> | ";
+	}
+	echo "</div>";
 	$db->DB_done();
 }
 

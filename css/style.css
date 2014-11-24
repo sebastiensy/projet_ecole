@@ -16,12 +16,31 @@ body
 	background-repeat:no-repeat;
 }
 
+/* liens pages */
+
+#pages
+{
+	text-align:center;
+}
+
+#pages a:link, #pages a:visited
+{
+    color:white;
+    text-decoration:none;
+}
+
+#pages a#lien:hover, #pages a:hover
+{
+    color:brown;
+    text-decoration:underline;
+}
+
 /* menu */
 
 .menu
 {
 	width:901px;
-	height : 90px;
+	height:90px;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -30,8 +49,8 @@ body
 {
 	position:absolute;
 	background-image:url(../img/menu/fondmenu.png);
-	background-repeat: repeat-y;
-	width: 470px;
+	background-repeat:repeat-y;
+	width:470px;
 	min-height:90px;
 	margin-top:0px;
 	margin-left:250px;
@@ -56,10 +75,14 @@ body
 	background-color:orange; /*background-image:url(../img/corps.png);*/
 	background-repeat:repeat-x;
 	word-wrap:break-word;
-	
 	padding-top:40px;
 	padding-left:10px;
 	padding-right:10px;
+}
+
+#produits
+{
+	min-height:980px;
 }
 
 /* formulaire contact */

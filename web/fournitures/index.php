@@ -9,7 +9,7 @@ require_once(LIB.'/lib_fournitures.php');
 
 	<div id="banner">
 	</div>
-	
+
 	<div class="menu">
 		<div id="menu">
 			<div id="menu1">
@@ -47,5 +47,5 @@ require_once(LIB.'/lib_fournitures.php');
 <?php
 
 require_once(INC.'/footer.inc.php');
-		
+	
 ?>
