@@ -28,8 +28,8 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$requete .= ' AND sc.scat = \''.$srubrique.'\'';
 	}
 
-	$co = mysqli_connect(HOST, USER, PASS, DB);
-	$res = mysqli_query($co, $requete);
+	$db = new DB_connection();
+	$db->DB_query($requete);
 
 	echo "<table>
 			<tr>
@@ -39,7 +39,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				<th>Quantite</th>
 				<th></th>
 			</tr>";
-	while($mat = mysqli_fetch_object($res))
+	while($mat = $db->DB_object())
 	{
 		echo "<tr>
 				<td>".$mat->ref_mat."</td>
@@ -51,16 +51,16 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	}
 	echo "</table>";
 
-	mysqli_free_result($res);
+	//mysqli_free_result($res);
 
 	// ajouter vérification d'erreurs si la réf n'existe pas
 	if(!empty($_GET["ref"]))
 	{
 		// remplacer '1' avec $_SESSION['id']
 		$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 0 AND p.id_parent = c.id_parent AND p.id_parent = 1';
-		$res = mysqli_query($co, $requete);
+		$db->DB_query($requete);
 
-		if($commande = mysqli_fetch_object($res))
+		if($commande = $db->DB_object())
 		{
 			$id = $commande->id_commande;
 
@@ -80,7 +80,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$res = mysqli_query($co, $requete);
 		}*/
 	}
-	mysqli_close($co);
+	$db->DB_done();
 }
 
 ?>
