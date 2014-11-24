@@ -4,6 +4,7 @@
 	<meta charset="ISO-8859-1">
 	<title>Projet &eacute;cole</title>
 	<link rel="stylesheet" href="../../js/jquery-ui.css">
+	<link rel="stylesheet" href="../../css/style.css">
 	<script src="../../js/jquery-2.1.1.min.js"></script>
 	<script src="../../js/jquery-ui.js"></script>
 	<script>

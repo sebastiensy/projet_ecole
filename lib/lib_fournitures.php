@@ -33,10 +33,10 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 
 	echo "<table>
 			<tr>
-				<th>Reference</th>
+				<th>Référence</th>
 				<th>Description</th>
 				<th>Prix</th>
-				<th>Quantite</th>
+				<th>Quantité</th>
 				<th></th>
 			</tr>";
 	while($mat = $db->DB_object())

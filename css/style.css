@@ -1,0 +1,124 @@
+body
+{
+	background-image:url(../img/background.png) ;
+
+	margin:0px 15% 10px 15%;
+}
+
+#banner
+{
+	width:901px; /* 901px */
+	height:200px; /* 300px */
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-8px;
+	background-color:red; /*background-image:url(../img/entete.png);*/
+	background-repeat:no-repeat;
+}
+
+/* menu */
+
+.menu
+{
+	width:901px;
+	height : 90px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#menu
+{
+	position:absolute;
+	background-image:url(../img/menu/fondmenu.png);
+	background-repeat: repeat-y;
+	width: 470px;
+	min-height:90px;
+	margin-top:0px;
+	margin-left:250px;
+}
+
+#menu1
+{
+	margin-top:35px;
+	margin-left:33px;
+}
+
+/* page */
+
+#page
+{
+	position:above;
+	width:820px;
+	height:1030px; /* 950 */
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-25px;
+	background-color:orange; /*background-image:url(../img/corps.png);*/
+	background-repeat:repeat-x;
+	word-wrap:break-word;
+	
+	padding-top:40px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+/* formulaire contact */
+
+#formulaire_contact
+{
+	position:absolute;
+	width:600px;
+	background-color:red;
+}
+
+.contact_label
+{
+	min-width:200px;
+	background-color:green;
+}
+
+.pformulaire
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:400px;
+}
+
+/* footer */
+
+.footer
+{
+	width:470px;
+	min-height:160px;
+	background-repeat:no-repeat;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-15px;
+}
+
+#footer
+{
+	position:absolute;
+	width:470px;
+	max-height:80px; /* 160 */
+	/*background-color:red;*/ background-image:url(../img/footer.png);
+	background-repeat:non-repeat;
+}
+
+#gauche
+{
+	margin-left:10px;
+	margin-top:15px;
+	width:250px;
+	float:left;
+	min-height:135px;
+}
+
+#droit
+{
+	margin-right:5px;
+	margin-top:15px;
+	width:195px;
+	float:right;
+	min-height:135px;
+}

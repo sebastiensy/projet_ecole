@@ -7,7 +7,8 @@
  * 
  * @usage :
  * @require_once(LIB.'/lib_db.class.php');
- *
+ * $db = new DB_connection();
+ * $db->DB_query($requete);
  *
  */
 
@@ -39,7 +40,7 @@ class DB_connection
 	}
 
 	/**
-	 * Lance la requête
+	 * lance la requête
 	 * DB_connection::DB_query()
 	 *
 	 * @param $requete - chaine contenant la requete SQL à exécuter
@@ -67,7 +68,7 @@ class DB_connection
 
 	/**
 	 * remonte la ligne suivante dans le resultat, sous forme de tableau associatif
-	 * DB_connection::DB_assoc
+	 * DB_connection::DB_assoc()
 	 *
 	 * @return array
 	 */
