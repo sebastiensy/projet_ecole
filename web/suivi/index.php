@@ -54,11 +54,11 @@ while($suiv = $db->DB_object())
 	for ($i=1; $i<=5; $i++) {
 		if($suiv->etat >= $i)
 		{
-			echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+			echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked></td>';
 		}
 		else
 		{
-			echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+			echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'"></td>';
 		}		
 	}
 
@@ -95,6 +95,11 @@ while($suiv = $db->DB_object())
 		</table>";
 
 }
+
+//Jquery pour desactiver le clic si on ne met pas disabled dans les checkbox
+echo "<script type='text/javascript'>";
+echo "$('input:checkbox').click(function() { return false; });";
+echo "</script>";
 
 session_unset ();
 session_destroy();
