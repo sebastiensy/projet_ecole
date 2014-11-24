@@ -17,10 +17,12 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 <?php
 
+	require_once('../../inc/data.inc.php');
+
 	$requete = 'SELECT p.nom_parent, c.etat FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent';
 
-	$co = mysqli_connect('localhost', 'root', '', 'projet_ecole'); 
-	$res = mysqli_query($co, $requete);
+	$db = new DB_connection();
+	$db->DB_query($requete);
 
 	echo 'Suivi des commandes';
 
@@ -34,7 +36,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 				<th>Livre</th>
 			</tr>";
 	
-	while($suiv = mysqli_fetch_object($res))
+	while($suiv = $db->DB_object())
 	{
 		echo "<tr><td>".$suiv->nom_parent."</td>";
 		
@@ -53,4 +55,6 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	}
 
 	echo "</table>";
+
+	$db->DB_done();
 ?>
