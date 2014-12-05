@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_form_contacter.php');
 
 ?>
 
@@ -8,7 +9,7 @@ require_once('../../inc/data.inc.php');
 
 	<div id="banner">
 	</div>
-	
+
 	<div class="menu">
 		<div id="menu">
 			<div id="menu1">
@@ -19,46 +20,78 @@ require_once('../../inc/data.inc.php');
 				</div>
 			</div>
 	</div>
-
 	<div id="page">
-		<div id="formulaire_contact">
 
-			<h2 align="center" >CONTACTEZ-NOUS </h2>
-			<h1  align="center">Votre Message</h1>
+	<?php
 
-			<form action="" method="post">
+		if(!isset($_POST["ok"]))
+		{
+			formulaire_contacter("email", "objet", "message");
+		}
+		else
+		{
+			/*
+			verifier si l un des champs est vide 
+			*/
+			$bool=true;
+			if(empty($_POST["email"])){ $bool=false;}
+			if(empty($_POST["objet"])){ $bool=false;}
+			if(empty($_POST["message"])){ $bool=false;}
 
-			<legend><h3>Formulaire de Contact</h3></legend>
+			if($bool)
+			{
+				/*
+				si les champs sont remplit on ecrit dans la base
+				*/
 
-			<span ><?php if (isset($erreur_email)) echo $erreur_email;?></span></br>
+				/*
+				connexion a la base via la class MySQL
+				*/
+				$db = new DB_connection();
 
-			<p class="pformulaire">
-			<label  class="contact_label" for="email_client"> votre adresse Email </label>
-			<input  type="text" name="email_client" value=<?PHP if(!isset($_SESSION['login'])){ echo "test";}else { echo "";} ?> />
-			</p>
+				/*
+				Purification des variables
+				*/
+				$_POST["message"]=htmlSpecialChars($_POST["message"]);
+				$_POST["objet"]=htmlSpecialChars($_POST["objet"]);
+				$_POST["email"]=htmlSpecialChars($_POST["email"]);
 
-			<p class="pformulaire"><label class="contact_label" for="objet_msg">objet Message </label>
-			<input type="text" name="objet_msg"/>
-			</p> 
+				/*
+				perparation de la requete 
+				*/
+				$requete='insert into Message (email_parent, objet, message, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'", 0)';
 
-			<p class="pformulaire">
-			<label class="contact_label" for="contenu_msg">Votre Message </label>
-			<textarea  name="contenu_msg" ></textarea> 
-			</p>
+				/*
+				execution de la requete 
+				*/
+				$db->DB_query($requete);
+				$db->DB_done();
 
-			<p class="pformulaire">
-			<input type="submit" value="valider" name="submit"/>
+				/* 
+				reaffichage du formulaire vide 
+				*/
+				echo "<p>Votre message a bien été transmis.</p>";
+				formulaire_contacter("", "", "");
+			}
+			else
+			{
+				/*
+				si l un des chaps est vide 
+				on affiche un message 
+				et le formulaire avec sont etat precedent
+				*/
 
-			<input value=" Réinitialiser " type="reset" name="Reset" />
-			</p> 
+				echo "<p>Vous devez remplir tous les champs.</p>";
+				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+			}
+		}
 
-			</form>
+	?>
 
-		</div>
 	</div>
 
 <?php
 
 require_once(INC.'/footer.inc.php');
-		
+	
 ?>

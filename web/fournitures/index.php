@@ -25,15 +25,19 @@ require_once(LIB.'/lib_fournitures.php');
 	<?php
 		// test :
 		// http://localhost/projet_ecole/web/fournitures/index.php?cat=ECRITURE&scat=SURLIGNEURS
-		if(!empty($_GET["cat"]))
+		if(!empty($_GET["find"]))
+		{
+			afficherFournitures("", "", htmlSpecialChars($_GET["find"]));
+		}
+		else if(!empty($_GET["cat"]))
 		{
 			if(!empty($_GET["scat"]))
 			{
-				afficherFournitures($_GET["cat"], $_GET["scat"]);
+				afficherFournitures(htmlSpecialChars($_GET["cat"]), htmlSpecialChars($_GET["scat"]));
 			}
 			else
 			{
-				afficherFournitures($_GET["cat"]);
+				afficherFournitures(htmlSpecialChars($_GET["cat"]));
 			}
 		}
 		else

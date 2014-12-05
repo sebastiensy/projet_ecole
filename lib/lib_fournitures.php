@@ -8,7 +8,7 @@
  * @return void
  *
  * @usage require_once(LIB.'/lib_fournitures.php');
- * afficherFournitures([$rubriques], [$srubriques]);
+ * afficherFournitures([$rubrique], [$srubrique], [$recherche]);
  *
  */
 
@@ -30,12 +30,12 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	$db = new DB_connection();
 
 	$db->DB_query($requete);
-	$nb_elems = 30; // nombre d'éléments par page
+	$nb_elems = 25; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 	if(!empty($_GET["page"]))
 	{
-		$page = $_GET["page"];
+		$page = intval($_GET["page"]);
 		if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
 			$page = 1;
 	}
@@ -76,7 +76,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	if(!empty($_GET["ref"]))
 	{
 		// remplacer '1' avec $_SESSION['id']
-		$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 0 AND p.id_parent = c.id_parent AND p.id_parent = 1';
+		$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = 1';
 		$db->DB_query($requete);
 
 		if($commande = $db->DB_object())
@@ -85,11 +85,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 
 			// pouvoir modifier quantite à l'avenir par un GET
 			$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
-			$res = mysqli_query($co, $requete);
-			mysqli_free_result($res);
-
-			// ajouter un param à l'url pour récupérer res
-			header('Location: index.php');
+			$db->DB_query($requete);
 		}
 		/*else
 		{
@@ -101,16 +97,64 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	}
 
 	// affichage des pages
+
 	echo "<div id=\"pages\">";
+
+	$chemin = explode('/', recuperer_url()[4])[0];
+	//echo $chemin; index.php?cat=ECRITURE&scat=SURLIGNEURS ou  ""
+	//?cat=ECRITURE&page=1
+
+	$script = explode('?', $chemin)[0];
+	// index.php ou ""
+
+	if(aucun_arg($chemin))
+		$param = explode('?page', $chemin)[0];
+	else
+		$param = explode('&page', $chemin)[0];
+	//echo $param; index.php?cat=ECRITURE ou ""
+
 	for($i=1; $i <= $nb_pages; ++$i)
 	{
 		if($page == $i)
-			echo "<a href=\"index.php?page=".$i."\"><span style=\"font-weight:bold; color:black\">".$i."</span></a> | ";
+			echo "<span style=\"font-weight:bold; color:black\">".$i."</span> | ";
 		else
-			echo "<a href=\"index.php?page=".$i."\">".$i."</a> | ";
+		{
+			if(aucun_arg($chemin))
+				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."?page=".$i.">".$i."</a> | ";
+			else
+				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."&page=".$i.">".$i."</a> | ";
+		}
 	}
 	echo "</div>";
 	$db->DB_done();
+}
+
+function aucun_arg($url)
+{
+	if(!isset($_GET["cat"]) && !isset($_GET["scat"]) && !isset($_GET["find"]))
+		return true;
+	else
+		return false;
+}
+
+function formater_url($script, $cat, $scat, $find)
+{
+	$str = $script;
+	if($find!="")
+		return $str."?find=".$find;
+	if($cat!="")
+	{
+		$str .= "?cat=".$cat;
+		if($scat!="")
+			$str .= "&scat=;".$scat;
+	}
+	else if($scat!="")
+	{
+		$str .= "?scat=".$scat;
+		if($cat!="")
+			$str = $script."?cat=".$cat."&scat=".$scat;
+	}
+	return $str;
 }
 
 ?>

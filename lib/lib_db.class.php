@@ -35,8 +35,7 @@ class DB_connection
 		$this->_password = PASS;
 		$this->_database = DB;
 		
-		if(!$this->_connection = @mysqli_connect($this->_hostname, $this->_username, $this->_password, $this->_database))
-			throw new Exception ("Erreur de connexion à la base. ".mysql_error());
+		$this->_connection = @mysqli_connect($this->_hostname, $this->_username, $this->_password, $this->_database) or die ("Erreur de connexion &acirc; la base. ".mysql_error());
 	}
 
 	/**
@@ -48,9 +47,7 @@ class DB_connection
 	 */
 	public function DB_query($requete)
 	{
-		if(!$this->_result = @mysqli_query($this->_connection, $requete))
-			throw new Exception ("Problème dans l'exécution de la requête : $requete. ".mysql_error($this->_connection));
-			
+		$this->_result = @mysqli_query($this->_connection, $requete) or die ("Probl&egrave;me dans l'ex&eacute;cution de la requ&ecirc;te : $requete. ".mysql_error());
 		return $this->_result;
 	}
 

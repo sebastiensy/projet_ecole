@@ -7,6 +7,16 @@ DROP TABLE IF EXISTS Materiel;
 DROP TABLE IF EXISTS Sous_categorie;
 DROP TABLE IF EXISTS Commande;
 DROP TABLE IF EXISTS Parent;
+DROP TABLE IF EXISTS Message;
+
+CREATE TABLE Message(
+	id_message INT AUTO_INCREMENT NOT NULL,
+	email_parent VARCHAR(40),
+	objet VARCHAR(40),
+	message VARCHAR(256),
+	lu TINYINT(1),
+	PRIMARY KEY (id_message)
+) Engine=InnoDB;
 
 CREATE TABLE Parent(
 	id_parent INT AUTO_INCREMENT NOT NULL,

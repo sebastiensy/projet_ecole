@@ -72,11 +72,11 @@ body
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:-25px;
-	background-color:orange; /*background-image:url(../img/corps.png);*/
-	background-repeat:repeat-x;
+	/*background-color:orange;*/ background-image:url(../img/corps.png);
+	background-repeat:no-repeat;
 	word-wrap:break-word;
 	padding-top:40px;
-	padding-left:10px;
+	padding-left:50px;
 	padding-right:10px;
 }
 
@@ -87,24 +87,45 @@ body
 
 /* formulaire contact */
 
+.lab_cont
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+.in_cont
+{
+	width:185px;
+}
+
 #formulaire_contact
 {
+	margin-right:auto;
+	margin-left:auto;
 	position:absolute;
-	width:600px;
+	width:400px;
 	background-color:red;
 }
 
-.contact_label
+.formb
 {
-	min-width:200px;
-	background-color:green;
+	margin-right:40px;
+	margin-left:150px;
 }
 
-.pformulaire
+/* formulaire inscription */
+
+.inscription
 {
-	margin-left:auto;
-	margin-right:auto;
-	width:400px;
+	display: block; /* La balise devient de type block. */
+	width: 250px;
+	float: left;
+}
+
+.b
+{
+	margin-left: 250px ;
 }
 
 /* footer */
