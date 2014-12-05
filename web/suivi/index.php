@@ -27,7 +27,7 @@ require_once('../../inc/data.inc.php');
 <?php
 
 // Pour test
-$id_parent = 3;
+$id_parent = 4;
 
 session_start();
 
@@ -39,17 +39,94 @@ $db = new DB_connection();
 $db->DB_query($requete);
 
 echo 'Etat de ma commande';
+?>
 
-echo "<table>
+
+<div class="checkout-wrap">
+  <ul class="checkout-bar">
+
+    <li id="1" class="1">
+      <!--<a href="#">En cours</a>-->
+      En cours
+    </li>
+    
+    <li id="2" class="2">Valide</li>
+    
+    <li id="3" class="3">Commande fournisseur</li>
+    
+    <li id="4" class="4">En cours de livraison</li>
+    
+    <li id="5" class="5">Livre</li>
+       
+  </ul>
+</div>
+
+<?php
+
+while($suiv = $db->DB_object())
+{
+	/*echo "<script type='text/javascript'>";
+	echo "$(document).ready(function() {
+	alert('etat = ' + $suiv->etat);
+	var i = 1;
+	for(i;i<=5;i++)
+	{
+		if ($('.".i."').length > 0)
+		alert('ok');
+		if ($suiv->etat == i)
+		{
+			$('.i').removeClass().addClass('active');
+		}
+		else if ($suiv->etat <= i)
+		{
+			$('.i').removeClass().addClass('visited');
+		}
+		else if ($suiv->etat >= i)
+		{
+			$('.i').removeClass().addClass('next');
+		}
+	}
+	});";
+	echo "</script>";
+
+	var file = '<?php echo $name; ?>';*/
+
+
+	for ($i=1; $i<=5; $i++) 
+	{	
+		echo "<script type='text/javascript'>";
+		echo "var i = ".$i.";";
+		echo "if ($suiv->etat == i && $suiv->etat != 5)
+		{
+			$('#".$i."').removeClass().addClass('active');
+		}
+		else if ($suiv->etat >= i)
+		{
+			$('#".$i."').removeClass().addClass('visited');
+		}
+		else if ($suiv->etat < i)
+		{
+			$('#".$i."').removeClass().addClass('next');
+		}
+		else if ($suiv->etat == 5)
+		{
+			$('#".$i."').removeClass().addClass('visited');
+		}"; 
+		echo "</script>";
+
+	}
+	
+}
+/*echo "<table>
 		<tr>
 			<th>En cours de validation</th>
 			<th>Valide</th>
 			<th>Commande fournisseur</th>
 			<th>En cours de livraison</th>
 			<th>Livre</th>
-		</tr>";
+		</tr>";*/
 
-while($suiv = $db->DB_object())
+/*while($suiv = $db->DB_object())
 {
 	for ($i=1; $i<=5; $i++) {
 		if($suiv->etat >= $i)
@@ -94,12 +171,12 @@ while($suiv = $db->DB_object())
 			</tr>	
 		</table>";
 
-}
+}*/
 
 //Jquery pour desactiver le clic si on ne met pas disabled dans les checkbox
-echo "<script type='text/javascript'>";
+/*echo "<script type='text/javascript'>";
 echo "$('input:checkbox').click(function() { return false; });";
-echo "</script>";
+echo "</script>";*/
 
 session_unset ();
 session_destroy();
