@@ -5,8 +5,10 @@
 	<title>Projet &eacute;cole</title>
 	<link rel="stylesheet" href="../../js/jquery-ui.css">
 	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../js/fancybox/source/jquery.fancybox.css">
 	<script src="../../js/jquery-2.1.1.min.js"></script>
 	<script src="../../js/jquery-ui.js"></script>
+	<script src="../../js/fancybox/source/jquery.fancybox.pack.js"></script>
 	<script>
 	$(function()
 	{
@@ -42,6 +44,14 @@
 			spinner.spinner( "value", 5 );
 		});
 		$( "button" ).button();
+
+		// Pour le suivi des commandes (admin)
+		$("#fancy").fancybox({
+               
+                type: "iframe",
+                width: '40%',
+                height: '40%'
+        });
 	});
 	</script>
 </head>
