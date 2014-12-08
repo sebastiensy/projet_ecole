@@ -2,44 +2,56 @@
 
 require_once('../../inc/data.inc.php');
 
-$id_commande = $_GET['com'];
-$parent = $_GET['nom'];
+?>
 
-echo $parent;
+<body>
 
-$requete = 'SELECT c.id_commande, c.ref_mat, c.quantite, m.desc_mat, m.prix_mat FROM Contient as c, Materiel as m WHERE c.ref_mat = m.ref_mat AND c.id_commande = '.$id_commande;
+<?php
 
-$db = new DB_connection();
-$db->DB_query($requete);
+if (isset($_GET['com']) && isset($_GET['nom']))
+{
+	$id_commande = $_GET['com'];
+	$parent = $_GET['nom'];
 
-$prix = array();
+	echo $parent;
 
-	echo "<table>
-			<tr>
-				<th>Quantite</th>
-				<th>Materiel</th>
-				<th>Prix</th>
-			</tr>";
-	
-	while($suiv = $db->DB_object())
-	{
-		echo "<tr><td>".$suiv->quantite."</td>";
+	$requete = 'SELECT c.id_commande, c.ref_mat, c.quantite, m.desc_mat, m.prix_mat FROM Contient as c, Materiel as m WHERE c.ref_mat = m.ref_mat AND c.id_commande = '.$id_commande;
+
+	$db = new DB_connection();
+	$db->DB_query($requete);
+
+	$prix = array();
+
+		echo "<table>
+				<tr>
+					<th>Quantite</th>
+					<th>Materiel</th>
+					<th>Prix</th>
+				</tr>";
 		
-		echo "<td>".$suiv->desc_mat."</td>";
+		while($suiv = $db->DB_object())
+		{
+			echo "<tr><td>".$suiv->quantite."</td>";
+			
+			echo "<td>".$suiv->desc_mat."</td>";
+			
+			echo "<td>".$suiv->quantite * $suiv->prix_mat." €</td>";
+			
+			echo "</tr>";
+
+			array_push($prix, $suiv->quantite * $suiv->prix_mat);
+		}
 		
-		echo "<td>".$suiv->quantite * $suiv->prix_mat." €</td>";
+		$somme = array_sum($prix);
 		
-		echo "</tr>";
+		echo "</table>";
 
-		array_push($prix, $suiv->quantite * $suiv->prix_mat);
-	}
-	
-	$somme = array_sum($prix);
-	
-	echo "</table>";
+		echo "TOTAL : ".$somme. " €";
 
-	echo "TOTAL : ".$somme. " €";
-
-	$db->DB_done();
+		$db->DB_done();
+}
 
 ?>
+
+</body>
+</html>

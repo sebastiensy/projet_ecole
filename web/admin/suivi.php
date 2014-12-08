@@ -31,14 +31,17 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	echo 'Suivi des commandes';
 
+	echo "<form method=POST action='suivi.php'>";
 	echo "<table>
 			<tr>
-				<th>Parenté</th>
+				<th>Parent</th>
 				<th>En cours de validation</th>
 				<th>Valide</th>
 				<th>Commande fournisseur</th>
 				<th>En cours de livraison</th>
 				<th>Livre</th>
+				<th></th>
+				<th></th>
 				<th></th>
 			</tr>";
 
@@ -50,22 +53,53 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 		for ($i=1; $i<=5; $i++) {
 			if($suiv->etat == $i)
 			{
-				echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+				echo '<td><input type="checkbox" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
 			}
 			else
 			{
-				echo '<td><input type="checkbox" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+				echo '<td><input type="checkbox" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
 			}
+
 		}
+		echo '<td><input type="button" id="modifier'.$suiv->nom_parent.'" value="Modifier"></input></td>';
+		echo '<td><input type="submit" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
 		echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php\?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
 		echo "</tr>";
+
+		echo "<script type='text/javascript'>";
+		echo "$('#modifier".$suiv->nom_parent."').click(function(){
+	        $('.suivi".$suiv->nom_parent."').prop('disabled',false);
+	        $('#enregistrer".$suiv->nom_parent."').prop('disabled',false);
+	    });";
+		echo "</script>";
+
+		$val;
+		echo "<script type='text/javascript'>";
+		echo "$('#enregistrer".$suiv->nom_parent."').click(function(){
+			var val;
+			$('.suivi".$suiv->nom_parent.":checkbox:checked').each(function(){
+      		val = $(this).val();
+      		});
+			
+			alert(val);
+			   
+	        
+	    });";
+		echo "</script>";
+				
 	}
 
 	echo "</table>";
 
+	
+	$modifier = 'UPDATE Commande SET etat = ';
+
+ 
+	
 	$db->DB_done();
 ?>
 
+</script>
 </div>
 
 <?php
