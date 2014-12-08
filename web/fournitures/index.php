@@ -9,6 +9,14 @@ require_once(LIB.'/lib_fournitures.php');
 
 	<div id="banner">
 	</div>
+	
+	<div id="connexion">
+		<a id="fancy" data-fancybox-type="iframe" href="../connexion/">Se connecter</a>
+	</div>
+
+	<div id="panier">
+
+	</div>
 
 	<div class="menu">
 		<div id="menu">

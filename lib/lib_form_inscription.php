@@ -2,7 +2,7 @@
  
 <?php 
 
-function formulaire_inscription($message="" ,$nom="", $email="", $tel="", $mdp="", $cmdp="", $nbrenfant="")
+function formulaire_inscription($message="", $nom="", $email="", $tel="", $mdp="", $cmdp="", $nbrenfant="")
 { 
 
 ?> 

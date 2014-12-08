@@ -64,36 +64,41 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				<td>".$mat->ref_mat."</td>
 				<td>".$mat->desc_mat."</td>
 				<td>".$mat->prix_mat." €</td>
-				<td><input class=\"spinner\" name=\".$mat->ref_mat.\" size=\"1\" min=\"1\" max=\"999\"></td>
-				<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."\">Ajouter au panier</td>
+				<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onclick=\"getQte();\"></td>
+				<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$mat->ref_mat."\">Ajouter au panier</td>
 			</tr>";
 	}
 	echo "</table>";
 
 	echo "</div>";
 
-	// ajouter vérification d'erreurs si la réf n'existe pas
 	if(!empty($_GET["ref"]))
 	{
-		// remplacer '1' avec $_SESSION['id']
-		$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = 1';
+		// vérification d'erreurs si la réf n'existe pas
+		$requete = 'Select ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
 		$db->DB_query($requete);
-
-		if($commande = $db->DB_object())
-		{
-			$id = $commande->id_commande;
-
-			// pouvoir modifier quantite à l'avenir par un GET
-			$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
-			$db->DB_query($requete);
-		}
-		/*else
+		if($db->DB_count() > 0)
 		{
 			// remplacer '1' avec $_SESSION['id']
-			echo "test";
-			$requete = 'INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES (\'\', \'\', \'0\', 1)';
-			$res = mysqli_query($co, $requete);
-		}*/
+			$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = 1';
+			$db->DB_query($requete);
+
+			if($commande = $db->DB_object())
+			{
+				$id = $commande->id_commande;
+
+				// pouvoir modifier quantite à l'avenir par un GET
+				$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
+				$db->DB_query($requete);
+			}
+			/*else
+			{
+				// remplacer '1' avec $_SESSION['id']
+				echo "test";
+				$requete = 'INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES (\'\', \'\', \'0\', 1)';
+				$res = mysqli_query($co, $requete);
+			}*/
+		}
 	}
 
 	// affichage des pages
@@ -101,17 +106,13 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	echo "<div id=\"pages\">";
 
 	$chemin = explode('/', recuperer_url()[4])[0];
-	//echo $chemin; index.php?cat=ECRITURE&scat=SURLIGNEURS ou  ""
-	//?cat=ECRITURE&page=1
 
 	$script = explode('?', $chemin)[0];
-	// index.php ou ""
 
 	if(aucun_arg($chemin))
 		$param = explode('?page', $chemin)[0];
 	else
-		$param = explode('&page', $chemin)[0];
-	//echo $param; index.php?cat=ECRITURE ou ""
+		$param = explode('&amp;page', $chemin)[0];
 
 	for($i=1; $i <= $nb_pages; ++$i)
 	{
@@ -120,9 +121,10 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 		else
 		{
 			if(aucun_arg($chemin))
-				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."?page=".$i.">".$i."</a> | ";
+				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."?page=".$i.">".$i."</a>";
 			else
-				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."&page=".$i.">".$i."</a> | ";
+				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."&amp;page=".$i.">".$i."</a>";
+			echo " | ";
 		}
 	}
 	echo "</div>";
@@ -146,15 +148,23 @@ function formater_url($script, $cat, $scat, $find)
 	{
 		$str .= "?cat=".$cat;
 		if($scat!="")
-			$str .= "&scat=;".$scat;
+			$str .= "&amp;scat=;".$scat;
 	}
 	else if($scat!="")
 	{
 		$str .= "?scat=".$scat;
 		if($cat!="")
-			$str = $script."?cat=".$cat."&scat=".$scat;
+			$str = $script."?cat=".$cat."&amp;scat=".$scat;
 	}
 	return $str;
 }
 
 ?>
+
+<script type="text\javascript">
+	function getQte()
+	{
+		var a = document.getElementById("00010").value;
+		alert(a);
+	}
+</script>

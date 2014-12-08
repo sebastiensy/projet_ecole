@@ -48,10 +48,10 @@
 
 		// Pour le suivi des commandes (admin)
 		$("#fancy").fancybox({
-               
-                type: "iframe",
-                width: '40%',
-                height: '40%'
+			'width':'35%',
+			'height':'50%',
+			'type':'iframe',
+			'autoScale':'false'
         });
 	});
 	</script>

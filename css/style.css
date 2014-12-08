@@ -35,6 +35,30 @@ body
     text-decoration:underline;
 }
 
+/* connexion */
+
+#connexion
+{
+	position:absolute;
+	width:120px;
+	min-height:80px;
+	margin-top:0px;
+	margin-left:140px;
+	background-color:orange;
+}
+
+/* panier */
+
+#panier
+{
+	position:absolute;
+	width:120px;
+	min-height:80px;
+	margin-top:0px;
+	margin-left:780px;
+	background-color:orange;
+}
+
 /* menu */
 
 .menu
@@ -53,7 +77,7 @@ body
 	width:470px;
 	min-height:90px;
 	margin-top:0px;
-	margin-left:250px;
+	margin-left:180px;
 }
 
 #menu1
@@ -126,6 +150,26 @@ body
 .b
 {
 	margin-left: 250px ;
+}
+
+/* formulaire connexion */
+
+.label_connexion
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+#conbt
+{
+	margin-left:150px;
+}
+
+#div_con
+{
+	margin-left:auto;
+	margin-right:auto;
 }
 
 /* footer */

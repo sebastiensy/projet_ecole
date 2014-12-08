@@ -31,7 +31,7 @@ require_once(LIB.'/lib_form_inscription.php');
 		else
 		{
 			/*
-				verifier si l'un des champs est vide 
+			verifier si l'un des champs est vide 
 			*/
 			$bol=true;
 
@@ -49,18 +49,34 @@ require_once(LIB.'/lib_form_inscription.php');
 				on affiche un message 
 				et le formulaire avec son etat precedent
 				*/
-				formulaire_inscription("Veuillez remplir tous les champs", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Veuillez remplir tous les champs.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
 			else
 			{
-				if($_POST["mdp"]!==$_POST["cmdp"])
+				/*
+				connexion a la base via la classe DB_connection
+				*/
+				$db = new DB_connection();
+
+				/*
+				verifie si l'email n'existe pas déjà
+				sinon reaffichage du formulaire avec son etat precedent
+				et un message 
+				*/
+				$requete = 'Select id_parent from Parent where email_parent = "'.$_POST["email"].'"';
+				$db->DB_query($requete);
+				if($db->DB_count() > 0)
+				{
+					formulaire_inscription("Cet email existe déjà." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				}
+				else if($_POST["mdp"]!==$_POST["cmdp"])
 				{
 					/*
 					verifier si les mots de passe correspondent
 					sinon reaffichage du formulaire avec son etat precedent
 					et un message 
 					*/
-					formulaire_inscription("Mot de passe incorrect",$_POST["nom"],$_POST["email"],$_POST["tel"],$_POST["mdp"],"",$_POST["nbrenfant"]);
+					formulaire_inscription("Mot de passe incorrect." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 				}
 				else
 				{
@@ -77,12 +93,6 @@ require_once(LIB.'/lib_form_inscription.php');
 					$_POST["tel"]=htmlEntities($_POST["tel"]);
 					$_POST["tel"]=htmlEntities($_POST["mdp"]);
 					$_POST["nbrenfant"]=htmlEntities($_POST["nbrenfant"]);
-
-					/*
-					connexion a la base via la class MySQL
-					*/
-
-					$db = new DB_connection();
 
 					/*
 					preparation de la requete 
