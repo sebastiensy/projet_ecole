@@ -27,7 +27,7 @@ require_once('../../inc/data.inc.php');
 <?php
 
 // Pour test
-$id_parent = 4;
+$id_parent = 2;
 
 session_start();
 
@@ -115,6 +115,36 @@ while($suiv = $db->DB_object())
 		echo "</script>";
 
 	}
+
+	echo "<br><br><br><br><br><br>";
+
+	echo "<table>
+			<tr>
+				<th>Numero de commande</th>
+				<td>".$suiv->id_commande."</td>
+			</tr>
+			<tr>
+				<th>Date de la commande</th>
+				<td>".$suiv->date_cmd."</td>
+			</tr>
+		</table>";
+
+	echo "<br>";
+
+	echo "<table>
+			<tr>
+				<th>Parent</th>
+				<td>".$suiv->nom_parent."</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>".$suiv->email_parent."</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>".$suiv->tel_parent."</td>
+			</tr>	
+		</table>";
 	
 }
 /*echo "<table>
