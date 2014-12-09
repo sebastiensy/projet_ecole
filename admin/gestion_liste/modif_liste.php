@@ -19,7 +19,10 @@ require '../conf.php';
 				
 				type: "iframe",
 				width: '40%',
-				height: '40%'
+				height: '40%',
+				onClosed: function() {   
+     parent.location.reload(true); 
+    ;}
 								});
 	});
 </script>
@@ -88,7 +91,7 @@ require '../conf.php';
 
 <?php
 $req="select * from liste_niveau where id_nivliste=".$id;
-$mysql_result=mysql_query($req,$connexion) or die($myQuery."<br/><br/>".mysql_error());
+$mysql_result=mysql_query($req,$connexion) or die("<br/><br/>".mysql_error());
 $ligne=mysql_fetch_array($mysql_result);
 if($ligne!=NULL)
 {
