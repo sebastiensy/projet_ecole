@@ -1,0 +1,41 @@
+.tete{
+	margin-left:auto;
+	margin-right:auto;
+	width: 1161px;
+	
+	}
+.menu{
+	padding: 0; 
+	margin: 0; 
+    text-align: center; /* centrer le texte */  
+}  
+.menu li {  
+    display: inline;  
+    list-style: none;  
+}  
+.menu a {  
+    display:inline-block;  
+    margin: 0;  
+	text-decoration: none;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size:14px;
+	font-weight: bold;
+	color:#7d5d3b;
+}  
+.menu table{
+	border-width:0px 3px 3px 0px;
+	border-style:solid;
+	border-color: #FEF3DB;
+	padding:0 10px;
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	
+	border-collapse: collapse;
+	}
+div#text
+{
+	font-family: Cursive;
+	font-size:20px;
+	color:#333300;
+			}
