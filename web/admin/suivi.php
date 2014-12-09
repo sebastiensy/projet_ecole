@@ -14,13 +14,15 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('5', '2014-11-01', 5, 5)
 */ -->
 
-<body id="back">
+<body>
 
 <div id="banner">
 </div>
 
 <div id="page">
 <?php
+
+	$recharge = false;
 
 	require_once('../../inc/data.inc.php');
 
@@ -31,7 +33,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	echo 'Suivi des commandes';
 
-	echo "<form method=POST action='suivi.php'>";
+	echo "<form method='POST' action='suivi.php'>";
 	echo "<table>
 			<tr>
 				<th>Parent</th>
@@ -49,20 +51,21 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	while($suiv = $db->DB_object())
 	{
 		echo "<tr><td>".$suiv->nom_parent."</td>";
-		
+				
 		for ($i=1; $i<=5; $i++) {
 			if($suiv->etat == $i)
 			{
-				echo '<td><input type="checkbox" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+				echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
 			}
 			else
 			{
-				echo '<td><input type="checkbox" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+				echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
 			}
 
 		}
 		echo '<td><input type="button" id="modifier'.$suiv->nom_parent.'" value="Modifier"></input></td>';
-		echo '<td><input type="submit" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
+		echo '<td><input type="submit" name="enregistrer'.$suiv->nom_parent.'" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
+		//echo '<td><a id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" href="change_etat.php"><img src="../../img/icon_OK.png" alt="ok"/></a></td>';
 		echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php\?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
 		echo "</tr>";
 
@@ -73,8 +76,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	    });";
 		echo "</script>";
 
-		$val;
-		echo "<script type='text/javascript'>";
+		/*echo "<script type='text/javascript'>";
 		echo "$('#enregistrer".$suiv->nom_parent."').click(function(){
 			var val;
 			$('.suivi".$suiv->nom_parent.":checkbox:checked').each(function(){
@@ -85,25 +87,28 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			   
 	        
 	    });";
-		echo "</script>";
-				
+		echo "</script>";*/
+
+		
+		
+		if (isset($_POST['enregistrer'.$suiv->nom_parent.'']))
+		{	
+			$etat = $_POST['suivi'.$suiv->nom_parent.''];
+			$modifier = 'UPDATE Commande SET etat = '.$etat.' WHERE id_commande = '.$suiv->id_commande;
+			$db->DB_query($modifier);
+		
+		}
+		
+
 	}
 
 	echo "</table>";
+	echo "</form>";
 
-	
-	$modifier = 'UPDATE Commande SET etat = ';
-
- 
 	
 	$db->DB_done();
 ?>
 
-</script>
 </div>
-
-<?php
-
-require_once(INC.'/footer.inc.php');
-
-?>
+</body>
+</html>
