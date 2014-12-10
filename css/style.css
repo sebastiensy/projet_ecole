@@ -12,7 +12,7 @@ body
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:-8px;
-	background-color:red; /*background-image:url(../img/entete.png);*/
+	/*background-color:red;*/ background-image:url(../img/entete2.png);
 	background-repeat:no-repeat;
 }
 
@@ -25,7 +25,7 @@ body
 
 #pages a:link, #pages a:visited
 {
-    color:white;
+    color:black;
     text-decoration:none;
 }
 
@@ -96,7 +96,7 @@ body
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:-25px;
-	/*background-color:orange;*/ background-image:url(../img/corps.png);
+	/*background-color:orange;*/ background-image:url(../img/corps2.png);
 	background-repeat:no-repeat;
 	word-wrap:break-word;
 	padding-top:40px;
@@ -106,7 +106,7 @@ body
 
 #produits
 {
-	min-height:980px;
+	min-height:970px;
 }
 
 /* formulaire contact */
