@@ -1,6 +1,6 @@
 <?php
 $id=$_GET['id'];
-require '../conf.php';
+require_once('../../inc/data.inc.php');
 ?>
 <html>
 	<head>
@@ -19,7 +19,8 @@ require '../conf.php';
 	<style type="text/css">
 		body {
 			
-			background-color: #FEF3DB
+			background-color: #FEF3DB;
+			background-image:none;
 			}
   </style>
 		<br>
@@ -41,12 +42,14 @@ require '../conf.php';
 							<option value=""></option>
 						
 							<?php 
+								$db = new DB_connection();
 								$req="select * from materiel where 1";
-								$mysqli_result=mysqli_query($req,$connexion);
-								while($ligne=mysqli_fetch_array($mysqli_result))
+								$db->DB_query($req);
+								//$mysql_result=mysql_query($req,$connexion);
+								while($ligne=$db->DB_object())
 								{
 							?>
-									<option value="<?php echo $ligne['ref_mat'];?>"><?php echo $ligne['ref_mat'];?></option>
+									<option value="<?php echo $ligne->ref_mat;?>"><?php echo $ligne->ref_mat;?></option>
 							<?php
 								}
 							?>
