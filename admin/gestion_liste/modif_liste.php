@@ -172,13 +172,16 @@ if($ligne!=NULL)
 							<td width="100">
 								<form method="post" action="modif_liste1.php?p=modif_qte&id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>" >
 								<div align="left">
-									<input type=number   name="qtte" value="<?php echo $ligne1->qte_scat;?>">
+									<input type="number"  name="qtte" value="<?php echo $ligne1->qte_scat;?>">
 									<INPUT border=0 src="../../img/icon_OK.png" type=image Value=submit  >
 								</div>
+								</form>
 								
 							</td>
 							
-							<td width="50"><div align="center"> <a href="del_art_liste.php?id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>"> <img src="../../img/del.png"> </a> </div></td>
+							<td width="50"><div align="center">
+							<form method="post" action="modif_liste1.php?p=del_art&id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>" >
+								<INPUT border=0 src="../../img/del.png" type=image Value=submit  ></form> </div></td>
 							
 						<tr>
 					<?php 

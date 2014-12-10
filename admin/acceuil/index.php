@@ -66,7 +66,7 @@
 			<div id="text" align="center">
 			<br>
 			<br>
-				Bienvenue &agrave; L'interface Administrateur
+				Bienvenue Dans L'interface Administrateur
 			</div>
 			</body>
 					
