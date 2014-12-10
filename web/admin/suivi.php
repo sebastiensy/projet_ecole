@@ -22,8 +22,6 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 <div id="page">
 <?php
 
-	$recharge = false;
-
 	require_once('../../inc/data.inc.php');
 
 	$requete = 'SELECT p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent';
@@ -33,7 +31,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	echo 'Suivi des commandes';
 
-	echo "<form method='POST' action='suivi.php'>";
+	//echo "<form method='POST' action='suivi.php'>";
 	echo "<table>
 			<tr>
 				<th>Parent</th>
@@ -44,66 +42,121 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 				<th>Livre</th>
 				<th></th>
 				<th></th>
-				<th></th>
 			</tr>";
+
+	if (isset($_GET['com']))
+	{
+		$commande = $_GET['com'];
+	}
+	else
+	{
+		$commande = "";
+	}
 
 	
 	while($suiv = $db->DB_object())
 	{
 		echo "<tr><td>".$suiv->nom_parent."</td>";
-				
-		for ($i=1; $i<=5; $i++) {
-			if($suiv->etat == $i)
-			{
-				echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+		
+		if ($commande != $suiv->id_commande)
+		{		
+			for ($i=1; $i<=5; $i++) {
+				if($suiv->etat == $i)
+				{
+					echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+				}
+				else
+				{
+					echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+				}
+
 			}
-			else
-			{
-				echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
-			}
-
-		}
-		echo '<td><input type="button" id="modifier'.$suiv->nom_parent.'" value="Modifier"></input></td>';
-		echo '<td><input type="submit" name="enregistrer'.$suiv->nom_parent.'" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
-		//echo '<td><a id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" href="change_etat.php"><img src="../../img/icon_OK.png" alt="ok"/></a></td>';
-		echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php\?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
-		echo "</tr>";
-
-		echo "<script type='text/javascript'>";
-		echo "$('#modifier".$suiv->nom_parent."').click(function(){
-	        $('.suivi".$suiv->nom_parent."').prop('disabled',false);
-	        $('#enregistrer".$suiv->nom_parent."').prop('disabled',false);
-	    });";
-		echo "</script>";
-
-		/*echo "<script type='text/javascript'>";
-		echo "$('#enregistrer".$suiv->nom_parent."').click(function(){
-			var val;
-			$('.suivi".$suiv->nom_parent.":checkbox:checked').each(function(){
-      		val = $(this).val();
-      		});
+			//echo '<td><input type="button" id="modifier'.$suiv->nom_parent.'" value="Modifier"></input></td>';
+			//echo '<td><input type="submit" name="enregistrer'.$suiv->nom_parent.'" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
+			//echo '<td><a id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" href="change_etat.php"><img src="../../img/icon_OK.png" alt="ok"/></a></td>';
 			
-			alert(val);
-			   
-	        
-	    });";
-		echo "</script>";*/
+			echo '<td><a id="modifier'.$suiv->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv->id_commande.'">Modifier</a></td>';
 
-		
-		
-		if (isset($_POST['enregistrer'.$suiv->nom_parent.'']))
-		{	
-			$etat = $_POST['suivi'.$suiv->nom_parent.''];
-			$modifier = 'UPDATE Commande SET etat = '.$etat.' WHERE id_commande = '.$suiv->id_commande;
-			$db->DB_query($modifier);
-		
+			echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
+			echo "</tr>";
 		}
-		
+
+		else
+		{
+			echo '<form method="POST" action="suivi.php?com='.$suiv->id_commande.'"/>';
+			
+			for ($i=1; $i<=5; $i++) {
+				if($suiv->etat == $i)
+					{
+						echo '<td><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked></td>';
+					}
+					else
+					{
+						echo '<td><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'"></td>';
+					}
+				}
+
+				echo '<td><input type="submit" name="enregistrer" value="Enregistrer"></input></td>';
+				echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
+				echo '</form>';
+
+
+		}
+
+
+
+
+
 
 	}
 
+	if (isset($_POST['suivi']))
+	{
+		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
+		$db->DB_query($modifier);
+		//header('Location: suivi.php');
+		print('<script type="text/javascript">location.href="suivi.php";</script>');
+	}
+
+
+
+
+
+			/*echo "<script type='text/javascript'>";
+			echo "$('#modifier".$suiv->nom_parent."').click(function(){
+		        $('.suivi".$suiv->nom_parent."').prop('disabled',false);
+		        $('#enregistrer".$suiv->nom_parent."').prop('disabled',false);
+		    });";
+			echo "</script>";*/
+
+			/*echo "<script type='text/javascript'>";
+			echo "$('#enregistrer".$suiv->nom_parent."').click(function(){
+				var val;
+				$('.suivi".$suiv->nom_parent.":checkbox:checked').each(function(){
+	      		val = $(this).val();
+	      		});
+				
+				alert(val);
+				   
+		        
+		    });";
+			echo "</script>";*/
+
+			
+			
+			/*if (isset($_POST['enregistrer'.$suiv->nom_parent.'']))
+			{	
+				$etat = $_POST['suivi'.$suiv->nom_parent.''];
+				$modifier = 'UPDATE Commande SET etat = '.$etat.' WHERE id_commande = '.$suiv->id_commande;
+				$db->DB_query($modifier);
+			
+			}*/
+		
+
+	
+
 	echo "</table>";
-	echo "</form>";
+	
 
 	
 	$db->DB_done();
