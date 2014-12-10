@@ -1,6 +1,6 @@
 <?php
 
-require '../conf.php';
+require_once('../../inc/data.inc.php');
 
 
 
@@ -87,19 +87,20 @@ require '../conf.php';
 
 
 <?php 
+$db = new DB_connection();
 $req="select * from liste_niveau where 1";
-$mysqli_result=mysqli_query($req,$connexion) or die('Could not connect: ' . mysqli_error());
-while($ligne=mysqli_fetch_array($mysqli_result))
+$db->DB_query($req);
+while($ligne=$db->DB_object())
 {
 
 ?>
 
 <tr>
-<td width="20" ><div align="center"><?php echo $ligne['id_nivliste'];?></div></td>
-<td width="90" ><div align="center"><?php echo $ligne['niveau'];?></div></td>
-<td width="50" ><div align="center"><?php echo $ligne['forfait'];?></div></td>
-<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne['id_nivliste'];?>"> Modifier </a></div></td>
-<td width="50" ><div align="center"><a href="del_liste.php?id="> <img src="../../img/del.png"> </a></div></td>
+<td width="20" ><div align="center"><?php echo $ligne->id_nivliste;?></div></td>
+<td width="90" ><div align="center"><?php echo $ligne->niveau;?></div></td>
+<td width="50" ><div align="center"><?php echo $ligne->forfait;?></div></td>
+<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste;?>"> Modifier </a></div></td>
+<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste;?>"> <img src="../../img/del.png"> </a></div></td>
 </tr>
 <?php
 }
