@@ -6,7 +6,7 @@
 	
 	if($ref!="" and $qte!="")
 	{
-		$req="insert into compose values('".$id."','".$ref."','".$qte."')";
+		$req="insert into compose values('".$qte."','".$ref."','".$id."')";
 		$myql_result=mysqli_query($req,$connexion);
 	}
 	$url="modif_liste.php?id=".$id;
