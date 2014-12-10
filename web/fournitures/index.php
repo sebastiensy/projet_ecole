@@ -28,6 +28,7 @@ require_once(LIB.'/lib_fournitures.php');
 				</div>
 			</div>
 	</div>
+	
 	<div id="page">
 
 	<?php

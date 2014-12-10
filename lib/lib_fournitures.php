@@ -30,7 +30,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	$db = new DB_connection();
 
 	$db->DB_query($requete);
-	$nb_elems = 25; // nombre d'éléments par page
+	$nb_elems = 28; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 	if(!empty($_GET["page"]))
@@ -64,7 +64,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				<td>".$mat->ref_mat."</td>
 				<td>".$mat->desc_mat."</td>
 				<td>".$mat->prix_mat." €</td>
-				<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onclick=\"getQte();\"></td>
+				<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
 				<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$mat->ref_mat."\">Ajouter au panier</td>
 			</tr>";
 	}
@@ -117,7 +117,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	for($i=1; $i <= $nb_pages; ++$i)
 	{
 		if($page == $i)
-			echo "<span style=\"font-weight:bold; color:black\">".$i."</span> | ";
+			echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | ";
 		else
 		{
 			if(aucun_arg($chemin))
