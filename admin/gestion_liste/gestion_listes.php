@@ -88,8 +88,8 @@ require '../conf.php';
 
 <?php 
 $req="select * from liste_niveau where 1";
-$mysql_result=mysql_query($req,$connexion) or die('Could not connect: ' . mysql_error());
-while($ligne=mysql_fetch_array($mysql_result))
+$mysqli_result=mysqli_query($req,$connexion) or die('Could not connect: ' . mysqli_error());
+while($ligne=mysqli_fetch_array($mysqli_result))
 {
 
 ?>

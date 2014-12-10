@@ -91,8 +91,8 @@ require '../conf.php';
 
 <?php
 $req="select * from liste_niveau where id_nivliste=".$id;
-$mysql_result=mysql_query($req,$connexion) or die("<br/><br/>".mysql_error());
-$ligne=mysql_fetch_array($mysql_result);
+$mysqli_result=mysqli_query($req,$connexion) or die("<br/><br/>".mysqli_error());
+$ligne=mysqli_fetch_array($mysqli_result);
 if($ligne!=NULL)
 {
 ?>
@@ -142,12 +142,12 @@ if($ligne!=NULL)
 				</tr>
 				<?php 
 					$req1="select * from Compose where id_nivliste=".$id;
-					$mysql_result1=mysql_query($req1,$connexion) or die ('Could not connect: ' . mysql_error());
-					while($ligne1=mysql_fetch_array($mysql_result1))
+					$mysqli_result1=mysqli_query($req1,$connexion) or die ('Could not connect: ' . mysqli_error());
+					while($ligne1=mysqli_fetch_array($mysqli_result1))
 					{
 						$req2="select * from Materiel where ref_mat='".$ligne1['ref_mat']."'";
-						$mysql_result2=mysql_query($req2,$connexion);
-						$ligne2=mysql_fetch_array($mysql_result2);
+						$mysqli_result2=mysqli_query($req2,$connexion);
+						$ligne2=mysqli_fetch_array($mysqli_result2);
 						?>
 						<tr>
 							<td width="30"><div align="center"><?php echo $ligne2['ref_mat'];?></div></td>

@@ -81,16 +81,16 @@ function drop(ev) {
 		<div align="center" id="content" >
 <?php $i=$_GET['p'];
 	  $req="select distinct categorie from sous_categorie order by categorie asc";
-	  $mysql_result=mysql_query($req,$connexion);
+	  $mysqli_result=mysqli_query($req,$connexion);
 	  $cpt=1;
 	  $cat;
-	  while($ligne=mysql_fetch_array($mysql_result) and $cpt<=$i){
+	  while($ligne=mysqli_fetch_array($mysqli_result) and $cpt<=$i){
 	  
 	  $cat=$ligne['categorie'];
 	  $cpt++;
 	  }
 	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
-	  $mysql_result1=mysql_query($req1,$connexion);
+	  $mysqli_result1=mysqli_query($req1,$connexion);
 	  
 ?>
 			
@@ -106,7 +106,7 @@ function drop(ev) {
 						<legend>Tout Les Articles</legend>
 						<?php
 						$cpta=0;					
-						while($ligne1=mysql_fetch_array($mysql_result1))
+						while($ligne1=mysqli_fetch_array($mysqli_result1))
 								{
 									?>
 									<div id="drag1" draggable="true" ondragstart="drag(event)"><?php echo $ligne1['desc_mat'].'-'.$ligne1['ref_mat'];?></div>

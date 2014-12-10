@@ -42,8 +42,8 @@ require '../conf.php';
 						
 							<?php 
 								$req="select * from materiel where 1";
-								$mysql_result=mysql_query($req,$connexion);
-								while($ligne=mysql_fetch_array($mysql_result))
+								$mysqli_result=mysqli_query($req,$connexion);
+								while($ligne=mysqli_fetch_array($mysqli_result))
 								{
 							?>
 									<option value="<?php echo $ligne['ref_mat'];?>"><?php echo $ligne['ref_mat'];?></option>
