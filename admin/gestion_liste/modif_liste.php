@@ -1,7 +1,7 @@
 <?php
 $id=$_GET['id'];
 
-require '../conf.php';
+require_once('../../inc/data.inc.php');
 ?>
 <html>
 <head>
@@ -26,6 +26,13 @@ require '../conf.php';
 								});
 	});
 </script>
+<style type="text/css">
+			body{
+				background-image:none;
+				}
+			
+			
+</style>
 </head>
 <body>
 		<header class="tete">
@@ -90,9 +97,11 @@ require '../conf.php';
 
 
 <?php
+$db = new DB_connection();
 $req="select * from liste_niveau where id_nivliste=".$id;
-$mysqli_result=mysqli_query($req,$connexion) or die("<br/><br/>".mysqli_error());
-$ligne=mysqli_fetch_array($mysqli_result);
+$db->DB_query($req);
+//$mysql_result=mysql_query($req,$connexion) or die("<br/><br/>".mysql_error());
+$ligne=$db->DB_object();
 if($ligne!=NULL)
 {
 ?>
@@ -109,7 +118,7 @@ if($ligne!=NULL)
 			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $id;?>" >
 				<td width="50"><div align="center">Niveau:</div></td>
 			
-				<td width="100"><div align="center"><input size="10" type="text" name="niv" value="<?php echo $ligne['niveau'];?>" ><div></td>
+				<td width="100"><div align="center"><input size="10" type="text" name="niv" value="<?php echo $ligne->niveau;?>" ><div></td>
 			
 				<td width="50"><div align="right" ><INPUT border=0 src="../../img/icon_OK.png" type=image Value=submit align="middle" ><div></td>
 			</form> 
@@ -118,7 +127,7 @@ if($ligne!=NULL)
 			<form method="post" action="modif_liste1.php?p=modif_for&id=<?php echo $id;?>" >
 				<td width="50"><div align="center">Forfait:</div></td>
 				
-				<td width="100"><div align="center"><input size="10" type=text name="for" value="<?php echo $ligne['forfait'];?>" ><div></td>
+				<td width="100"><div align="center"><input size="10" type=text name="for" value="<?php echo $ligne->forfait;?>" ><div></td>
 				
 				<td width="50"><div align="right" ><INPUT border=0 src="../../img/icon_OK.png" type=image Value=submit align="middle" ><div></td>
 				
@@ -141,31 +150,35 @@ if($ligne!=NULL)
 					<th width="50"><div align="center">Supprimer</div></th>
 				</tr>
 				<?php 
+					$db1 = new DB_connection();
 					$req1="select * from Compose where id_nivliste=".$id;
-					$mysqli_result1=mysqli_query($req1,$connexion) or die ('Could not connect: ' . mysqli_error());
-					while($ligne1=mysqli_fetch_array($mysqli_result1))
+					$db1->DB_query($req1);
+					//$mysql_result1=mysql_query($req1,$connexion) or die ('Could not connect: ' . mysql_error());
+					while($ligne1=$db1->DB_object())
 					{
-						$req2="select * from Materiel where ref_mat='".$ligne1['ref_mat']."'";
-						$mysqli_result2=mysqli_query($req2,$connexion);
-						$ligne2=mysqli_fetch_array($mysqli_result2);
+						$db2 = new DB_connection();
+						$req2="select * from Materiel where ref_mat='".$ligne1->ref_mat."'";
+						$db2->DB_query($req2);
+						//$mysql_result2=mysql_query($req2,$connexion);
+						$ligne2=$db2->DB_object();
 						?>
 						<tr>
-							<td width="30"><div align="center"><?php echo $ligne2['ref_mat'];?></div></td>
+							<td width="30"><div align="center"><?php echo $ligne1->ref_mat;?></div></td>
 							
-							<td width="250"><div align="center"><?php echo $ligne2['desc_mat'];?></div></td>
+							<td width="250"><div align="center"><?php echo $ligne2->desc_mat;?></div></td>
 							
-							<td width="50"><div align="center"><?php echo $ligne2['prix_mat'];?></div></td>
+							<td width="50"><div align="center"><?php echo $ligne2->prix_mat;?></div></td>
 							
 							<td width="100">
-								<form method="post" action="modif_liste1.php?p=modif_qte&id=<?php echo $id;?>&ref=<?php echo $ligne1['ref_mat'];?>" >
+								<form method="post" action="modif_liste1.php?p=modif_qte&id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>" >
 								<div align="left">
-									<input type=number size="10" value="<?php echo $ligne1['qte_scat'];?>" name="qte">
+									<input type=number   name="qtte" value="<?php echo $ligne1->qte_scat;?>">
 									<INPUT border=0 src="../../img/icon_OK.png" type=image Value=submit  >
 								</div>
 								
 							</td>
 							
-							<td width="50"><div align="center"> <a href="del_art_liste.php?id=<?php echo $id;?>&ref=<?php echo $ligne1['ref_mat'];?>"> <img src="../../img/del.png"> </a> </div></td>
+							<td width="50"><div align="center"> <a href="del_art_liste.php?id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>"> <img src="../../img/del.png"> </a> </div></td>
 							
 						<tr>
 					<?php 
