@@ -7,14 +7,14 @@ require_once('../../inc/data.inc.php');
 	{
 		$req="update liste_niveau set niveau='".$_POST['niv']."' where id_nivliste='".$id."'";
 		//$myqsl_result=mysql_query($req,$connexion);
-		$db->DB_query($req1);
+		$db->DB_query($req);
 	}
 	/*                                      Modification du prix d'une liste 										   */
 	if($_GET['p']=="modif_for")
 	{
 		$req="update liste_niveau set forfait='".$_POST['for']."' where id_nivliste='".$id."'";
 		//$myqsl_result=mysql_query($req,$connexion);
-		$db->DB_query($req1);
+		$db->DB_query($req);
 	}
 	/*                                      Modification d'un article										   */
 	if($_GET['p']=="modif_qte")
@@ -39,3 +39,10 @@ require_once('../../inc/data.inc.php');
 	$url="modif_liste.php?id=".$id;
 	header("Refresh:0;url=$url");
 	?>
+	<html>
+		<style type="text/css">
+			body{
+				background-image:none;
+				}
+				</style>
+				</html>

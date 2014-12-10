@@ -114,7 +114,7 @@ function drop(ev) {
 
 					<div class="left">
 					<fieldset class="wrap">
-						<legend>Tout Les Articles</legend>
+						<legend><?php echo $cat;?></legend>
 						<?php
 						$cpta=0;					
 						while($ligne1=$db1->DB_object())
