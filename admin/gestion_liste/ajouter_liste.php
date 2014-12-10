@@ -1,4 +1,4 @@
-<?php require '../conf.php'?>
+<?php require_once('../../inc/data.inc.php');?>
 <html>
 	<head>
 		<title>Interface Admin:Gestion des Listes</title>
@@ -19,6 +19,13 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 }
 </script>
+<style type="text/css">
+		body {
+			
+			
+			background-image:none;
+			}
+  </style>
 	</head>
 	<body>
 		<header class="tete">
@@ -80,17 +87,21 @@ function drop(ev) {
 		<br>
 		<div align="center" id="content" >
 <?php $i=$_GET['p'];
+	  $db = new DB_connection();
 	  $req="select distinct categorie from sous_categorie order by categorie asc";
-	  $mysqli_result=mysqli_query($req,$connexion);
+	  $db->DB_query($req);
+	  //$mysql_result=mysql_query($req,$connexion);
 	  $cpt=1;
 	  $cat;
-	  while($ligne=mysqli_fetch_array($mysqli_result) and $cpt<=$i){
+	  while($ligne=$db->DB_object() and $cpt<=$i){
 	  
-	  $cat=$ligne['categorie'];
+	  $cat=$ligne->categorie;
 	  $cpt++;
 	  }
+	  $db1 = new DB_connection();
 	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
-	  $mysqli_result1=mysqli_query($req1,$connexion);
+	  $db1->DB_query($req1);
+	  //$mysql_result1=mysql_query($req1,$connexion);
 	  
 ?>
 			
@@ -106,10 +117,10 @@ function drop(ev) {
 						<legend>Tout Les Articles</legend>
 						<?php
 						$cpta=0;					
-						while($ligne1=mysqli_fetch_array($mysqli_result1))
+						while($ligne1=$db1->DB_object())
 								{
 									?>
-									<div id="drag1" draggable="true" ondragstart="drag(event)"><?php echo $ligne1['desc_mat'].'-'.$ligne1['ref_mat'];?></div>
+									<div id="drag1" draggable="true" ondragstart="drag(event)"><?php echo $ligne1->desc_mat.'-'.$ligne1->ref_mat;?></div>
 						<?php
 						$cpta++;
 						}
