@@ -27,7 +27,7 @@ require_once('../../inc/data.inc.php');
 <?php
 
 // Pour test
-$id_parent = 2;
+$id_parent = 3;
 
 session_start();
 
@@ -208,8 +208,8 @@ while($suiv = $db->DB_object())
 echo "$('input:checkbox').click(function() { return false; });";
 echo "</script>";*/
 
-session_unset ();
-session_destroy();
+//session_unset ();
+//session_destroy();
 
 
 $db->DB_done();	
