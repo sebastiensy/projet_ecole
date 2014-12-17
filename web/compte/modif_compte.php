@@ -33,124 +33,115 @@ session_start();
 
 $_SESSION['id_parent'] = $id_parent;
 
+$db = new DB_connection();
 
 
+echo 'Mon compte';
 
 	if(isset($_GET['compte']))
 	{
-	echo $_GET['compte'];
+		$compte = $_GET['compte'];
 
-	$compte = $_GET['compte'];
-
-	//$requete = 'SELECT p.id_parent, p.nom_parent, p.mdp_parent, p.email_parent, p.tel_parent, p.nb_enfants FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
-
-	//$db = new DB_connection();
-	//$db->DB_query($requete);
-
-	echo 'Mon compte';
-	?>
-
-	<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="<?php echo $compte ?>">Nom :</label> <input type="text" name="<?php echo $compte ?>"/></p>
+		if ($compte == 'nom')
+		{
+			?>
+			<form method="post" action="modif_compte.php">
+			<p> <label class="modif_compte" for="nom">Nom :</label> <input type="text" name="nom_parent"/></p>
 			<input type="submit" value="Enregistrer">
-	</form>
+			</form>
 
+			<?php
 
-	<?php
+		}
+		elseif ($compte == 'email') {
+			?>
+			<form method="post" action="modif_compte.php">
+			<p> <label class="modif_compte" for="email">Nouvelle adresse email :</label> <input type="text" name="email_parent"/></p>
+			<input type="submit" value="Enregistrer">
+			</form>
+
+			<?php
+		}
+		elseif ($compte == 'tel') {
+			?>
+			<form method="post" action="modif_compte.php">
+			<p> <label class="modif_compte" for="tel">Numero de telephone :</label> <input type="text" name="tel"/></p>
+			<input type="submit" value="Enregistrer">
+			</form>
+
+			<?php
+		}
+		elseif ($compte == 'mdp') {
+			?>
+			<form method="post" action="modif_compte.php">
+			<p> <label class="modif_compte" for="mdp">Mot de passe actuel :</label> <input type="password" name="anc_mdp"/></p>
+			<p> <label class="modif_compte" for="mdp">Nouveau mot de passe :</label> <input type="password" name="mdp1"/></p>
+			<p> <label class="modif_compte" for="mdp">Saisissez une seconde fois le nouveau mot de passe :</label> <input type="password" name="mdp2"/></p>
+			<input type="submit" value="Enregistrer">
+			</form>
+
+			<?php
+		}
+		elseif ($compte == 'enfant') {
+			?>
+			<form method="post" action="modif_compte.php">
+			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="text" name="enfant"/></p>
+			<input type="submit" value="Enregistrer">
+			</form>
+
+			<?php
+		}
+	}
 	
-	if (isset($_POST[$compte]))
+	if (isset($_POST['nom_parent']))
 	{
-		echo $_POST[$compte];
+		$modifier = 'UPDATE Parent SET nom_parent = "'.$_POST['nom_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$db->DB_query($modifier);
+		header('Location: index.php');
+		
 	}
-}
+	if (isset($_POST['email_parent']))
+	{
+		$modifier = 'UPDATE Parent SET email_parent = "'.$_POST['email_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$db->DB_query($modifier);
+		header('Location: index.php');
+		
+	}
+	if (isset($_POST['tel']))
+	{
+		$modifier = 'UPDATE Parent SET tel_parent = "'.$_POST['tel'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$db->DB_query($modifier);
+		header('Location: index.php');
+		
+	}
+	if (isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
+	{
+		$verif_mdp = 'SELECT p.id_parent, p.mdp_parent FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
+		$db->DB_query($verif_mdp);
+		while ($mdp = $db->DB_object()) {
+			if ($_POST['mdp1'] == $_POST['mdp2'] && $_POST['anc_mdp'] == $mdp->mdp_parent)
+			{
+				$modifier = 'UPDATE Parent SET mdp_parent = "'.$_POST['mdp2'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+				$db->DB_query($modifier);
+				header('Location: index.php');
+				
+			}
+			else {
+				print('<script type="text/javascript">location.href="modif_compte.php?compte=mdp";</script>');
 
-
-
-?>
-<!--<div class="checkout-wrap">
-  <ul class="checkout-bar">
-
-    <li id="1" class="1">
-      <a href="#">En cours</a>
-      En cours
-    </li>
-    
-    <li id="2" class="2">Valide</li>
-    
-    <li id="3" class="3">Commande fournisseur</li>
-    
-    <li id="4" class="4">En cours de livraison</li>
-    
-    <li id="5" class="5">Livre</li>
-       
-  </ul>
-</div>-->
-
-<?php
-
-/*while($suiv = $db->DB_object())
-{
-	for ($i=1; $i<=5; $i++) 
-	{	
-		echo "<script type='text/javascript'>";
-		echo "var i = ".$i.";";
-		echo "if ($suiv->etat == i && $suiv->etat != 5)
-		{
-			$('#".$i."').removeClass().addClass('active');
+			}
 		}
-		else if ($suiv->etat >= i)
-		{
-			$('#".$i."').removeClass().addClass('visited');
-		}
-		else if ($suiv->etat < i)
-		{
-			$('#".$i."').removeClass().addClass('next');
-		}
-		else if ($suiv->etat == 5)
-		{
-			$('#".$i."').removeClass().addClass('visited');
-		}"; 
-		echo "</script>";
-
+	}
+	if (isset($_POST['enfant']))
+	{
+		$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$db->DB_query($modifier);
+		header('Location: index.php');
+		
 	}
 
-	echo "<br><br><br><br><br><br>";
 
-	echo "<table>
-			<tr>
-				<th>Numero de commande</th>
-				<td>".$suiv->id_commande."</td>
-			</tr>
-			<tr>
-				<th>Date de la commande</th>
-				<td>".$suiv->date_cmd."</td>
-			</tr>
-		</table>";
-
-	echo "<br>";
-
-	echo "<table>
-			<tr>
-				<th>Parent</th>
-				<td>".$suiv->nom_parent."</td>
-			</tr>
-			<tr>
-				<th></th>
-				<td>".$suiv->email_parent."</td>
-			</tr>
-			<tr>
-				<th></th>
-				<td>".$suiv->tel_parent."</td>
-			</tr>	
-		</table>";
-	
-}*/
-
-//session_unset ();
-//session_destroy();
-
-
-//$db->DB_done();	
+$db->DB_done();	
 
 echo "</div>";
 
