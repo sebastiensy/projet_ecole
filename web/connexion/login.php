@@ -34,7 +34,7 @@ require_once(LIB.'/lib_form_connexion.php');
 			/*
 			perparation de la requete 
 			*/
-			$requete = 'select mdp_parent, droits_parents from Parent where email_parent = "'.$_POST["email"].'"';
+			$requete = 'select id_parent, mdp_parent, droits_parents from Parent where email_parent = "'.$_POST["email"].'"';
 
 			/*
 			connexion a la base via la classe DB_connection
@@ -62,10 +62,12 @@ require_once(LIB.'/lib_form_connexion.php');
 				$email = $_POST["email"];
 				$mdp = $ligne->mdp_parent;
 				$droits = $ligne->droits_parents;
+				$id_parent = $ligne->id_parent;
 
 				if($mdp == $_POST["pass"])
 				{
 					session_start();
+					$_SESSION['id_parent'] = $id_parent;
 					$_SESSION['email'] = $email;
 					$_SESSION['password'] = $mdp;
 					header('location: ../accueil/index.php?redirected=true');

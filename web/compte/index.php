@@ -29,11 +29,9 @@ require_once('../../inc/data.inc.php');
 <?php
 
 // Pour test
-$id_parent = 3;
+//$id_parent = 3;
 
 session_start();
-
-$_SESSION['id_parent'] = $id_parent;
 
 $requete = 'SELECT p.id_parent, p.nom_parent, p.mdp_parent, p.email_parent, p.tel_parent, p.nb_enfants FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
 

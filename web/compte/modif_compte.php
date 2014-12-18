@@ -27,11 +27,9 @@ require_once('../../inc/data.inc.php');
 <?php
 
 // Pour test
-$id_parent = 3;
+//$id_parent = 3;
 
 session_start();
-
-$_SESSION['id_parent'] = $id_parent;
 
 $db = new DB_connection();
 
