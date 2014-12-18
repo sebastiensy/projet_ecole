@@ -20,6 +20,8 @@ require_once('../../inc/data.inc.php');
 			</div>
 	</div>
 	
+	<div class="corps">
+	
 	<div id="page">
 
 	
@@ -68,6 +70,7 @@ while($parent = $db->DB_object())
 
 $db->DB_done();	
 
+echo "</div>";
 echo "</div>";
 
 

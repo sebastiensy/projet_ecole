@@ -20,6 +20,8 @@ require_once(LIB.'/lib_form_contacter.php');
 				</div>
 			</div>
 	</div>
+	
+	<div class="corps">
 	<div id="page">
 
 	<?php
@@ -88,6 +90,7 @@ require_once(LIB.'/lib_form_contacter.php');
 
 	?>
 
+	</div>
 	</div>
 
 <?php

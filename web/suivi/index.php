@@ -20,6 +20,7 @@ require_once('../../inc/data.inc.php');
 			</div>
 	</div>
 	
+	<div class="corps">
 	<div id="page">
 
 	
@@ -214,6 +215,7 @@ echo "</script>";*/
 
 $db->DB_done();	
 
+echo "</div>";
 echo "</div>";
 
 

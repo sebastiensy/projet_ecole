@@ -20,6 +20,7 @@ require_once(LIB.'/lib_form_inscription.php');
 				</div>
 			</div>
 	</div>
+	<div class="corps">
 	<div id="page">
 	
 	<?php
@@ -110,6 +111,7 @@ require_once(LIB.'/lib_form_inscription.php');
 
 	?>
 
+	</div>
 	</div>
 
 <?php
