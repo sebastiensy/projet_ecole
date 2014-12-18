@@ -35,38 +35,26 @@ body
     text-decoration:underline;
 }
 
-/* connexion */
-
-#connexion
-{
-	position:absolute;
-	width:120px;
-	min-height:80px;
-	margin-top:0px;
-	margin-left:140px;
-	/*background-color:orange;*/
-}
-
-/* panier */
-
-#panier
-{
-	position:absolute;
-	width:120px;
-	min-height:80px;
-	margin-top:0px;
-	margin-left:780px;
-	/*background-color:orange;*/
-}
-
 /* menu */
 
 .menu
 {
-	width:901px;
+	/*background-color:red;*/
+	width:840px;
 	height:90px;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+/* connexion */
+
+#connexion
+{
+	/*position:absolute;*/
+	width:220px;
+	height:90px;
+	float:left;
+	background-color:orange;
 }
 
 #menu
@@ -77,7 +65,7 @@ body
 	width:470px;
 	min-height:90px;
 	margin-top:0px;
-	margin-left:180px;
+	margin-left:220px;
 }
 
 #menu1
@@ -86,22 +74,58 @@ body
 	margin-left:33px;
 }
 
+/* panier */
+
+#panier
+{
+	/*position:absolute;*/
+	width:150px;
+	height:90px;
+	/*margin-left:690px;*/
+	float:right;
+	background-color:black;
+}
+
 /* page */
 
-#page
+.corps
 {
+	/*background-color:blue;*/
 	position:above;
-	width:820px;
-	height:1030px; /* 950 */
+	width:1000px;
+	height:1070px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:-25px;
+}
+
+#categories
+{
+	position:absolute;
+	background-color:brown;
+	margin-top:20px;
+	overflow:hidden;
+	width:170px;
+	height:500px;
+	margin-top:30px;
+}
+
+#page
+{
+	/*position:above;
+	width:820px;
+	height:1030px;*/ /* 950 */
+	/*margin-left:auto;
+	margin-right:auto;
+	margin-top:-25px;*/
 	/*background-color:orange;*/ background-image:url(../img/corps2.png);
 	background-repeat:no-repeat;
 	word-wrap:break-word;
 	padding-top:40px;
 	padding-left:50px;
 	padding-right:10px;
+	margin-left:180px;
+	height:1030px;
 }
 
 #produits
@@ -161,16 +185,16 @@ body
 	float: left;
 }
 
-#conbt
+/*#conbt
 {
 	margin-left:150px;
-}
+}*/
 
-#div_con
+/*#div_con
 {
 	margin-left:auto;
 	margin-right:auto;
-}
+}*/
 
 /* footer */
 
@@ -181,7 +205,7 @@ body
 	background-repeat:no-repeat;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:-15px;
+	margin-top:-35px;
 }
 
 #footer
