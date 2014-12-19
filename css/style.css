@@ -45,29 +45,22 @@ body
 	height:90px;
 	margin-left:auto;
 	margin-right:auto;
-	
+	margin-top:10px;
 }
 
 /* connexion */
 
-#connexion
-{
-	/*position:absolute;*/
-	width:200px;
-	height:90px;
-	/*float:right;*/
-	background-color:orange;
-}
+
 
 #menu
 {
 	position:absolute;
 	background-image:url(../img/menu/menu.png);
 	background-repeat:repeat-y;
-	width:680px;
+	width:450px;
 	min-height:90px;
 	margin-top:10px;
-	margin-left:50px;
+	margin-left:20px;
 	
 }
 
@@ -78,9 +71,18 @@ body
 }
 
 /* panier */
+#connexion{
 
+/*position:absolute;*/
+	width:150px;
+	height:90px;
+	/*margin-left:690px;*/
+	float:right;
+	
+}
 #panier
 {
+  
 	/*position:absolute;*/
 	width:150px;
 	height:90px;
@@ -213,7 +215,7 @@ body
 	background-repeat:no-repeat;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:-35px;
+	margin-top:-75px;
 }
 
 #footer
