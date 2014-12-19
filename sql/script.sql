@@ -14,6 +14,7 @@ CREATE TABLE Message(
 	email_parent VARCHAR(40),
 	objet VARCHAR(40),
 	message VARCHAR(256),
+	jma date,
 	lu TINYINT(1),
 	PRIMARY KEY (id_message)
 ) Engine=InnoDB;

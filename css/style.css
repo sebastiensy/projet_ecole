@@ -102,12 +102,17 @@ body
 #categories
 {
 	position:absolute;
-	background-color:brown;
+	background-color:black;
 	margin-top:20px;
 	overflow:hidden;
 	width:170px;
 	height:500px;
 	margin-top:30px;
+}
+
+#categories ul
+{
+	list-style-type:none;
 }
 
 #page

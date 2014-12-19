@@ -44,7 +44,7 @@ require_once(LIB.'/lib_fournitures.php');
 				echo "<ul>";
 				while($rub = $db->DB_object())
 				{
-					echo "<li><a href=\"index.php?cat=".$rub->categorie."\">".$rub->categorie."</a></li>";
+					echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\">".$rub->categorie."</a></li>";
 				}
 				echo "</ul>";
 				$db->DB_done();

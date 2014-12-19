@@ -50,25 +50,37 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 
 	echo "<div id=\"produits\">";
 	
-	echo "<table>
-			<tr>
-				<th>Référence</th>
-				<th>Description</th>
-				<th>Prix</th>
-				<th>Quantité</th>
-				<th></th>
-			</tr>";
-	while($mat = $db->DB_object())
+	if($db->DB_count() > 0)
 	{
-		echo "<tr>
-				<td>".$mat->ref_mat."</td>
-				<td>".$mat->desc_mat."</td>
-				<td>".$mat->prix_mat." €</td>
-				<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
-				<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$mat->ref_mat."\">Ajouter au panier</td>
-			</tr>";
+		echo "<table>
+				<tr>
+					<th>Référence</th>
+					<th>Description</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th></th>
+				</tr>";
+		while($mat = $db->DB_object())
+		{
+			echo "<tr>
+					<td>".$mat->ref_mat."</td>
+					<td>".$mat->desc_mat."</td>
+					<td>".$mat->prix_mat." €</td>
+					<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
+					<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$mat->ref_mat."\">Ajouter au panier</td>
+				</tr>";
+		}
+		echo "</table>";
 	}
-	echo "</table>";
+	else
+	{
+		$requete = "SELECT categorie FROM Sous_categorie LIMIT 1";
+		$db->DB_query($requete);
+		if($cat = $db->DB_object())
+			header("Location: index.php?cat=".$cat->categorie);
+		else
+			header("Location: ../index.php");
+	}
 
 	echo "</div>";
 
@@ -121,9 +133,9 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 		else
 		{
 			if(aucun_arg($chemin))
-				echo "<a href=".formater_url($script, urlencode($rubrique), $srubrique, $recherche)."?page=".$i.">".$i."</a>";
+				echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."?page=".$i.">".$i."</a>";
 			else
-				echo "<a href=".formater_url($script, urlencode($rubrique), $srubrique, $recherche)."&amp;page=".$i.">".$i."</a>";
+				echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."&amp;page=".$i.">".$i."</a>";
 			echo " | ";
 		}
 	}
@@ -160,11 +172,3 @@ function formater_url($script, $cat, $scat, $find)
 }
 
 ?>
-
-<script type="text\javascript">
-	function getQte()
-	{
-		var a = document.getElementById("00010").value;
-		alert(a);
-	}
-</script>
