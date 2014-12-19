@@ -9,7 +9,24 @@
 	{
 		$req="insert into compose values('".$qte."','".$ref."','".$id."')";
 		$db->DB_query($req);
+		$req="select forfait from liste_niveau where id_nivListe=".$id;
+		$db->DB_query($req);
+		if($ligne=$db->DB_object())
+		{
+			$for=$ligne->forfait;
+		}
+		$req="select prix_mat from materiel where ref_mat='".$ref."'";
+		$db->DB_query($req);
+		if($ligne=$db->DB_object())
+		{
+			$prix=$ligne->prix_mat;
+			$prix=$prix*$qte;
+		}
+		$for=$for+$prix;
+		$req="update liste_niveau set forfait=".$for."where id_nivliste=".$id;
+		$db->DB_query($req);
 	}
+	
 	$url="modif_liste.php?id=".$id;
 	
  ?>

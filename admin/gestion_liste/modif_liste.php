@@ -2,6 +2,21 @@
 $id=$_GET['id'];
 
 require_once('../../inc/data.inc.php');
+function get_niveau($code)
+{
+	$req="select libelle from niveau where code='".$code."'";
+	$db = new DB_connection();
+	$db->DB_query($req);
+	if($ligne=$db->DB_object())
+	{
+		return $ligne->libelle;
+	}
+}
+function charger_les_niveaux($code)
+{
+	
+}
+
 ?>
 <html>
 <head>
@@ -118,7 +133,21 @@ if($ligne!=NULL)
 			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $id;?>" >
 				<td width="50"><div align="center">Niveau:</div></td>
 			
-				<td width="100"><div align="center"><input size="10" type="text" name="niv" value="<?php echo $ligne->niveau;?>" ><div></td>
+				<td width="100"><div align="center"><select name="niv"><option value="<?php echo $ligne->niveau;?>" selected ><?php echo get_niveau($ligne->niveau)?></option>
+				
+				<?php 
+				$db = new DB_connection();
+				$reqb="select * from niveau where code not like '".$ligne->niveau."'";
+				$db->DB_query($reqb);
+				while($ligneb=$db->DB_Object())
+				{
+				?>
+				<option value="<?php echo $ligneb->code;?>" ><?php echo $ligneb->Libelle;?></option>
+				<?php
+				}
+				?>
+				</select>
+				<div></td>
 			
 				<td width="50"><div align="right" ><INPUT border=0 src="../../img/icon_OK.png" type=image Value=submit align="middle" ><div></td>
 			</form> 
@@ -145,7 +174,7 @@ if($ligne!=NULL)
 				<tr>
 					<th width="30"><div align="center">Ref</div></th>
 					<th width="250"><div align="center">Description</div></th>
-					<th width="50"><div align="center">Prix</div></th>
+					<th width="50"><div align="center">Prix/unité</div></th>
 					<th width="100"><div align="center">Quantité</div></th>
 					<th width="50"><div align="center">Supprimer</div></th>
 				</tr>
