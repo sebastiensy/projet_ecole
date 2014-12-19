@@ -61,7 +61,7 @@ require_once(LIB.'/lib_form_contacter.php');
 				/*
 				perparation de la requete 
 				*/
-				$requete='insert into Message (email_parent, objet, message, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'", 0)';
+				$requete='insert into Message (email_parent, objet, message,jma, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",'.getdate().', 0)';
 
 				/*
 				execution de la requete 
