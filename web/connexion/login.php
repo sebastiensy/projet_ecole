@@ -140,5 +140,3 @@ require_once(LIB.'/lib_form_connexion.php');
 
 	?>
 
-	</body>
-</html>

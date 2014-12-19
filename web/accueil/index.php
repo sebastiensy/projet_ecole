@@ -11,11 +11,11 @@ require_once('../../inc/data.inc.php');
 
 	<div class="menu">
 	
-		<div id="connexion">
-			<?php
-			require_once("../connexion/login.php");
+	<!--	<div id="connexion">
+			<?php /*
+			require_once("../connexion/login.php");*/
 			?>
-		</div>
+		</div> -->
 	
 		<div id="menu">
 
@@ -29,6 +29,7 @@ require_once('../../inc/data.inc.php');
 		</div>
 
 		<div id="panier">
+		<a ><img src="../../img/menu/panier.png"></a>
 		</div>
 
 	</div>

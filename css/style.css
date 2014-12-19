@@ -8,12 +8,13 @@ body
 #banner
 {
 	width:901px; /* 901px */
-	height:200px; /* 300px */
-	margin-left:auto;
+	height:250px; /* 300px */
+	margin-left:-30px;
 	margin-right:auto;
 	margin-top:-8px;
 	/*background-color:red;*/ background-image:url(../img/entete2.png);
 	background-repeat:no-repeat;
+	
 }
 
 /* liens pages */
@@ -44,6 +45,7 @@ body
 	height:90px;
 	margin-left:auto;
 	margin-right:auto;
+	
 }
 
 /* connexion */
@@ -51,21 +53,22 @@ body
 #connexion
 {
 	/*position:absolute;*/
-	width:220px;
+	width:200px;
 	height:90px;
-	float:left;
+	/*float:right;*/
 	background-color:orange;
 }
 
 #menu
 {
 	position:absolute;
-	background-image:url(../img/menu/fondmenu.png);
+	background-image:url(../img/menu/menu.png);
 	background-repeat:repeat-y;
-	width:470px;
+	width:680px;
 	min-height:90px;
-	margin-top:0px;
-	margin-left:220px;
+	margin-top:10px;
+	margin-left:50px;
+	
 }
 
 #menu1
@@ -83,7 +86,7 @@ body
 	height:90px;
 	/*margin-left:690px;*/
 	float:right;
-	background-color:black;
+	margin-right:75px;
 }
 
 /* page */
@@ -96,7 +99,7 @@ body
 	height:1070px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:-25px;
+	margin-top:-15px;
 }
 
 #categories
@@ -120,16 +123,16 @@ body
 	/*position:above;
 	width:820px;
 	height:1030px;*/ /* 950 */
-	/*margin-left:auto;
+    margin-left:auto;
 	margin-right:auto;
-	margin-top:-25px;*/
+
 	/*background-color:orange;*/ background-image:url(../img/corps2.png);
 	background-repeat:no-repeat;
 	word-wrap:break-word;
 	padding-top:40px;
 	padding-left:50px;
 	padding-right:10px;
-	margin-left:180px;
+	/*margin-left:180px;*/
 	height:1030px;
 }
 
