@@ -24,6 +24,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	require_once('../../inc/data.inc.php');
 
+	
 	$requete = 'SELECT p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent';
 
 	$db = new DB_connection();
@@ -160,6 +161,8 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	
 	$db->DB_done();
+	
+	
 ?>
 
 </div>
