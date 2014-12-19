@@ -121,9 +121,9 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 		else
 		{
 			if(aucun_arg($chemin))
-				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."?page=".$i.">".$i."</a>";
+				echo "<a href=".formater_url($script, urlencode($rubrique), $srubrique, $recherche)."?page=".$i.">".$i."</a>";
 			else
-				echo "<a href=".formater_url($script, $rubrique, $srubrique, $recherche)."&amp;page=".$i.">".$i."</a>";
+				echo "<a href=".formater_url($script, urlencode($rubrique), $srubrique, $recherche)."&amp;page=".$i.">".$i."</a>";
 			echo " | ";
 		}
 	}
