@@ -62,11 +62,11 @@ session_start();
 
 	while($suiv = $db->DB_object())
 	{
-		for ($i=1; $i<=5; $i++) 
+		for ($i=1; $i<=6; $i++) 
 		{	
 			echo "<script type='text/javascript'>";
 			echo "var i = ".$i.";";
-			echo "if ($suiv->etat == i && $suiv->etat != 5)
+			echo "if ($suiv->etat == i && $suiv->etat != 6)
 			{
 				$('#".$i."').removeClass().addClass('active');
 			}
@@ -78,7 +78,7 @@ session_start();
 			{
 				$('#".$i."').removeClass().addClass('next');
 			}
-			else if ($suiv->etat == 5)
+			else if ($suiv->etat == 6)
 			{
 				$('#".$i."').removeClass().addClass('visited');
 			}"; 
