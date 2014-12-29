@@ -9,7 +9,7 @@ body
 {
 	width:901px; /* 901px */
 	height:250px; /* 300px */
-	margin-left:-30px;
+	margin-left:auto;
 	margin-right:auto;
 	margin-top:-8px;
 	/*background-color:red;*/ background-image:url(../img/entete2.png);
@@ -48,10 +48,6 @@ body
 	margin-top:10px;
 }
 
-/* connexion */
-
-
-
 #menu
 {
 	position:absolute;
@@ -61,7 +57,6 @@ body
 	min-height:90px;
 	margin-top:10px;
 	margin-left:20px;
-	
 }
 
 #menu1
@@ -70,16 +65,34 @@ body
 	margin-left:33px;
 }
 
-/* panier */
-#connexion{
+/* connexion */
 
-/*position:absolute;*/
+#connexion
+{
+	/*position:absolute;*/
+	background-image:url(../img/menu/connexion2.png);
+	background-repeat:no-repeat;
 	width:150px;
-	height:90px;
+	height:110px; /* 90 */
 	/*margin-left:690px;*/
 	float:right;
-	
 }
+
+#connexion #co
+{
+	padding-left:11px;
+	font-size:11px;
+}
+
+#connexion #co2
+{
+	padding-left:20px;
+	padding-top:20px;
+	font-size:14px;
+}
+
+/* panier */
+
 #panier
 {
   
@@ -97,7 +110,7 @@ body
 {
 	/*background-color:blue;*/
 	position:above;
-	width:1000px;
+	width:1000px; /* 850 */
 	height:1070px;
 	margin-left:auto;
 	margin-right:auto;
@@ -107,11 +120,14 @@ body
 #categories
 {
 	position:absolute;
-	background-color:black;
+
+	/*background-color:black;*/
+	background-image:url(../img/menu.png);
+	
 	margin-top:20px;
 	overflow:hidden;
 	width:170px;
-	height:500px;
+	height:800px;
 	margin-top:30px;
 }
 
@@ -120,27 +136,38 @@ body
 	list-style-type:none;
 }
 
+#categories li
+{
+	padding-bottom:10px;
+}
+
 #page
 {
 	/*position:above;
 	width:820px;
 	height:1030px;*/ /* 950 */
-    margin-left:auto;
-	margin-right:auto;
+    /*margin-left:auto;
+	margin-right:auto;*/
 
-	/*background-color:orange;*/ background-image:url(../img/corps2.png);
+	
+	/*background-color:orange;*/ 
+	background-image:url(../img/corps2.png);
 	background-repeat:no-repeat;
 	word-wrap:break-word;
-	padding-top:40px;
+
+	margin-left:150px; /**/
+
+	padding-top:60px;
 	padding-left:50px;
 	padding-right:10px;
+
 	/*margin-left:180px;*/
 	height:1030px;
 }
 
 #produits
 {
-	min-height:970px;
+	min-height:910px;
 }
 
 /* formulaire contact */

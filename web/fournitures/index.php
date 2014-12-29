@@ -12,12 +12,6 @@ require_once(LIB.'/lib_fournitures.php');
 
 	<div class="menu">
 	
-		<div id="connexion">
-			<?php
-			require_once("../connexion/login.php");
-			?>
-		</div>
-	
 		<div id="menu">
 
 			<div id="menu1">
@@ -30,6 +24,13 @@ require_once(LIB.'/lib_fournitures.php');
 		</div>
 
 		<div id="panier">
+			<a href=""><img src="../../img/menu/panier.png"></a>
+		</div>
+
+		<div id="connexion">
+			<?php
+			require_once("../connexion/login.php");
+			?>
 		</div>
 
 	</div>
@@ -38,13 +39,17 @@ require_once(LIB.'/lib_fournitures.php');
 
 		<div id="categories">
 			<?php
+				$imgs = array("ecriture.png", "trousse.png", "etui.png", "cahiers.png", "protege.png", "classeur.png", "ardoise.png", "arts.png", "canson.png", "calculatrice.png");
+				$i = 0;
 				$db = new DB_connection();
-				$requete = "SELECT DISTINCT(categorie) FROM sous_categorie";
+				$requete = "SELECT DISTINCT(categorie) FROM sous_categorie order by id_scat";
 				$db->DB_query($requete);
 				echo "<ul>";
 				while($rub = $db->DB_object())
 				{
-					echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\">".$rub->categorie."</a></li>";
+					//echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\">".$rub->categorie."</a></li>";
+					echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\"><img src=\"../../img/rubrique/".$imgs[$i]."\" title=".$rub->categorie."></a></li>";
+					$i++;
 				}
 				echo "</ul>";
 				$db->DB_done();

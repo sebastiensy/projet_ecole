@@ -24,18 +24,21 @@ function connexion()
 	?>
 
 		<form method="post" action="../connexion/login.php">
-			<table>
+			<table id="co">
 				<tr>
 					<td>E-mail : </td>
+				</tr>
+				<tr>
 					<td><input type="text" size="12" name="email"/></td>
 				</tr>
 				<tr>
 					<td>Mot de passe : </td>
+				</tr>
+				<tr>
 					<td><input type="password" size="12" name="pass"/></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><input id="conbt" type="submit" name="connexion"></td>
+					<td><input id="conbt" type="submit" name="connexion" value="Se connecter"></td>
 				</tr>
 			</table>
 		</form>
@@ -45,7 +48,7 @@ function connexion()
 	}
 	else
 	{
-		echo "<table><tr><td>Bienvenue, ".$_SESSION['email'];"</td></tr>";
+		echo "<table id=\"co2\"><tr><td>Bienvenue, ".$_SESSION['email'];"</td></tr>";
 		echo "<tr><td><a href=\"../deconnexion/logout.php\"/>Se d&eacute;connecter</a></td></tr></table>";
 		$isLogged = 1;
 	}

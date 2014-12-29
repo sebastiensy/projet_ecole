@@ -10,9 +10,7 @@ require_once('../../inc/data.inc.php');
 	</div>
 
 	<div class="menu">
-	
-	
-	
+
 		<div id="menu">
 
 			<div id="menu1">
@@ -21,28 +19,28 @@ require_once('../../inc/data.inc.php');
 				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
 			</div>
-	
+
 		</div>
 
-		
-		
 		<div id="panier">
-		
-		<a href=""><img src="../../img/menu/panier.png"></a>
+			<a href=""><img src="../../img/menu/panier.png"></a>
 		</div>
+
 		<div id="connexion">
-			<a href=""><img src="../../img/menu/connexion.png"></a>
+			<?php
+				require_once("../connexion/login.php");
+			?>
 		</div> 
 
 	</div>
-	
+
 	<div class="corps">
 
 		<div id="page">
 		</div>
 
 	</div>
-	
+
 <?php
 
 require_once(INC.'/footer.inc.php');
