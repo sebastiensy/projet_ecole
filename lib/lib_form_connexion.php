@@ -29,13 +29,13 @@ function connexion()
 					<td>E-mail : </td>
 				</tr>
 				<tr>
-					<td><input type="text" size="12" name="email"/></td>
+					<td><input type="text" size="12" onblur="champVide(this)" name="email"/></td>
 				</tr>
 				<tr>
 					<td>Mot de passe : </td>
 				</tr>
 				<tr>
-					<td><input type="password" size="12" name="pass"/></td>
+					<td><input type="password" size="12" onblur="champVide(this)" name="pass"/></td>
 				</tr>
 				<tr>
 					<td><input id="conbt" type="submit" name="connexion" value="Se connecter"></td>
