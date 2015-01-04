@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_connexion.php');
+require_once(LIB.'/lib_hasher_mdp.php');
 
 ?>
 
@@ -64,7 +65,7 @@ require_once(LIB.'/lib_form_connexion.php');
 				$droits = $ligne->droits_parents;
 				$id_parent = $ligne->id_parent;
 
-				if($mdp == $_POST["pass"])
+				if($mdp == hasher_mdp($_POST["pass"]))
 				{
 					session_start();
 					$_SESSION['id_parent'] = $id_parent;

@@ -30,7 +30,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	$db = new DB_connection();
 
 	$db->DB_query($requete);
-	$nb_elems = 28; // nombre d'éléments par page
+	$nb_elems = 22; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 	if(!empty($_GET["page"]))
@@ -74,12 +74,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	}
 	else
 	{
-		$requete = "SELECT categorie FROM Sous_categorie LIMIT 1";
-		$db->DB_query($requete);
-		if($cat = $db->DB_object())
-			header("Location: index.php?cat=".$cat->categorie);
-		else
-			header("Location: ../index.php");
+		echo "<p>Auncun produit trouvé.</p>";
 	}
 
 	echo "</div>";
@@ -146,9 +141,20 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 function aucun_arg($url)
 {
 	if(!isset($_GET["cat"]) && !isset($_GET["scat"]) && !isset($_GET["find"]))
+	{
 		return true;
+	}
 	else
-		return false;
+	{
+		if(empty($_GET["cat"]) && empty($_GET["scat"]) && empty($_GET["find"]))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 function formater_url($script, $cat, $scat, $find)

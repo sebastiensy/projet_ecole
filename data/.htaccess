@@ -1,0 +1,4 @@
+AuthName "Page protégée"
+AuthType Basic
+AuthUserFile "C:\wamp\www\projet_ecole\data\.htpasswd"
+Require valid-user

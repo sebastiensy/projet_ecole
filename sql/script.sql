@@ -15,6 +15,7 @@ CREATE TABLE Niveau(
 	`Libelle` varchar(200) NOT NULL,
 	 PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE Message(
 	id_message INT AUTO_INCREMENT NOT NULL,
 	email_parent VARCHAR(40),
@@ -47,8 +48,8 @@ CREATE TABLE Commande(
 
 CREATE TABLE Sous_categorie(
 	id_scat INT AUTO_INCREMENT NOT NULL,
-	categorie VARCHAR(40),
-	scat VARCHAR(40),
+	categorie VARCHAR(80),
+	scat VARCHAR(80),
 	PRIMARY KEY (id_scat)
 ) Engine=InnoDB;
 
@@ -104,6 +105,20 @@ INSERT INTO `niveau` (`code`, `Libelle`) VALUES
 ('D', 'CM1'),
 ('E', 'CM2');
 
+INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents) VALUES
+('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'test@test.com', '0123456789', 1, 0),
+('2', 'toto', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'test@test.com', '0123456789', 1, 0),
+('3', 'titi', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'test@test.com', '0123456789', 1, 0),
+('4', 'azerty', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'test@test.com', '0123456789', 1, 0),
+('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'test@test.com', '0123456789', 1, 0);
+
+INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
+('1', '2014-11-20', 1, 1),
+('2', '2014-11-01', 2, 2),
+('3', '2014-12-01', 3, 3),
+('4', '2015-01-01', 4, 4),
+('5', '2014-11-01', 5, 5);
+
 INSERT INTO sous_categorie (id_scat, categorie, scat) VALUES
 (474, 'ECRITURE', ''),
 (475, 'ECRITURE', 'STYLO A BILLE'),
@@ -123,10 +138,10 @@ INSERT INTO sous_categorie (id_scat, categorie, scat) VALUES
 (489, 'PROTEGE CAHIERS', '17x22cm'),
 (490, 'PROTEGE CAHIERS', 'A4 (21x29,7cm)'),
 (491, 'PROTEGE CAHIERS', '24X32cm'),
-(492, 'Classeurs - Intercalaires - Feuilles - Protège documents - Chemises - Pochettes perforées', ''),
-(493, 'PETIT MATERIEL ', ''),
+(492, 'Classeurs - Intercalaires - Feuilles - Protege documents - Chemises - Pochettes perforees', ''),
+(493, 'PETIT MATERIEL', ''),
 (494, 'ARTS PLASTIQUES', ''),
-(495, 'PAPIER DESSIN - CALQUE - Papier Millmétré / MAJUSCULE', ''),
+(495, 'PAPIER DESSIN - CALQUE - Papier Millmetre / MAJUSCULE', ''),
 (496, 'DICTIONNAIRES-BESCHERELLES-CALCULATRICES', ''),
 (497, 'DICTIONNAIRES-BESCHERELLES-CALCULATRICES', '');
 

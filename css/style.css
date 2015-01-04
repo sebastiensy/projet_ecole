@@ -1,7 +1,6 @@
 body
 {
 	background-image:url(../img/background.png) ;
-
 	margin:0px 15% 10px 15%;
 }
 
@@ -123,12 +122,10 @@ body
 
 	/*background-color:black;*/
 	background-image:url(../img/menu.png);
-	
-	margin-top:20px;
 	overflow:hidden;
 	width:170px;
 	height:800px;
-	margin-top:30px;
+	margin-top:30px; /* 30 */
 }
 
 #categories ul
@@ -150,8 +147,8 @@ body
 	margin-right:auto;*/
 
 	
-	/*background-color:orange;*/ 
 	background-image:url(../img/corps2.png);
+	/*background-color:orange;*/
 	background-repeat:no-repeat;
 	word-wrap:break-word;
 
@@ -165,9 +162,16 @@ body
 	height:1030px;
 }
 
+.tprod
+{
+	font-size:20px;
+	text-decoration:underline;
+}
+
 #produits
 {
-	min-height:910px;
+	margin-top:30px;
+	min-height:810px;
 }
 
 /* formulaire contact */
@@ -256,8 +260,9 @@ body
 
 #gauche
 {
+	text-align:center;
 	margin-left:10px;
-	margin-top:15px;
+	margin-top:25px;
 	width:250px;
 	float:left;
 	min-height:135px;
@@ -265,8 +270,9 @@ body
 
 #droit
 {
+	text-align:center;
 	margin-right:5px;
-	margin-top:15px;
+	margin-top:25px;
 	width:195px;
 	float:right;
 	min-height:135px;

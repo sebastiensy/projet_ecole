@@ -48,7 +48,8 @@ require_once(LIB.'/lib_fournitures.php');
 				while($rub = $db->DB_object())
 				{
 					//echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\">".$rub->categorie."</a></li>";
-					echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\"><img src=\"../../img/rubrique/".$imgs[$i]."\" title=".$rub->categorie."></a></li>";
+					$str = trim($rub->categorie);
+					echo "<li><a href=\"index.php?cat=".urlencode($rub->categorie)."\"><img src=\"../../img/rubrique/".$imgs[$i]."\" title=\"$str\"></a></li>";
 					$i++;
 				}
 				echo "</ul>";
@@ -57,16 +58,33 @@ require_once(LIB.'/lib_fournitures.php');
 		</div>
 
 		<div id="page">
-
+			<form method="get" action="index.php">
+				<table>
+					<tr>
+						<td>Rechercher un produit : </td>
+						<td><input type="text" size="12" name="find"/></td>
+						<td><input type="submit" value="Rechercher"/></td>
+					</tr>
+				</table>
+			</form>
 		<?php
+			function stripAccents($string)
+			{
+				return strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+				'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+			}
 			// test :
 			// http://localhost/projet_ecole/web/fournitures/index.php?cat=ECRITURE&scat=SURLIGNEURS
 			if(!empty($_GET["find"]))
 			{
-				afficherFournitures("", "", htmlSpecialChars($_GET["find"]));
+				$str = "R&eacute;sultats de la recherche \"".$_GET["find"]."\" : ";
+				echo "<p class=\"tprod\">$str</p>";
+
+				afficherFournitures("", "", stripAccents($_GET["find"]));
 			}
 			else if(!empty($_GET["cat"]))
 			{
+				echo "<p class=\"tprod\">".$_GET["cat"]." :</p>";
 				if(!empty($_GET["scat"]))
 				{
 					afficherFournitures(htmlSpecialChars($_GET["cat"]), htmlSpecialChars($_GET["scat"]));
@@ -78,6 +96,7 @@ require_once(LIB.'/lib_fournitures.php');
 			}
 			else
 			{
+				echo "<p class=\"tprod\">Tous les produits :</p>";
 				afficherFournitures();
 			}
 		?>
