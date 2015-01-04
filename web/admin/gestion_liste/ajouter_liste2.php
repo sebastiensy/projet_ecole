@@ -18,7 +18,10 @@
 	}
 	while($i<$_POST['num'])
 	{
-		$ref=$_POST[$i];
+		$pos=stripos( $_POST[$i],'-');
+		//echo $pos;
+		$ref=substr($_POST[$i],0,$pos);
+		//echo $ref;
 		if(isset($_POST[$ref]))
 		{
 			$req="insert into compose (`id_nivliste`, `ref_mat`, `qte_scat`) VALUES (".$id.",'".$ref."', '".$_POST[$ref]."')";
