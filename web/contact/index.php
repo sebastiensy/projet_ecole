@@ -47,21 +47,36 @@ require_once(LIB.'/lib_form_contacter.php');
 		else
 		{
 			/*
-			verifier si l un des champs est vide 
+			verifier si l'un des champs est vide
 			*/
 			$bool=true;
 			if(empty($_POST["email"])){ $bool=false;}
 			if(empty($_POST["objet"])){ $bool=false;}
 			if(empty($_POST["message"])){ $bool=false;}
 
-			if($bool)
+			if(!$bool)
 			{
 				/*
-				si les champs sont remplit on ecrit dans la base
+				si l'un des chaps est vide 
+				on affiche un message 
+				et le formulaire avec sont etat precedent
+				*/
+				echo "<p><span style=\"color:red\">Vous devez remplir tous les champs.</span></p>";
+				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+			}
+			else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+			{
+				echo "<p><span style=\"color:red\">Email invalide.</span></p>";
+				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+			}
+			else
+			{
+				/*
+				si les champs sont remplis on ecrit dans la base
 				*/
 
 				/*
-				connexion a la base via la class MySQL
+				connexion a la base via la classe DB_connection
 				*/
 				$db = new DB_connection();
 
@@ -73,13 +88,13 @@ require_once(LIB.'/lib_form_contacter.php');
 				$_POST["email"]=htmlSpecialChars($_POST["email"]);
 
 				/*
-				perparation de la requete 
+				preparation de la requete
 				*/
 
 				$requete='insert into Message (email_parent, objet, message,jma, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",NOW(), 0)';
 
 				/*
-				execution de la requete 
+				execution de la requete
 				*/
 				$db->DB_query($requete);
 				$db->DB_done();
@@ -89,17 +104,6 @@ require_once(LIB.'/lib_form_contacter.php');
 				*/
 				echo "<p>Votre message a bien été transmis.</p>";
 				formulaire_contacter("", "", "");
-			}
-			else
-			{
-				/*
-				si l un des chaps est vide 
-				on affiche un message 
-				et le formulaire avec sont etat precedent
-				*/
-
-				echo "<p>Vous devez remplir tous les champs.</p>";
-				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
 			}
 		}
 

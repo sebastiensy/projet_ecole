@@ -10,6 +10,7 @@
 	<script src="../../js/jquery-2.1.1.min.js"></script>
 	<script src="../../js/jquery-ui.js"></script>
 	<script src="../../js/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script src="../../js/verifications.js"></script>
 	<script>
 	$(function()
 	{

@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_inscription.php');
+require_once(LIB.'/lib_hasher_mdp.php');
 
 ?>
 
@@ -41,6 +42,11 @@ require_once(LIB.'/lib_form_inscription.php');
 	
 	<?php
 
+		if(isset($_SESSION["id_parent"]))
+		{
+			header("Location: ../index.php");
+		}
+
 		if(!isset($_POST["sinscrire"]))
 		{
 			formulaire_inscription();
@@ -62,11 +68,19 @@ require_once(LIB.'/lib_form_inscription.php');
 			if(!$bol)
 			{
 				/*
-				si l un des chaps est vide 
+				si l'un des chaps est vide 
 				on affiche un message 
 				et le formulaire avec son etat precedent
 				*/
 				formulaire_inscription("Veuillez remplir tous les champs.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+			}
+			else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+			{
+				formulaire_inscription("Email invalide.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+			}
+			else if(!verifTel($_POST["tel"]))
+			{
+				formulaire_inscription("Téléphone invalide.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
 			else
 			{
@@ -99,22 +113,22 @@ require_once(LIB.'/lib_form_inscription.php');
 				{
 					/*
 					toute les conditions sont verfiées 
-					on inseert dans la base 
+					on insert dans la base 
 					*/
 
 					/*
-					Purification des variable
+					Purification des variables
 					*/
 					$_POST["nom"]=htmlEntities($_POST["nom"]);
 					$_POST["email"]=htmlEntities($_POST["email"]);
 					$_POST["tel"]=htmlEntities($_POST["tel"]);
-					$_POST["tel"]=htmlEntities($_POST["mdp"]);
+					$_POST["mdp"]=htmlEntities($_POST["mdp"]);
 					$_POST["nbrenfant"]=htmlEntities($_POST["nbrenfant"]);
 
 					/*
 					preparation de la requete 
 					*/
-					$requete='insert into parent (nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.$_POST['mdp'].'",'.$_POST['nbrenfant'].', 0)';  
+					$requete='insert into parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
 
 					/*
 					execution de la requete 
@@ -129,6 +143,19 @@ require_once(LIB.'/lib_form_inscription.php');
 
 	</div>
 	</div>
+
+<?php
+
+function verifTel($tel)
+{
+	$motif ='`^0[1-8][0-9]{8}$`';
+	if(!preg_match($motif, $tel))
+		return false;
+	else
+		return true;
+}
+
+?>
 
 <?php
 

@@ -49,6 +49,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	$db->DB_query($requete);
 
 	echo "<div id=\"produits\">";
+	$i = 0;
 	
 	if($db->DB_count() > 0)
 	{
@@ -66,9 +67,10 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 					<td>".$mat->ref_mat."</td>
 					<td>".$mat->desc_mat."</td>
 					<td>".$mat->prix_mat." €</td>
-					<td><input class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$mat->ref_mat.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
-					<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$mat->ref_mat."\">Ajouter au panier</td>
+					<td><input type=\"text\" class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$i.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
+					<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>
 				</tr>";
+			$i++;
 		}
 		echo "</table>";
 	}
@@ -86,8 +88,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 		$db->DB_query($requete);
 		if($db->DB_count() > 0)
 		{
-			// remplacer '1' avec $_SESSION['id']
-			$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = 1';
+			$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
 			$db->DB_query($requete);
 
 			if($commande = $db->DB_object())
