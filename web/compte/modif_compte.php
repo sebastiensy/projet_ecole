@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_hasher_mdp.php');
 
 ?>
 
@@ -10,15 +11,31 @@ require_once('../../inc/data.inc.php');
 	</div>
 	
 	<div class="menu">
+	
 		<div id="menu">
+
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/acceuil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
 				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
-				</div>
 			</div>
+
+		</div>
+
+		<div id="panier">
+			<a href=""><img src="../../img/menu/panier.png"></a>
+		</div>
+
+		<div id="connexion">
+			<?php
+			require_once("../connexion/login.php");
+			?>
+		</div>
+
 	</div>
+
+	<div class="corps">
 	
 	<div id="page">
 
@@ -29,12 +46,18 @@ require_once('../../inc/data.inc.php');
 // Pour test
 //$id_parent = 3;
 
-session_start();
+//session_start();
+
+if(!isset($_SESSION["id_parent"]))
+{
+	header("Location: ../index.php");
+}
 
 $db = new DB_connection();
 
+echo "<a href=\"index.php\"/>Retour</a>";
 
-echo 'Mon compte';
+echo '<p><b><u>Mon compte</u></b></p>';
 
 	if(isset($_GET['compte']))
 	{
@@ -83,7 +106,7 @@ echo 'Mon compte';
 		elseif ($compte == 'enfant') {
 			?>
 			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="text" name="enfant"/></p>
+			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="text" class="spinner" size="1" min="1" max="10" name="enfant"/></p>
 			<input type="submit" value="Enregistrer">
 			</form>
 
@@ -110,16 +133,15 @@ echo 'Mon compte';
 		$modifier = 'UPDATE Parent SET tel_parent = "'.$_POST['tel'].'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		header('Location: index.php');
-		
 	}
 	if (isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 	{
 		$verif_mdp = 'SELECT p.id_parent, p.mdp_parent FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($verif_mdp);
 		while ($mdp = $db->DB_object()) {
-			if ($_POST['mdp1'] == $_POST['mdp2'] && $_POST['anc_mdp'] == $mdp->mdp_parent)
+			if ($_POST['mdp1'] == $_POST['mdp2'] && hasher_mdp($_POST['anc_mdp']) == $mdp->mdp_parent)
 			{
-				$modifier = 'UPDATE Parent SET mdp_parent = "'.$_POST['mdp2'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+				$modifier = 'UPDATE Parent SET mdp_parent = "'.hasher_mdp($_POST['mdp2']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 				$db->DB_query($modifier);
 				header('Location: index.php');
 				
@@ -141,7 +163,7 @@ echo 'Mon compte';
 
 $db->DB_done();	
 
-echo "</div>";
+echo "</div></div>";
 
 
 ?>
