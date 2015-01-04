@@ -22,6 +22,7 @@ class DB_connection
 	private $_password;
 	private $_database;
 	
+	
 	/**
 	 * constructeur de la connexion
 	 * DB_connexion::DB_connexion()
@@ -97,6 +98,15 @@ class DB_connection
 		@mysqli_free_result($this->_result);
 		@mysqli_close($this->connection);
 	 }
+	 public function DB_id()
+	 {
+		return @mysqli_insert_id($this->_connection);
+	}
+	public function DB_num_rows()
+	 {
+		return @mysqli_num_rows($this->_result);
+	}
+	 
 }
 
 ?>

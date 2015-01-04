@@ -158,21 +158,21 @@ width:90%;
 	
 	
 	}
-div#drag1{
+div.drag1{
 color: #DEB887;
 font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 font-size:15px;
 border-color: #DEB887;
 border-style:dotted;
 }
-div#div1{
+div.div1{
 border-color: #DEB887;
 border-style:solid;
 width:75%;
 height:50px;
 float:left;
 }
-div#div2{
+div.div2{
 border-color: #DEB887;
 border-style:solid;
 width:20%;
@@ -186,6 +186,10 @@ width:50%;
 height:50%;
 float:center;
 }
-
+input.in{
+height:100%;
+width:100%;
+border: 0px solid;
+}
 
 

@@ -1,5 +1,3 @@
 <?php
-
-header('Location: suivi.php');
-
+header('Location: acceuil/');
 ?>
