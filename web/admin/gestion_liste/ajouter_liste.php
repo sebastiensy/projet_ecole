@@ -1,30 +1,29 @@
 <?php require_once('../inc.php');
 	  $i=$_GET['p'];
 	  $db = new DB_connection();
-	  $db1 = new DB_connection();
+	  
 	  $req="select distinct categorie from sous_categorie order by categorie asc";
 	  $db->DB_query($req);
 	  $gen=$db->DB_num_rows();
+	  echo $gen;
 	  $cpt=1;
-	  $cat;
-	  while($ligne=$db->DB_object() and $cpt<=$i and $i<=$gen){
-	  
+	   if($i>$gen)
+	  {
+		header("Refresh:0;url=gestion_listes.php");
+	  }
+	  while($ligne=$db->DB_object() and $cpt<=$i){
+	  echo $ligne->categorie;
 	  $cat=$ligne->categorie;
 	  $cpt++;
 	  }
-	 if($i>$gen)
-	  {
-		$cat="";
-		$db1->DB_clo();
-		header("Refresh:0;url=gestion_listes.php");
-	  }
-	  else
-	  {
+	 //echo "  la categorie".$cat;
 	  
+	  
+	  $db1 = new DB_connection();
 	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
 	  $db1->DB_query($req1);
 	  
-	  }
+	  
 	  
 ?>
 
@@ -127,8 +126,8 @@ if(isset($_GET['id']))
 	echo'<input type=hidden name=id value=';
 	echo $_GET['id'];
 	echo '>';
-	}
-			?>
+
+			echo '
 		
 			
 		
@@ -140,49 +139,51 @@ if(isset($_GET['id']))
 
 					<div class="left">
 					<fieldset class="wrap">
-						<legend><?php echo $cat;?></legend>
-						<?php
+						<legend>'.$cat.'</legend>';
+						
 						$cpta=0;					
 						while($ligne1=$db1->DB_object())
 								{
-									?>
-									<div class="drag1" id="<?php echo $ligne1->ref_mat;?>" draggable="true" ondragstart="drag(event)" disabled data-value="<?php echo $ligne1->ref_mat;?>"><input type="text" readonly="true"  value="<?php echo $ligne1->ref_mat;?>-<?php echo $ligne1->desc_mat;?>" class="in" name="<?php echo $cpta;?>"></div>
-						<?php
+								
+									echo '<div class="drag1" id="'.$ligne1->ref_mat.'" draggable="true" ondragstart="drag(event)" disabled data-value="'.$ligne1->ref_mat.'"><input type="text" readonly="true"  value="'.$ligne1->ref_mat.'-'.$ligne1->desc_mat.'" class="in" name="'.$cpta.'"></div>';
+						
 						$cpta++;
 						}
-						?>
-						
+						echo '						
 					</fieldset>
 					</div>
 				
 				<div class="right" id= "liste">
 				
-				<input type="hidden" name="num" value="<?php echo $cpta;?>"> 
+				<input type="hidden" name="num" value="'.$cpta.'"> 
 					<fieldset class="wrap">
-						<legend>Les Articles de la liste</legend>
+						<legend>Les Articles de la liste</legend>';
 						
-						<?php 
-						$i=3;
+						 
+						$j=3;
 						while($cpta>0)
 						{
-						?>
+						echo '
 						<div class="wrap">
-						<div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)" id="art<?php echo $i;?>"></div>
-						<div class="div2" id="pan<?php echo $i;?>"></div>
-						</div>
-						<?php
-						$i++;
+						<div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)" id="art'.$j.'"></div>
+						<div class="div2" id="pan'.$j.'"></div>
+						</div>';
+						
+						$j++;
 						$cpta--;
 						}
-						?>
-					</fieldset>
+						echo '</fieldset></div></fieldset>';
+						}?>	
+					
+<?php					echo'
+					
 					<a href="#" onclick="document.f1.submit()">Valider</a>
 					</div>
 				
-			</div>
-			</form>
-		</fieldset>
-		
+			
+			</form>'
+		;
+	 
 
 
 
