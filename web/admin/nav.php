@@ -14,6 +14,17 @@
     ;}
 								});
 	});
+	$( document ).ready(function() {
+			$("#fancy1").fancybox({
+				
+				type: "iframe",
+				width: '70%',
+				height: '60%',
+				onClosed: function() {   
+				parent.location.reload(true); 
+    ;}
+								});
+	});
 	</script>
 <?php
 echo '<nav class=menu>';
@@ -34,7 +45,7 @@ echo '<nav class=menu>';
 						<ul > 
 							<li><a id="fancy" href="../gestion_article/modif_article.php">Modifier article</a></li> 
 							 
-							<li><a id="fancy" href="../gestion_article/ajouter_article.php">Ajouter article</a></li> 
+							<li><a id="fancy1" href="../gestion_article/ajouter_article.php">Ajouter article</a></li> 
 						</ul> 
 						</li>
 						<br>
