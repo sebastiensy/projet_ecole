@@ -2,6 +2,7 @@ Structure du dossier
 Le num‚ro de s‚rie du volume est 4803-A9B3
 C:.
 |   .gitattributes
+|   index.php
 |   t.txt
 |   
 +---css
@@ -17,6 +18,7 @@ C:.
 |       config.php
 |       
 +---img
+|   |   background.gif
 |   |   background.png
 |   |   corps.png
 |   |   corps2.png
@@ -31,10 +33,12 @@ C:.
 |   |   menu.png
 |   |   menu1.png
 |   |   page.png
+|   |   Thumbs.db
 |   |   
 |   +---menu
 |   |       acceuil.png
 |   |       article.png
+|   |       compte.png
 |   |       connexion.png
 |   |       connexion2.png
 |   |       contact.png
@@ -43,6 +47,7 @@ C:.
 |   |       menu.png
 |   |       panier.png
 |   |       panier1.png
+|   |       Thumbs.db
 |   |       
 |   \---rubrique
 |           ardoise.png
@@ -147,11 +152,13 @@ C:.
 +---lib
 |       lib_creation_panier.php
 |       lib_db.class.php
+|       lib_detaille_liste.php
 |       lib_form_connexion.php
 |       lib_form_contacter.php
 |       lib_form_inscription.php
 |       lib_fournitures.php
 |       lib_hasher_mdp.php
+|       lib_liste_affichage.php
 |       
 +---sql
 |       script.sql
@@ -161,6 +168,7 @@ C:.
     |   
     +---accueil
     |       index.php
+    |       liste.php
     |       
     +---admin
     |   |   inc.php
