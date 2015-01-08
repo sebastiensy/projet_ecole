@@ -106,7 +106,10 @@ class DB_connection
 	 {
 		return @mysqli_num_rows($this->_result);
 	}
-	 
+	 public function DB_clo()
+	 {
+		@mysqli_close();
+	 }
 }
 
 ?>

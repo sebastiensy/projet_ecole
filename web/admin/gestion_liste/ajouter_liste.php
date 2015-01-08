@@ -1,6 +1,33 @@
 <?php require_once('../inc.php');
-
+	  $i=$_GET['p'];
+	  $db = new DB_connection();
+	  $db1 = new DB_connection();
+	  $req="select distinct categorie from sous_categorie order by categorie asc";
+	  $db->DB_query($req);
+	  $gen=$db->DB_num_rows();
+	  $cpt=1;
+	  $cat;
+	  while($ligne=$db->DB_object() and $cpt<=$i and $i<=$gen){
+	  
+	  $cat=$ligne->categorie;
+	  $cpt++;
+	  }
+	 if($i>$gen)
+	  {
+		$cat="";
+		$db1->DB_clo();
+		header("Refresh:0;url=gestion_listes.php");
+	  }
+	  else
+	  {
+	  
+	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
+	  $db1->DB_query($req1);
+	  
+	  }
+	  
 ?>
+
 <html>
 	<head>
 		<title>Interface Admin:Gestion des Listes</title>
@@ -46,51 +73,7 @@ function getValue(id)
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
 		<header>
-		<nav class="menu">
-			<br>
-			<br>
-			<br>
-			<table width="150" align="left">
-			<ul>
-				<tr>
-					<td>
-						<br>
-						<br>
-						<li><a href="../">G&eacute;rer Les Listes</a></li>
-						<br>
-						<br>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<br>
-						<br>
-						<li>G&eacute;rer Les Articles</li>
-						<br>
-						<br>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<br>
-						<br>
-						<li><a href="../suivi_commande">Suivre Les Commandes</a></li>
-						<br>
-						<br>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<br>
-						<br>
-						<li>Messagerie</li>
-						<br>
-						<br>
-					</td>
-				</tr>
-			</ul>
-			</table>
-			</nav>
+		<?php require_once('../nav.php')?>
 			<table width="900" align="center"class="entete">
 				<tr>
 					<td><div align="right">Ajouter Une Nouvelle Liste</div></td>
@@ -101,31 +84,7 @@ function getValue(id)
 		<br>
 		<br>
 		<div align="center" id="content" >
-<?php $i=$_GET['p'];
-	  $db = new DB_connection();
-	  $req="select distinct categorie from sous_categorie order by categorie asc";
-	  $db->DB_query($req);
-	  $gen=$db->DB_num_rows();
-	  $cpt=1;
-	  $cat;
-	  while($ligne=$db->DB_object() and $cpt<=$i and $i<=$gen){
-	  
-	  $cat=$ligne->categorie;
-	  $cpt++;
-	  }
-	 if($i>$gen)
-	  {
-		header("Refresh:0;url=gestion_listes.php");
-	  }
-	  else
-	  {
-	  $db1 = new DB_connection();
-	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
-	  $db1->DB_query($req1);
-	  
-	  }
-	  
-?>
+
 <form method="post" action="ajouter_liste2.php?p=<?php echo $i;?>" name="f1">
 <?php if($i==1)
 {
