@@ -5,18 +5,18 @@
 	  $req="select distinct categorie from sous_categorie order by categorie asc";
 	  $db->DB_query($req);
 	  $gen=$db->DB_num_rows();
-	  echo $gen;
+	  
 	  $cpt=1;
 	   if($i>$gen)
 	  {
 		header("Refresh:0;url=gestion_listes.php");
 	  }
 	  while($ligne=$db->DB_object() and $cpt<=$i){
-	  echo $ligne->categorie;
+	  
 	  $cat=$ligne->categorie;
 	  $cpt++;
 	  }
-	 //echo "  la categorie".$cat;
+	
 	  
 	  
 	  $db1 = new DB_connection();
