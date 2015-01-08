@@ -17,7 +17,21 @@ require_once(LIB.'/lib_liste_affichage.php');
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/acceuil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
+				<?php 
+				if (!isset($_SESSION['id_parent']))
+				{
+					?>
 				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+				<?php
+				}
+				else
+				{
+					?>
+					<a href="../compte/"><img src="../../img/menu/compte.png"></a>
+				<?php 
+				}
+				?>
+
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
 			</div>
 
