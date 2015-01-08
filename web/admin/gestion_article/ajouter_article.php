@@ -8,11 +8,39 @@ require_once('../inc.php');
 		<script type="text/javascript">
 		function subm()
 		{
+			
 			document.getElementById('maj').submit();
+			
 		}
 		
 		</script>
-		
+			<script type="text/javascript" >
+		function verif()
+		{
+			var ref=document.f1.ref.value;
+			if(ref=="")
+			{
+				alert("Veuillez Entrer une reference");
+				document.f1.ref.focus();
+				return false();
+			}
+			var desc=document.f1.desc.value;
+			if(desc=="")
+			{
+				alert("Veuillez Entrer une Description");
+				document.f1.desc.focus();
+				return false();
+			}
+			var prix=document.f1.desc.value;
+			if(prix=="" || isNaN(prix)
+			{
+				alert("Veuillez Entrer un prix par unite");
+				document.f1.prix.focus();
+				return false();
+			}
+			
+			}
+			</script>
 	</head>
 	
 	<body>
@@ -25,7 +53,7 @@ require_once('../inc.php');
   </style>
 		<br>
 		<div align="center" id="add-form">
-		<form method="post" action="ajouter_article1.php" id="maj">
+		<form method="post" action="ajouter_article1.php" name="f1" onSubmit="return verif()" id="maj">
 		
 		<table width="90%" align="center">
 			<tr>
@@ -59,7 +87,7 @@ require_once('../inc.php');
 				</tr>
 				<tr>
 				<td colspan="3">
-				Categorie <select>
+				Categorie <select name="categorie">
 						<?php
 						$db = new DB_connection();
 						$req="select distinct categorie from sous_categorie order by categorie asc";
@@ -67,7 +95,7 @@ require_once('../inc.php');
 						while($ligne=$db->DB_object())
 						{
 						?>
-						<option value="<?php echo $ligne->categorie;?>"> <?php echo $ligne->categorie;?></option>
+						<option value="<?php echo $ligne->categorie;?>" > <?php echo $ligne->categorie;?></option>
 						<?php
 						}
 						?>
@@ -75,7 +103,7 @@ require_once('../inc.php');
 						</td>
 						</tr>
 	  
-				<tr><td><div align="right" colspan=3><a href="#" onclick="subm();" class="myButton" id="sub">Valider</a></div></td></tr>
+				<tr><td><div align="right" colspan=3><input type="submit" name="Valider"></div></td></tr>
 				
 			
 			</table>
@@ -85,3 +113,30 @@ require_once('../inc.php');
 					
 			
 	</body>
+	<script >
+		function verif()
+		{
+			var ref=document.f1.ref.value;
+			if(ref=="")
+			{
+				alert("Veuillez Entrer une reference");
+				document.f1.ref.focus();
+				return false();
+			}
+			var desc=document.f1.desc.value;
+			if(desc=="")
+			{
+				alert("Veuillez Entrer une Description");
+				document.f1.desc.focus();
+				return false();
+			}
+			var prix=document.f1.desc.value;
+			if(prix=="" || isNaN(prix)
+			{
+				alert("Veuillez Entrer un prix par unite");
+				document.f1.prix.focus();
+				return false();
+			}
+			
+			}
+			</script>
