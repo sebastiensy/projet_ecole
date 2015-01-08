@@ -69,6 +69,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 				<th>Commande fournisseur</th>
 				<th>En cours de livraison</th>
 				<th>Livre</th>
+				<th>Retire et paye</th>
 				<th></th>
 				<th></th>
 			</tr>";
@@ -89,7 +90,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 		
 		if ($commande != $suiv->id_commande)
 		{		
-			for ($i=1; $i<=5; $i++) {
+			for ($i=1; $i<=6; $i++) {
 				if($suiv->etat == $i)
 				{
 					echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
@@ -114,7 +115,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 		{
 			echo '<form method="POST" action="suivi.php?com='.$suiv->id_commande.'"/>';
 			
-			for ($i=1; $i<=5; $i++) {
+			for ($i=1; $i<=6; $i++) {
 				if($suiv->etat == $i)
 					{
 						echo '<td><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked></td>';

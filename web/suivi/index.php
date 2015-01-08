@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../inc/data.inc.php');
-
 ?>
 
 <body id="back">
@@ -39,7 +38,6 @@ session_start();
 	echo 'Etat de ma commande';
 	?>
 
-<input type="button" name="btn_print" value="Imprimer" onclick="print(true);"> 
 	<div class="checkout-wrap">
 	  <ul class="checkout-bar">
 
@@ -59,6 +57,7 @@ session_start();
 	</div>
 
 	<?php
+
 
 	while($suiv = $db->DB_object())
 	{
