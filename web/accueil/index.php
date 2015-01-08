@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_liste_affichage.php');
 
 ?>
 
@@ -23,7 +24,7 @@ require_once('../../inc/data.inc.php');
 		</div>
 
 		<div id="panier">
-			<a href=""><img src="../../img/menu/panier.png"></a>
+			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
 
 		<div id="connexion">
@@ -37,6 +38,8 @@ require_once('../../inc/data.inc.php');
 	<div class="corps">
 
 		<div id="page">
+			<?php affichage(); ?>
+
 		</div>
 
 	</div>

@@ -9,24 +9,38 @@ require_once('../../inc/data.inc.php');
 	</div>
 	
 	<div class="menu">
+
 		<div id="menu">
+
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/acceuil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
 				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
-				</div>
 			</div>
+
+		</div>
+
+		<div id="panier">
+			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
+		</div>
+
+		<div id="connexion">
+			<?php
+				require_once("../connexion/login.php");
+			?>
+		</div> 
+
 	</div>
-	
+
 	<div class="corps">
-	<div id="page">
+
+		<div id="page">
 
 	
 
 <?php
 
-session_start();
 
 	if ($_SESSION['id_parent'] != "")
 	{

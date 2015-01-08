@@ -66,7 +66,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	{
 		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des produits au panier.</strong></p></span>";
 	}
-	
+
 	if($db->DB_count() > 0)
 	{
 		echo "<table>
@@ -129,7 +129,16 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 			$db->DB_query($requete);
 			if($db->DB_count() > 0)
 			{
-				$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+				if(verif_panier(htmlSpecialChars($_GET["ref"])))
+				{
+					modif_qte(htmlSpecialChars($_GET["ref"]), htmlSpecialChars($_GET["qte"]));
+				}
+				else
+				{
+					
+				}
+				
+				/*$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
 				$db->DB_query($requete);
 
 				if($commande = $db->DB_object())
@@ -139,7 +148,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 					// pouvoir modifier quantite à l'avenir par un GET
 					$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
 					$db->DB_query($requete);
-				}
+				}*/
 				/*else
 				{
 					// remplacer '1' avec $_SESSION['id']

@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_fournitures.php');
+require_once(LIB.'/lib_creation_panier.php');
 
 ?>
 
@@ -24,7 +25,7 @@ require_once(LIB.'/lib_fournitures.php');
 		</div>
 
 		<div id="panier">
-			<a href=""><img src="../../img/menu/panier.png"></a>
+			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
 
 		<div id="connexion">
@@ -73,8 +74,6 @@ require_once(LIB.'/lib_fournitures.php');
 				return strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
 				'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 			}
-			// test :
-			// http://localhost/projet_ecole/web/fournitures/index.php?cat=ECRITURE&scat=SURLIGNEURS
 			if(!empty($_GET["find"]))
 			{
 				$str = "R&eacute;sultats de la recherche \"".$_GET["find"]."\" : ";

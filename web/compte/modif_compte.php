@@ -24,7 +24,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 		</div>
 
 		<div id="panier">
-			<a href=""><img src="../../img/menu/panier.png"></a>
+			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
 
 		<div id="connexion">
