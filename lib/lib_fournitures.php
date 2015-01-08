@@ -49,7 +49,23 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 	$db->DB_query($requete);
 
 	echo "<div id=\"produits\">";
-	$i = 0;
+	
+	if(isset($_SESSION["id_parent"]))
+	{
+		if(isset($_GET["ref"]))
+		{
+			$str = "L'article ".$_GET["ref"]." a été ajouté au panier";
+			if(isset($_GET["qte"]))
+			{
+				$str .= " en ".$_GET["qte"]." exemplaires.";
+			}
+			echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
+		}
+	}
+	else
+	{
+		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des produits au panier.</strong></p></span>";
+	}
 	
 	if($db->DB_count() > 0)
 	{
@@ -61,16 +77,39 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 					<th>Quantité</th>
 					<th></th>
 				</tr>";
+
 		while($mat = $db->DB_object())
 		{
-			echo "<tr>
-					<td>".$mat->ref_mat."</td>
-					<td>".$mat->desc_mat."</td>
-					<td>".$mat->prix_mat." €</td>
-					<td><input type=\"text\" class=\"spinner\" id=\".$mat->ref_mat.\" name=\".$i.\" value=\"1\" size=\"1\" min=\"1\" max=\"999\" onchange=\"getQte()\"></td>
-					<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>
-				</tr>";
-			$i++;
+			echo "<form method=\"get\" action=\"\">";
+			$tr = "<tr>";
+			if(isset($_SESSION["id_parent"]))
+			{
+				if(isset($_GET["ref"]))
+				{
+					if($_GET["ref"] == $mat->ref_mat)
+					{
+						$tr = "<tr bgcolor=\"orange\">";
+					}
+				}
+			}
+			echo $tr;
+				echo "<td>".$mat->ref_mat."</td>
+				<td>".$mat->desc_mat."</td>
+				<td>".$mat->prix_mat." €</td>
+				<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				//echo "<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>";
+
+				echo "<td><input type=\"hidden\" name=\"page\" value=\"$page\"></td>";
+				if($recherche!="")
+				{
+					echo "<td><input type=\"hidden\" name=\"find\" value=\"$recherche\"></td>";
+				}
+				echo "<td><input type=\"hidden\" name=\"cat\" value=\"$rubrique\"></td>";
+				echo "<td><input type=\"hidden\" name=\"ref\" value=\"$mat->ref_mat\"></td>";
+				echo "<td><input type=\"submit\" value=\"Ajouter au panier\"></td>";
+
+			echo "</tr>";
+			echo "</form>";
 		}
 		echo "</table>";
 	}
@@ -83,29 +122,32 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 
 	if(!empty($_GET["ref"]))
 	{
-		// vérification d'erreurs si la réf n'existe pas
-		$requete = 'Select ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
-		$db->DB_query($requete);
-		if($db->DB_count() > 0)
+		if(isset($_SESSION["id_parent"]))
 		{
-			$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+			// vérification d'erreurs si la réf n'existe pas
+			$requete = 'Select ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
 			$db->DB_query($requete);
-
-			if($commande = $db->DB_object())
+			if($db->DB_count() > 0)
 			{
-				$id = $commande->id_commande;
-
-				// pouvoir modifier quantite à l'avenir par un GET
-				$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
+				$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
 				$db->DB_query($requete);
+
+				if($commande = $db->DB_object())
+				{
+					$id = $commande->id_commande;
+
+					// pouvoir modifier quantite à l'avenir par un GET
+					$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
+					$db->DB_query($requete);
+				}
+				/*else
+				{
+					// remplacer '1' avec $_SESSION['id']
+					echo "test";
+					$requete = 'INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES (\'\', \'\', \'0\', 1)';
+					$res = mysqli_query($co, $requete);
+				}*/
 			}
-			/*else
-			{
-				// remplacer '1' avec $_SESSION['id']
-				echo "test";
-				$requete = 'INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES (\'\', \'\', \'0\', 1)';
-				$res = mysqli_query($co, $requete);
-			}*/
 		}
 	}
 

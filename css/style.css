@@ -171,7 +171,7 @@ body
 #produits
 {
 	margin-top:30px;
-	min-height:810px;
+	min-height:770px; /* 810 */
 }
 
 /* formulaire contact */
