@@ -66,7 +66,7 @@ echo '<nav class=menu>';
 					<td>
 						<br>
 						<br>
-						<li>Messagerie</li>
+						<li><a href="../messagerie">Messagerie</a></li>
 						<br>
 						<br>
 					</td>
