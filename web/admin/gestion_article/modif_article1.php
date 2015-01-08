@@ -61,13 +61,12 @@ require_once('../inc.php');
 	}
 	}
 
-	/*$url="modif_liste.php?id=".$id;
-	header("Refresh:0;url=$url");*/
+	$url="../gestion_liste/gestion_listes.php";
+	
 	?>
-	<html>
-		<style type="text/css">
-			body{
-				background-image:none;
-				}
-				</style>
-				</html>
+	<script type="text/javascript">
+	window.parent.jQuery.fancybox.close();
+</script>
+<?php 
+header("Refresh:0;url=$url");	
+?>
