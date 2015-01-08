@@ -10,7 +10,7 @@ if(!isset($_SESSION['id_parent']))
 		 on fait une redirection
 */
 
-header('location:');
+header('location:../');
 }
 else
 {

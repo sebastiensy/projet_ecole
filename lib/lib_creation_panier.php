@@ -215,7 +215,7 @@ $db->DB_query($requete);
 
 */
   
-  function afficher_le_panier($etat){
+  function afficher_le_panier(){
 
 
 $db=new DB_connection();
@@ -223,7 +223,7 @@ $requete="select id_commande from commande where id_parent=".$_SESSION['id_paren
 $db->DB_query($requete);
 
 
-while(($row=$db->DB_object())==null){
+while(($row=$db->DB_object())!=null){
 
 /*
         on recupere l id de la commande
@@ -234,7 +234,7 @@ $_SESSION['id_commande']=$row->id_commande;
 /*
        recuperer les elements commander seul
 */
-$requete="select contient.ref_mat,contient.quantite,materiel.prix,materiel.desc_mat from contient,materiel where id_commande=".$_SESSION['id_commande']." and contient.ref_mat=materiel.ref_mat";
+$requete="select contient.ref_mat,contient.quantite,materiel.prix_mat,materiel.desc_mat from contient,materiel where id_commande=".$_SESSION['id_commande']." and contient.ref_mat=materiel.ref_mat";
 $db->DB_query($requete);
 
 
@@ -246,7 +246,7 @@ while($row=$db->DB_object()){
     /*
 	    mise en forme des elements au panier 
 	*/
-	 affichage_element_panier($row->desc_mat,$row->quantite,$row->prix);
+	 affichage_element_panier($row->desc_mat,$row->quantite,$row->prix_mat);
 
 }
 
@@ -266,10 +266,15 @@ header_list_panier();
 while($row=$db->DB_object()){
 
  
-	 affichage_list_panier($row->niveau,$row->exemplaire,$row->forfait);
+	 $somme_element += affichage_list_panier($row->niveau,$row->exemplaire,$row->forfait);
 
 }
 
+?>
+	<tr>
+		<td colspan="2"><?php $somme_element ?></td>
+	</tr>
+<?php
 footer_panier();
 
 
@@ -286,10 +291,11 @@ function affichage_element_panier($desc,$qte,$prix){
        <td><?php echo $desc;?></td>
        <td><?php echo $qte;?></td>
        <td><?php echo $prix;?></td>
-	   <td><?php echo $prix*qte;$somme_element+=$prix*$qte;?></td>
+	   <td><?php echo $prix*$qte;?></td>
    </tr>
 
 <?php
+	return $prix*$qte;
 
 }
 
@@ -306,7 +312,7 @@ function header_element_panier(){
   
    <tr>
        <th>Description Materiel</th>
-       <th>Quantité </th>
+       <th>Quantit&eacute;</th>
        <th>Prix</th>
 	   <th>Totale</th>
    </tr>
@@ -335,7 +341,8 @@ function affichage_list_panier($desc,$qte,$prix){
        <td><?php echo $desc;?></td>
        <td><?php echo $qte;?></td>
        <td><?php echo $prix;?></td>
-	   <td><?php echo $prix*qte;$somme_list+=$prix*$qte;?></td>
+	   <td><?php echo $prix*$qte;?></td>
    </tr>
 <?php
+	return $prix*$qte;
 }?>
