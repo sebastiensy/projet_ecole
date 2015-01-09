@@ -126,14 +126,14 @@ function remplir_le_panier(){
 
 
 $db=new DB_connection();
-$requete="select id_commande from commande where id_parent=".$_SESSION['id_parent']." and etat=1";
+$requete="select id_commande from Commande where id_parent=".$_SESSION['id_parent']." and etat=1";
 $db->DB_query($requete);
 $row=$db->DB_object();
 if(!$row==null){
 
 $_SESSION['id_commande']=$row->id_commande;
 
-$requete="select contient.ref_mat,contient.quantite,materiel.prix_mat from contient,materiel where id_commande=".$_SESSION['id_commande']." and contient.ref_mat=materiel.ref_mat";
+$requete="select Contient.ref_mat,Contient.quantite,Materiel.prix_mat from Contient,Materiel where id_commande=".$_SESSION['id_commande']." and Contient.ref_mat=Materiel.ref_mat";
 $db->DB_query($requete);
 while($row=$db->DB_object()){
 
@@ -150,7 +150,7 @@ while($row=$db->DB_object()){
 */
 
 
-$requete="select liste_niveau.forfait,inclus.exemplaire,liste_niveau.id_nivliste from liste_niveau,inclus where inclus.id_commande=".$_SESSION['id_commande']." and inclus.id_nivliste=liste_niveau.id_nivliste";
+$requete="select Liste_niveau.forfait,Inclus.exemplaire,Liste_niveau.id_nivliste from Liste_niveau,Inclus where Inclus.id_commande=".$_SESSION['id_commande']." and Inclus.id_nivliste=Liste_niveau.id_nivliste";
 $db->DB_query($requete);
 while($row=$db->DB_object()){
 

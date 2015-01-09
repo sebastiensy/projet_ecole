@@ -2,7 +2,7 @@
 	  $i=$_GET['p'];
 	  $db = new DB_connection();
 	  
-	  $req="select distinct categorie from sous_categorie order by categorie asc";
+	  $req="select distinct categorie from Sous_categorie order by categorie asc";
 	  $db->DB_query($req);
 	  $gen=$db->DB_num_rows();
 	  
@@ -20,7 +20,7 @@
 	  
 	  
 	  $db1 = new DB_connection();
-	  $req1="select * from materiel where id_scat in (select id_scat from sous_categorie where categorie='".$cat."')";
+	  $req1="select * from Materiel where id_scat in (select id_scat from Sous_categorie where categorie='".$cat."')";
 	  $db1->DB_query($req1);
 	  
 	  
@@ -87,7 +87,7 @@ function getValue(id)
 <form method="post" action="ajouter_liste2.php?p=<?php echo $i;?>" name="f1">
 <?php if($i==1)
 {
-		$requete="select * from niveau where code not in(select distinct niveau from liste_niveau)";
+		$requete="select * from Niveau where code not in(select distinct niveau from Liste_niveau)";
 		$db2 = new DB_connection();
 		$db2->DB_query($requete);
 		if($ligne2=$db2->DB_object())

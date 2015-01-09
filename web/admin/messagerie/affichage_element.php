@@ -47,7 +47,7 @@ echo '
 	   la mise page de l affichage des messages
 	*/
 	$bd =  $bd = new DB_connection();
-	$req="SELECT * FROM message ORDER BY id_msg desc";
+	$req="SELECT * FROM Message ORDER BY id_msg desc";
 	$bd->execRequete($req);
 	
 	/*

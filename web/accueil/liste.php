@@ -20,7 +20,7 @@ if(isset($_POST["envoyer"])){
             /*
 				perparation de la requete 
 			*/
-			$requete = 'select id_nivliste, forfait from liste_niveau';
+			$requete = 'select id_nivliste, forfait from Liste_niveau';
 
 			/*
 			connexion a la base via la classe DB_connection

@@ -7,15 +7,15 @@
 	
 	if($ref!="" and $qte!="")
 	{
-		$req="insert into compose values('".$qte."','".$ref."','".$id."')";
+		$req="insert into Compose values('".$qte."','".$ref."','".$id."')";
 		$db->DB_query($req);
-		$req="select forfait from liste_niveau where id_nivListe=".$id;
+		$req="select forfait from Liste_niveau where id_nivListe=".$id;
 		$db->DB_query($req);
 		if($ligne=$db->DB_object())
 		{
 			$for=$ligne->forfait;
 		}
-		$req="select prix_mat from materiel where ref_mat='".$ref."'";
+		$req="select prix_mat from Materiel where ref_mat='".$ref."'";
 		$db->DB_query($req);
 		if($ligne=$db->DB_object())
 		{
@@ -23,7 +23,7 @@
 			$prix=$prix*$qte;
 		}
 		$for=$for+$prix;
-		$req="update liste_niveau set forfait=".$for."where id_nivliste=".$id;
+		$req="update Liste_niveau set forfait=".$for."where id_nivliste=".$id;
 		$db->DB_query($req);
 	}
 	

@@ -90,7 +90,7 @@ require_once('../inc.php');
 				Categorie <select name="categorie">
 						<?php
 						$db = new DB_connection();
-						$req="select distinct categorie from sous_categorie order by categorie asc";
+						$req="select distinct categorie from Sous_categorie order by categorie asc";
 						$db->DB_query($req);
 						while($ligne=$db->DB_object())
 						{

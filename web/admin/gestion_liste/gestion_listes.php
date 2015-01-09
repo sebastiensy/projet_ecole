@@ -3,7 +3,7 @@
 require_once('../inc.php');
 function get_niveau($code)
 {
-	$req="select libelle from niveau where code='".$code."'";
+	$req="select libelle from Niveau where code='".$code."'";
 	$db = new DB_connection();
 	$db->DB_query($req);
 	if($ligne=$db->DB_object())
@@ -54,7 +54,7 @@ function get_niveau($code)
 
 <?php 
 $db = new DB_connection();
-$req="select * from liste_niveau where 1";
+$req="select * from Liste_niveau where 1";
 $db->DB_query($req);
 while($ligne=$db->DB_object())
 {

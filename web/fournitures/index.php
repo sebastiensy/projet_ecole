@@ -43,7 +43,7 @@ require_once(LIB.'/lib_creation_panier.php');
 				$imgs = array("ecriture.png", "trousse.png", "etui.png", "cahiers.png", "protege.png", "classeur.png", "ardoise.png", "arts.png", "canson.png", "calculatrice.png");
 				$i = 0;
 				$db = new DB_connection();
-				$requete = "SELECT DISTINCT(categorie) FROM sous_categorie order by id_scat";
+				$requete = "SELECT DISTINCT(categorie) FROM Sous_categorie order by id_scat";
 				$db->DB_query($requete);
 				echo "<ul>";
 				while($rub = $db->DB_object())

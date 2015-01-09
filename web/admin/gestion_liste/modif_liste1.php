@@ -5,14 +5,14 @@ require_once('../inc.php');
 	/*                                       Modification du Niveau                                                    */
 	if($_GET['p']=="modif_niv")
 	{
-		$req="update liste_niveau set niveau='".$_POST['niv']."' where id_nivliste='".$id."'";
+		$req="update Liste_niveau set niveau='".$_POST['niv']."' where id_nivliste='".$id."'";
 		//$myqsl_result=mysql_query($req,$connexion);
 		$db->DB_query($req);
 	}
 	/*                                      Modification du prix d'une liste 										   */
 	if($_GET['p']=="modif_for")
 	{
-		$req="update liste_niveau set forfait='".$_POST['for']."' where id_nivliste='".$id."'";
+		$req="update Liste_niveau set forfait='".$_POST['for']."' where id_nivliste='".$id."'";
 		//$myqsl_result=mysql_query($req,$connexion);
 		$db->DB_query($req);
 	}
@@ -22,17 +22,17 @@ require_once('../inc.php');
 		$ref=$_GET['ref'];
 		$qte=$_POST['qtte'];
 		/*                             Récuperer La quqtité de produit avant l'écraser                                 */
-		$req="select qte_scat from compose where ref_mat='".$ref."' and id_nivListe=".$id;
+		$req="select qte_scat from Compose where ref_mat='".$ref."' and id_nivListe=".$id;
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$qtea=$ligne->qte_scat;
 		/*                            Récupere Le prix par unité du produit                                    */
-		$req="select prix_mat from materiel where ref_mat='".$ref."'";
+		$req="select prix_mat from Materiel where ref_mat='".$ref."'";
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$prix=$ligne->prix_mat;
 		/*                            Récuperer Le forfait                                                      */
-		$req="select forfait from liste_niveau where id_nivListe='".$id."'";
+		$req="select forfait from Liste_niveau where id_nivListe='".$id."'";
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$for=$ligne->forfait;
@@ -48,7 +48,7 @@ require_once('../inc.php');
 			$for=$for-($prix*$res);
 		}
 		
-		$req="update liste_niveau set forfait='".$for."' where id_nivListe=".$id;
+		$req="update Liste_niveau set forfait='".$for."' where id_nivListe=".$id;
 		$db->DB_query($req);
 		$req="update Compose set qte_scat=".$_POST['qtte']." where id_nivListe='".$id."' and ref_mat='".$ref."'";
 		//echo $req;
@@ -58,24 +58,24 @@ require_once('../inc.php');
 	{
 		$ref=$_GET['ref'];
 		/*                             Récuperer La quqtité de produit avant l'écraser                                 */
-		$req="select qte_scat from compose where ref_mat='".$ref."' and id_nivListe=".$id;
+		$req="select qte_scat from Compose where ref_mat='".$ref."' and id_nivListe=".$id;
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$qtea=$ligne->qte_scat;
 		/*                            Récupere Le prix par unité du produit                                    */
-		$req="select prix_mat from materiel where ref_mat='".$ref."'";
+		$req="select prix_mat from Materiel where ref_mat='".$ref."'";
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$prix=$ligne->prix_mat;
 		/*                            Récuperer Le forfait                                                      */
-		$req="select forfait from liste_niveau where id_nivListe='".$id."'";
+		$req="select forfait from Liste_niveau where id_nivListe='".$id."'";
 		$db->DB_query($req);
 		$ligne=$db->DB_Object();
 		$for=$ligne->forfait;
 		
 		/*                             Mofifier la valeur du forfait                                             */
 		$for=$for-($qtea*$prix);
-		$req="update liste_niveau set forfait='".$for."' where id_nivListe=".$id;
+		$req="update Liste_niveau set forfait='".$for."' where id_nivListe=".$id;
 		$db->DB_query($req);
 		$req="delete from Compose  where id_nivliste='".$id."' and ref_mat='".$ref."'";
 		

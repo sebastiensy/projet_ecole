@@ -5,7 +5,7 @@ if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
 	{
-		$req="select * from materiel where";
+		$req="select * from Materiel where";
 		if(isset($_POST['ref']) and isset($_POST['desc']))
 		{
 			 $req.=" ref_mat ='".$_POST['ref']."' and desc_mat like '%".$_POST['desc']."%'";

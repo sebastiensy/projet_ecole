@@ -43,7 +43,7 @@ require_once('../inc.php');
 						
 							<?php 
 								$db = new DB_connection();
-								$req="select * from materiel where 1";
+								$req="select * from Materiel where 1";
 								$db->DB_query($req);
 								//$mysql_result=mysql_query($req,$connexion);
 								while($ligne=$db->DB_object())

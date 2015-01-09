@@ -14,7 +14,7 @@ CREATE TABLE Niveau(
 	`code` char(1) NOT NULL,
 	`Libelle` varchar(200) NOT NULL,
 	 PRIMARY KEY (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB;
 
 CREATE TABLE Message(
 	id_message INT AUTO_INCREMENT NOT NULL,
@@ -95,15 +95,15 @@ CREATE TABLE Compose(
 	PRIMARY KEY (ref_mat, id_nivliste)
 ) Engine=InnoDB;
 
-ALTER TABLE `liste_niveau`
-  ADD CONSTRAINT `liste_niveau_ibfk_1` FOREIGN KEY (`niveau`) REFERENCES `niveau` (`code`);
-  
-INSERT INTO `niveau` (`code`, `Libelle`) VALUES
+INSERT INTO `Niveau` (`code`, `Libelle`) VALUES
 ('A', 'CP'),
 ('B', 'CE1'),
 ('C', 'CE2'),
 ('D', 'CM1'),
 ('E', 'CM2');
+
+ALTER TABLE `Liste_niveau`
+  ADD CONSTRAINT `Liste_niveau_ibfk_1` FOREIGN KEY (`niveau`) REFERENCES `Niveau` (`code`);
 
 INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents) VALUES
 ('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'dupont@test.com', '0123456789', 1, 0),
@@ -119,7 +119,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('4', '2015-01-01', 4, 4),
 ('5', '2014-11-01', 5, 5);
 
-INSERT INTO sous_categorie (id_scat, categorie, scat) VALUES
+INSERT INTO Sous_categorie (id_scat, categorie, scat) VALUES
 (474, 'ECRITURE', ''),
 (475, 'ECRITURE', 'STYLO A BILLE'),
 (476, 'ECRITURE', 'STYLO A ENCRE, CARTOUCHES, EFFACEUR, CORRECTEUR'),
@@ -384,5 +384,5 @@ INSERT INTO Materiel (ref_mat, desc_mat, prix_mat, id_scat) VALUES
 ('83204', '96p  21x29,7 gds carreaux Couverture Polypro GRIS', 0.90, 485),
 ('83205', '96p  21x29,7 gds carreaux Couverture Polypro INCOLORE', 0.90, 485);
 
-INSERT INTO `liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
+INSERT INTO `Liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
 (1, 'C', 0);

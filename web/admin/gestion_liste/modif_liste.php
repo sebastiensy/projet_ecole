@@ -4,7 +4,7 @@ $id=$_GET['id'];
 require_once('../inc.php');
 function get_niveau($code)
 {
-	$req="select libelle from niveau where code='".$code."'";
+	$req="select libelle from Niveau where code='".$code."'";
 	$db = new DB_connection();
 	$db->DB_query($req);
 	if($ligne=$db->DB_object())
@@ -66,7 +66,7 @@ function get_niveau($code)
 
 <?php
 $db = new DB_connection();
-$req="select * from liste_niveau where id_nivliste=".$id;
+$req="select * from Liste_niveau where id_nivliste=".$id;
 $db->DB_query($req);
 //$mysql_result=mysql_query($req,$connexion) or die("<br/><br/>".mysql_error());
 $ligne=$db->DB_object();
@@ -90,7 +90,7 @@ if($ligne!=NULL)
 				
 				<?php 
 				$db = new DB_connection();
-				$reqb="select * from niveau where code not like '".$ligne->niveau."'";
+				$reqb="select * from Niveau where code not like '".$ligne->niveau."'";
 				$db->DB_query($reqb);
 				while($ligneb=$db->DB_Object())
 				{

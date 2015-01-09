@@ -7,7 +7,7 @@
 /*
 			perparation de la requete 
 			*/
-			$requete = 'select materiel.desc_mat,materiel.prix_mat,compose.qte_scat from  compose,materiel where  compose.id_nivliste='.$id.' and compose.ref_mat=materiel.ref_mat order by asc materiel.id_scat';
+			$requete = 'select Materiel.desc_mat,Materiel.prix_mat,Compose.qte_scat from Compose, Materiel where  Compose.id_nivliste='.$id.' and Compose.ref_mat=Materiel.ref_mat order by asc Materiel.id_scat';
 
 			/*
 			connexion a la base via la classe DB_connection
