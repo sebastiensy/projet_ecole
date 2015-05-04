@@ -150,3 +150,4 @@ if(isset($_GET['p']))
 					
 			
 	</body>
+	</html>
