@@ -35,8 +35,8 @@ echo '<nav class=menu>';
 			echo '			<br>
 						<br>
 					</td>
-				</tr>
-				<tr>
+				</tr>';
+				/*<tr>
 					<td>
 						<br>
 						<br>';
@@ -45,14 +45,27 @@ echo '<nav class=menu>';
 						<ul > 
 							<li><a id="fancy" href="../gestion_article/modif_article.php">Modifier article</a></li> 
 							 
-							<li><a id="fancy1" href="../gestion_article/ajouter_article.php">Ajouter article</a></li> 
+							<li><a id="fancy1" href="../gestion_article/ajouter_article.php">Ajouter article</a></li>
 						</ul> 
 						</li>
 						<br>
 						<br>
 						<br>
 					</td>
+				</tr>*/
+				echo '
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../gestion_article/modif_article.php">Modifier article</a></li> 
+							 
+						<li><a href="../gestion_article/ajouter_article.php">Ajouter article</a></li>
+						<br>
+						<br>
+					</td>
 				</tr>
+				
 				<tr>
 					<td>
 						<br>
