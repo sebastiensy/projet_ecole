@@ -6,6 +6,7 @@
 	if($_GET['p']==1)
 	{
 	$niv=$_POST['niveau'];
+	echo "niv = ".$niv;
 	$req="insert into Liste_niveau (`id_nivliste`, `niveau`, `forfait`) VALUES (NULL,'".$niv."', '0')";
 	$db = new DB_connection();
 	$db->DB_query($req);

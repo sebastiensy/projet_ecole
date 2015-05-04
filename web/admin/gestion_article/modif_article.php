@@ -129,11 +129,6 @@ if(isset($_GET['p']))
 			if($_GET['p']=="recherche")
 			{
 				echo '<table width="90%" align="center">';
-				echo "ref = "  .$_POST['ref'];
-				echo "<br>";
-				echo "desc = " .$_POST['desc'];
-				echo "<br>";
-				echo $req;
 				while($ligne=$db->DB_object())
 				{
 					echo '<tr><td width="10%">';
