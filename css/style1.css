@@ -5,6 +5,9 @@
    font-style: italic;
 }
 */
+body {
+	overflow: auto;
+}
 #menu-vertical, #menu-vertical ul {
   padding:0;
   margin:0;
@@ -145,8 +148,10 @@ form#maj input[type=number]{
 } 
 div#add-form {
 
-    width: 80%; 
-    overflow: auto; 
+    width: 80%;
+    left: 10%;
+    top: -150px; 
+    /*overflow: auto;*/ 
     height: 100%; 
     position: relative; 
   
