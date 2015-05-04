@@ -39,7 +39,9 @@ require_once(LIB.'/lib_creation_panier.php');
 	<div class="corps">
 
 		<div id="page">
-			<?php afficher_le_panier(); ?>
+			<div id="pagepanier">
+				<?php afficher_le_panier(); ?>
+			</div>
 		</div>
 
 	</div>

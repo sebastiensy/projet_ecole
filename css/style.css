@@ -13,7 +13,6 @@ body
 	margin-top:-8px;
 	/*background-color:red;*/ background-image:url(../img/entete2.png);
 	background-repeat:no-repeat;
-	
 }
 
 /* liens pages */
@@ -145,21 +144,27 @@ body
 	height:1030px;*/ /* 950 */
     /*margin-left:auto;
 	margin-right:auto;*/
-
 	
 	background-image:url(../img/corps2.png);
 	/*background-color:orange;*/
 	background-repeat:no-repeat;
 	word-wrap:break-word;
 
-	margin-left:150px; /**/
+	margin-left:150px;
 
 	padding-top:60px;
 	padding-left:50px;
 	padding-right:10px;
 
 	/*margin-left:180px;*/
-	height:1030px;
+	height:970px; /* 1030 */
+}
+
+#pagepanier
+{
+	width:760px;
+	height:930px;
+	overflow:scroll;
 }
 
 .tprod
@@ -252,6 +257,16 @@ body
 	margin-left:auto;
 	margin-right:auto;
 }*/
+
+/* Titre des pages */
+
+.titre
+{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: underline;
+}
 
 /* footer */
 
