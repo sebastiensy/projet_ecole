@@ -40,7 +40,7 @@ if(isset($_GET['p']))
 	if($_GET['p']=="recherche")
 	{
 		$req="select * from Materiel where";
-		if(isset($_POST['ref']) and isset($_POST['desc']))
+		if(isset($_POST['ref']) && isset($_POST['desc']))
 		{
 			 $req.=" ref_mat ='".$_POST['ref']."' and desc_mat like '%".$_POST['desc']."%'";
 		}
@@ -56,7 +56,7 @@ if(isset($_GET['p']))
 		{
 			$req.="1";
 			}
-		
+	
 		
 		$db = new DB_connection();
 		$db->DB_query($req);
@@ -127,6 +127,11 @@ if(isset($_GET['p']))
 			if($_GET['p']=="recherche")
 			{
 				echo '<table width="90%" align="center">';
+				echo "ref = "  .$_POST['ref'];
+				echo "<br>";
+				echo "desc = " .$_POST['desc'];
+				echo "<br>";
+				echo $req;
 				while($ligne=$db->DB_object())
 				{
 					echo '<tr><td width="10%">';
