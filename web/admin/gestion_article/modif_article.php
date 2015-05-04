@@ -40,17 +40,19 @@ if(isset($_GET['p']))
 	if($_GET['p']=="recherche")
 	{
 		$req="select * from Materiel where";
-		if(isset($_POST['ref']) && isset($_POST['desc']))
+		if(!empty($_POST["ref"]) && !empty($_POST["desc"]))
 		{
 			 $req.=" ref_mat ='".$_POST['ref']."' and desc_mat like '%".$_POST['desc']."%'";
+			 //$req .= ' ref_mat = "'.$_POST["ref"].'" and desc_mat LIKE \'%'.$_POST["desc"].'%\'';
 		}
-		else if(isset($_POST['ref']))
+		else if(!empty($_POST["ref"]))
 		{
-			$req.=" ref_mat ='".$_POST['ref']."'";
+			$req.=" ref_mat ='".$_POST["ref"]."'";
 		}
-		else if(isset($_POST['desc']))
+		else if(!empty($_POST["desc"]))
 		{
 			$req.=" desc_mat like '%".$_POST['desc']."%'";
+			//$req .= ' desc_mat like \'%'.$_POST["desc"].'%\'';
 		}
 		else
 		{
