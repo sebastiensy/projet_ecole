@@ -39,9 +39,21 @@ require_once(LIB.'/lib_creation_panier.php');
 	<div class="corps">
 
 		<div id="page">
+
 			<div id="pagepanier">
-				<?php afficher_le_panier(); ?>
+				<p class="titre">Panier</p>
+				<?php
+					if(!isset($_SESSION["id_parent"]))
+					{
+						echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour consulter votre panier.</strong></p></span>";
+					}
+					else
+					{
+						afficher_le_panier(); 
+					}
+				?>
 			</div>
+
 		</div>
 
 	</div>

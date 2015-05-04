@@ -128,7 +128,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 					/*
 					preparation de la requete 
 					*/
-					$requete='insert into parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
+					$requete='insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
 
 					/*
 					execution de la requete 

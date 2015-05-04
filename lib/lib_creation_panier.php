@@ -184,20 +184,20 @@ function sauvegarder_le_panier($etat=1)
  */
 function afficher_le_panier()
 {
-	echo "<p class=\"titre\">Panier</p>";
-
 	$db = new DB_connection();
-	$requete = "select id_commande from commande where id_parent=".$_SESSION['id_parent'] ;
+	$requete = "select id_commande from Commande where id_parent=".$_SESSION['id_parent'] ;
 	//and etat=1";
 	$db->DB_query($requete);
 
+	//if($db->
+
 	while(($row = $db->DB_object()) != null)
 	{
-		// Recupere l'id de la commande du client 
+		// Récupere l'id de la commande du client 
 		$_SESSION['id_commande'] = $row->id_commande;
 
-		// Recupere les elements commander seul
-		$requete="select contient.ref_mat,contient.quantite,materiel.prix_mat,materiel.desc_mat from contient,materiel where id_commande=".$_SESSION['id_commande']." and contient.ref_mat=materiel.ref_mat";
+		// Récupere les éléments commandés seuls
+		$requete = "select Contient.ref_mat, Contient.quantite, Materiel.prix_mat, Materiel.desc_mat from Contient, Materiel where id_commande=".$_SESSION['id_commande']." and Contient.ref_mat=Materiel.ref_mat";
 		$db->DB_query($requete);
 
 		$somme_element=0;
@@ -205,20 +205,23 @@ function afficher_le_panier()
 		header_element_panier();
 		while($row=$db->DB_object())
 		{
-			affichage_element_panier($row->desc_mat,$row->quantite,$row->prix_mat);
+			affichage_element_panier($row->desc_mat, $row->quantite, $row->prix_mat);
 		}
 		footer_panier();
 
-		// Recupere les liste commander pas le client 
-		$requete="select inclus.id_nivliste,inclus.exemplaire, liste_niveau.forfait,liste_niveau.niveau from inclus, liste_niveau where inclus.id_commande=".$_SESSION['id_commande']." and inclus.id_nivliste= liste_niveau.id_nivliste";
+		// Récupere les listes commandées par le client 
+		$requete="select Inclus.id_nivliste, Inclus.exemplaire, Liste_niveau.forfait, Liste_niveau.niveau from Inclus, Liste_niveau where Inclus.id_commande=".$_SESSION['id_commande']." and Inclus.id_nivliste=Liste_niveau.id_nivliste";
 		$db->DB_query($requete);
 
-		header_list_panier();
+		if($db->DB_count() > 0)
+		{
+			header_list_panier();
+		}
 
 		// Affichage des liste ajoutées
 		while($row=$db->DB_object())
 		{
-			 $somme_element += affichage_list_panier($row->niveau, $row->exemplaire, $row->forfait);
+			$somme_element += affichage_list_panier($row->niveau, $row->exemplaire, $row->forfait);
 		}
 
 		?>
@@ -254,7 +257,7 @@ function header_element_panier()
 	?>
 	 <table>
 	   <tr>
-		   <th>Description du mat&eacute;riel</th>
+		   <th>Description</th>
 		   <th>Quantit&eacute;</th>
 		   <th>Prix</th>
 		   <th>Total</th>

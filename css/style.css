@@ -181,13 +181,13 @@ body
 
 #liste
 {
-    border-collapse: collapse; 
-    width: 180px;
+    border-collapse:collapse; 
+    width:180px;
 }
 #liste td
 {
-    border: 1px solid black;
-	width: 60px;
+    border:1px solid black;
+	width:60px;
 	text-align:center;
 }
 #tdfoot
@@ -199,9 +199,9 @@ body
 
 .lab_cont
 {
-	display: block;
-	width: 150px;
-	float: left;
+	display:block;
+	width:150px;
+	float:left;
 }
 
 .in_cont
@@ -228,23 +228,23 @@ body
 
 .inscription
 {
-	display: block; /* La balise devient de type block. */
-	width: 250px;
-	float: left;
+	display:block; /* La balise devient de type block. */
+	width:250px;
+	float:left;
 }
 
 .b
 {
-	margin-left: 250px ;
+	margin-left:250px ;
 }
 
 /* formulaire connexion */
 
 .label_connexion
 {
-	display: block;
-	width: 150px;
-	float: left;
+	display:block;
+	width:150px;
+	float:left;
 }
 
 /*#conbt
@@ -262,10 +262,10 @@ body
 
 .titre
 {
-	text-align: center;
-	font-size: 25px;
-	font-weight: bold;
-	text-decoration: underline;
+	text-align:center;
+	font-size:25px;
+	font-weight:bold;
+	text-decoration:underline;
 }
 
 /* footer */
