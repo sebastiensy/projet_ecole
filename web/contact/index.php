@@ -38,6 +38,7 @@ require_once(LIB.'/lib_form_contacter.php');
 	<div class="corps">
 	<div id="page">
 
+	<p class="titre">Contact</p>
 	<?php
 
 		if(!isset($_POST["ok"]))

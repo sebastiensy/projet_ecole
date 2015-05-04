@@ -189,7 +189,10 @@ function afficher_le_panier()
 	//and etat=1";
 	$db->DB_query($requete);
 
-	//if($db->
+	if($db->DB_count() == 0)
+	{
+		$vide = true;
+	}
 
 	while(($row = $db->DB_object()) != null)
 	{
@@ -230,6 +233,14 @@ function afficher_le_panier()
 			</tr>
 		<?php
 		footer_panier();
+	}
+	
+	if(isset($vide))
+	{
+		if($vide)
+		{
+				echo "<strong>Votre panier est vide.</strong>";
+		}
 	}
 }
 

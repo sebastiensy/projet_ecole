@@ -164,7 +164,7 @@ body
 {
 	width:760px;
 	height:930px;
-	overflow:scroll;
+	overflow:auto;
 }
 
 .tprod

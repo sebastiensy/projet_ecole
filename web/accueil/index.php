@@ -52,6 +52,8 @@ require_once(LIB.'/lib_liste_affichage.php');
 	<div class="corps">
 
 		<div id="page">
+
+			<p class="titre">Accueil</p>
 			<?php affichage(); ?>
 
 		</div>

@@ -39,7 +39,8 @@ require_once(LIB.'/lib_hasher_mdp.php');
 	<div class="corps">
 
 	<div id="page">
-	
+
+	<p class="titre">Inscription</p>
 	<?php
 
 		if(isset($_SESSION["id_parent"]))

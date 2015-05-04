@@ -99,6 +99,7 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 				//echo "<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>";
 
+				echo "<td><input type=\"submit\" value=\"Ajouter au panier\"></td>";
 				echo "<td><input type=\"hidden\" name=\"page\" value=\"$page\"></td>";
 				if($recherche!="")
 				{
@@ -106,7 +107,6 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 				}
 				echo "<td><input type=\"hidden\" name=\"cat\" value=\"$rubrique\"></td>";
 				echo "<td><input type=\"hidden\" name=\"ref\" value=\"$mat->ref_mat\"></td>";
-				echo "<td><input type=\"submit\" value=\"Ajouter au panier\"></td>";
 
 			echo "</tr>";
 			echo "</form>";

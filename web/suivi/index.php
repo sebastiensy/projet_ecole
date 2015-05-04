@@ -49,7 +49,7 @@ require_once('../../inc/data.inc.php');
 	$db = new DB_connection();
 	$db->DB_query($requete);
 
-	echo 'Etat de ma commande';
+	echo "<p class=\"titre\">Etat de ma commande</p>";
 	?>
 
 	<div class="checkout-wrap">
