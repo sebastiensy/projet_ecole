@@ -1,3 +1,37 @@
+<html>
+	<head>
+		<title>Interface Administrateur:Modifier des articles</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+		<style type="text/css">
+			body{
+				background-image:none;
+				}
+			
+			
+			</style>
+	<head>
+	<body>
+
+<header class="tete">
+			<img src="../../../img/header.jpg" alt="header">
+		<header>
+		<?php require_once('../nav.php')?>
+		<table width="900" align="center" class="entete">
+<tr>
+<td ><div align="right">Modifier des articles</div></td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<div id="banner">
+</div>
+
+<div id="page">
+
+
 <?php
 
 require_once('../inc.php');
@@ -49,7 +83,7 @@ if(isset($_GET['p']))
 	<style type="text/css">
 		body {
 			
-			background-color: #FEF3DB;
+			/*background-color: #FEF3DB;*/
 			background-image:none;
 			}
   </style>
