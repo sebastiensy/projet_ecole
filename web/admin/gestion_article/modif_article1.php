@@ -55,11 +55,12 @@ require_once('../inc.php');
 			$db1->DB_query($req1);
 			$req="delete from Compose where ref_mat='".$ref."'";
 	
-			$db->DB_query($req);
+			
+		}
+		$db->DB_query($req);
 	
 			$req="delete from Materiel where ref_mat='".$ref."'";
 			$db->DB_query($req);
-		}
 	}
 
 	$url="../gestion_liste/gestion_listes.php";
@@ -69,5 +70,5 @@ require_once('../inc.php');
 	window.parent.jQuery.fancybox.close();
 </script>-->
 <?php 
-//header("Refresh:0;url=$url");	
+header("Refresh:0;url=$url");	
 ?>
