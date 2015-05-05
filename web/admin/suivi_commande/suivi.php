@@ -39,8 +39,18 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 </table>
 <br>
 <br>
-<br>
-<br>
+<table width="900" align="center" class="data">
+<tr>
+<th width="90" ><div align="center">Parent</div></th>
+<th width="90" ><div align="center">En cours de validation</div></th>
+<th width="90" ><div align="center">Valide</div></th>
+<th width="90" ><div align="center">Commande fournisseur</div></th>
+<th width="90" ><div align="center">En cours de livraison</div></th>
+<th width="90" ><div align="center">Livre</div></th>
+<th width="90" ><div align="center">Retire et paye</div></th>
+<th width="90" ><div align="center"></div></th>
+<th width="90" ><div align="center"></div></th>
+</tr>
 <div id="banner">
 </div>
 
@@ -58,10 +68,8 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	$db = new DB_connection();
 	$db->DB_query($requete);
 
-	echo 'Suivi des commandes';
-
 	//echo "<form method='POST' action='suivi.php'>";
-	echo "<table>
+	/*echo "<table>
 			<tr>
 				<th>Parent</th>
 				<th>En cours de validation</th>
@@ -72,7 +80,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 				<th>Retire et paye</th>
 				<th></th>
 				<th></th>
-			</tr>";
+			</tr>";*/
 
 	if (isset($_GET['com']))
 	{
@@ -86,18 +94,18 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	
 	while($suiv = $db->DB_object())
 	{
-		echo "<tr><td>".$suiv->nom_parent."</td>";
+		echo "<tr><td><div align='center'>".$suiv->nom_parent."</div></td>";
 		
 		if ($commande != $suiv->id_commande)
 		{		
 			for ($i=1; $i<=6; $i++) {
 				if($suiv->etat == $i)
 				{
-					echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></td>';
+					echo '<td><div align="center"><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked disabled></div></td>';
 				}
 				else
 				{
-					echo '<td><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></td>';
+					echo '<td><div align="center"><input type="radio" name="suivi'.$suiv->nom_parent.'" value="'.$i.'" disabled></div></td>';
 				}
 
 			}
@@ -105,9 +113,9 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			//echo '<td><input type="submit" name="enregistrer'.$suiv->nom_parent.'" id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" disabled></input></td>';
 			//echo '<td><a id="enregistrer'.$suiv->nom_parent.'" value="Enregistrer" href="change_etat.php"><img src="../../img/icon_OK.png" alt="ok"/></a></td>';
 			
-			echo '<td><a id="modifier'.$suiv->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv->id_commande.'">Modifier</a></td>';
+			echo '<td><div align="center"><a id="modifier'.$suiv->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv->id_commande.'">Modifier</a></div></td>';
 
-			echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
+			echo '<td><div align="center"><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
 			echo "</tr>";
 		}
 
@@ -118,16 +126,16 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			for ($i=1; $i<=6; $i++) {
 				if($suiv->etat == $i)
 					{
-						echo '<td><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked></td>';
+						echo '<td><div align="center"><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'" checked></div></td>';
 					}
 					else
 					{
-						echo '<td><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'"></td>';
+						echo '<td><div align="center"><input type="radio" name="suivi" class="suivi'.$suiv->nom_parent.'" value="'.$i.'"></div></td>';
 					}
 				}
 
-				echo '<td><input type="submit" name="enregistrer" value="Enregistrer"></input></td>';
-				echo '<td><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></td>';		
+				echo '<td><div align="center"><input type="submit" name="enregistrer" value="Enregistrer"></input></div></td>';
+				echo '<td><div align="center"><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
 				echo '</form>';
 
 

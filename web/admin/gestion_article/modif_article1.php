@@ -7,7 +7,6 @@ require_once('../inc.php');
 	if($_GET['p']=="modif_desc")
 	{
 		
-		echo $desc;
 		$req="update Materiel set desc_mat='".$_POST['desc']."' where ref_mat='".$ref."'";
 		
 		$db->DB_query($req);
@@ -66,9 +65,6 @@ require_once('../inc.php');
 	$url="../gestion_liste/gestion_listes.php";
 	
 	?>
-	<!--<script type="text/javascript">
-	window.parent.jQuery.fancybox.close();
-</script>-->
 <?php 
 header("Refresh:0;url=$url");	
 ?>
