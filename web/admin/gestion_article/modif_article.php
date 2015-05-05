@@ -133,7 +133,7 @@ if(isset($_GET['p']))
 				{
 					echo '<tr><td width="10%">';
 					echo $ligne->ref_mat;
-					echo '</td><td width="60%"><form method="post" action="modif_article1.php?p=modif_desc&ref="'.$ligne->ref_mat.'" >
+					echo '</td><td width="60%"><form method="post" action="modif_article1.php?p=modif_desc&ref='.$ligne->ref_mat.'" >
 					<div><input size=50 type=text name="desc" value="'.$ligne->desc_mat.'" >			
 					<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit ></div></form></td>';
 					

@@ -6,8 +6,10 @@ require_once('../inc.php');
 	/*                                       Modification du Descriptif                                                    */
 	if($_GET['p']=="modif_desc")
 	{
+		
+		echo $desc;
 		$req="update Materiel set desc_mat='".$_POST['desc']."' where ref_mat='".$ref."'";
-		//$myqsl_result=mysql_query($req,$connexion);
+		
 		$db->DB_query($req);
 	}
 	/*                                      Modification du prix d'une liste 										   */
@@ -67,5 +69,5 @@ require_once('../inc.php');
 	window.parent.jQuery.fancybox.close();
 </script>-->
 <?php 
-header("Refresh:0;url=$url");	
+//header("Refresh:0;url=$url");	
 ?>
