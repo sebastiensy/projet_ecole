@@ -46,26 +46,31 @@ function afficherFournitures($rubrique="", $srubrique="", $recherche="")
 
 	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
 
-	$db->DB_query($requete);
-
 	echo "<div id=\"produits\">";
 	
 	if(isset($_SESSION["id_parent"]))
 	{
 		if(isset($_GET["ref"]))
 		{
-			$str = "L'article ".$_GET["ref"]." a été ajouté au panier";
-			if(isset($_GET["qte"]))
+			$requete2 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+			$db->DB_query($requete2);
+			if($db->DB_count() > 0)
 			{
-				$str .= " en ".$_GET["qte"]." exemplaires.";
+				$str = "L'article ".$_GET["ref"]." a été ajouté au panier";
+				if(isset($_GET["qte"]))
+				{
+					$str .= " en ".$_GET["qte"]." exemplaires.";
+				}
+				echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
 			}
-			echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
 		}
 	}
 	else
 	{
 		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des produits au panier.</strong></p></span>";
 	}
+
+	$db->DB_query($requete);
 
 	if($db->DB_count() > 0)
 	{
