@@ -3,7 +3,7 @@
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_connexion.php');
 require_once(LIB.'/lib_hasher_mdp.php');
-require_once(LIB.'/lib_creation_panier.php');
+require_once(LIB.'/lib_creation_panier.php'); // à supprimer par la suite
 
 ?>
 
@@ -72,8 +72,12 @@ require_once(LIB.'/lib_creation_panier.php');
 					$_SESSION['id_parent'] = $id_parent;
 					$_SESSION['email'] = $email;
 					$_SESSION['password'] = $mdp;
-					create_fonction();
-					remplir_le_panier();
+
+					$db = new DB_connection();
+					$panier = new panier($db);
+
+					create_fonction(); // ?
+					remplir_le_panier(); // A supprimer par la suite
 					
 					header('location: ../accueil/index.php?redirected=true');
 
