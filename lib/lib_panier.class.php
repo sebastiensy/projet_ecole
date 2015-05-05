@@ -4,12 +4,13 @@ class panier
 {
 	private $_db;
 	
-	public function __construct($_db)
+	public function __construct($db)
 	{
 		if(!isset($_SESSION['panier']))
 		{
 			$_SESSION['panier'] = array();
 		}
+		$this->_db = $db;
 	}
 
 	public function total()
@@ -22,7 +23,7 @@ class panier
 		}
 		else
 		{
-			$product = $this->$_db->DB_query('SELECT ref_mat, prix_mat FROM Materiel WHERE id IN ('.implode(',',$ids).')');
+			$product = $this->_db->DB_query('SELECT ref_mat, prix_mat FROM Materiel WHERE id IN ('.implode(',',$ids).')');
 		}
 		foreach($products as $product)
 		{
