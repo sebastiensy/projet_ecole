@@ -57,8 +57,7 @@ require_once('../inc.php');
 	
 			$req="delete from Materiel where ref_mat='".$ref."'";
 			$db->DB_query($req);
-	
-	}
+		}
 	}
 
 	$url="../gestion_liste/gestion_listes.php";

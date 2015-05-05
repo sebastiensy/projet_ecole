@@ -106,7 +106,7 @@ if(isset($_GET['p']))
 					<td></td>  
 			</tr>
 					
-			<tr >
+			<tr>
 				<td width="40%">
 					<div align="Left">
 						<span><input type="text" name="ref"></span>
