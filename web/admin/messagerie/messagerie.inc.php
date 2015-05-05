@@ -1,6 +1,8 @@
 <?php
 
 require_once('../inc.php');
+require_once('affichage_element.php');
+
 ?>
 <?php
 session_start();
@@ -10,7 +12,7 @@ if(!isset($_SESSION['login']))
          si l admine n est pas connecté 
 		 on fait une redirection
 */
-header('location:index.php?page=con_oper');
+//header('location:index.php?page=con_oper');
 }
 
 if(isset($_GET['supprimer']))
@@ -19,9 +21,10 @@ if(isset($_GET['supprimer']))
 /*
         suprimer un message particulier
 */
-$bd =  $bd = new DB_connection();
-$req1="DELETE FROM message WHERE id_msg='".$_GET['id_msg']."' ";
-$bd->execRequete($req1);
+$db = new DB_connection();
+$req1="DELETE FROM Message WHERE id_message='".$_GET['id_msg']."' ";
+//$db->execRequete($req1);
+$db->DB_query($req1);  
   unset( $_SESSION['suprimer'] );
 }
 if($_GET['afficher'])

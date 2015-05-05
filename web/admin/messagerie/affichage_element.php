@@ -46,9 +46,10 @@ echo '
 	/*
 	   la mise page de l affichage des messages
 	*/
-	$bd =  $bd = new DB_connection();
-	$req="SELECT * FROM Message ORDER BY id_msg desc";
-	$bd->execRequete($req);
+	$db = new DB_connection();
+	$req = "SELECT * FROM Message ORDER BY id_message desc";
+	//$bd->execRequete($req);
+	$db->DB_query($req);
 	
 	/*
 	   affichage de l entete
@@ -66,7 +67,7 @@ echo '
 			  de la requete
 		    */
 	   while($res=$db->DB_assoc()) {
-											affichage_element($res);
+											//affichage_element($res);
 									}
   
   ?>
@@ -74,6 +75,5 @@ echo '
 	</table>
 	<?php
 	}
-	
 
 ?>
