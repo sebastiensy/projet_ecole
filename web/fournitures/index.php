@@ -2,7 +2,6 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_fournitures.php');
-require_once(LIB.'/lib_creation_panier.php');
 
 ?>
 
@@ -86,17 +85,17 @@ require_once(LIB.'/lib_creation_panier.php');
 				echo "<p class=\"tprod\">".$_GET["cat"]." :</p>";
 				if(!empty($_GET["scat"]))
 				{
-					afficherFournitures(htmlSpecialChars($_GET["cat"]), htmlSpecialChars($_GET["scat"]));
+					afficherFournitures($panier, htmlSpecialChars($_GET["cat"]), htmlSpecialChars($_GET["scat"]));
 				}
 				else
 				{
-					afficherFournitures(htmlSpecialChars($_GET["cat"]));
+					afficherFournitures($panier, htmlSpecialChars($_GET["cat"]));
 				}
 			}
 			else
 			{
 				echo "<p class=\"tprod\">Tous les produits :</p>";
-				afficherFournitures();
+				afficherFournitures($panier);
 			}
 		?>
 

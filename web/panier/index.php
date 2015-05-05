@@ -2,7 +2,6 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_liste_affichage.php');
-require_once(LIB.'/lib_creation_panier.php');
 
 ?>
 
@@ -49,7 +48,24 @@ require_once(LIB.'/lib_creation_panier.php');
 					}
 					else
 					{
-						afficher_le_panier(); 
+						if(isset($_SESSION['panier']))
+						{
+							$ids = array_keys($_SESSION['panier']);
+							var_dump($ids);
+							if(empty($ids))
+							{
+								$products = array();
+							}
+							else
+							{
+								$db = new DB_connection();
+								$products = $db->DB_query('SELECT ref_mat, prix_mat FROM Materiel WHERE ref_mat IN ('.implode(',',$ids).')');
+							}
+							foreach($products as $product)
+							{
+								
+							}
+						}
 					}
 				?>
 			</div>
