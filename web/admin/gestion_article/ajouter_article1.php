@@ -12,10 +12,12 @@
 		$db->DB_query($req);
 	
 	//$url="modif_liste.php?id=".$id;
+		$url = "ajouter_article.php";
+		header("Refresh:0;url=$url");	
 	
  ?>
 
 <script type="text/javascript">
-	window.parent.jQuery.fancybox.close();
+	alert("Votre article a ete ajoute !");
 </script>
 

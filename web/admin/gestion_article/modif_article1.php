@@ -64,9 +64,9 @@ require_once('../inc.php');
 	$url="../gestion_liste/gestion_listes.php";
 	
 	?>
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 	window.parent.jQuery.fancybox.close();
-</script>
+</script>-->
 <?php 
 header("Refresh:0;url=$url");	
 ?>
