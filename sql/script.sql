@@ -54,11 +54,12 @@ CREATE TABLE Sous_categorie(
 ) Engine=InnoDB;
 
 CREATE TABLE Materiel(
+	id_mat INT AUTO_INCREMENT NOT NULL,
 	ref_mat VARCHAR(20) NOT NULL,
 	desc_mat VARCHAR(50),
 	prix_mat numeric(5,2),
 	id_scat INT NOT NULL,
-	PRIMARY KEY (ref_mat),
+	PRIMARY KEY (id_mat),
 	FOREIGN KEY (id_scat) REFERENCES Sous_categorie (id_scat)
 ) Engine=InnoDB;
 
@@ -76,9 +77,9 @@ CREATE TABLE Date_limite(
 
 CREATE TABLE Contient(
 	id_commande INT NOT NULL,
-	ref_mat VARCHAR(20) NOT NULL,
+	id_mat INT NOT NULL,
 	quantite INT,
-	PRIMARY KEY (id_commande, ref_mat)
+	PRIMARY KEY (id_commande, id_mat)
 ) Engine=InnoDB;
 
 CREATE TABLE Inclus(
@@ -90,9 +91,9 @@ CREATE TABLE Inclus(
 
 CREATE TABLE Compose(
 	qte_scat INT,
-	ref_mat VARCHAR(20) NOT NULL,
+	id_mat VARCHAR(20) NOT NULL,
 	id_nivliste INT NOT NULL,
-	PRIMARY KEY (ref_mat, id_nivliste)
+	PRIMARY KEY (id_mat, id_nivliste)
 ) Engine=InnoDB;
 
 INSERT INTO `Niveau` (`code`, `Libelle`) VALUES

@@ -51,6 +51,8 @@ require_once(LIB.'/lib_liste_affichage.php');
 						if(isset($_SESSION['panier']))
 						{
 							$ids = array_keys($_SESSION['panier']);
+							var_dump($_SESSION['panier'][38404]);
+							//unset($_SESSION['panier'][2]);
 							var_dump($ids);
 							if(empty($ids))
 							{
@@ -59,11 +61,13 @@ require_once(LIB.'/lib_liste_affichage.php');
 							else
 							{
 								$db = new DB_connection();
-								$products = $db->DB_query('SELECT ref_mat, prix_mat FROM Materiel WHERE ref_mat IN ('.implode(',',$ids).')');
-							}
-							foreach($products as $product)
-							{
-								
+								$query = 'SELECT * FROM Materiel WHERE ref_mat IN ('.implode(',',$ids).')';
+								$db->DB_query($query);
+
+								while($mat = $db->DB_object())
+								{
+									echo $_SESSION['panier'][$mat->ref_mat];
+								}
 							}
 						}
 					}
