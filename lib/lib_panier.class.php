@@ -17,17 +17,17 @@ class panier
 	{
 		$total = 0;
 		$ids = array_keys($_SESSION['panier']);
-		if(empty($ids))
+		if(!empty($ids))
 		{
-			$products = array();
-		}
-		else
-		{
-			$product = $this->_db->DB_query('SELECT ref_mat, prix_mat FROM Materiel WHERE ref_mat IN ('.implode(',',$ids).')');
-		}
-		foreach($products as $product)
-		{
-			$total += $product->prix_mat;
+			$this->_db->DB_query('SELECT id_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')');
+
+			if($this->_db->DB_count() > 0)
+			{
+				while($mat = $this->_db->DB_object())
+				{
+					$total += $mat->prix_mat * $_SESSION['panier'][$mat->id_mat];
+				}
+			}
 		}
 		return $total;
 	}

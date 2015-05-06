@@ -71,18 +71,19 @@ require_once(LIB.'/lib_liste_affichage.php');
 										<th>Description</th>
 										<th>Prix</th>
 										<th>Quantité</th>
-										<th></th>
+										<th>Action</th>
 									</tr>";
 									while($mat = $db->DB_object())
 									{
-										echo "<td>".$mat->ref_mat."</td>
+										echo "<tr><td>".$mat->ref_mat."</td>
 										<td>".$mat->desc_mat."</td>
 										<td>".$mat->prix_mat." €</td>
 										<td><input type=\"number\" name=\"qte\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
 										echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
 										echo "</tr>";
 									}
-									echo "</table>";
+									echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panier->total()."</b></td></tr>
+									</table>";
 								}
 							}
 						}
