@@ -136,8 +136,6 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			{	
 				if($mat = $db->DB_object())
 				{
-					//$panier->add(htmlSpecialChars($_GET["ref"]), htmlSpecialChars($_GET["qte"]));
-					//echo htmlSpecialChars($_GET["qte"]);
 					$panier->add($mat->id_mat, htmlSpecialChars($_GET["qte"]));
 				}
 

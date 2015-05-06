@@ -43,21 +43,11 @@ class panier
 			$_SESSION['panier'][$product_id] = $product_qte;
 		}
 	}
-	
-	/*public function add($product_id)
-	{
-		if(isset($_SESSION['panier'][$product_id]))
-		{
-			$_SESSION['panier'][$product_id]++;
-		}
-		else
-		{
-			$_SESSION['panier'][$product_id] = 1;
-		}
-	}*/
 
 	public function del($product_id)
 	{
 		unset($_SESSION['panier'][$product_id]);
 	}
 }
+
+?>

@@ -50,15 +50,14 @@ require_once(LIB.'/lib_liste_affichage.php');
 					{
 						if(isset($_SESSION['panier']))
 						{
-							$ids = array_keys($_SESSION['panier']);
-							//var_dump($_SESSION['panier'][38404]);
-							//unset($_SESSION['panier'][2]);
-							//var_dump($ids);
-							if(empty($ids))
+
+							if(isset($_GET["del"]))
 							{
-								$products = array();
+								$panier->del($_GET['del']);
 							}
-							else
+
+							$ids = array_keys($_SESSION['panier']);
+							if(!empty($ids))
 							{
 								$db = new DB_connection();
 								$query = 'SELECT * FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
@@ -76,11 +75,11 @@ require_once(LIB.'/lib_liste_affichage.php');
 									</tr>";
 									while($mat = $db->DB_object())
 									{
-										//echo $_SESSION['panier'][$mat->id_mat];
 										echo "<td>".$mat->ref_mat."</td>
 										<td>".$mat->desc_mat."</td>
 										<td>".$mat->prix_mat." €</td>
 										<td><input type=\"number\" name=\"qte\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+										echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
 										echo "</tr>";
 									}
 									echo "</table>";
