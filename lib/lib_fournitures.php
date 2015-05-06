@@ -56,7 +56,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			$db->DB_query($requete2);
 			if($db->DB_count() > 0)
 			{
-				$str = "L'article ".$_GET["ref"]." a été ajouté au panier";
+				$str = "L'article ".$_GET["ref"]." a été ajouté au <a href=\"../panier\">panier</a>";
 				if(isset($_GET["qte"]))
 				{
 					$str .= " en ".$_GET["qte"]." exemplaires.";
@@ -100,8 +100,20 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			echo $tr;
 				echo "<td>".$mat->ref_mat."</td>
 				<td>".$mat->desc_mat."</td>
-				<td>".$mat->prix_mat." €</td>
-				<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				<td>".$mat->prix_mat." €</td>";
+				
+				$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				if(isset($_SESSION["id_parent"]))
+				{
+					if(isset($_GET["ref"]) && isset($_GET['qte']))
+					{
+						if($_GET["ref"] == $mat->ref_mat)
+						{
+							$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
+						}
+					}
+				}
+				echo $td;
 				//echo "<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>";
 
 				echo "<td><input type=\"submit\" value=\"Ajouter au panier\"></td>";
