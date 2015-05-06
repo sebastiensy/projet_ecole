@@ -120,7 +120,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	}
 	else
 	{
-		echo "<p>Auncun produit trouvé.</p>";
+		echo "<p>Aucun produit trouvé.</p>";
 	}
 
 	echo "</div>";
@@ -130,14 +130,15 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 		if(isset($_SESSION["id_parent"]))
 		{
 			// Vérification d'erreurs si la réf n'existe pas
-			$requete3 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+			$requete3 = 'SELECT id_mat, ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
 			$db->DB_query($requete3);
 			if($db->DB_count() > 0)
 			{	
 				if($mat = $db->DB_object())
 				{
 					//$panier->add(htmlSpecialChars($_GET["ref"]), htmlSpecialChars($_GET["qte"]));
-					$panier->add($mat->ref_mat, htmlSpecialChars($_GET["qte"]));
+					//echo htmlSpecialChars($_GET["qte"]);
+					$panier->add($mat->id_mat, htmlSpecialChars($_GET["qte"]));
 				}
 
 				/*$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];

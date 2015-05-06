@@ -51,9 +51,9 @@ require_once(LIB.'/lib_liste_affichage.php');
 						if(isset($_SESSION['panier']))
 						{
 							$ids = array_keys($_SESSION['panier']);
-							var_dump($_SESSION['panier'][38404]);
+							//var_dump($_SESSION['panier'][38404]);
 							//unset($_SESSION['panier'][2]);
-							var_dump($ids);
+							//var_dump($ids);
 							if(empty($ids))
 							{
 								$products = array();
@@ -61,12 +61,29 @@ require_once(LIB.'/lib_liste_affichage.php');
 							else
 							{
 								$db = new DB_connection();
-								$query = 'SELECT * FROM Materiel WHERE ref_mat IN ('.implode(',',$ids).')';
+								$query = 'SELECT * FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 								$db->DB_query($query);
 
-								while($mat = $db->DB_object())
+								if($db->DB_count() > 0)
 								{
-									echo $_SESSION['panier'][$mat->ref_mat];
+									echo "<table>
+									<tr>
+										<th>Référence</th>
+										<th>Description</th>
+										<th>Prix</th>
+										<th>Quantité</th>
+										<th></th>
+									</tr>";
+									while($mat = $db->DB_object())
+									{
+										//echo $_SESSION['panier'][$mat->id_mat];
+										echo "<td>".$mat->ref_mat."</td>
+										<td>".$mat->desc_mat."</td>
+										<td>".$mat->prix_mat." €</td>
+										<td><input type=\"number\" name=\"qte\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+										echo "</tr>";
+									}
+									echo "</table>";
 								}
 							}
 						}

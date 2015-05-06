@@ -78,7 +78,7 @@ require_once(LIB.'/lib_fournitures.php');
 				$str = "R&eacute;sultats de la recherche \"".$_GET["find"]."\" : ";
 				echo "<p class=\"tprod\">$str</p>";
 
-				afficherFournitures("", "", stripAccents($_GET["find"]));
+				afficherFournitures($panier, "", "", stripAccents($_GET["find"]));
 			}
 			else if(!empty($_GET["cat"]))
 			{
