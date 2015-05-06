@@ -50,12 +50,14 @@ require_once(LIB.'/lib_liste_affichage.php');
 					{
 						if(isset($_SESSION['panier']))
 						{
-
 							if(isset($_GET["del"]))
 							{
 								$panier->del($_GET['del']);
 							}
-
+							if(isset($_POST["panier"]["qte"]))
+							{
+								$panier->recalc();
+							}
 							$ids = array_keys($_SESSION['panier']);
 							if(!empty($ids))
 							{
@@ -65,6 +67,7 @@ require_once(LIB.'/lib_liste_affichage.php');
 
 								if($db->DB_count() > 0)
 								{
+									echo "<form method=\"post\" action=\"\">";
 									echo "<table>
 									<tr>
 										<th>Référence</th>
@@ -78,12 +81,14 @@ require_once(LIB.'/lib_liste_affichage.php');
 										echo "<tr><td>".$mat->ref_mat."</td>
 										<td>".$mat->desc_mat."</td>
 										<td>".$mat->prix_mat." €</td>
-										<td><input type=\"number\" name=\"qte\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+										<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
 										echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
 										echo "</tr>";
 									}
-									echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panier->total()."</b></td></tr>
+									echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panier->total()." €</b></td></tr>
 									</table>";
+									echo "<input type=\"submit\" value=\"Recalculer\">";
+									echo "<form>";
 								}
 							}
 						}

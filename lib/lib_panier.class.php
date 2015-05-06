@@ -13,6 +13,11 @@ class panier
 		$this->_db = $db;
 	}
 
+	public function recalc()
+	{
+		$_SESSION['panier'] = $_POST['panier']['qte'];
+	}
+
 	public function total()
 	{
 		$total = 0;
