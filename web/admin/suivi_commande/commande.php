@@ -3,7 +3,7 @@
 require_once('../inc.php');
 
 ?>
-<html>
+<!--<html>
 	<head>
 		<title>Interface Administrateur</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" /> 
@@ -19,7 +19,7 @@ require_once('../inc.php');
 		
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
+		<header>-->
 <?php require_once('../nav.php')?>
 
 
