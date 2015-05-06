@@ -1,7 +1,7 @@
 <?php
 
 require_once('../inc.php');
-require_once('affichage_element.php');
+//require_once('affichage_element.php');
 
 ?>
 <html>
@@ -44,7 +44,7 @@ require_once('affichage_element.php');
 <?php 
 
 	$db = new DB_connection();
-	$req = 'SELECT * FROM Message ORDER BY id_message desc';
+	$req = 'SELECT * FROM Message ORDER BY id_message asc';
 	$db->DB_query($req);
 
 	while($msg = $db->DB_object())
@@ -54,8 +54,9 @@ require_once('affichage_element.php');
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
 		echo "<td><div align='center'>".$msg->jma."</div></td>";
 		echo "<td><div align='center'>".$msg->lu."</div></td>";
-		echo '<td><div align="center"><a id="afficher'.$msg->id_message.'" value="Afficher" href="suivi.php?com='.$msg->id_message.'">Afficher</a></div></td>';
-
+		echo '<td><div align="center"><a id="fancy" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+		echo '<td><div align="center"><a id="supprimer'.$msg->id_message.'" value="Supprimer" href="affiche_message.php?id='.$msg->id_message.'">Supprimer</a></div></td>';
+		echo "</tr>";
 	}
 
 //<?php

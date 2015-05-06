@@ -20,7 +20,7 @@ require_once('../inc.php');
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
 		<header>-->
-<?php require_once('../nav.php')?>
+<?php //require_once('../nav.php')?>
 
 
 
