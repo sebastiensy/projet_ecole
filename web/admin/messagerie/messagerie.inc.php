@@ -49,14 +49,29 @@ require_once('../inc.php');
 
 	while($msg = $db->DB_object())
 	{
-		echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
-		echo "<td><div align='center'>".$msg->email_parent."</div></td>";
-		echo "<td><div align='center'>".$msg->objet."</div></td>";
-		echo "<td><div align='center'>".$msg->jma."</div></td>";
-		echo "<td><div align='center'>".$msg->lu."</div></td>";
-		echo '<td><div align="center"><a id="fancy" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-		echo '<td><div align="center"><a id="supprimer'.$msg->id_message.'" value="Supprimer" href="affiche_message.php?id='.$msg->id_message.'">Supprimer</a></div></td>';
-		echo "</tr>";
+		if ($msg->lu == 0)
+		{
+			echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
+			echo "<td><div align='center'>".$msg->email_parent."</div></td>";
+			echo "<td><div align='center'>".$msg->objet."</div></td>";
+			echo "<td><div align='center'>".$msg->jma."</div></td>";
+			echo "<td><div align='center'>Non lu</div></td>";
+			echo '<td><div align="center"><a id="fancy'.$msg->id_message.'" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+			echo '<td><div align="center"><a id="supprimer'.$msg->id_message.'" value="Supprimer" href="affiche_message.php?id='.$msg->id_message.'">Supprimer</a></div></td>';
+			echo "</tr>";
+		}
+		else
+		{
+			echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
+			echo "<td><div align='center'>".$msg->email_parent."</div></td>";
+			echo "<td><div align='center'>".$msg->objet."</div></td>";
+			echo "<td><div align='center'>".$msg->jma."</div></td>";
+			echo "<td><div align='center'>Lu</div></td>";
+			echo '<td><div align="center"><a id="fancy'.$msg->id_message.'" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+			echo '<td><div align="center"><a id="supprimer'.$msg->id_message.'" value="Supprimer" href="affiche_message.php?id='.$msg->id_message.'">Supprimer</a></div></td>';
+			echo "</tr>";
+		}
+		
 	}
 
 //<?php

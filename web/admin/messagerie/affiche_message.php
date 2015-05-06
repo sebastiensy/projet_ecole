@@ -11,18 +11,21 @@ require_once('../inc.php');
 if (isset($_GET['id']))
 {
 	$id_msg = $_GET['id'];
+
+	$requete2 = 'UPDATE Message set lu = 1 WHERE id_message = '.$id_msg;
 		
 
 	$requete = 'SELECT email_parent, objet, message, jma FROM Message WHERE id_message = '.$id_msg;
 
 	$db = new DB_connection();
 	$db->DB_query($requete);
+
 		
 		while($msg = $db->DB_object())
 		{
 			?>
 
-			<table width="900" align="left" class="data">
+			<table width="800" align="left" class="data">
 			<tr>
 				<th width="90" ><div align="center">N° message</div></th>
 				<td><?php echo $id_msg;?></td>
@@ -50,11 +53,10 @@ if (isset($_GET['id']))
 
 
 		}
-		
-		
-		echo "</table>";
 
+		$db->DB_query($requete2);
 
+		
 		$db->DB_done();
 		
 }
