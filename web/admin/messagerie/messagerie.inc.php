@@ -67,7 +67,7 @@ require_once('../inc.php');
 			echo "<td><div align='center'>".$msg->objet."</div></td>";
 			echo "<td><div align='center'>".$msg->jma."</div></td>";
 			echo "<td><div align='center'>Lu</div></td>";
-			echo '<td><div align="center"><a id="fancy'.$msg->id_message.'" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+			echo '<td><div align="center"><a class="fancy" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
 			echo '<td><div align="center"><a id="supprimer'.$msg->id_message.'" value="Supprimer" href="affiche_message.php?id='.$msg->id_message.'">Supprimer</a></div></td>';
 			echo "</tr>";
 		}

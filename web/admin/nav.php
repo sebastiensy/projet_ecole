@@ -25,6 +25,17 @@
     ;}
 								});
 	});
+	$( document ).ready(function() {
+			$("a.fancy").fancybox({
+				
+				type: "iframe",
+				width: '70%',
+				height: '60%',
+				onClosed: function() {   
+				parent.location.reload(true); 
+    ;}
+								});
+	});
 	</script>
 <?php
 echo '<nav class=menu>';

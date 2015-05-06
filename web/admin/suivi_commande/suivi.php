@@ -115,7 +115,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			
 			echo '<td><div align="center"><a id="modifier'.$suiv->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv->id_commande.'">Modifier</a></div></td>';
 
-			echo '<td><div align="center"><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
+			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
 			echo "</tr>";
 		}
 
@@ -135,7 +135,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 				}
 
 				echo '<td><div align="center"><input type="submit" name="enregistrer" value="Enregistrer"></input></div></td>';
-				echo '<td><div align="center"><a id="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
+				echo '<td><div align="center"><a class="fancy" value="commande'.$suiv->nom_parent.'" href="commande.php?com='.$suiv->id_commande.'&nom='.$suiv->nom_parent.'">Etat de la commande</a></div></td>';		
 				echo '</form>';
 
 
