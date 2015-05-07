@@ -26,11 +26,11 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	?>
 	
 
-	<table width="900" align="center" class="data">
+	<table width="800" align="center" class="data">
 	<tr>
-		<th width="90" ><div align="center">Quantite</div></th>
+		<th width="40" ><div align="center">Quantite</div></th>
 		<th width="90" ><div align="center">Materiel</div></th>
-		<th width="90" ><div align="center">Prix</div></th>
+		<th width="40" ><div align="center">Prix</div></th>
 	</tr>
 
 	<?php

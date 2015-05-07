@@ -3,23 +3,23 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Interface Administrateur</title>
-	<link rel="stylesheet" href="../../../js/jquery-ui.css">
-	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox.css">
-	<link rel="stylesheet" href="../../../css/progress.bar.css">
+	<!--<link rel="stylesheet" href="../../../js/jquery-ui.css">-->
+	<!--<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox.css">-->
+	<!--<link rel="stylesheet" href="../../../css/progress.bar.css">-->
 	<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
-	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 	<style type="text/css">
 			body{
 				background-image:none;
 				}
 	</style>
-	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>-->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
-	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+	<!--<script type="text/javascript" src="../../../js/jquery-ui.js"></script>-->
+	<!--<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>-->
 	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
-	<script>
+	<script type="text/javascript">
 	$( document ).ready(function() {
 			$("#fancy").fancybox({
 				
@@ -57,7 +57,7 @@
 	/*
 		pour ajouter un article
 	*/
-	function subm()
+	/*function subm()
 		{
 			document.getElementById('maj').submit();
 		}
@@ -85,7 +85,7 @@
 				return false();
 			}
 			
-		}
+		}*/
 
 
 	/*
@@ -119,7 +119,7 @@
 		
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
+		</header>
 			<?php
 echo '<nav class=menu>';
 			echo '<br><br><br>';
