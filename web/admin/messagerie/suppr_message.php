@@ -1,5 +1,5 @@
 <?php
-	require_once('../inc.php');
+	require_once('../inc/data.inc.php');
 	$id=$_GET['id'];
 	$db = new DB_connection();
 	

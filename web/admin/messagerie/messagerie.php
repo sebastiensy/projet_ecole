@@ -1,10 +1,9 @@
 <?php
-
-require_once('../inc.php');
-//require_once('affichage_element.php');
-
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
 ?>
-<html>
+
+<!--<html>
 <head>
 <title>Interface Admininistrateur:Messagerie</title>
 <link rel="stylesheet" type="text/css" href="../../../css/style_page.css" /> 
@@ -20,8 +19,8 @@ require_once('../inc.php');
 <body>
 <header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+<div id="page">
 <table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Messagerie</div></td>
@@ -120,5 +119,9 @@ require_once('../inc.php');
 //}
 
   //?>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>
 
 
