@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
-require_once(LIB.'/lib_liste_affichage.php');
+require_once(LIB.'/lib_listes.php');
 
 ?>
 
