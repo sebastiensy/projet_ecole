@@ -1,16 +1,12 @@
 <?php
+
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_liste_affichage.php');
-require_once(LIB.'/lib_creation_panier.php');
 
 if(!isset($_SESSION['id_parent']))
 {
-/*
-         si l admin n est pas connecté 
-		 on fait une redirection
-*/
-
-header('location:../');
+	// si l admin n est pas connecté => redirection
+	header('location:../');
 }
 else
 {

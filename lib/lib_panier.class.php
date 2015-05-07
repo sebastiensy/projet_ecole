@@ -1,5 +1,17 @@
 <?php
 
+/**
+ *
+ * panier
+ * Cette classe sert à gérer le panier
+ * 
+ * @usage :
+ * @require_once(LIB.'/lib_panier.class.php');
+ * $panier = new panier(new DB_connection());
+ * $panier->fonction($parameters)
+ *
+ */
+
 class panier
 {
 	private $_db;

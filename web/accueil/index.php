@@ -21,14 +21,14 @@ require_once(LIB.'/lib_liste_affichage.php');
 				if (!isset($_SESSION['id_parent']))
 				{
 					?>
-				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
-				<?php
+					<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+					<?php
 				}
 				else
 				{
 					?>
 					<a href="../compte/"><img src="../../img/menu/compte.png"></a>
-				<?php 
+					<?php 
 				}
 				?>
 
@@ -55,6 +55,7 @@ require_once(LIB.'/lib_liste_affichage.php');
 
 			<p class="titre">Accueil</p>
 			<?php affichage(); ?>
+			<br/><a href="../fournitures"/>Acheter d'autres fournitures</a>
 
 		</div>
 
