@@ -4,11 +4,15 @@
 	$db = new DB_connection();
 	
 	
-		$req="insert into sous_categorie values('','".$_POST['categorie']."','')";
+		$req="insert into Sous_categorie values('','".$_POST['categorie']."','')";
 		$db->DB_query($req);
 		$id=$db->DB_id();
-		
-		$req="insert into materiel values('".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
+
+		$req2 = "select * from Materiel";
+		$db->DB_query($req2);
+		$nb=$db->DB_count();
+
+		$req="insert into Materiel values($nb+1,'".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
 		$db->DB_query($req);
 	
 	//$url="modif_liste.php?id=".$id;
