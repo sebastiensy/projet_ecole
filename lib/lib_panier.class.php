@@ -21,6 +21,7 @@ class panier
 		if(!isset($_SESSION['panier']))
 		{
 			$_SESSION['panier'] = array();
+			$_SESSION['liste'] = array();
 		}
 		$this->_db = $db;
 	}
@@ -64,6 +65,47 @@ class panier
 	public function del($product_id)
 	{
 		unset($_SESSION['panier'][$product_id]);
+	}
+
+	public function recalcList()
+	{
+		$_SESSION['liste'] = $_POST['liste']['qte'];
+	}
+
+	public function totalList()
+	{
+		$total = 0;
+		$ids = array_keys($_SESSION['liste']);
+		if(!empty($ids))
+		{
+			$this->_db->DB_query('SELECT id_nivliste, forfait FROM Liste_niveau WHERE id_nivliste IN ('.implode(',',$ids).')');
+
+			if($this->_db->DB_count() > 0)
+			{
+				while($liste = $this->_db->DB_object())
+				{
+					$total += $liste->forfait * $_SESSION['liste'][$liste->id_nivliste];
+				}
+			}
+		}
+		return $total;
+	}
+
+	public function addList($list_id, $list_qte)
+	{
+		if(isset($_SESSION['liste'][$list_id]))
+		{
+			$_SESSION['liste'][$list_id] += $list_qte;
+		}
+		else
+		{
+			$_SESSION['liste'][$list_id] = $list_qte;
+		}
+	}
+
+	public function delList($list_id)
+	{
+		unset($_SESSION['liste'][$list_id]);
 	}
 }
 

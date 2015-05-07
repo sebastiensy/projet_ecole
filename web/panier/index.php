@@ -48,8 +48,54 @@ require_once(LIB.'/lib_liste_affichage.php');
 					}
 					else
 					{
+						if(isset($_SESSION['liste']))
+						{
+							echo "<div align=\"right\"><b>Listes</b></div><hr/>";
+							if(isset($_GET["delList"]))
+							{
+								$panier->delList($_GET['delList']);
+							}
+							if(isset($_POST["liste"]["qte"]))
+							{
+								$panier->recalcList();
+							}
+							$ids = array_keys($_SESSION['liste']);
+							if(!empty($ids))
+							{
+								$db = new DB_connection();
+								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).')';
+								$db->DB_query($query);
+
+								if($db->DB_count() > 0)
+								{
+									echo "<form method=\"post\" action=\"\">";
+									echo "<table>
+									<tr>
+										<th>Niveau</th>
+										<th>Forfait</th>
+										<th>Quantité</th>
+										<th>Action</th>
+									</tr>";
+									while($liste = $db->DB_object())
+									{
+										echo "<tr><td>".$liste->Libelle."</td>
+										<td>".$liste->forfait." €</td>
+										<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
+										echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
+										echo "</tr>";
+									}
+									echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".$panier->totalList()." €</b></td></tr>
+									</table>";
+									echo "<input type=\"submit\" value=\"Recalculer\">";
+									echo "<form>";
+								}
+							}
+						}
+						echo "<br/><br/><br/><br/>";
+						
 						if(isset($_SESSION['panier']))
 						{
+							echo "<div align=\"right\"><b>Fournitures</b></div><hr/>";
 							if(isset($_GET["del"]))
 							{
 								$panier->del($_GET['del']);
