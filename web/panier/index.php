@@ -50,7 +50,6 @@ require_once(LIB.'/lib_listes.php');
 					{
 						if(isset($_SESSION['liste']))
 						{
-							echo "<div align=\"right\"><b>Listes</b></div><hr/>";
 							if(isset($_GET["delList"]))
 							{
 								$panier->delList($_GET['delList']);
@@ -62,6 +61,7 @@ require_once(LIB.'/lib_listes.php');
 							$ids = array_keys($_SESSION['liste']);
 							if(!empty($ids))
 							{
+								echo "<div align=\"right\"><b>Listes</b></div><hr/>";
 								$db = new DB_connection();
 								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).')';
 								$db->DB_query($query);
@@ -89,13 +89,12 @@ require_once(LIB.'/lib_listes.php');
 									echo "<input type=\"submit\" value=\"Recalculer\">";
 									echo "<form>";
 								}
+								echo "<br/><br/><br/><br/>";
 							}
 						}
-						echo "<br/><br/><br/><br/>";
 						
 						if(isset($_SESSION['panier']))
 						{
-							echo "<div align=\"right\"><b>Fournitures</b></div><hr/>";
 							if(isset($_GET["del"]))
 							{
 								$panier->del($_GET['del']);
@@ -107,6 +106,7 @@ require_once(LIB.'/lib_listes.php');
 							$ids = array_keys($_SESSION['panier']);
 							if(!empty($ids))
 							{
+								echo "<div align=\"right\"><b>Fournitures</b></div><hr/>";
 								$db = new DB_connection();
 								$query = 'SELECT * FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 								$db->DB_query($query);

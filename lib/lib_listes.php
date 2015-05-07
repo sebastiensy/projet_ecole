@@ -3,11 +3,24 @@
 // s'occupe de la mise en forme d'une ligne du formulaire
 function mise_en_forme($idlist,$libelle,$prix)
 {
+	$tr = "<tr>";
+	$qte = 1;
+	if(isset($_SESSION["id_parent"]))
+	{
+		if(isset($_POST["id"]) && isset($_POST["qte"]))
+		{
+			if($idlist == $_POST["id"])
+			{
+				$tr = "<tr bgcolor=\"orange\">";
+				$qte = $_POST["qte"];
+			}
+		}
+	}
+	echo $tr;
 	?>
-	<tr>
 	   <td><a href="?id=<?php echo $idlist; ?>"><?php echo $libelle; ?></a></td>
 	   <td><?php echo $prix;?></td>
-	   <td><input type="number" size="2" min="1" max="20" name="qte" value="1"/></td>
+	   <td><input type="number" size="2" min="1" max="20" name="qte" value="<?php echo $qte; ?>"/></td>
 	   <td><input type="submit" value="Ajouter au panier"></td>
 	   <td><input type="hidden" name="id" value="<?php echo $idlist; ?>"/></td>
    </tr>
@@ -33,10 +46,6 @@ function head()
 function footer()
 {
 	?>
-			<!-- <tr>
-				<td colspan="2"></td>
-				<td><input type="submit" class="" name="envoyer" value="Ajouter au panier"></td>
-			</tr> -->
 		</table>
 	</form>
 	<?php 
@@ -49,7 +58,12 @@ function affichage($panier)
 	{
 		if(isset($_POST["id"]) && isset($_POST["qte"]))
 		{
+			$db = new DB_connection();
 			$panier->addList($_POST["id"], $_POST["qte"]);
+			$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau';
+			$db->DB_query($query);
+			echo "<span style=\"color:green\"><p><strong>La liste \"".$db->DB_object()->Libelle."\" a été ajouté au
+			<a href=\"../panier\">panier</a> en ".$_POST["qte"]." exemplaires.</strong></p></span>";
 		}
 	}
 	else
