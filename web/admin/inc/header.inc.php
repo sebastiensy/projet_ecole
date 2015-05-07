@@ -57,11 +57,11 @@
 	/*
 		pour ajouter un article
 	*/
-	/*function subm()
+	function subm()
 		{
 			document.getElementById('maj').submit();
 		}
-	function verif()
+	/*function verif()
 		{
 			var ref=document.f1.ref.value;
 			if(ref=="")

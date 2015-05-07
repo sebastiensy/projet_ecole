@@ -8,11 +8,7 @@
 		$db->DB_query($req);
 		$id=$db->DB_id();
 
-		$req2 = "select * from Materiel";
-		$db->DB_query($req2);
-		$nb=$db->DB_count();
-
-		$req="insert into Materiel values($nb+1,'".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
+		$req="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
 		$db->DB_query($req);
 	
 	//$url="modif_liste.php?id=".$id;

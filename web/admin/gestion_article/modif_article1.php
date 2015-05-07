@@ -16,7 +16,7 @@
 	if($_GET['p']=="modif_prix")
 	{
 		$dif=$_GET['prix']- $_POST['pr'];
-		$req="select * from Compose where ref_mat=".$ref;
+		$req="select * from Compose where id_mat=".$ref;
 		$db->DB_query($req);
 		
 		while($ligne=$db->DB_object())
