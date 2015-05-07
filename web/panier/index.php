@@ -54,7 +54,7 @@ require_once(LIB.'/lib_listes.php');
 							{
 								$panier->delList($_GET['delList']);
 							}
-							if(isset($_POST["liste"]["qte"]))
+							if(isset($_POST["liste"]["qte"]) && isset($_POST["listes"]))
 							{
 								$panier->recalcList();
 							}
@@ -86,7 +86,7 @@ require_once(LIB.'/lib_listes.php');
 									}
 									echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".$panier->totalList()." €</b></td></tr>
 									</table>";
-									echo "<input type=\"submit\" value=\"Recalculer\">";
+									echo "<input type=\"submit\" name=\"listes\" value=\"Recalculer\">";
 									echo "<form>";
 								}
 								echo "<br/><br/><br/><br/>";
@@ -99,7 +99,7 @@ require_once(LIB.'/lib_listes.php');
 							{
 								$panier->del($_GET['del']);
 							}
-							if(isset($_POST["panier"]["qte"]))
+							if(isset($_POST["panier"]["qte"]) && isset($_POST["fournitures"]))
 							{
 								$panier->recalc();
 							}
@@ -133,7 +133,7 @@ require_once(LIB.'/lib_listes.php');
 									}
 									echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panier->total()." €</b></td></tr>
 									</table>";
-									echo "<input type=\"submit\" value=\"Recalculer\">";
+									echo "<input type=\"submit\" name=\"fournitures\" value=\"Recalculer\">";
 									echo "<form>";
 								}
 							}

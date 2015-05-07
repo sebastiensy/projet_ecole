@@ -27,7 +27,7 @@ function mise_en_forme($idlist,$libelle,$prix)
 	<?php
 }
 
-// s'occupe de la mise en forme de l'en tête du formulaire
+// s'occupe de la mise en forme de l'en-tête du formulaire
 function head()
 {
 	?>
@@ -71,7 +71,7 @@ function affichage($panier)
 		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
 	}
 
-	//placement de l entete
+	// placement de l'en-tête
 	head();
 
 	// préparation de la requete 
