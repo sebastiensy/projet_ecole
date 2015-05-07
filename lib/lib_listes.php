@@ -7,7 +7,9 @@ function mise_en_forme($idlist,$libelle,$prix)
 	<tr>
 	   <td><a href="?id=<?php echo $idlist; ?>"><?php echo $libelle; ?></a></td>
 	   <td><?php echo $prix;?></td>
-	   <td><input type="number" size="2" min="1" max="20" name="<?php echo $idlist;?>" /></td>
+	   <td><input type="number" size="2" min="1" max="20" name="qte" value="1"/></td>
+	   <td><input type="submit" value="Ajouter au panier"></td>
+	   <td><input type="hidden" name="id" value="<?php echo $idlist; ?>"/></td>
    </tr>
 	<?php
 }
@@ -16,12 +18,13 @@ function mise_en_forme($idlist,$libelle,$prix)
 function head()
 {
 	?>
-	<form method="POST" action="liste.php">
+	<form method="POST" action="">
 		<table id="liste">
 			<tr>
 				<th>Niveau</th>
 				<th>Prix forfaitaire</th>
 				<th>Quantité</th>
+				<th></th>
 			</tr>
 	<?php 
 }
@@ -30,18 +33,30 @@ function head()
 function footer()
 {
 	?>
-			<tr>
+			<!-- <tr>
 				<td colspan="2"></td>
-				<td><input type="submit" class="" name="envoyer" value="envoyer"></td>
-			</tr>
+				<td><input type="submit" class="" name="envoyer" value="Ajouter au panier"></td>
+			</tr> -->
 		</table>
 	</form>
 	<?php 
 }
 
 // affichage des listes
-function affichage()
+function affichage($panier)
 {
+	if(isset($_SESSION["id_parent"]))
+	{
+		if(isset($_POST["id"]) && isset($_POST["qte"]))
+		{
+			$panier->addList($_POST["id"], $_POST["qte"]);
+		}
+	}
+	else
+	{
+		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
+	}
+
 	//placement de l entete
 	head();
 

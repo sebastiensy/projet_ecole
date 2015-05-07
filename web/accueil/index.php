@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
-require_once(LIB.'/lib_liste_affichage.php');
+require_once(LIB.'/lib_listes.php');
 
 ?>
 
@@ -54,7 +54,7 @@ require_once(LIB.'/lib_liste_affichage.php');
 		<div id="page">
 
 			<p class="titre">Accueil</p>
-			<?php affichage(); ?>
+			<?php affichage($panier); ?>
 			<br/><a href="../fournitures"/>Acheter d'autres fournitures</a>
 
 		</div>
