@@ -160,6 +160,20 @@ body
 	height:970px; /* 1030 */
 }
 
+#panierL
+{
+	/*background-color:white;*/
+	height:250px;
+	overflow:auto;
+}
+
+#panierF
+{
+	/*background-color:white;*/
+	height:350px;
+	overflow:auto;
+}
+
 #pagepanier
 {
 	width:760px;

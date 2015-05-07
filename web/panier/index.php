@@ -48,6 +48,8 @@ require_once(LIB.'/lib_listes.php');
 					}
 					else
 					{
+						$panierL = 0;
+						$panierF = 0;
 						if(isset($_SESSION['liste']))
 						{
 							if(isset($_GET["delList"]))
@@ -68,28 +70,31 @@ require_once(LIB.'/lib_listes.php');
 
 								if($db->DB_count() > 0)
 								{
-									echo "<form method=\"post\" action=\"\">";
-									echo "<table>
-									<tr>
-										<th>Niveau</th>
-										<th>Forfait</th>
-										<th>Quantité</th>
-										<th>Action</th>
-									</tr>";
-									while($liste = $db->DB_object())
-									{
-										echo "<tr><td>".$liste->Libelle."</td>
-										<td>".$liste->forfait." €</td>
-										<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
-										echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
-										echo "</tr>";
-									}
-									echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".$panier->totalList()." €</b></td></tr>
-									</table>";
-									echo "<input type=\"submit\" name=\"listes\" value=\"Recalculer\">";
-									echo "<form>";
+									$panierL = $panier->totalList();
+									echo "<div id=\"panierL\">";
+										echo "<form method=\"post\" action=\"\">";
+										echo "<table>
+										<tr>
+											<th>Niveau</th>
+											<th>Forfait</th>
+											<th>Quantité</th>
+											<th>Action</th>
+										</tr>";
+										while($liste = $db->DB_object())
+										{
+											echo "<tr><td>".$liste->Libelle."</td>
+											<td>".$liste->forfait." €</td>
+											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
+											echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
+											echo "</tr>";
+										}
+										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".$panierL." €</b></td></tr>
+										</table>";
+										echo "<input type=\"submit\" name=\"listes\" value=\"Recalculer\">";
+										echo "<form>";
+									echo "</div>";
 								}
-								echo "<br/><br/><br/><br/>";
+								echo "<br/><br/>";
 							}
 						}
 						
@@ -113,31 +118,36 @@ require_once(LIB.'/lib_listes.php');
 
 								if($db->DB_count() > 0)
 								{
-									echo "<form method=\"post\" action=\"\">";
-									echo "<table>
-									<tr>
-										<th>Référence</th>
-										<th>Description</th>
-										<th>Prix</th>
-										<th>Quantité</th>
-										<th>Action</th>
-									</tr>";
-									while($mat = $db->DB_object())
-									{
-										echo "<tr><td>".$mat->ref_mat."</td>
-										<td>".$mat->desc_mat."</td>
-										<td>".$mat->prix_mat." €</td>
-										<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
-										echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
-										echo "</tr>";
-									}
-									echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panier->total()." €</b></td></tr>
-									</table>";
-									echo "<input type=\"submit\" name=\"fournitures\" value=\"Recalculer\">";
-									echo "<form>";
+									$panierF = $panier->total();
+									echo "<div id=\"panierF\">";
+										echo "<form method=\"post\" action=\"\">";
+										echo "<table>
+										<tr>
+											<th>Référence</th>
+											<th>Description</th>
+											<th>Prix</th>
+											<th>Quantité</th>
+											<th>Action</th>
+										</tr>";
+										while($mat = $db->DB_object())
+										{
+											echo "<tr><td>".$mat->ref_mat."</td>
+											<td>".$mat->desc_mat."</td>
+											<td>".$mat->prix_mat." €</td>
+											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+											echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
+											echo "</tr>";
+										}
+										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panierF." €</b></td></tr>
+										</table>";
+										echo "<input type=\"submit\" name=\"fournitures\" value=\"Recalculer\">";
+										echo "<form>";
+									echo "</div>";
 								}
 							}
 						}
+						$grandtotal = $panierL + $panierF;
+						echo "<hr/><div align=\"center\"><b><u>Prix total du panier</u> : ".$grandtotal." €</b></div>";
 					}
 				?>
 			</div>
