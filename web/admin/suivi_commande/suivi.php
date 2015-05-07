@@ -16,7 +16,6 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 <?php 
 	require_once('../inc/header.inc.php');
 	require_once('../inc/data.inc.php');
-
 ?>
 
 <!--<html>
@@ -38,7 +37,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 			<img src="../../../img/header.jpg" alt="header">
 		<header>-->
 		<?php //require_once('../nav.php')?>
-		<div id="admin">
+		<div id="page">
 		<table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Suivi des Commandes</div></td>

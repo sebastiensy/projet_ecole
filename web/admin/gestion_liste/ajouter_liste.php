@@ -1,33 +1,9 @@
-<?php require_once('../inc.php');
-	  $i=$_GET['p'];
-	  $db = new DB_connection();
-	  
-	  $req="select distinct categorie from Sous_categorie order by categorie asc";
-	  $db->DB_query($req);
-	  $gen=$db->DB_num_rows();
-	  
-	  $cpt=1;
-	   if($i>$gen)
-	  {
-		header("Refresh:0;url=gestion_listes.php");
-	  }
-	  while($ligne=$db->DB_object() and $cpt<=$i){
-	  
-	  $cat=$ligne->categorie;
-	  $cpt++;
-	  }
-	
-	  
-	  
-	  $db1 = new DB_connection();
-	  $req1="select * from Materiel where id_scat in (select id_scat from Sous_categorie where categorie='".$cat."')";
-	  $db1->DB_query($req1);
-	  
-	  
-	  
+<?php
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
 ?>
 
-<html>
+<!--<html>
 	<head>
 		<title>Interface Admin:Gestion des Listes</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" /> 
@@ -71,8 +47,9 @@ function getValue(id)
 	<body>
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+		<?php //require_once('../nav.php')?>
+		<div id="page">
 			<table width="900" align="center"class="entete">
 				<tr>
 					<td><div align="right">Ajouter Une Nouvelle Liste</div></td>
@@ -84,8 +61,35 @@ function getValue(id)
 		<br>
 		<div align="center" id="content" >
 
+			<?php $i=$_GET['p'];?>
+
 <form method="post" action="ajouter_liste2.php?p=<?php echo $i;?>" name="f1">
-<?php if($i==1)
+<?php 
+//$i=$_GET['p'];
+	  $db = new DB_connection();
+	  
+	  $req="select distinct categorie from Sous_categorie order by categorie asc";
+	  $db->DB_query($req);
+	  $gen=$db->DB_num_rows();
+	  
+	  $cpt=1;
+	   if($i>$gen)
+	  {
+		header("Refresh:0;url=gestion_listes.php");
+	  }
+	  while($ligne=$db->DB_object() and $cpt<=$i){
+	  
+	  $cat=$ligne->categorie;
+	  $cpt++;
+	  }
+	
+	  
+	  
+	  $db1 = new DB_connection();
+	  $req1="select * from Materiel where id_scat in (select id_scat from Sous_categorie where categorie='".$cat."')";
+	  $db1->DB_query($req1);
+	  
+if($i==1)
 {
 		$requete="select * from Niveau where code not in(select distinct niveau from Liste_niveau)";
 		$db2 = new DB_connection();
@@ -182,7 +186,11 @@ if(isset($_GET['id']))
 				
 			
 			</form>'
-		;
+		;?>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>
 	 
 
 

@@ -14,7 +14,8 @@
 				}
 	</style>
 	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>-->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>
 	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
@@ -52,6 +53,66 @@
     ;}
 								});
 	});
+
+	/*
+		pour ajouter un article
+	*/
+	function subm()
+		{
+			document.getElementById('maj').submit();
+		}
+	function verif()
+		{
+			var ref=document.f1.ref.value;
+			if(ref=="")
+			{
+				alert("Veuillez Entrer une reference");
+				document.f1.ref.focus();
+				return false();
+			}
+			var desc=document.f1.desc.value;
+			if(desc=="")
+			{
+				alert("Veuillez Entrer une Description");
+				document.f1.desc.focus();
+				return false();
+			}
+			var prix=document.f1.desc.value;
+			if(prix=="" || isNaN(prix)
+			{
+				alert("Veuillez Entrer un prix par unite");
+				document.f1.prix.focus();
+				return false();
+			}
+			
+		}
+
+
+	/*
+		pour ajouter une liste
+	*/
+	var cpt=0;
+
+		function allowDrop(ev) {
+			ev.preventDefault();
+		}
+
+		function drag(ev) {
+			ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+	
+			ev.target.appendChild(document.getElementById(data));
+			$(ev.target).next('.div2').append($('<input type="number" size=2 value=1 name="'+data+'"min=1>'));
+			
+		}
+	function getValue(id)
+	{
+		return document.getElemetById(id);
+	}
 	</script>
 </head>
 <body>

@@ -1,21 +1,10 @@
 <?php
-$id=$_GET['id'];
-
-require_once('../inc.php');
-function get_niveau($code)
-{
-	$req="select libelle from Niveau where code='".$code."'";
-	$db = new DB_connection();
-	$db->DB_query($req);
-	if($ligne=$db->DB_object())
-	{
-		return $ligne->libelle;
-	}
-}
-
-
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
 ?>
-<html>
+
+
+<!--<html>
 <head>
 <title>Interface Admin:Gestion des Listes</title>
 <link rel="stylesheet" type="text/css" href="../../../css/style_page.css" /> 
@@ -49,8 +38,20 @@ function get_niveau($code)
 <body>
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-	<?php require_once('../nav.php')?>
+		<header>-->
+<?php 
+			$id=$_GET['id'];
+
+function get_niveau($code)
+{
+	$req="select libelle from Niveau where code='".$code."'";
+	$db = new DB_connection();
+	$db->DB_query($req);
+	if($ligne=$db->DB_object())
+	{
+		return $ligne->libelle;
+	}
+}?>
 
 <table width="900" align="center"class="entete">
 <tr>
@@ -180,6 +181,7 @@ if($ligne!=NULL)
 				</fieldset>
 			</div>
 	</fieldset>
-</div>
-</body>
-</html>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>

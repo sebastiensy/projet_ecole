@@ -1,7 +1,7 @@
-<?php require_once('../inc.php');
+<?php //require_once('../inc.php');
 
 ?>
-<html>
+<!--<html>
 	<head>
 		<title>Interface Admin:Gestion des Listes</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" /> 
@@ -27,5 +27,5 @@
 		<body>
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require('../nav.php');?>
+		<header>-->
+		<?php //require('../nav.php');?>

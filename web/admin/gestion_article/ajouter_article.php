@@ -1,4 +1,9 @@
-<html>
+<?php
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
+?>
+
+<!--<html>
 	<head>
 		<title>Interface Administrateur:Ajouter des articles</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
@@ -15,8 +20,8 @@
 
 <header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+		<?php //require_once('../nav.php')?>
 		<table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Ajouter des articles</div></td>
@@ -26,65 +31,11 @@
 <br>
 <br>
 <br>
-<div id="banner">
-</div>
+
 
 <div id="page">
 
-<?php
-
-require_once('../inc.php');
-?>
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-		<script type="text/javascript">
-		function subm()
-		{
-			
-			document.getElementById('maj').submit();
-			
-		}
-		
-		</script>
-			<script type="text/javascript" >
-		function verif()
-		{
-			var ref=document.f1.ref.value;
-			if(ref=="")
-			{
-				alert("Veuillez Entrer une reference");
-				document.f1.ref.focus();
-				return false();
-			}
-			var desc=document.f1.desc.value;
-			if(desc=="")
-			{
-				alert("Veuillez Entrer une Description");
-				document.f1.desc.focus();
-				return false();
-			}
-			var prix=document.f1.desc.value;
-			if(prix=="" || isNaN(prix)
-			{
-				alert("Veuillez Entrer un prix par unite");
-				document.f1.prix.focus();
-				return false();
-			}
-			
-			}
-			</script>
-	</head>
-	
-	<body>
-	<style type="text/css">
-		body {
-			
-			/*background-color: #FEF3DB;*/
-			background-image:none;
-			}
-  </style>
-		<br>
+	<br>
 		<div align="center" id="add-form">
 		<form method="post" action="ajouter_article1.php" name="f1" onSubmit="return verif()" id="maj">
 		
@@ -141,13 +92,21 @@ require_once('../inc.php');
 			
 			</table>
 			</form>
-		
-		</div>	
-					
+
+<!--<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+		<script type="text/javascript">
+		/*function subm()
+		{
 			
-	</body>
-	<script >
-		function verif()
+			document.getElementById('maj').submit();
+			
+		}*/
+		
+		</script>
+			<script type="text/javascript" >
+		/*function verif()
 		{
 			var ref=document.f1.ref.value;
 			if(ref=="")
@@ -171,7 +130,19 @@ require_once('../inc.php');
 				return false();
 			}
 			
-			}
+			}*/
 			</script>
-</body>
-</html>
+	</head>
+	
+	<body>
+	<style type="text/css">
+		body {
+			
+			/*background-color: #FEF3DB;*/
+			background-image:none;
+			}
+  </style>-->
+		
+<?php 
+	require_once('../inc/footer.inc.php');
+?>		

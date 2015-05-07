@@ -1,5 +1,6 @@
 <?php
-require_once('../inc.php');
+	require_once('../inc/data.inc.php');
+
 	$ref=$_GET['ref'];
 	$db = new DB_connection();
 	$db1 = new DB_connection();
@@ -65,6 +66,7 @@ require_once('../inc.php');
 	$url="../gestion_liste/gestion_listes.php";
 	
 	?>
+	
 <?php 
 header("Refresh:0;url=$url");	
 ?>

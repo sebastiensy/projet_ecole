@@ -1,5 +1,5 @@
 <?php
-	require_once('../inc.php');
+	require_once('../inc/data.inc.php');
 	$id=$_POST['id'];
 	$ref=$_POST['ref'];
 	$qte=$_POST['qte'];

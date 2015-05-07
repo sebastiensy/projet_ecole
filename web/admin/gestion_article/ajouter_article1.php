@@ -1,5 +1,5 @@
 <?php
-	require_once('../inc.php');
+	require_once('../inc/data.inc.php');
 	
 	$db = new DB_connection();
 	

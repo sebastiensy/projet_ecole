@@ -1,5 +1,5 @@
 <?php
-	require_once('../inc.php');
+	require_once('../inc/data.inc.php');
 	$i=0;
 	$id=0;
 	$p=$_GET['p'];

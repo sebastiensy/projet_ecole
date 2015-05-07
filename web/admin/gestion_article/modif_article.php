@@ -1,4 +1,9 @@
-<html>
+<?php 
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
+?>
+
+<!--<html>
 	<head>
 		<title>Interface Administrateur:Modifier des articles</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
@@ -15,8 +20,8 @@
 
 <header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+		<?php //require_once('../nav.php')?>
 		<table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Modifier des articles</div></td>
@@ -26,15 +31,45 @@
 <br>
 <br>
 <br>
-<div id="banner">
-</div>
 
 <div id="page">
 
+<br>
+		<div align="center" id="add-form">
+		<form method="post" action="modif_article.php?p=recherche" id="maj">
+		
+		<table width="90%" align="center">
+			<tr>
+			<td width="40%">
+			Reference
+			</td>
+			
+			<td width="50%">
+			Description
+					
+					</td>
+					<td></td>  
+			</tr>
+					
+			<tr>
+				<td width="40%">
+					<div align="Left">
+						<span><input type="text" name="ref"></span>
+					</div>
+				</td>
+				<td width="50%">
+					
+								<span><input type="text" name="desc"></span>
+					
+				</td>
+				<span><td><div align="right"><a href="#" onclick="subm();" class="myButton" id="sub">Rechercher</a></div></td></span>
+				
+			</tr>
+			</table>
+			</form>
 
 <?php
 
-require_once('../inc.php');
 if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
@@ -68,7 +103,7 @@ if(isset($_GET['p']))
 	
 	}
 ?>
-<html>
+<!--<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
 		<script type="text/javascript">
@@ -88,40 +123,8 @@ if(isset($_GET['p']))
 			/*background-color: #FEF3DB;*/
 			background-image:none;
 			}
-  </style>
-		<br>
-		<div align="center" id="add-form">
-		<form method="post" action="modif_article.php?p=recherche" id="maj">
+  </style>-->
 		
-		<table width="90%" align="center">
-			<tr>
-			<td width="40%">
-			Reference
-			</td>
-			
-			<td width="50%">
-			Description
-					
-					</td>
-					<td></td>  
-			</tr>
-					
-			<tr>
-				<td width="40%">
-					<div align="Left">
-						<span><input type="text" name="ref"></span>
-					</div>
-				</td>
-				<td width="50%">
-					
-								<span><input type="text" name="desc"></span>
-					
-				</td>
-				<span><td><div align="right"><a href="#" onclick="subm();" class="myButton" id="sub">Rechercher</a></div></td></span>
-				
-			</tr>
-			</table>
-			</form>
 			
 		<?php
 		if(isset($_GET['p']))
@@ -148,8 +151,7 @@ if(isset($_GET['p']))
 				}
 				}
 			?>
-		</div>	
-					
-			
-	</body>
-	</html>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>

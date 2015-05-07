@@ -1,8 +1,9 @@
 <?php
-$id=$_GET['id'];
-require_once('../inc.php');
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
 ?>
-<html>
+
+<!--<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
 		<script type="text/javascript">
@@ -22,7 +23,8 @@ require_once('../inc.php');
 			background-color: #FEF3DB;
 			background-image:none;
 			}
-  </style>
+  </style>-->
+  <?php $id=$_GET['id'];?>
 		<br>
 		<br>
 		<div align="center" id="add-form">
@@ -81,5 +83,7 @@ require_once('../inc.php');
 						</tr>
 			</table>
 			</form>
-			</div>
-	</body>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>

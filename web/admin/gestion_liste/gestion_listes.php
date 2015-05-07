@@ -1,21 +1,9 @@
 <?php
-
-require_once('../inc.php');
-function get_niveau($code)
-{
-	$req="select libelle from Niveau where code='".$code."'";
-	$db = new DB_connection();
-	$db->DB_query($req);
-	if($ligne=$db->DB_object())
-	{
-		return $ligne->libelle;
-	}
-}
-
-
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
 ?>
 
-<html>
+<!--<html>
 <head>
 <title>Interface Admin:Gestion des Listes</title>
 <link rel="stylesheet" type="text/css" href="../../../css/style_page.css" /> 
@@ -31,8 +19,9 @@ function get_niveau($code)
 <body>
 <header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+		<?php //require_once('../nav.php')?>
+<div id="page">
 <table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Les Listes</div></td>
@@ -53,6 +42,18 @@ function get_niveau($code)
 
 
 <?php 
+
+function get_niveau($code)
+{
+	$req="select libelle from Niveau where code='".$code."'";
+	$db = new DB_connection();
+	$db->DB_query($req);
+	if($ligne=$db->DB_object())
+	{
+		return $ligne->libelle;
+	}
+}
+
 $db = new DB_connection();
 $req="select * from Liste_niveau where 1";
 $db->DB_query($req);
@@ -78,8 +79,10 @@ while($ligne=$db->DB_object())
 <td><div align="right"><a href="ajouter_liste.php?p=1" class="myButton">Ajouter Une liste</a></div></td>
 </tr>
 </table>
-</body>
-</html>
+
+<?php 
+	require_once('../inc/footer.inc.php');
+?>
 
 
 
