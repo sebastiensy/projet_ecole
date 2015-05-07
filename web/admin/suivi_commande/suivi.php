@@ -18,56 +18,26 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	require_once('../inc/data.inc.php');
 ?>
 
-<!--<html>
-	<head>
-		<title>Interface Administrateur:Suivi des Commandes</title>
-		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
-		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-		<style type="text/css">
-			body{
-				background-image:none;
-				}
-			
-			
-			</style>
-	<head>
-	<body>
-		
-		<header class="tete">
-			<img src="../../../img/header.jpg" alt="header">
-		<header>-->
-		<?php //require_once('../nav.php')?>
-		<div id="page">
-		<table width="900" align="center" class="entete">
-<tr>
-<td ><div align="right">Suivi des Commandes</div></td>
-</tr>
-</table>
-<br>
-<br>
-<table width="900" align="center" class="data">
-<tr>
-<th width="90" ><div align="center">Parent</div></th>
-<th width="90" ><div align="center">En cours de validation</div></th>
-<th width="90" ><div align="center">Valide</div></th>
-<th width="90" ><div align="center">Commande fournisseur</div></th>
-<th width="90" ><div align="center">En cours de livraison</div></th>
-<th width="90" ><div align="center">Livre</div></th>
-<th width="90" ><div align="center">Retire et paye</div></th>
-<th width="90" ><div align="center"></div></th>
-<th width="90" ><div align="center"></div></th>
-</tr>
-<!--<div id="banner">
-</div>
-
-<div id="page">-->
-
-
-<?php
-
-	//require_once('../inc.php');
-?>
-
+<div id="page">
+	<table width="900" align="center" class="entete">
+		<tr>
+			<td ><div align="right">Suivi des Commandes</div></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<table width="900" align="center" class="data">
+	<tr>
+		<th width="90" ><div align="center">Parent</div></th>
+		<th width="90" ><div align="center">En cours de validation</div></th>
+		<th width="90" ><div align="center">Valide</div></th>
+		<th width="90" ><div align="center">Commande fournisseur</div></th>
+		<th width="90" ><div align="center">En cours de livraison</div></th>
+		<th width="90" ><div align="center">Livre</div></th>
+		<th width="90" ><div align="center">Retire et paye</div></th>
+		<th width="90" ><div align="center"></div></th>
+		<th width="90" ><div align="center"></div></th>
+	</tr>
 
 <?php
 	
@@ -75,20 +45,6 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 
 	$db = new DB_connection();
 	$db->DB_query($requete);
-
-	//echo "<form method='POST' action='suivi.php'>";
-	/*echo "<table>
-			<tr>
-				<th>Parent</th>
-				<th>En cours de validation</th>
-				<th>Valide</th>
-				<th>Commande fournisseur</th>
-				<th>En cours de livraison</th>
-				<th>Livre</th>
-				<th>Retire et paye</th>
-				<th></th>
-				<th></th>
-			</tr>";*/
 
 	if (isset($_GET['com']))
 	{
