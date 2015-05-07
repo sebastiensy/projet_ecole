@@ -13,7 +13,13 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('4', '2015-01-01', 4, 4),
 ('5', '2014-11-01', 5, 5)
 */ -->
-<html>
+<?php 
+	require_once('../inc/header.inc.php');
+	require_once('../inc/data.inc.php');
+
+?>
+
+<!--<html>
 	<head>
 		<title>Interface Administrateur:Suivi des Commandes</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
@@ -30,8 +36,9 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 		
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
-		<header>
-		<?php require_once('../nav.php')?>
+		<header>-->
+		<?php //require_once('../nav.php')?>
+		<div id="admin">
 		<table width="900" align="center" class="entete">
 <tr>
 <td ><div align="right">Suivi des Commandes</div></td>
@@ -51,13 +58,15 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 <th width="90" ><div align="center"></div></th>
 <th width="90" ><div align="center"></div></th>
 </tr>
-<div id="banner">
+<!--<div id="banner">
 </div>
 
-<div id="page">
+<div id="page">-->
+
+
 <?php
 
-	require_once('../inc.php');
+	//require_once('../inc.php');
 ?>
 
 
@@ -202,6 +211,6 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 	
 ?>
 
-</div>
-</body>
-</html>
+<?php 
+	require_once('../inc/footer.inc.php');
+?>

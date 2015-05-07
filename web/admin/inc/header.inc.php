@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Interface Administrateur</title>
+	<link rel="stylesheet" href="../../../js/jquery-ui.css">
+	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox.css">
+	<link rel="stylesheet" href="../../../css/progress.bar.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" /> 
+	<style type="text/css">
+			body{
+				background-image:none;
+				}
+	</style>
+	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
+	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
+	<script>
+	$( document ).ready(function() {
+			$("#fancy").fancybox({
+				
+				type: "iframe",
+				width: '70%',
+				height: '60%',
+				onClosed: function() {   
+				parent.location.reload(true); 
+    ;}
+								});
+	});
+	$( document ).ready(function() {
+			$("#fancy1").fancybox({
+				
+				type: "iframe",
+				width: '70%',
+				height: '60%',
+				onClosed: function() {   
+				parent.location.reload(true); 
+    ;}
+								});
+	});
+	$( document ).ready(function() {
+			$("a.fancy").fancybox({
+				
+				type: "iframe",
+				width: '70%',
+				height: '60%',
+				onClosed: function() {   
+				parent.location.reload(true); 
+    ;}
+								});
+	});
+	</script>
+</head>
+<body>
+		
+		<header class="tete">
+			<img src="../../../img/header.jpg" alt="header">
+		<header>
+			<?php
+echo '<nav class=menu>';
+			echo '<br><br><br>';
+			echo '<table width="150" align="left">';
+			echo '<ul><tr><td><br><br>';
+			echo '<li><a href="../gestion_liste">G&eacute;rer Les Listes</a></li>';
+			echo '			<br>
+						<br>
+					</td>
+				</tr>';
+			echo '
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../gestion_article/modif_article.php">Modifier article</a></li> 
+							 
+						<li><a href="../gestion_article/ajouter_article.php">Ajouter article</a></li>
+						<br>
+						<br>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../suivi_commande">Suivre Les Commandes</a></li>
+						<br>
+						<br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../messagerie">Messagerie</a></li>
+						<br>
+						<br>
+					</td>
+				</tr>
+			</ul>
+			</table>
+			</nav>';
+			?>
