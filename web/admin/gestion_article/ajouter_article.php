@@ -3,6 +3,8 @@
 	require_once('../inc/data.inc.php');
 ?>
 
+<script type="text/javascript" src="../../../js/ajout_article.js"></script>
+
 <!--<html>
 	<head>
 		<title>Interface Administrateur:Ajouter des articles</title>
@@ -95,18 +97,18 @@
 
 <!--<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-		<script type="text/javascript">
-		/*function subm()
+		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />-->
+		<!--<script type="text/javascript">
+		function subm()
 		{
 			
 			document.getElementById('maj').submit();
 			
-		}*/
+		}
 		
 		</script>
 			<script type="text/javascript" >
-		/*function verif()
+		function verif()
 		{
 			var ref=document.f1.ref.value;
 			if(ref=="")
@@ -130,9 +132,9 @@
 				return false();
 			}
 			
-			}*/
-			</script>
-	</head>
+			}
+			</script>-->
+	<!--</head>
 	
 	<body>
 	<style type="text/css">

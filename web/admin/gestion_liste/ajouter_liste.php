@@ -3,6 +3,8 @@
 	require_once('../inc/data.inc.php');
 ?>
 
+<script type="text/javascript" src="../../../js/ajout_liste.js"></script>
+
 <!--<html>
 	<head>
 		<title>Interface Admin:Gestion des Listes</title>

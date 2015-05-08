@@ -57,11 +57,11 @@
 	/*
 		pour ajouter un article
 	*/
-	function subm()
+	/*function subm()
 		{
 			document.getElementById('maj').submit();
 		}
-	/*function verif()
+	function verif()
 		{
 			var ref=document.f1.ref.value;
 			if(ref=="")
@@ -91,7 +91,7 @@
 	/*
 		pour ajouter une liste
 	*/
-	var cpt=0;
+	/*var cpt=0;
 
 		function allowDrop(ev) {
 			ev.preventDefault();
@@ -112,7 +112,7 @@
 	function getValue(id)
 	{
 		return document.getElemetById(id);
-	}
+	}*/
 	</script>
 </head>
 <body>
