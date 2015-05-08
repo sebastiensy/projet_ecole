@@ -15,7 +15,7 @@ require_once(LIB.'/lib_listes.php');
 		<div id="menu">
 
 			<div id="menu1">
-				<a href="../"><img src="../../img/menu/acceuil.png"></a>
+				<a href="../"><img src="../../img/menu/accueil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
 				<?php 
 				if (!isset($_SESSION['id_parent']))
