@@ -15,8 +15,9 @@
 	/*                                      Modification du prix d'une liste 										   */
 	if($_GET['p']=="modif_prix")
 	{
+		$id=$_GET['id'];
 		$dif=$_GET['prix']- $_POST['pr'];
-		$req="select * from Compose where id_mat=".$ref;
+		$req="select * from Compose where id_mat=".$id;
 		$db->DB_query($req);
 		
 		while($ligne=$db->DB_object())
@@ -41,7 +42,8 @@
 	if($_GET['p']=="delete")
 	{
 	
-	$req="select * from Compose where ref_mat=".$ref;
+	$id=$_GET['id'];
+	$req="select * from Compose where id_mat=".$id;
 	$db->DB_query($req);
 	while($ligne=$db->DB_object())
 		{
@@ -53,7 +55,7 @@
 			$req1="update Liste_niveau set forfait='".$for."' where id_nivliste=".$ligne->id_nivliste;
 			
 			$db1->DB_query($req1);
-			$req="delete from Compose where ref_mat='".$ref."'";
+			$req="delete from Compose where id_mat='".$id."'";
 	
 			
 		}
@@ -63,7 +65,7 @@
 			$db->DB_query($req);
 	}
 
-	$url="../gestion_liste/gestion_listes.php";
+	$url="modif_article.php";
 	
 	?>
 	
