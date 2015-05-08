@@ -15,7 +15,20 @@ require_once('../../inc/data.inc.php');
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/accueil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
-				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+				<?php 
+				if (!isset($_SESSION['id_parent']))
+				{
+					?>
+					<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+					<?php
+				}
+				else
+				{
+					?>
+					<a href="../compte/"><img src="../../img/menu/compte.png"></a>
+					<?php 
+				}
+				?>
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
 			</div>
 

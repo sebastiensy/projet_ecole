@@ -31,7 +31,6 @@ require_once(LIB.'/lib_listes.php');
 					<?php 
 				}
 				?>
-
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
 			</div>
 
