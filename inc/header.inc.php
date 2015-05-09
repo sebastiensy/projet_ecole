@@ -54,6 +54,17 @@
 			'type':'iframe',
 			'autoScale':'false'
         });
+
+		// Pour l'affichage des listes (accueil)
+		$(".fancy2").fancybox({
+			fitToView:false,
+			autoSize:false,
+			'width':'45%',
+			'height':'65%',
+			'autoScale': 'false',
+			'type':'iframe'
+		 });
 	});
+ 
 	</script>
 </head>

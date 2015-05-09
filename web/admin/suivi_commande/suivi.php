@@ -12,7 +12,7 @@ INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('3', '2014-12-01', 3, 3),
 ('4', '2015-01-01', 4, 4),
 ('5', '2014-11-01', 5, 5)
-*/ -->
+-->
 <?php 
 	require_once('../inc/header.inc.php');
 	require_once('../inc/data.inc.php');

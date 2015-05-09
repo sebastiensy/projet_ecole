@@ -18,7 +18,7 @@ function mise_en_forme($idlist,$libelle,$prix)
 	}
 	echo $tr;
 	?>
-	   <td><a href="?id=<?php echo $idlist; ?>"><?php echo $libelle; ?></a></td>
+	   <td><div align="center"><a class="fancy2" href="liste.php?id=<?php echo $idlist; ?>"><?php echo $libelle; ?></a></div></td>
 	   <td><?php echo $prix;?></td>
 	   <td><input type="number" size="2" min="1" max="20" name="qte" value="<?php echo $qte; ?>"/></td>
 	   <td><input type="submit" value="Ajouter au panier"></td>

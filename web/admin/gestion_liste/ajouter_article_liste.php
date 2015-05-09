@@ -35,7 +35,7 @@
 			<tr >
 				<td width="50%">
 					<div align="Left">
-						R&eacute;ference du Materiel
+						Référence du Materiel
 					</div>
 				</td>
 				<td width="50%">
@@ -65,7 +65,7 @@
 			<tr>
 				<td width="50%">
 					<div align="Left" >
-						Quantit&eacute;
+						Quantité
 					</div>
 				</td>
 				<td width="50%">
