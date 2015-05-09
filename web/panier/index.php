@@ -95,7 +95,8 @@ require_once(LIB.'/lib_listes.php');
 										</tr>";
 										while($liste = $db->DB_object())
 										{
-											echo "<tr><td>".$liste->Libelle."</td>
+											
+											echo "<tr><td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\">".$liste->Libelle."</a></td>
 											<td>".$liste->forfait." €</td>
 											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
 											echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
