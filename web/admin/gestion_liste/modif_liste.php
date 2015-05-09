@@ -143,6 +143,7 @@ if($ligne!=NULL)
 						$req2='select * from Materiel where id_mat= '.$ligne1->id_mat;
 						$db2->DB_query($req2);
 						$ligne2=$db2->DB_object();
+						//echo $req2;
 						?>
 						<tr>
 							<td width="30"><div align="center"><?php echo $ligne2->ref_mat;?></div></td>
@@ -176,7 +177,7 @@ if($ligne!=NULL)
 					</table>
 					<table width="500" align="center">
 						<tr>
-							<td><div align="right"><a id="fancy" data-fancybox-type="iframe" href="ajouter_article_liste.php?id=<?php echo $idListe;?>" class="myButton">Ajouter Un Article</a></div></td>
+							<td><div align="right"><a id="fancy" data-fancybox-type="iframe" href="ajouter_article_liste.php?idListe=<?php echo $idListe;?>" class="myButton">Ajouter Un Article</a></div></td>
 						</tr>
 					</table>
 				</fieldset>

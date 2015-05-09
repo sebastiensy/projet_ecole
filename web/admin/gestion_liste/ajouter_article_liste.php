@@ -24,12 +24,12 @@
 			background-image:none;
 			}
   </style>-->
-  <?php $id=$_GET['id'];?>
+  <?php $idListe=$_GET['idListe'];?>
 		<br>
 		<br>
 		<div align="center" id="add-form">
 		<form method="post" action="ajouter_article_liste1.php" id="maj">
-		<input type="hidden" name="id" value="<?php echo $id?>">
+		<input type="hidden" name="idListe" value="<?php echo $idListe ?>">
 		<table width="75%" align="center">
 			
 			<tr >
@@ -40,18 +40,17 @@
 				</td>
 				<td width="50%">
 					<div align="center" >
-						<select name="ref">
+						<select name="idMat">
 							<option value=""></option>
 						
 							<?php 
 								$db = new DB_connection();
-								$req="select * from Materiel where 1";
+								$req="select * from Materiel";
 								$db->DB_query($req);
-								//$mysql_result=mysql_query($req,$connexion);
 								while($ligne=$db->DB_object())
 								{
 							?>
-									<option value="<?php echo $ligne->ref_mat;?>"><?php echo $ligne->ref_mat;?></option>
+									<option value="<?php echo $ligne->id_mat;?>"><?php echo $ligne->ref_mat;?></option>
 							<?php
 								}
 							?>

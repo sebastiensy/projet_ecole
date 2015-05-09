@@ -1,13 +1,17 @@
 <?php
 	require_once('../inc/data.inc.php');
-	$id=$_POST['id'];
-	$ref=$_POST['ref'];
+	//$id=$_POST['id'];
+	$id=$_POST['idListe'];
+	//$ref=$_POST['ref'];
+	$idMat=$_POST['idMat'];
 	$qte=$_POST['qte'];
 	$db = new DB_connection();
 	
-	if($ref!="" and $qte!="")
+	//if($ref!="" and $qte!="")
+	if($idMat!="" and $qte!="")
 	{
-		$req="insert into Compose values('".$qte."','".$ref."','".$id."')";
+		//$req="insert into Compose values('".$qte."','".$ref."','".$id."')";
+		$req="insert into Compose values('".$qte."','".$idMat."','".$id."')";
 		$db->DB_query($req);
 		$req="select forfait from Liste_niveau where id_nivListe=".$id;
 		$db->DB_query($req);
@@ -15,7 +19,8 @@
 		{
 			$for=$ligne->forfait;
 		}
-		$req="select prix_mat from Materiel where ref_mat='".$ref."'";
+		//$req="select prix_mat from Materiel where ref_mat='".$ref."'";
+		$req="select prix_mat from Materiel where id_mat='".$idMat."'";
 		$db->DB_query($req);
 		if($ligne=$db->DB_object())
 		{
