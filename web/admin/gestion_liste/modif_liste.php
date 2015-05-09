@@ -1,6 +1,8 @@
 <?php
-	require_once('../inc/header.inc.php');
-	require_once('../inc/data.inc.php');
+
+require_once('../inc/header.inc.php');
+require_once('../inc/data.inc.php');
+
 ?>
 
 
@@ -39,8 +41,10 @@
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
 		<header>-->
-<?php 
-			$idListe=$_GET['id'];
+
+<?php
+
+$idListe = $_GET['id'];
 
 function get_niveau($code)
 {
@@ -51,7 +55,9 @@ function get_niveau($code)
 	{
 		return $ligne->libelle;
 	}
-}?>
+}
+
+?>
 
 <table width="900" align="center"class="entete">
 <tr>
@@ -81,7 +87,7 @@ if($ligne!=NULL)
 	<br>
 	<br>
 		<fieldset align="center" class="sup">
-			<legend>Infos Génerale</legend>
+			<legend>Infos Générales</legend>
 			<table class="infos" width="400" align="center">
 			<tr>
 			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $idListe;?>" >
@@ -107,12 +113,12 @@ if($ligne!=NULL)
 			</form> 
 			</tr>
 			<tr>
-			<form method="post" action="modif_liste1.php?p=modif_for&id=<?php echo $idListe;?>" >
+			<form method="post" action="modif_liste1.php?p=modif_for&idListe=<?php echo $idListe;?>" >
 				<td width="50"><div align="center">Forfait:</div></td>
 				
 				<td width="100"><div align="center"><input size="10" type=text name="for" value="<?php echo $ligne->forfait;?>" ><div></td>
 				
-				<td width="50"><div align="right" ><INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit align="middle" ><div></td>
+				<td width="50"><div align="right" ><INPUT border=0 src="../../../img/icon_OK.png" type="image" Value="submit" align="middle" ><div></td>
 				
 			</form>
 			</tr>
