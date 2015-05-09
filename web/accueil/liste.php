@@ -21,11 +21,15 @@ require_once(LIB.'/lib_db.class.php');
 if(isset($_GET["id"]))
 {
 	$db = new DB_connection();
-	$query = 'SELECT n.Libelle FROM NIveau n, Liste_niveau ln WHERE ln.niveau = n.code';
+	$query = 'SELECT n.Libelle, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code';
 	$db->DB_query($query);
 	if($db->DB_count() > 0)
 	{
-		$libelle = $db->DB_object()->Libelle;
+		if($niveau = $db->DB_object())
+		{
+			$libelle = $niveau->Libelle;
+			$prix = $niveau->forfait;
+		}
 	}
 
 	$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau';
@@ -33,7 +37,8 @@ if(isset($_GET["id"]))
 
 	if($db->DB_count() > 0)
 	{
-		echo "<b>Niveau : ".$libelle."</b><hr/>";
+		echo "<b>Niveau : ".$libelle."</b><br/>";
+		echo "<b>Forfait : ".$prix." €</b><hr/>";
 		echo "<table align=\"center\">";
 		echo "<tr id=\"entete\" align=\"center\">
 						<th>Référence</th>
