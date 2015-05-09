@@ -23,6 +23,8 @@ if(isset($_GET["id"]))
 	$db = new DB_connection();
 	$query = 'SELECT n.Libelle, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = '.$_GET["id"];
 	$db->DB_query($query);
+	$libelle = "";
+	$prix = 0;
 	if($db->DB_count() > 0)
 	{
 		if($niveau = $db->DB_object())

@@ -3,7 +3,6 @@
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_connexion.php');
 require_once(LIB.'/lib_hasher_mdp.php');
-//require_once(LIB.'/lib_creation_panier.php'); // à supprimer par la suite
 
 ?>
 

@@ -40,7 +40,7 @@
 			<img src="../../../img/header.jpg" alt="header">
 		<header>-->
 <?php 
-			$id=$_GET['id'];
+			$idListe=$_GET['id'];
 
 function get_niveau($code)
 {
@@ -55,7 +55,7 @@ function get_niveau($code)
 
 <table width="900" align="center"class="entete">
 <tr>
-<td><div align="right">Modification de la liste <?php echo $id;?></div></td>
+<td><div align="right">Modification de la liste <?php echo $idListe;?></div></td>
 </tr>
 </table>
 <br>
@@ -67,7 +67,7 @@ function get_niveau($code)
 
 <?php
 $db = new DB_connection();
-$req="select * from Liste_niveau where id_nivliste=".$id;
+$req="select * from Liste_niveau where id_nivliste=".$idListe;
 $db->DB_query($req);
 //$mysql_result=mysql_query($req,$connexion) or die("<br/><br/>".mysql_error());
 $ligne=$db->DB_object();
@@ -76,7 +76,7 @@ if($ligne!=NULL)
 ?>
 <div align="center" >
 <fieldset align="center" class="gen"> 
-	<legend>Infos Liste <?php echo $id;?></legend>
+	<legend>Infos Liste <?php echo $idListe;?></legend>
 	<div align="center">
 	<br>
 	<br>
@@ -84,7 +84,7 @@ if($ligne!=NULL)
 			<legend>Infos Génerale</legend>
 			<table class="infos" width="400" align="center">
 			<tr>
-			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $id;?>" >
+			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $idListe;?>" >
 				<td width="50"><div align="center">Niveau:</div></td>
 			
 				<td width="100"><div align="center"><select name="niv"><option value="<?php echo $ligne->niveau;?>" selected ><?php echo get_niveau($ligne->niveau)?></option>
@@ -107,7 +107,7 @@ if($ligne!=NULL)
 			</form> 
 			</tr>
 			<tr>
-			<form method="post" action="modif_liste1.php?p=modif_for&id=<?php echo $id;?>" >
+			<form method="post" action="modif_liste1.php?p=modif_for&id=<?php echo $idListe;?>" >
 				<td width="50"><div align="center">Forfait:</div></td>
 				
 				<td width="100"><div align="center"><input size="10" type=text name="for" value="<?php echo $ligne->forfait;?>" ><div></td>
@@ -134,26 +134,26 @@ if($ligne!=NULL)
 				</tr>
 				<?php 
 					$db1 = new DB_connection();
-					$req1="select * from Compose where id_nivliste=".$id;
+					$req1="select * from Compose where id_nivliste=".$idListe;
 					$db1->DB_query($req1);
-					//$mysql_result1=mysql_query($req1,$connexion) or die ('Could not connect: ' . mysql_error());
 					while($ligne1=$db1->DB_object())
 					{
 						$db2 = new DB_connection();
-						$req2="select * from Materiel where ref_mat='".$ligne1->ref_mat."'";
+						//$req2="select * from Materiel where ref_mat='".$ligne1->ref_mat."'";
+						$req2='select * from Materiel where id_mat= '.$ligne1->id_mat;
 						$db2->DB_query($req2);
-						//$mysql_result2=mysql_query($req2,$connexion);
 						$ligne2=$db2->DB_object();
 						?>
 						<tr>
-							<td width="30"><div align="center"><?php echo $ligne1->ref_mat;?></div></td>
+							<td width="30"><div align="center"><?php echo $ligne2->ref_mat;?></div></td>
 							
 							<td width="250"><div align="center"><?php echo $ligne2->desc_mat;?></div></td>
 							
 							<td width="50"><div align="center"><?php echo $ligne2->prix_mat;?></div></td>
 							
 							<td width="100">
-								<form method="post" action="modif_liste1.php?p=modif_qte&id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>" >
+								<!-- <form method="post" action="modif_liste1.php?p=modif_qte&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
+								<form method="post" action="modif_liste1.php?p=modif_qte&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>" >
 								<div align="left">
 									<input type="number"  name="qtte" value="<?php echo $ligne1->qte_scat;?>">
 									<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit  >
@@ -163,7 +163,8 @@ if($ligne!=NULL)
 							</td>
 							
 							<td width="50"><div align="center">
-							<form method="post" action="modif_liste1.php?p=del_art&id=<?php echo $id;?>&ref=<?php echo $ligne1->ref_mat;?>" >
+							<!-- <form method="post" action="modif_liste1.php?p=del_art&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
+							<form method="post" action="modif_liste1.php?p=del_art&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>" >
 								<INPUT border=0 src="../../../img/del.png" type=image Value=submit  ></form> </div></td>
 							
 						<tr>
@@ -175,7 +176,7 @@ if($ligne!=NULL)
 					</table>
 					<table width="500" align="center">
 						<tr>
-							<td><div align="right"><a id="fancy" data-fancybox-type="iframe" href="ajouter_article_liste.php?id=<?php echo $id;?>" class="myButton">Ajouter Un Article</a></div></td>
+							<td><div align="right"><a id="fancy" data-fancybox-type="iframe" href="ajouter_article_liste.php?id=<?php echo $idListe;?>" class="myButton">Ajouter Un Article</a></div></td>
 						</tr>
 					</table>
 				</fieldset>
