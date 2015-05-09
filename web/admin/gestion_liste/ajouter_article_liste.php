@@ -1,7 +1,22 @@
 <?php
-	require_once('../inc/header.inc.php');
-	require_once('../inc/data.inc.php');
+
+//require_once('../inc/header.inc.php');
+require_once('../inc/data.inc.php');
+
 ?>
+
+<html>
+	<head>
+		<title>Interface Administrateur</title>
+		<link rel="stylesheet" href="../../../css/myButton.css">
+		<script type="text/javascript">
+		function subm()
+		{
+			document.getElementById('maj').submit();
+		}
+		</script>
+	</head>
+	<body>
 
 <!--<html>
 	<head>
@@ -83,6 +98,8 @@
 			</table>
 			</form>
 
-<?php 
-	require_once('../inc/footer.inc.php');
+<?php
+
+require_once('../inc/footer.inc.php');
+
 ?>
