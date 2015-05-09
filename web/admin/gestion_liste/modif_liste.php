@@ -90,10 +90,10 @@ if($ligne!=NULL)
 			<legend>Infos Générales</legend>
 			<table class="infos" width="400" align="center">
 			<tr>
-			<form method="post" action="modif_liste1.php?p=modif_niv&id=<?php echo $idListe;?>" >
+			<form method="post" action="modif_liste1.php?p=modif_niv&idListe=<?php echo $idListe; ?>" >
 				<td width="50"><div align="center">Niveau:</div></td>
 			
-				<td width="100"><div align="center"><select name="niv"><option value="<?php echo $ligne->niveau;?>" selected ><?php echo get_niveau($ligne->niveau)?></option>
+				<td width="100"><div align="center"><select name="niv"><option value="<?php echo $ligne->niveau; ?>" selected ><?php echo get_niveau($ligne->niveau) ?></option>
 				
 				<?php 
 				$db = new DB_connection();
@@ -102,23 +102,23 @@ if($ligne!=NULL)
 				while($ligneb=$db->DB_Object())
 				{
 				?>
-				<option value="<?php echo $ligneb->code;?>" ><?php echo $ligneb->Libelle;?></option>
+				<option value="<?php echo $ligneb->code; ?>" ><?php echo $ligneb->Libelle; ?></option>
 				<?php
 				}
 				?>
 				</select>
 				<div></td>
 			
-				<td width="50"><div align="right" ><INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit align="middle" ><div></td>
+				<td width="50"><div align="right" ><INPUT border=0 src="../../../img/icon_OK.png" type="image" Value="submit" align="middle" ><div></td>
 			</form> 
 			</tr>
 			<tr>
-			<form method="post" action="modif_liste1.php?p=modif_for&idListe=<?php echo $idListe;?>" >
+			<form method="post" action="modif_liste1.php?p=modif_for&idListe=<?php echo $idListe; ?>" >
 				<td width="50"><div align="center">Forfait:</div></td>
 				
-				<td width="100"><div align="center"><input size="10" type=text name="for" value="<?php echo $ligne->forfait;?>" ><div></td>
+				<td width="100"><div align="center"><input size="10" type="text" name="for" value="<?php echo $ligne->forfait; ?>" ><div></td>
 				
-				<td width="50"><div align="right" ><INPUT border=0 src="../../../img/icon_OK.png" type="image" Value="submit" align="middle" ><div></td>
+				<td width="50"><div align="right" ><input border="0" src="../../../img/icon_OK.png" type="image" Value="submit" align="middle" ><div></td>
 				
 			</form>
 			</tr>
