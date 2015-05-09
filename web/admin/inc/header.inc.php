@@ -113,6 +113,12 @@
 	{
 		return document.getElemetById(id);
 	}*/
+
+	function subm()
+	{
+		document.getElementById('maj').submit();
+	}
+
 	</script>
 </head>
 <body>
