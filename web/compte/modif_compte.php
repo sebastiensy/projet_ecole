@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_hasher_mdp.php');
+require_once(LIB.'/lib_verifications.php');
 
 ?>
 
@@ -9,15 +10,34 @@ require_once(LIB.'/lib_hasher_mdp.php');
 
 	<div id="banner">
 	</div>
-	
+
 	<div class="menu">
-	
+
+		<div id="connexion">
+			<?php
+				require_once("../connexion/login.php");
+			?>
+		</div> 
+
 		<div id="menu">
 
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/accueil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
-				<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+				<?php 
+				if(!isset($_SESSION['id_parent']))
+				{
+					?>
+					<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
+					<?php
+				}
+				else
+				{
+					?>
+					<a href="../compte/"><img src="../../img/menu/compte.png"></a>
+					<?php 
+				}
+				?>
 				<a href="../contact/"><img src="../../img/menu/contact.png"></a>
 			</div>
 
@@ -27,26 +47,13 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
 
-		<div id="connexion">
-			<?php
-			require_once("../connexion/login.php");
-			?>
-		</div>
-
 	</div>
 
 	<div class="corps">
-	
+
 	<div id="page">
 
-	
-
 <?php
-
-// Pour test
-//$id_parent = 3;
-
-//session_start();
 
 if(!isset($_SESSION["id_parent"]))
 {
@@ -109,24 +116,21 @@ echo '<p><b><u>Mon compte</u></b></p>';
 			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="text" class="spinner" size="1" min="1" max="10" name="enfant"/></p>
 			<input type="submit" value="Enregistrer">
 			</form>
-
 			<?php
 		}
 	}
-	
+
 	if (isset($_POST['nom_parent']))
 	{
 		$modifier = 'UPDATE Parent SET nom_parent = "'.$_POST['nom_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		header('Location: index.php');
-		
 	}
 	if (isset($_POST['email_parent']))
 	{
 		$modifier = 'UPDATE Parent SET email_parent = "'.$_POST['email_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		header('Location: index.php');
-		
 	}
 	if (isset($_POST['tel']))
 	{
@@ -144,11 +148,9 @@ echo '<p><b><u>Mon compte</u></b></p>';
 				$modifier = 'UPDATE Parent SET mdp_parent = "'.hasher_mdp($_POST['mdp2']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 				$db->DB_query($modifier);
 				header('Location: index.php');
-				
 			}
 			else {
 				print('<script type="text/javascript">location.href="modif_compte.php?compte=mdp";</script>');
-
 			}
 		}
 	}
@@ -157,14 +159,11 @@ echo '<p><b><u>Mon compte</u></b></p>';
 		$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		header('Location: index.php');
-		
 	}
-
 
 $db->DB_done();	
 
 echo "</div></div>";
-
 
 ?>
 

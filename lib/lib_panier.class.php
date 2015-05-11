@@ -8,7 +8,7 @@
  * @usage :
  * @require_once(LIB.'/lib_panier.class.php');
  * $panier = new panier(new DB_connection());
- * $panier->fonction($parameters)
+ * $panier->fonction($paramètres)
  *
  */
 

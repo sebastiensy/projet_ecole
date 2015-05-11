@@ -3,6 +3,7 @@
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_inscription.php');
 require_once(LIB.'/lib_hasher_mdp.php');
+require_once(LIB.'/lib_verifications.php');
 
 ?>
 
@@ -67,9 +68,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 		}
 		else
 		{
-			/*
-			verifier si l'un des champs est vide 
-			*/
+			// vérifie si l'un des champs est vide 
 			$bol=true;
 
 			if(empty($_POST["nom"])){ $bol=false;}
@@ -82,13 +81,13 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			if(!$bol)
 			{
 				/*
-				si l'un des chaps est vide 
+				si l'un des champs est vide 
 				on affiche un message 
-				et le formulaire avec son etat precedent
+				et le formulaire avec son état précédent
 				*/
 				formulaire_inscription("Veuillez remplir tous les champs.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
-			else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+			else if(!verifEmail($_POST["email"]))
 			{
 				formulaire_inscription("Email invalide.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
@@ -98,55 +97,42 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			}
 			else
 			{
-				/*
-				connexion a la base via la classe DB_connection
-				*/
+				// connexion a la base via la classe DB_connection
 				$db = new DB_connection();
 
 				/*
-				verifie si l'email n'existe pas déjà
-				sinon reaffichage du formulaire avec son etat precedent
+				vérifie si l'email n'existe pas déjà
+				sinon réaffichage du formulaire avec son état précédent
 				et un message 
 				*/
-				$requete = 'Select id_parent from Parent where email_parent = "'.$_POST["email"].'"';
-				$db->DB_query($requete);
-				if($db->DB_count() > 0)
+				if(!emailLibre($_POST["email"], $db))
 				{
 					formulaire_inscription("Cet email existe déjà." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 				}
 				else if($_POST["mdp"]!==$_POST["cmdp"])
 				{
 					/*
-					verifier si les mots de passe correspondent
-					sinon reaffichage du formulaire avec son etat precedent
+					verifie si les mots de passe correspondent
+					sinon réaffichage du formulaire avec son état précédent
 					et un message 
 					*/
-					formulaire_inscription("Mot de passe incorrect." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+					formulaire_inscription("Mot de passe incorrect.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 				}
 				else
 				{
-					/*
-					toute les conditions sont verfiées 
-					on insert dans la base 
-					*/
+					// toutes les conditions sont vérifiées, insertion dans la base 
 
-					/*
-					Purification des variables
-					*/
+					// purification des variables
 					$_POST["nom"]=htmlEntities($_POST["nom"]);
 					$_POST["email"]=htmlEntities($_POST["email"]);
 					$_POST["tel"]=htmlEntities($_POST["tel"]);
 					$_POST["mdp"]=htmlEntities($_POST["mdp"]);
 					$_POST["nbrenfant"]=htmlEntities($_POST["nbrenfant"]);
 
-					/*
-					preparation de la requete 
-					*/
-					$requete='insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
+					// requête 
+					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
 
-					/*
-					execution de la requete 
-					*/
+					// exécution de la requête 
 					$db->DB_query($requete);
 					$db->DB_done();
 				}
@@ -159,15 +145,6 @@ require_once(LIB.'/lib_hasher_mdp.php');
 	</div>
 
 <?php
-
-function verifTel($tel)
-{
-	$motif ='`^0[1-8][0-9]{8}$`';
-	if(!preg_match($motif, $tel))
-		return false;
-	else
-		return true;
-}
 
 ?>
 

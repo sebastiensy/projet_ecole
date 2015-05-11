@@ -54,7 +54,7 @@ require_once(LIB.'/lib_listes.php');
 
 			<p class="titre">Accueil</p>
 			<?php affichage($panier); ?>
-			<br/><a href="../fournitures"/>Acheter d'autres fournitures</a>
+			<br/><a href="../fournitures"/>Rechercher d'autres fournitures</a>
 
 		</div>
 

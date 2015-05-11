@@ -66,8 +66,9 @@ $requete = 'SELECT p.id_parent, p.nom_parent, p.mdp_parent, p.email_parent, p.te
 $db = new DB_connection();
 $db->DB_query($requete);
 
-echo '<p><b><u>Mon compte</u></b></p>';
 ?>
+
+<p class="titre">Mon compte</p>
 
 <?php 
 
