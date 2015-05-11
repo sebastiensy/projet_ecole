@@ -16,7 +16,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 {
 	if(!empty($recherche))
 	{
-		$requete = 'SELECT ref_mat, desc_mat, prix_mat FROM Materiel WHERE desc_mat LIKE \'%'.$recherche.'%\'';
+		$requete = 'SELECT ref_mat, desc_mat, prix_mat FROM Materiel WHERE desc_mat LIKE \'%'.$recherche.'%\' OR ref_mat = \''.$recherche.'\'';
 	}
 	else
 	{
