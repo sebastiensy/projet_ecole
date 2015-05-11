@@ -52,7 +52,7 @@
 		$i++;
 	}
 	$p++;
-	$url="ajouter_liste.php?p=".$p."&id=".$id;
+	$url="aliste.php?p=".$p."&id=".$id;
 	header("Location:$url");
 	?>
 	

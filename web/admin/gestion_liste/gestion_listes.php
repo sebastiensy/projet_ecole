@@ -33,7 +33,6 @@
 <br>
 <table width="900" align="center" class="data">
 <tr>
-<th width="20" ><div align="center">id</div></th>
 <th width="90" ><div align="center">Niveau-Classe</div></th>
 <th width="50" ><div align="center">Prix(forfait)</div></th>
 <th width="50" ><div align="center">Modifier</div></th>
@@ -63,7 +62,6 @@ while($ligne=$db->DB_object())
 ?>
 
 <tr>
-<td width="20" ><div align="center"><?php echo $ligne->id_nivliste;?></div></td>
 <td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau);?></div></td>
 <td width="50" ><div align="center"><?php echo $ligne->forfait;?></div></td>
 <td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste;?>"> Modifier </a></div></td>
@@ -76,7 +74,7 @@ while($ligne=$db->DB_object())
 <br>
 <table width="900" align="center">
 <tr>
-<td><div align="right"><a href="ajouter_liste.php?p=1" class="myButton">Ajouter Une liste</a></div></td>
+<td><div align="right"><a href="aliste.php?p=1" class="myButton">Ajouter Une liste</a></div></td>
 </tr>
 </table>
 
