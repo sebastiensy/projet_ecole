@@ -11,10 +11,22 @@ function drag(ev) {
 function drop(ev) {
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
+	/*var target = ev.target;
+	var draggedElement = dndHandler.draggedElement;
+    var clonedElement = draggedElement.cloneNode(true); 
 
+    clonedElement = target.appendChild(clonedElement); // Ajout de l'élément cloné à la zone de drop actuelle
+    dndHandler.applyDragEvents(clonedElement); // Nouvelle application des événements qui ont été perdus lors du cloneNode()
+    
+    draggedElement.parentNode.removeChild(draggedElement); */
 	ev.target.appendChild(document.getElementById(data));
-	$(ev.target).next('.div2').append($('<input type="number" size=2 value=1 name="'+data+'"min=1>'));
-	
+	//if($("#qte".length))
+	//	alert('test');
+
+	if(!document.getElementsByClassName('div2').firstElementChild)
+	$(ev.target).next('.div2').append($('<input id="qte" type="number" size=2 value=1 name="'+data+'"min=1>'));
+	else
+		alert("not ok");
 }
 
 function getValue(id)
