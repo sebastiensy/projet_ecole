@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_contacter.php');
+require_once(LIB.'/lib_verifications.php');
 
 ?>
 
@@ -76,7 +77,7 @@ require_once(LIB.'/lib_form_contacter.php');
 				echo "<p><span style=\"color:red\">Vous devez remplir tous les champs.</span></p>";
 				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
 			}
-			else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+			else if(!verifEmail($_POST["email"]))
 			{
 				echo "<p><span style=\"color:red\">Email invalide.</span></p>";
 				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
@@ -101,7 +102,7 @@ require_once(LIB.'/lib_form_contacter.php');
 				$db->DB_done();
 
 				// réaffichage du formulaire vide 
-				echo "<p>Votre message a bien été transmis.</p>";
+				echo "<strong><p><span style=\"color:green\">Votre message a bien été transmis.</span></p></strong><br/>";
 				formulaire_contacter("", "", "");
 			}
 		}

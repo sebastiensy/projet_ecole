@@ -113,7 +113,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 		elseif ($compte == 'enfant') {
 			?>
 			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="text" class="spinner" size="1" min="1" max="10" name="enfant"/></p>
+			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="number" size="1" min="1" max="10" name="enfant"/></p>
 			<input type="submit" value="Enregistrer">
 			</form>
 			<?php
