@@ -14,12 +14,21 @@ function emailLibre($email, $db)
 }
 
 /*
+ * vérifie si le login n'est pas trop long
+ *
+ */
+function verifLogin($login, $taille=40)
+{
+	return strlen($login) <= $taille;
+}
+
+/*
  * vérifie si le mot de passe est assez long
  *
  */
-function verifMdp($mdp, $taille=6)
+function verifMdp($mdp)
 {
-	return strlen($mdp) >= $taille;
+	return strlen($mdp) >= 6 && strlen($mdp) <= 16;
 }
 
 /*

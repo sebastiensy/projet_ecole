@@ -2,21 +2,7 @@
 
 function connexion()
 {
-
-	?>
-
-	<!-- <div id="div_con">
-		<form method="post" action="index.php">
-		<p><label for="id" class="label_connexion">Adresse e-mail</label><input type="text" name="email" /></p>
-		<p><label for="pass" class="label_connexion">Mot de passe</label><input type="password" name="pass" /></p>
-		<p><input id="conbt" type="submit" name="connexion"></p>
-		</form>
-	</div> -->
-
-	<?php
-
 	session_start();
-	$isLogged = 0;
 
 	if(!isset($_SESSION['email']) && !isset($_SESSION['password'])) 
 	{
@@ -29,13 +15,13 @@ function connexion()
 					<td>E-mail : </td>
 				</tr>
 				<tr>
-					<td><input type="text" size="12" onblur="champVide(this)" name="email"/></td>
+					<td><input type="text" size="12" onblur="verifMail(this)" name="email"/></td>
 				</tr>
 				<tr>
 					<td>Mot de passe : </td>
 				</tr>
 				<tr>
-					<td><input type="password" size="12" onblur="champVide(this)" name="pass"/></td>
+					<td><input type="password" size="12" onblur="verifMdp(this)" name="pass"/></td>
 				</tr>
 				<tr>
 					<td><input id="conbt" type="submit" name="connexion" value="Se connecter"></td>
@@ -50,9 +36,7 @@ function connexion()
 	{
 		echo "<table id=\"co2\"><tr><td>Bienvenue, ".$_SESSION['email'];"</td></tr>";
 		echo "<tr><td><a href=\"../deconnexion/logout.php\"/>Se d&eacute;connecter</a></td></tr></table>";
-		$isLogged = 1;
 	}
-
 }
 
 ?>

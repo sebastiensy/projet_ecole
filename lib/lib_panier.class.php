@@ -3,12 +3,12 @@
 /**
  *
  * panier
- * Cette classe sert Ã  gÃ©rer le panier
+ * Cette classe sert à gérer le panier
  * 
  * @usage :
  * @require_once(LIB.'/lib_panier.class.php');
  * $panier = new panier(new DB_connection());
- * $panier->fonction($paramÃ¨tres)
+ * $panier->fonction($paramètres)
  *
  */
 

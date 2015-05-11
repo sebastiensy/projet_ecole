@@ -20,6 +20,20 @@ function verifPseudo(champ)
    }
 }
 
+function verifMdp(champ)
+{
+	if(champ.value.length < 6 || champ.value.length > 16)
+	{
+		surligne(champ, true);
+		return false;
+	}
+	else
+	{
+		surligne(champ, false);
+		return true;
+	}
+}
+
 function verifMail(champ)
 {
    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
