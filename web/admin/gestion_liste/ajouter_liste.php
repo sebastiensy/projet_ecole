@@ -151,7 +151,7 @@ if(isset($_GET['id']))
 						while($ligne1=$db1->DB_object())
 								{
 								
-									echo '<div class="drag1" id="'.$ligne1->ref_mat.'" draggable="true" ondragstart="drag(event)" disabled data-value="'.$ligne1->ref_mat.'"><input type="text" readonly="true"  value="'.$ligne1->ref_mat.'-'.$ligne1->desc_mat.'" class="in" name="'.$cpta.'"></div>';
+									echo '<div class="drag1" id="'.$ligne1->ref_mat.'" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)" disabled data-value="'.$ligne1->ref_mat.'"><input type="text" readonly="true"  value="'.$ligne1->ref_mat.'-'.$ligne1->desc_mat.'" class="in" name="'.$cpta.'"></div>';
 						
 						$cpta++;
 						}
