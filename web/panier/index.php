@@ -12,13 +12,19 @@ require_once(LIB.'/lib_listes.php');
 
 	<div class="menu">
 
+		<div id="connexion">
+			<?php
+				require_once("../connexion/login.php");
+			?>
+		</div> 
+
 		<div id="menu">
 
 			<div id="menu1">
 				<a href="../"><img src="../../img/menu/accueil.png"></a>
 				<a href="../fournitures/"><img src="../../img/menu/article.png"></a>
 				<?php 
-				if (!isset($_SESSION['id_parent']))
+				if(!isset($_SESSION['id_parent']))
 				{
 					?>
 					<a href="../inscription/"><img src="../../img/menu/inscription.png"></a>
@@ -39,12 +45,6 @@ require_once(LIB.'/lib_listes.php');
 		<div id="panier">
 			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
-
-		<div id="connexion">
-			<?php
-				require_once("../connexion/login.php");
-			?>
-		</div> 
 
 	</div>
 

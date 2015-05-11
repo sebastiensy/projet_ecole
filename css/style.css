@@ -67,12 +67,12 @@ body
 
 #connexion
 {
-	/*position:absolute;*/
+	position:absolute;
 	background-image:url(../img/menu/connexion2.png);
 	background-repeat:no-repeat;
 	width:150px;
 	height:110px; /* 90 */
-	/*margin-left:690px;*/
+	margin-left:470px;
 	float:right;
 }
 
