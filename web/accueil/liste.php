@@ -11,7 +11,7 @@ require_once(LIB.'/lib_db.class.php');
 
 <html>
 	<head>
-		<title>Projet &eacute;cole</title>
+		<title>Projet école</title>
 		<link rel="stylesheet" href="../../css/liste.css">
 	</head>
 	<body>

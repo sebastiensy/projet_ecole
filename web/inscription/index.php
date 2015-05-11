@@ -143,6 +143,8 @@ require_once(LIB.'/lib_verifications.php');
 					// exécution de la requête 
 					$db->DB_query($requete);
 					$db->DB_done();
+					
+					echo "Inscription réussie.";
 				}
 			}
 		}
