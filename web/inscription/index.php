@@ -144,7 +144,7 @@ require_once(LIB.'/lib_verifications.php');
 					$db->DB_query($requete);
 					$db->DB_done();
 					
-					echo "Inscription réussie.";
+					echo "<span style=\"color:green\"><p><strong>Inscription réussie.</strong></p></span>";
 				}
 			}
 		}

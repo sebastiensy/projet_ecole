@@ -74,7 +74,6 @@ function affichage($panier)
 	// placement de l'en-tête
 	head();
 
-	// préparation de la requete 
 	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code';
 
 	// connexion a la base via la classe DB_connection

@@ -60,9 +60,7 @@ require_once(LIB.'/lib_form_contacter.php');
 		}
 		else
 		{
-			/*
-			verifier si l'un des champs est vide
-			*/
+			// verifie si l'un des champs est vide
 			$bool=true;
 			if(empty($_POST["email"])){ $bool=false;}
 			if(empty($_POST["objet"])){ $bool=false;}
@@ -71,9 +69,9 @@ require_once(LIB.'/lib_form_contacter.php');
 			if(!$bool)
 			{
 				/*
-				si l'un des chaps est vide 
+				si l'un des champs est vide 
 				on affiche un message 
-				et le formulaire avec sont etat precedent
+				et le formulaire avec sont état précédent
 				*/
 				echo "<p><span style=\"color:red\">Vous devez remplir tous les champs.</span></p>";
 				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
@@ -85,37 +83,24 @@ require_once(LIB.'/lib_form_contacter.php');
 			}
 			else
 			{
-				/*
-				si les champs sont remplis on ecrit dans la base
-				*/
+				// les champs sont remplis, ecriture dans la base
 
-				/*
-				connexion a la base via la classe DB_connection
-				*/
+				// connexion a la base via la classe DB_connection
 				$db = new DB_connection();
 
-				/*
-				Purification des variables
-				*/
+				// purification des variables
 				$_POST["message"]=htmlSpecialChars($_POST["message"]);
 				$_POST["objet"]=htmlSpecialChars($_POST["objet"]);
 				$_POST["email"]=htmlSpecialChars($_POST["email"]);
 
-				/*
-				preparation de la requete
-				*/
-
+				// requête
 				$requete='insert into Message (email_parent, objet, message,jma, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",NOW(), 0)';
 
-				/*
-				execution de la requete
-				*/
+				// exécution de la requete
 				$db->DB_query($requete);
 				$db->DB_done();
 
-				/* 
-				reaffichage du formulaire vide 
-				*/
+				// réaffichage du formulaire vide 
 				echo "<p>Votre message a bien été transmis.</p>";
 				formulaire_contacter("", "", "");
 			}
