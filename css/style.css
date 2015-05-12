@@ -238,13 +238,18 @@ body
 	margin-left:150px;
 }
 
-/* formulaire inscription */
+/* formulaires */
 
-.inscription
+.inscription, .modif_mdp
 {
-	display:block; /* La balise devient de type block. */
+	display:block;
 	width:250px;
 	float:left;
+}
+
+.modif_compte
+{
+	margin-right:20px;
 }
 
 .b

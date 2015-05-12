@@ -1,9 +1,14 @@
+function isInt(value)
+{
+	return !isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10));
+}
+
 function surligne(champ, erreur)
 {
-   if(erreur)
-      champ.style.backgroundColor = "#fba";
-   else
-      champ.style.backgroundColor = "";
+	if(erreur)
+		champ.style.backgroundColor = "#fba";
+	else
+		champ.style.backgroundColor = "";
 }
 
 function verifPseudo(champ)
@@ -67,6 +72,20 @@ function verifTel(champ)
 function champVide(champ)
 {
 	if(champ.value.length > 0)
+	{
+		surligne(champ, false);
+		return true;
+	}
+	else
+	{
+		surligne(champ, true);
+		return false;
+	}
+}
+
+function verifEnfant(champ)
+{
+	if(isInt(champ.value) && champ.value <= 10 && champ.value > 0)
 	{
 		surligne(champ, false);
 		return true;

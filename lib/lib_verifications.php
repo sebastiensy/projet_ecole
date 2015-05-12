@@ -58,4 +58,15 @@ function verifTel($tel)
 		return true;
 }
 
+/*
+ * vérifie si le nombre d'enfants est valide
+ *
+ */
+function verifEnfant($enfant)
+{
+	if(is_int($enfant) && $enfant <= 10 && $enfant > 0)
+		return true;
+	return false;
+}
+
 ?>

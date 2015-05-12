@@ -101,7 +101,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 			header('Location: index.php');
 		}
 		else
-			afficForm("Le nom ne doit pas dépasser 40 caractères.", "nom", $_SESSION["nom_parent"]);
+			afficForm("Le nom doit comporter entre 1 et 40 caractères.", "nom", $_POST["nom_parent"]);
 	}
 	if (isset($_POST['email_parent']))
 	{
@@ -115,10 +115,10 @@ echo '<p><b><u>Mon compte</u></b></p>';
 				header('Location: index.php');
 			}
 			else
-				afficForm("Cet email existe déjà.", "email", $_SESSION["email"]);
+				afficForm("Cet email existe déjà.", "email", $_POST["email_parent"]);
 		}
 		else
-			afficForm("Email invalide.", "email", $_SESSION["email"]);
+			afficForm("Email invalide.", "email", $_POST["email_parent"]);
 	}
 	if (isset($_POST['tel']))
 	{
@@ -130,7 +130,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 			header('Location: index.php');
 		}
 		else
-			afficForm("Téléphone invalide.", "tel", $_SESSION["tel_parent"]);
+			afficForm("Téléphone invalide.", "tel", $_POST["tel"]);
 	}
 	if (isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 	{
@@ -161,7 +161,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 	}
 	if (isset($_POST['enfant']))
 	{
-		if(!empty($_POST["enfant"]))
+		if(verifEnfant($_POST["enfant"]))
 		{
 			$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
 			$db->DB_query($modifier);
@@ -169,7 +169,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 			header('Location: index.php');
 		}
 		else
-			afficForm("Le champ doit être renseigné.", "enfant", $_SESSION['nb_enfants']);
+			afficForm("Le nombre d'enfants doit être compris entre 1 et 10.", "enfant", $_POST['enfant']);
 	}
 
 $db->DB_done();	
