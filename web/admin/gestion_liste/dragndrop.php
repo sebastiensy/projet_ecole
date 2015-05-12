@@ -32,27 +32,23 @@ function OnDropTarget(target, evt){
 	
 	$.ajax({
                     type: "POST",
-                    url: 'aliste.php',
-                    data: { var1 : idMat},
+                    url: "aliste.php",
+                    data: { var : idMat },
                     success: function(data)
                     {
-                        alert();
+                        
                     }
                 });
 
 	//$.post('dragndrop.php', {variable: idMat});
 	//document.location.href = "../messagerie/messagerie.php";
 	
-	//if(isset($_POST['var1']))
+	//if(isset($_POST['var']))
 //{
-    //$uid = $_POST['var1'];
+    //$uid = $_POST['var'];
     //echo '<script type="text/javascript">var btn = document.createElement("BUTTON");var t = document.createTextNode("CLICK ME");btn.appendChild(t);document.body.appendChild(btn);';
 //}
-	//array_push($tabElem,$_GET['var1']);
-
-	<?php $tab = $_POST['var1'];
-	var_dump($tab);
-?>
+	//array_push($tabElem,$_GET['var']);
 
 	
 	

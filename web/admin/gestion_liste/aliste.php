@@ -1,9 +1,48 @@
 <?php
 	require_once('../inc/header.inc.php');
 	require_once('../inc/data.inc.php');
-	require_once('dragndrop.php');
+	//require_once('dragndrop.php');
 
 ?>
+
+<script type="text/javascript">
+function OnDragStart(target, evt){
+	evt.dataTransfer.setData('IdElement', target.id);
+}
+
+function OnDropTarget(target, evt){
+	evt.preventDefault();
+	var id = evt.dataTransfer.getData('IdElement');
+	target.appendChild(document.getElementById(id));
+	//alert(target.appendChild(document.getElementById(id)).id);
+	var idMat = target.appendChild(document.getElementById(id)).id;
+	
+	alert(idMat);
+	
+	$.ajax({
+                    type: "POST",
+                    url: "./aliste.php",
+                    data: { var : idMat },
+                    success: function(data)
+                    {
+                        //alert(idMat);
+                    }
+                });
+
+	//$.post('dragndrop.php', {variable: idMat});
+	//document.location.href = "../messagerie/messagerie.php";
+	
+	//if(isset($_POST['var']))
+//{
+    //$uid = $_POST['var'];
+    //echo '<script type="text/javascript">var btn = document.createElement("BUTTON");var t = document.createTextNode("CLICK ME");btn.appendChild(t);document.body.appendChild(btn);';
+//}
+	//array_push($tabElem,$_GET['var']);
+
+	
+	
+}
+</script>
 
 <!--<script type="text/javascript" src="../../../js/ajout_liste.js"></script>-->
 
@@ -167,7 +206,7 @@ if(isset($_GET['id']))
 					<fieldset class="wrap">
 						<legend>Les Articles de la liste</legend>';
 						
-						 
+
 						$j=3;
 						while($cpta>0)
 						{
