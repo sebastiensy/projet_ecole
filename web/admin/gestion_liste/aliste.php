@@ -1,9 +1,11 @@
 <?php
 	require_once('../inc/header.inc.php');
 	require_once('../inc/data.inc.php');
+	require_once('dragndrop.php');
+
 ?>
 
-<script type="text/javascript" src="../../../js/ajout_liste.js"></script>
+<!--<script type="text/javascript" src="../../../js/ajout_liste.js"></script>-->
 
 <!--<html>
 	<head>
@@ -143,15 +145,15 @@ if(isset($_GET['id']))
 					<div id="wrap">
 					
 
-					<div class="left" ondragover="return false" ondrop="OnDropTarget(this,event)">
-					<fieldset class="wrap">
+					<div class="left">
+					<fieldset class="wrap" ondragover="return false" ondrop="OnDropTarget(this,event)">
 						<legend>'.$cat.'</legend>';
-						
+
 						$cpta=0;					
 						while($ligne1=$db1->DB_object())
 								{
 								
-									echo '<div class="drag1" id="'.$ligne1->ref_mat.'" draggable="true" ondragstart="OnDragStart(this,event)" disabled data-value="'.$ligne1->ref_mat.'"><input type="text" readonly="true"  value="'.$ligne1->ref_mat.'-'.$ligne1->desc_mat.'" class="in" name="'.$cpta.'"></div>';
+									echo '<div class="drag1" id="'.$ligne1->id_mat.'" draggable="true" ondragstart="OnDragStart(this,event)" disabled data-value="'.$ligne1->ref_mat.'"><input type="text" readonly="true"  value="'.$ligne1->ref_mat.'-'.$ligne1->desc_mat.'" class="in" name="'.$cpta.'"></div>';
 						
 						$cpta++;
 						}
@@ -181,14 +183,18 @@ if(isset($_GET['id']))
 						echo '</fieldset></div></fieldset>';
 						}?>	
 					
-<?php					echo'
+<?php					
+
+echo'
 					
 					<a href="#" onclick="document.f1.submit()">Valider</a>
 					</div>
 				
 			
-			</form>'
-		;?>
+			</form>';
+
+		?>
+
 
 <?php 
 	require_once('../inc/footer.inc.php');

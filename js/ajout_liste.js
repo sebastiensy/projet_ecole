@@ -8,12 +8,12 @@ function allowDrop(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }*/
 
-function drop(ev) {
-	ev.preventDefault();
-	var data = ev.dataTransfer.getData("text");
+//function drop(ev) {
+	//ev.preventDefault();
+	//var data = ev.dataTransfer.getData("text");
 	
-	ev.target.appendChild(document.getElementById(data));
-	$(ev.target).next('.div2').append($('<input id="qte" type="number" size=2 value=1 name="'+data+'"min=1>'));
+	//ev.target.appendChild(document.getElementById(data));
+	//$(ev.target).next('.div2').append($('<input id="qte" type="number" size=2 value=1 name="'+data+'"min=1>'));
 
 	//if($("#qte".length))
 	//	alert('test');
@@ -35,6 +35,18 @@ function OnDragStart(target, evt){
 function OnDropTarget(target, evt){
 	evt.preventDefault();
 	var id = evt.dataTransfer.getData('IdElement');
-	target.appendChild(document.getElementById(id));
-	$(evt.target).next('.div2').append($('<input id="qte" type="number" size=2 value=1 name="'+data+'"min=1>'));
+	//target.appendChild(document.getElementById(id));
+	//var curr = (event.target).next(".div2");
+	//curr.append('<input id="qte" type="number" size=2 value=1 name="'+data+'"min=1>');
+	var idMat = target.appendChild(document.getElementById(id)).id;
+	
+	$.ajax({
+                    type: "POST",
+                    url: 'aliste.php',
+                    data: { var1 : idMat},
+                    success: function(data)
+                    {
+                        alert();
+                    }
+                });
 }
