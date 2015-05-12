@@ -64,7 +64,7 @@ require_once('../inc/data.inc.php');
 								<span><input type="text" name="desc"></span>
 					
 				</td>
-				<span><td><div align="right"><a href="#" onclick="subm();" class="myButton" id="sub">Rechercher</a></div></td></span>
+				<span><td><div align="right"><a href="#" onclick="subm();" class="myButton" id="sub">Rechercher</a></div></td><input style="font-size:0px; width:0px; height:0px;border:0px;padding:0px;" type="submit" value="" name="sub"/></span>
 				
 			</tr>
 			</table>
