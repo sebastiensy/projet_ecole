@@ -61,21 +61,9 @@ if(!isset($_SESSION["id_parent"]))
 	header("Location: ../index.php");
 }
 
-$requete = 'SELECT p.id_parent, p.nom_parent, p.mdp_parent, p.email_parent, p.tel_parent, p.nb_enfants FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
-
-$db = new DB_connection();
-$db->DB_query($requete);
-
 ?>
 
 <p class="titre">Mon compte</p>
-
-<?php 
-
-while($parent = $db->DB_object())
-{
-
-?>
 
 <p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
 
@@ -83,17 +71,17 @@ while($parent = $db->DB_object())
 	<form method="get" action="index.php">
 		<tr>
 		<td><label class="compte" for="nom">Nom :</label></td>
-		<td><input type="text" name="nom" id="nom" value="<?php echo $parent->nom_parent?>" disabled/></td>
+		<td><input type="text" name="nom" id="nom" value="<?php echo $_SESSION["nom_parent"]; ?>" disabled/></td>
 		<td><a href="modif_compte.php?compte=nom"><input type="button" value="Modifier"></a></td>
 		</tr>
 		<tr>
 		<td><label class="compte" for="email">E-mail :</label></td>
-		<td><input type="text" name="email" id="email" value="<?php echo $parent->email_parent?>" disabled/></td>
+		<td><input type="text" name="email" id="email" value="<?php echo $_SESSION["email"]; ?>" disabled/></td>
 		<td><a href="modif_compte.php?compte=email"><input type="button" value="Modifier"></a></td>
 		</tr>
 		<tr>
 		<td><label class="compte" for="tel">Tel:</label></td>
-		<td><input type="text" name="tel" id="tel" value="<?php echo $parent->tel_parent?>" disabled/></td>
+		<td><input type="text" name="tel" id="tel" value="<?php echo $_SESSION["tel_parent"]; ?>" disabled/></td>
 		<td><a href="modif_compte.php?compte=tel"><input type="button" value="Modifier"></a></td>
 		</tr>
 		<tr>
@@ -103,27 +91,13 @@ while($parent = $db->DB_object())
 		</tr>
 		<tr>
 		<td><label class="compte" for="nbrenfant">Nombre d'enfants:</label></td>
-		<td><input type="text" name="nbrenfant" id="nbrenfant" value="<?php echo $parent->nb_enfants?>" disabled/></td>
+		<td><input type="text" name="nbrenfant" id="nbrenfant" value="<?php echo $_SESSION["nb_enfants"]; ?>" disabled/></td>
 		<td><a href="modif_compte.php?compte=enfant"><input type="button" value="Modifier"></a></td>
 		</tr>
 	</form>
 </table>
 
-<?php 
-}
-?>
-
-
-<?php
-
-
-$db->DB_done();	
-
-echo "</div>";
-echo "</div>";
-
-
-?>
+</div></div>
 
 <?php
 

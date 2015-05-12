@@ -47,7 +47,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
 
 	echo "<div id=\"produits\">";
-	
+
 	if(isset($_SESSION["id_parent"]))
 	{
 		if(isset($_GET["ref"]))
