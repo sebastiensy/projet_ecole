@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_form_modifier.php');
 require_once(LIB.'/lib_hasher_mdp.php');
 require_once(LIB.'/lib_verifications.php');
 
@@ -72,93 +73,103 @@ echo '<p><b><u>Mon compte</u></b></p>';
 
 		if ($compte == 'nom')
 		{
-			?>
-			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="nom">Nom :</label> <input type="text" name="nom_parent"/></p>
-			<input type="submit" value="Enregistrer">
-			</form>
-
-			<?php
-
+			afficForm("", "nom", $_SESSION["nom_parent"]);
 		}
-		elseif ($compte == 'email') {
-			?>
-			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="email">Nouvelle adresse email :</label> <input type="text" name="email_parent"/></p>
-			<input type="submit" value="Enregistrer">
-			</form>
-
-			<?php
+		elseif ($compte == 'email')
+		{
+			afficForm("", "email", $_SESSION["email"]);
 		}
-		elseif ($compte == 'tel') {
-			?>
-			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="tel">Numero de telephone :</label> <input type="text" name="tel"/></p>
-			<input type="submit" value="Enregistrer">
-			</form>
-
-			<?php
+		elseif ($compte == 'tel')
+		{
+			afficForm("", "tel", $_SESSION["tel_parent"]);
 		}
 		elseif ($compte == 'mdp') {
-			?>
-			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="mdp">Mot de passe actuel :</label> <input type="password" name="anc_mdp"/></p>
-			<p> <label class="modif_compte" for="mdp">Nouveau mot de passe :</label> <input type="password" name="mdp1"/></p>
-			<p> <label class="modif_compte" for="mdp">Saisissez une seconde fois le nouveau mot de passe :</label> <input type="password" name="mdp2"/></p>
-			<input type="submit" value="Enregistrer">
-			</form>
-
-			<?php
+			afficForm("", "mdp");
 		}
 		elseif ($compte == 'enfant') {
-			?>
-			<form method="post" action="modif_compte.php">
-			<p> <label class="modif_compte" for="enfant">Nombre d'enfants :</label> <input type="number" size="1" min="1" max="10" name="enfant"/></p>
-			<input type="submit" value="Enregistrer">
-			</form>
-			<?php
+			afficForm("", "enfant", $_SESSION["nb_enfants"]);
 		}
 	}
 
 	if (isset($_POST['nom_parent']))
 	{
-		$modifier = 'UPDATE Parent SET nom_parent = "'.$_POST['nom_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
-		$db->DB_query($modifier);
-		header('Location: index.php');
+		if(verifLogin($_POST["nom_parent"]) && !empty($_POST["nom_parent"]))
+		{
+			$modifier = 'UPDATE Parent SET nom_parent = "'.$_POST['nom_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+			$db->DB_query($modifier);
+			$_SESSION["nom_parent"] = $_POST["nom_parent"];
+			header('Location: index.php');
+		}
+		else
+			afficForm("Le nom ne doit pas dépasser 40 caractères.", "nom", $_SESSION["nom_parent"]);
 	}
 	if (isset($_POST['email_parent']))
 	{
-		$modifier = 'UPDATE Parent SET email_parent = "'.$_POST['email_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
-		$db->DB_query($modifier);
-		header('Location: index.php');
+		if(verifEmail($_POST["email_parent"]))
+		{
+			if(emailLibre($_POST["email_parent"], $db))
+			{
+				$modifier = 'UPDATE Parent SET email_parent = "'.$_POST['email_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+				$db->DB_query($modifier);
+				$_SESSION["email"] = $_POST["email_parent"];
+				header('Location: index.php');
+			}
+			else
+				afficForm("Cet email existe déjà.", "email", $_SESSION["email"]);
+		}
+		else
+			afficForm("Email invalide.", "email", $_SESSION["email"]);
 	}
 	if (isset($_POST['tel']))
 	{
-		$modifier = 'UPDATE Parent SET tel_parent = "'.$_POST['tel'].'" WHERE id_parent = '.$_SESSION['id_parent'];
-		$db->DB_query($modifier);
-		header('Location: index.php');
+		if(verifTel($_POST["tel"]))
+		{
+			$modifier = 'UPDATE Parent SET tel_parent = "'.$_POST['tel'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+			$db->DB_query($modifier);
+			$_SESSION["tel_parent"] = $_POST["tel"];
+			header('Location: index.php');
+		}
+		else
+			afficForm("Téléphone invalide.", "tel", $_SESSION["tel_parent"]);
 	}
 	if (isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 	{
-		$verif_mdp = 'SELECT p.id_parent, p.mdp_parent FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
+		$verif_mdp = 'SELECT p.mdp_parent FROM Parent as p WHERE p.id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($verif_mdp);
-		while ($mdp = $db->DB_object()) {
-			if ($_POST['mdp1'] == $_POST['mdp2'] && hasher_mdp($_POST['anc_mdp']) == $mdp->mdp_parent)
+		if ($mdp = $db->DB_object())
+		{
+			if(hasher_mdp($_POST['anc_mdp']) == $mdp->mdp_parent)
 			{
-				$modifier = 'UPDATE Parent SET mdp_parent = "'.hasher_mdp($_POST['mdp2']).'" WHERE id_parent = '.$_SESSION['id_parent'];
-				$db->DB_query($modifier);
-				header('Location: index.php');
+				if(verifMdp($_POST['mdp1']))
+				{
+					if ($_POST['mdp1'] == $_POST['mdp2'])
+					{
+						$modifier = 'UPDATE Parent SET mdp_parent = "'.hasher_mdp($_POST['mdp2']).'" WHERE id_parent = '.$_SESSION['id_parent'];
+						$db->DB_query($modifier);
+						//$_SESSION["password"] = $_POST["mdp1"];
+						header('Location: index.php');
+					}
+					else
+						afficForm("Les mots de passe ne correspondent pas.", "mdp");
+				}
+				else
+					afficForm("Le mot de passe doit comporter entre 6 et 16 caractères.", "mdp");
 			}
-			else {
-				print('<script type="text/javascript">location.href="modif_compte.php?compte=mdp";</script>');
-			}
+			else
+				afficForm("Ancien mot de passe incorrect.", "mdp");
 		}
 	}
 	if (isset($_POST['enfant']))
 	{
-		$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
-		$db->DB_query($modifier);
-		header('Location: index.php');
+		if(!empty($_POST["enfant"]))
+		{
+			$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+			$db->DB_query($modifier);
+			$_SESSION["nb_enfants"] = $_POST["enfant"];
+			header('Location: index.php');
+		}
+		else
+			afficForm("Le champ doit être renseigné.", "enfant", $_SESSION['nb_enfants']);
 	}
 
 $db->DB_done();	

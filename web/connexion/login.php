@@ -16,9 +16,6 @@ require_once(LIB.'/lib_hasher_mdp.php');
 	}
 	else
 	{
-		/*
-		verifier si l un des champs est vemaile 
-		*/
 		$bool=true;
 
 		if(empty($_POST['email'])){$bool=false;}
@@ -26,51 +23,42 @@ require_once(LIB.'/lib_hasher_mdp.php');
 
 		if($bool)
 		{
-			/*
-			Purification des variables
-			*/
+			// purification des variables
 			$_POST["email"]=htmlEntities($_POST["email"]);
 			$_POST["pass"]=htmlEntities($_POST["pass"]);
 
-			/*
-			perparation de la requete 
-			*/
-			$requete = 'select id_parent, mdp_parent, droits_parents from Parent where email_parent = "'.$_POST["email"].'"';
+			$requete = 'select * from Parent where email_parent = "'.$_POST["email"].'"';
 
-			/*
-			connexion a la base via la classe DB_connection
-			*/
+			// connexion a la base via la classe DB_connection
 			$db = new DB_connection();
 
-			/*
-			exÃ©cution de la requete 
-			*/
 			$db->DB_query($requete);
 
-			/*
-			exÃ©cution de la requete 
-			*/	 
 			$ligne = $db->DB_object();
 
-			/*
-			on vÃ©rifie que le rÃ©sultat de la requÃªte n'est pas null
-			*/
+			// vérifie que le résultat de la requête n'est pas nul
 			if($ligne != null)
 			{
-				/*
-				on vÃ©rifie si le mot de passe du parent correspond
-				*/
-				$email = $_POST["email"];
+				// vérifie si le mot de passe du parent correspond
 				$mdp = $ligne->mdp_parent;
-				$droits = $ligne->droits_parents;
-				$id_parent = $ligne->id_parent;
 
 				if($mdp == hasher_mdp($_POST["pass"]))
 				{
+					$id_parent = $ligne->id_parent;
+					$nom_parent = $ligne->nom_parent;
+					$email = $ligne->email_parent;
+					$tel_parent = $ligne->tel_parent;
+					$nb_enfants = $ligne->nb_enfants;
+					$droits = $ligne->droits_parents;
+
 					session_start();
 					$_SESSION['id_parent'] = $id_parent;
+					$_SESSION['nom_parent'] = $nom_parent;
+					$_SESSION['tel_parent'] = $tel_parent;
+					$_SESSION['nb_enfants'] = $nb_enfants;
+					$_SESSION['droits'] = $droits;
 					$_SESSION['email'] = $email;
-					$_SESSION['password'] = $mdp;
+					//$_SESSION['password'] = $mdp;
 
 					//create_fonction(); // ?
 					
@@ -84,15 +72,15 @@ require_once(LIB.'/lib_hasher_mdp.php');
 					if($droits == 0)
 					{
 						/*
-						c est un parent sans droit d administration
-						on le redirige vers la page precedente
+						c'est un parent sans droit d'administration
+						on le redirige vers la page précédente
 						*/
 						//header("location: index.php");
 					}
 					else
 					{
 						/*
-						c'est un parent avec droit d administration
+						c'est un parent avec droit d'administration
 						on le redirige vers l'interface administrateur    
 						*/
 						//header("location: index.php");
@@ -100,11 +88,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 				}
 				else
 				{
-					/*
-					erreur de mot de passe
-					*/
-					//connexion();
-					//echo "Identifiants incorrects.";
+					// erreur de mot de passe
 					header('location: ../accueil/index.php?redirected=false');
 				}
 			}
@@ -115,8 +99,6 @@ require_once(LIB.'/lib_hasher_mdp.php');
 				le formulaire avec son Ã©tat prÃ©cÃ©dent
 				avec un message d'erreur
 				*/
-				//connexion();
-				//echo "Identifiants incorrects.";
 				header('location: ../accueil/index.php?redirected=false');
 			}
 			$db->DB_done();
@@ -128,8 +110,6 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			on affiche un message 
 			et le formulaire avec son Ã©tat precedent
 			*/
-			//connexion();
-			//echo "Veuillez renseigner tous les champs.";
 			header('location: ../accueil/index.php?redirected=false');
 		}
 	}
@@ -143,4 +123,3 @@ require_once(LIB.'/lib_hasher_mdp.php');
 	}
 
 	?>
-

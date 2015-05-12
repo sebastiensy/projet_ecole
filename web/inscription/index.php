@@ -117,14 +117,14 @@ require_once(LIB.'/lib_verifications.php');
 				{
 					formulaire_inscription("Cet email existe déjà." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 				}
-				else if($_POST["mdp"]!==$_POST["cmdp"])
+				else if($_POST["mdp"] != $_POST["cmdp"])
 				{
 					/*
 					verifie si les mots de passe correspondent
 					sinon réaffichage du formulaire avec son état précédent
 					et un message 
 					*/
-					formulaire_inscription("Mot de passe incorrect.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+					formulaire_inscription("Les mots de passe ne correspondent pas.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 				}
 				else
 				{

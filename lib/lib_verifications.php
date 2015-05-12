@@ -37,7 +37,12 @@ function verifMdp($mdp)
  */
 function verifEmail($email)
 {
-	return filter_var($email, FILTER_VALIDATE_EMAIL);
+	$motif = '/^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/';
+	if(!preg_match($motif, $email))
+		return false;
+	else
+		return true;
+	//return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 /*
