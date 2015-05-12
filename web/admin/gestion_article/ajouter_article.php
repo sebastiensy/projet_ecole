@@ -39,8 +39,7 @@
 
 	<br>
 		<div align="center" id="add-form">
-		<form method="post" action="ajouter_article1.php" name="f1" onSubmit="return verif()" id="maj">
-		
+		<form method="post" action="ajouter_article1.php" name="f1" id="maj">
 		<table width="90%" align="center">
 			<tr>
 			<td >
