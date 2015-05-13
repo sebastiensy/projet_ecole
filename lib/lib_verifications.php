@@ -69,4 +69,18 @@ function verifEnfant($enfant)
 	return false;
 }
 
+
+/*
+ * vérifie si c'est bien un prix
+ *
+ */
+function verifPrix($prix)
+{
+	if(is_numeric($prix))
+		return true;
+	return false;
+}
+
+
+
 ?>
