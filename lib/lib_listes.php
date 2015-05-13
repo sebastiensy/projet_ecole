@@ -71,9 +71,6 @@ function affichage($panier)
 		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
 	}
 
-	// placement de l'en-tête
-	head();
-
 	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code';
 
 	// connexion a la base via la classe DB_connection
@@ -82,12 +79,26 @@ function affichage($panier)
 	// exécution de la requete
 	$db->DB_query($requete);
 
+	if($db->DB_count() > 0)
+	{
+		head();
+	}
+	else
+	{
+		echo "Il n'y a aucune liste.<br/>";
+	}
+
 	// mise en forme
 	while(($ligne = $db->DB_object()) != null)
 	{
 		mise_en_forme($ligne->id_nivliste, $ligne->Libelle, $ligne->forfait);
 	}
-	footer();
+
+	if($db->DB_count() > 0)
+	{
+		footer();
+	}
+	
 }
 
 ?>

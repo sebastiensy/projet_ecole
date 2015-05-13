@@ -21,28 +21,30 @@ $db = new DB_connection();
 
 if(isset($_POST["select"]))
 {
-	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES("'.$_POST["select"].'", 0)';
+	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$_POST["select"].'", 0)';
 	$db->DB_query($query);
 }
-
-$query = 'SELECT * FROM Niveau WHERE code not in (select distinct(niveau) FROM Liste_niveau)';
-$db->DB_query($query);
-
-if($db->DB_count() > 0)
+else
 {
-	echo "<form method=\"post\" action=\"\">";
-	echo "<fieldset align=\"center\" class=\"gen\">";
-		echo "<legend>Niveau</legend>";
-		echo "<select name=\"select\">";
-		while($liste = $db->DB_object())
-		{
-			echo "<option value=".$liste->code.">".$liste->Libelle."</option>";
-		}
-		echo "</select>";
-	echo "</fieldset>";
-	echo "<br/><input type=\"submit\" value=\"Valider\">";
-	echo "</div>";
-	echo "</form>";
+	$query = 'SELECT * FROM Niveau WHERE code not in (select distinct(niveau) FROM Liste_niveau)';
+	$db->DB_query($query);
+
+	if($db->DB_count() > 0)
+	{
+		echo "<form method=\"post\" action=\"\">";
+		echo "<fieldset align=\"center\" class=\"gen\">";
+			echo "<legend>Niveau</legend>";
+			echo "<select name=\"select\">";
+			while($liste = $db->DB_object())
+			{
+				echo "<option value=".$liste->code.">".$liste->Libelle."</option>";
+			}
+			echo "</select>";
+		echo "</fieldset>";
+		echo "<br/><input type=\"submit\" value=\"Valider\">";
+		echo "</div>";
+		echo "</form>";
+	}
 }
 
 ?>

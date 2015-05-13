@@ -37,10 +37,10 @@ if(isset($_GET["id"]))
 	$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$_GET["id"];
 	$db->DB_query($query2);
 
+	echo "<b>Niveau : ".$libelle."</b><br/>";
+	echo "<b>Forfait : ".$prix." €</b><hr/>";
 	if($db->DB_count() > 0)
 	{
-		echo "<b>Niveau : ".$libelle."</b><br/>";
-		echo "<b>Forfait : ".$prix." €</b><hr/>";
 		echo "<table align=\"center\">";
 		echo "<tr id=\"entete\" align=\"center\">
 						<th>Référence</th>
@@ -55,6 +55,10 @@ if(isset($_GET["id"]))
 							<td>".$mat->qte_scat."</td>
 						</tr>";
 		}
+	}
+	else
+	{
+			echo "<div align=\"center\"><b>La liste est vide.</b></div>";
 	}
 	echo "</table>";
 
