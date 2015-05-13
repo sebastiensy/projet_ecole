@@ -139,6 +139,8 @@ if(isset($_GET['p']))
 				}
 			?>
 
-<?php 
-	require_once('../inc/footer.inc.php');
+<?php
+
+require_once('../inc/footer.inc.php');
+
 ?>
