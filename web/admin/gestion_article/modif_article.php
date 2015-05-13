@@ -78,7 +78,7 @@ if(isset($_GET['p']))
 			echo '<th>Référence</th>';
 			echo '<th>Description</th>';
 			echo '<th>Prix</th>';
-			echo '<th></th>';
+			echo '<th>Supprimer</th>';
 		echo '</tr>';
 		while($ligne=$db->DB_object())
 		{
