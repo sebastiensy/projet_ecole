@@ -35,14 +35,14 @@ function get_niveau($code)
 }
 
 $db = new DB_connection();
-$req="select * from Liste_niveau";
+$req="select * from Liste_niveau order by niveau";
 $db->DB_query($req);
 while($ligne=$db->DB_object())
 {
 	?>
 	<tr>
 		<td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
-		<td width="50" ><div align="center"><?php echo $ligne->forfait; ?></div></td>
+		<td width="50" ><div align="center"><?php echo $ligne->forfait; ?> €</div></td>
 		<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"> Modifier </a></div></td>
 		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img src="../../../img/del.png"></a></div></td>
 	</tr>
@@ -56,7 +56,7 @@ while($ligne=$db->DB_object())
 <table width="900" align="center">
 	<tr>
 		<!-- <td><div align="right"><a href="aliste.php?p=1" class="myButton">Ajouter Une liste</a></div></td> -->
-		<td><div align="right"><a href="new_aliste.php" class="myButton">Ajouter Une liste</a></div></td>
+		<td><div align="right"><a href="ajouter_liste.php" class="myButton">Ajouter Une liste</a></div></td>
 	</tr>
 </table>
 
