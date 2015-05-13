@@ -1,8 +1,10 @@
 <?php
-	require_once('../inc/data.inc.php');
+
+require_once('../inc/data.inc.php');
+
 ?>
 
-	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
 
 <?php
 

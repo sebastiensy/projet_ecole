@@ -15,12 +15,12 @@ require_once('../inc/data.inc.php');
 
 	<div id="page">
 
-	<table width="900" align="center" class="entete">
-		<tr>
-			<td ><div align="right">Modifier des articles</div></td>
-		</tr>
-	</table>
-	<br/><br/><br/><br/><br/><br/><br/><br/>
+		<table width="900" align="center" class="entete">
+			<tr>
+				<td ><div align="right">Modifier des articles</div></td>
+			</tr>
+		</table>
+		<br/><br/><br/><br/><br/><br/><br/><br/>
 
 		<div align="center" id="add-form">
 		<form method="post" action="modif_article.php?p=recherche" id="maj">

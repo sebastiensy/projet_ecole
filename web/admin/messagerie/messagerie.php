@@ -3,24 +3,33 @@
 	require_once('../inc/data.inc.php');
 ?>
 
-<div id="page">
-	<table width="900" align="center" class="entete">
-		<tr>
-			<td ><div align="right">Messagerie</div></td>
-		</tr>
-	</table>
-	<br>
-	<br>
-	<table width="900" align="center" class="data">
-		<tr>
-			<th width="90" ><div align="center">N° message</div></th>
-			<th width="90" ><div align="center">Expediteur</div></th>
-			<th width="90" ><div align="center">Objet</div></th>
-			<th width="90" ><div align="center">Date</div></th>
-			<th width="90" ><div align="center">Etat</div></th>
-			<th width="90" ><div align="center"></div></th>
-			<th width="90" ><div align="center"></div></th>
-		</tr>
+<div class="corps">
+
+	<div id="menu">
+		<?php
+		require_once('../inc/menu.inc.php');
+		?>
+	</div>
+
+	<div id="page">
+
+		<table width="900" align="center" class="entete">
+			<tr>
+				<td ><div align="right">Messagerie</div></td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table width="900" align="center" class="data">
+			<tr>
+				<th width="90" ><div align="center">N° message</div></th>
+				<th width="90" ><div align="center">Expediteur</div></th>
+				<th width="90" ><div align="center">Objet</div></th>
+				<th width="90" ><div align="center">Date</div></th>
+				<th width="90" ><div align="center">Etat</div></th>
+				<th width="90" ><div align="center"></div></th>
+				<th width="90" ><div align="center"></div></th>
+			</tr>
 
 <?php 
 

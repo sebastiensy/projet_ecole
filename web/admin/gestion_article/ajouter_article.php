@@ -5,20 +5,25 @@
 	require_once('../../../lib/lib_form_ajout_article_admin.php');
 ?>
 
-<script type="text/javascript" src="../../../js/ajout_article.js"></script>
+<div class="corps">
 
-<table width="900" align="center" class="entete">
-	<tr>
-		<td ><div align="right">Ajouter des articles</div></td>
-	</tr>
-</table>
-<br>
-<br>
-<br>
-<br>
+	<div id="menu">
+		<?php
+		require_once('../inc/menu.inc.php');
+		?>
+	</div>
 
+	<div id="page">
 
-<div id="page">
+		<script type="text/javascript" src="../../../js/ajout_article.js"></script>
+
+		<table width="900" align="center" class="entete">
+			<tr>
+				<td ><div align="right">Ajouter des articles</div></td>
+			</tr>
+		</table>
+		<br/><br/><br/><br/><br/><br/><br/><br/>
+
 	<?php
 
 		if (!isset($_POST['ref']) && !isset($_POST['desc']) && !isset($_POST['prix']))

@@ -29,13 +29,15 @@ function get_niveau($code)
 		require_once('../inc/menu.inc.php');
 		?>
 	</div>
+	
+	<div id="page">
 
-<table width="900" align="center"class="entete">
-	<tr>
-		<td><div align="right">Modification de la liste</div></td>
-	</tr>
-</table>
-<br/><br/><br/><br/>
+		<table width="900" align="center"class="entete">
+			<tr>
+				<td><div align="right">Modification de la liste</div></td>
+			</tr>
+		</table>
+		<br/><br/><br/><br/>
 
 <?php
 

@@ -15,20 +15,20 @@ require_once('../inc/data.inc.php');
 	
 	<div id="page">
 
-	<table width="900" align="center" class="entete">
-		<tr>
-			<td ><div align="right">Les Listes</div></td>
-		</tr>
-	</table>
-	<br/><br/>
+		<table width="900" align="center" class="entete">
+			<tr>
+				<td ><div align="right">Les Listes</div></td>
+			</tr>
+		</table>
+		<br/><br/>
 
-	<table width="900" align="center" class="data">
-	<tr>
-		<th width="90" ><div align="center">Niveau-Classe</div></th>
-		<th width="50" ><div align="center">Prix(forfait)</div></th>
-		<th width="50" ><div align="center">Modifier</div></th>
-		<th width="20" ><div align="center">Supprimer</div></th>
-	</tr>
+		<table width="900" align="center" class="data">
+		<tr>
+			<th width="90" ><div align="center">Niveau-Classe</div></th>
+			<th width="50" ><div align="center">Prix(forfait)</div></th>
+			<th width="50" ><div align="center">Modifier</div></th>
+			<th width="20" ><div align="center">Supprimer</div></th>
+		</tr>
 
 <?php 
 
