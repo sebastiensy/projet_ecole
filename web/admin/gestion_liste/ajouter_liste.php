@@ -32,16 +32,12 @@ if(isset($_POST["select"]))
 
 	?>
 
-	<div id="contenu">
+	<div id="tabg">
+		AAAAAAAAAAAAAAAA
+	</div>
 
-		<div id="tabg">
-			AAAAAAAAAAAAAAAA
-		</div>
-
-		<div id="tabd">
-			BBBBBBBBBBBBBBBB
-		</div>
-
+	<div id="tabd">
+		BBBBBBBBBBBBBBBB
 	</div>
 
 	<?php

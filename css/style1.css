@@ -19,22 +19,17 @@ body
 	margin-left:180px;
 }
 
-#contenu
-{
-	margin-top:20px;
-	margin-left:200px;
-	width:900px;
-	background-color:red;
-}
-
 #tabg
 {
+	margin-top:20px;
 	float:left;
 }
 
 #tabd
 {
+	margin-top:20px;
 	float:right;
+	margin-right:80px;
 }
 
 #menu-vertical, #menu-vertical ul
