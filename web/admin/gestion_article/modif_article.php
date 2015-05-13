@@ -73,7 +73,13 @@ if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
 	{
-		echo '<table width="90%" align="center">';
+		echo '<br/><br/><table width="90%" align="center">';
+		echo '<tr>';
+			echo '<th>Référence</th>';
+			echo '<th>Description</th>';
+			echo '<th>Prix</th>';
+			echo '<th></th>';
+		echo '</tr>';
 		while($ligne=$db->DB_object())
 		{
 			echo '<tr><td width="10%">';
