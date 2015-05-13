@@ -3,6 +3,9 @@
 	require_once('../inc/data.inc.php');
 ?>
 
+<script type="text/javascript" src="../../../js/active_radio_bouton.js"></script>
+
+
 <div id="page">
 	<table width="900" align="center" class="entete">
 		<tr>
@@ -48,6 +51,7 @@ while($suiv = $db->DB_object())
 			<th width="90" ><div align="center">Retire et paye</div></th>
 			<th width="90" ><div align="center"></div></th>
 			<th width="90" ><div align="center"></div></th>
+			<th width="90" ><div align="center"></div></th>
 		</tr>
 	<?php
 	$requete2 = 'SELECT p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$suiv->id_parent.'';
@@ -61,26 +65,33 @@ while($suiv = $db->DB_object())
 			echo "<tr><td><div align='center'>".$cpt."</div></td>";
 			$cpt++;
 			if ($commande != $suiv2->id_commande)
-			{		
+			{
+			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'"/>';
 			for ($i=1; $i<=6; $i++) {
 				if($suiv2->etat == $i)
 				{
-					echo '<td><div align="center"><input type="radio" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled></div></td>';
+					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled></div></td>';
 				}
 				else
 				{
-					echo '<td><div align="center"><input type="radio" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></div></td>';
+					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></div></td>';
 				}
 
 			}
+			$nom = 'suivi'.$suiv2->nom_parent.$suiv2->id_commande;
+			?>
 			
-			echo '<td><div align="center"><a id="modifier'.$suiv2->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv2->id_commande.'">Modifier</a></div></td>';
+			<td><div align="center"><input type="button" id="modif" value="Modifier" onClick="activeRadioBouton()"></input></div></td>
+			<td><div align="center"><input type="submit" name="enregistrer" value="Enregistrer" disabled></input></div></td>
+			<?php
+			//echo '<td><div align="center"><a id="modifier'.$suiv2->nom_parent.'" value="Modifier" href="suivi.php?com='.$suiv2->id_commande.'">Modifier</a></div></td>';
 
 			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.$suiv2->nom_parent.'">Etat de la commande</a></div></td>';		
-			echo "</tr>";
+			echo '</tr>';
+			echo '</form>';
 		}
 
-		else
+		/*else
 		{
 			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'"/>';
 			
@@ -100,7 +111,7 @@ while($suiv = $db->DB_object())
 				echo '</form>';
 
 
-		}
+		}*/
 
 		if (isset($_POST['suivi']))
 		{
