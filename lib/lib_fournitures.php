@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Affiche un formulaire contenant les produits entrées en paramètres.
+ * Affiche un formulaire contenant les produits entrés en paramètres.
  * 
  * @param $rubrique
  * @param $srubrique
