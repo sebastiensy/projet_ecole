@@ -1,11 +1,35 @@
 body
 {
 	overflow: auto;
+	margin:0px 5% 10px 5%;
 }
 
-#listen
+.corps
 {
-	margin-top:40px;
+	/*background-color:blue;*/
+	position:above;
+	width:1100px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-15px;
+}
+
+#contenu
+{
+	margin-top:20px;
+	margin-left:200px;
+	width:900px;
+	background-color:red;
+}
+
+#tabg
+{
+	float:left;
+}
+
+#tabd
+{
+	float:right;
 }
 
 #menu-vertical, #menu-vertical ul
