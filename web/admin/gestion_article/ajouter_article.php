@@ -1,33 +1,15 @@
 <?php
 	require_once('../inc/header.inc.php');
 	require_once('../inc/data.inc.php');
+	require_once('../../../lib/lib_form_ajout_article_admin.php');
 ?>
 
 <script type="text/javascript" src="../../../js/ajout_article.js"></script>
 
-<!--<html>
-	<head>
-		<title>Interface Administrateur:Ajouter des articles</title>
-		<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
-		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-		<style type="text/css">
-			body{
-				background-image:none;
-				}
-			
-			
-			</style>
-	<head>
-	<body>
-
-<header class="tete">
-			<img src="../../../img/header.jpg" alt="header">
-		<header>-->
-		<?php //require_once('../nav.php')?>
-		<table width="900" align="center" class="entete">
-<tr>
-<td ><div align="right">Ajouter des articles</div></td>
-</tr>
+<table width="900" align="center" class="entete">
+	<tr>
+		<td ><div align="right">Ajouter des articles</div></td>
+	</tr>
 </table>
 <br>
 <br>
@@ -36,10 +18,71 @@
 
 
 <div id="page">
+	<?php
 
+		if (!isset($_POST['ref']) && !isset($_POST['desc']) && !isset($_POST['prix']))
+		{
+			formulaire_ajout_article("", "", "", ""); 
+		}
+		else
+		{
+			$db = new DB_connection();
+				
+			$req = "SELECT ref_mat FROM Materiel WHERE ref_mat = ".$_POST['ref'];
+			$db->DB_query($req);
+			
+
+			if($ligne=$db->DB_object())
+			{
+				formulaire_ajout_article("<span style=\"color:red\"><p><strong>Le produit ayant pour reference ".$_POST['ref']." existe deja. Veuillez modifier la reference !</strong></p></span>",$_POST['ref'],$_POST['desc'],$_POST['prix']);
+			}
+			else
+			{
+				$req1="insert into Sous_categorie values('','".$_POST['categorie']."','')";
+				$db->DB_query($req1);
+				$id=$db->DB_id();
+
+				$req1="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
+				$db->DB_query($req1);
+				formulaire_ajout_article("<span style=\"color:green\"><p><strong>Le produit \"".$_POST['desc']."\" ayant pour reference ".$_POST['ref']." a bien ete ajoute.</strong></p></span>","","","");
+			}
+		}
+
+		?> 
+	<!--<div id="msg">
+		<?php 
+			/*if (isset($_POST['ref']) && isset($_POST['desc']) && isset($_POST['prix']))
+				{
+					$db = new DB_connection();
+				
+					$req = "SELECT ref_mat FROM Materiel WHERE ref_mat = ".$_POST['ref'];
+					$db->DB_query($req);
+					
+
+					if($ligne=$db->DB_object())
+					{
+						echo "	<span style=\"color:red\"><p><strong>Le produit ayant pour reference ".$_POST['ref']." existe deja. Veuillez modifier la reference !</strong></p></span>";
+
+					}
+					else
+					{
+						$req1="insert into Sous_categorie values('','".$_POST['categorie']."','')";
+						$db->DB_query($req1);
+						$id=$db->DB_id();
+
+						$req1="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
+						$db->DB_query($req1);
+						echo "	<span style=\"color:green\"><p><strong>Le produit \"".$_POST['desc']."\" ayant pour reference ".$_POST['ref']." a bien été ajouté.</strong></p></span>";
+					}
+				}*/
+		?>
+	</div>
 	<br>
-		<div align="center" id="add-form">
-		<form method="post" action="ajouter_article1.php" name="f1" id="maj">
+
+		<div align="center" id="add-form">-->
+		
+
+		<!--<form method="post" action="ajouter_article.php" name="f1" id="maj">
 		<table width="90%" align="center">
 			<tr>
 			<td >
@@ -74,15 +117,15 @@
 				<td colspan="3">
 				Categorie <select name="categorie">
 						<?php
-						$db = new DB_connection();
+						/*$db = new DB_connection();
 						$req="select distinct categorie from Sous_categorie order by categorie asc";
 						$db->DB_query($req);
 						while($ligne=$db->DB_object())
-						{
+						{*/
 						?>
-						<option value="<?php echo $ligne->categorie;?>" > <?php echo $ligne->categorie;?></option>
+						<option value="<?php //echo $ligne->categorie;?>" > <?php //echo $ligne->categorie;?></option>
 						<?php
-						}
+						//}
 						?>
 						</select>
 						</td>
@@ -92,7 +135,7 @@
 				
 			
 			</table>
-			</form>
+			</form>-->
 
 <!--<html>
 	<head>
