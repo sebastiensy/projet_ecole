@@ -22,6 +22,14 @@ function get_niveau($code)
 
 ?>
 
+<div class="corps">
+
+	<div id="menu">
+		<?php
+		require_once('../inc/menu.inc.php');
+		?>
+	</div>
+
 <table width="900" align="center"class="entete">
 	<tr>
 		<td><div align="right">Modification de la liste</div></td>
