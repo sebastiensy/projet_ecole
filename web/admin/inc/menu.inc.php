@@ -1,6 +1,3 @@
-		<header class="tete">
-			<img src="../../../img/header.jpg" alt="header">
-		</header>
 			<?php
 			echo '<nav class=menu>';
 			echo '<br><br><br>';

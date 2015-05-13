@@ -131,3 +131,6 @@
 
 	</script>
 </head>
+	<header class="tete">
+		<img src="../../../img/header.jpg" alt="header">
+	</header>
