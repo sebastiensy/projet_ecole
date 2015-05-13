@@ -44,8 +44,8 @@
 				width: '70%',
 				height: '60%',
 				onClosed: function() {   
-				parent.location.reload(true); 
-    ;}
+				parent.location.reload(true);
+				;}
 								});
 	});
 	$( document ).ready(function() {
@@ -53,11 +53,8 @@
 				
 				type: "iframe",
 				width: '70%',
-				height: '60%',
-				onClosed: function() {   
-				parent.location.reload(true); 
-    ;}
-								});
+				height: '60%'
+			});
 	});
 
 	/*
