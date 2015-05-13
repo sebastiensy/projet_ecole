@@ -8,6 +8,7 @@
 	<!--<link rel="stylesheet" href="../../../css/progress.bar.css">-->
 	<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/myButton.css" />
 	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 	<style type="text/css">
 			body{

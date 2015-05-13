@@ -44,7 +44,7 @@ while($ligne=$db->DB_object())
 		<td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau);?></div></td>
 		<td width="50" ><div align="center"><?php echo $ligne->forfait;?></div></td>
 		<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste;?>"> Modifier </a></div></td>
-		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste;?>"> <img src="../../../img/del.png"></a></div></td>
+		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste;?>"><img src="../../../img/del.png"></a></div></td>
 	</tr>
 	<?php
 }
@@ -55,7 +55,8 @@ while($ligne=$db->DB_object())
 <br/>
 <table width="900" align="center">
 	<tr>
-		<td><div align="right"><a href="aliste.php?p=1" class="myButton">Ajouter Une liste</a></div></td>
+		<!-- <td><div align="right"><a href="aliste.php?p=1" class="myButton">Ajouter Une liste</a></div></td> -->
+		<td><div align="right"><a href="new_aliste.php" class="myButton">Ajouter Une liste</a></div></td>
 	</tr>
 </table>
 
