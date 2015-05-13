@@ -7,7 +7,8 @@
 	{
 	$niv=$_POST['niveau'];
 	echo "niv = ".$niv;
-	$req="insert into Liste_niveau (`id_nivliste`, `niveau`, `forfait`) VALUES (NULL,'".$niv."', '0')";
+	echo "<br/>";
+	$req="insert into Liste_niveau (niveau, forfait) VALUES ('".$niv."', '0')";
 	$db = new DB_connection();
 	$db->DB_query($req);
 	$id=$db->DB_id();

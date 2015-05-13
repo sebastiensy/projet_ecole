@@ -121,13 +121,13 @@
 
 	</script>
 </head>
-<body>
-		
+	<body>
+
 		<header class="tete">
 			<img src="../../../img/header.jpg" alt="header">
 		</header>
 			<?php
-echo '<nav class=menu>';
+			echo '<nav class=menu>';
 			echo '<br><br><br>';
 			echo '<table width="150" align="left">';
 			echo '<ul><tr><td><br><br>';

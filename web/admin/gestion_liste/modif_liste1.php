@@ -76,7 +76,7 @@
 		$ligne=$db->DB_Object();
 		$for=$ligne->forfait;
 		
-		/*                             Mofifier la valeur du forfait                                             */
+		/*                             Modifier la valeur du forfait                                             */
 		$for=$for-($qtea*$prix);
 		$req="update Liste_niveau set forfait='".$for."' where id_nivListe=".$id;
 		$db->DB_query($req);

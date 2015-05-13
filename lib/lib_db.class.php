@@ -21,8 +21,7 @@ class DB_connection
 	private $_username;
 	private $_password;
 	private $_database;
-	
-	
+
 	/**
 	 * constructeur de la connexion
 	 * DB_connexion::DB_connexion()
@@ -79,6 +78,7 @@ class DB_connection
 	/**
 	 * remonte le nombre de lignes dans la reponse
 	 * DB_connection::DB_count()
+	 *
 	 * @return integer
 	 */
 	public function DB_count()
@@ -88,28 +88,28 @@ class DB_connection
 	}
 
 	/**
+	 * remonte l'identifiant de l'insertion
+	 * DB_connection::DB_id()
+	 *
+	 * @return integer
+	 *
+	 */
+	public function DB_id()
+	{
+		return @mysqli_insert_id($this->_connection);
+	}
+
+	/**
 	 * nettoyage de la mémoire et déconnexion de la DB
 	 * DB_connection::DB_done()
 	 *
 	 * @return void
 	 */
-	 public function DB_done()
-	 {
+	public function DB_done()
+	{
 		@mysqli_free_result($this->_result);
 		@mysqli_close($this->connection);
-	 }
-	 public function DB_id()
-	 {
-		return @mysqli_insert_id($this->_connection);
 	}
-	public function DB_num_rows()
-	 {
-		return @mysqli_num_rows($this->_result);
-	}
-	 public function DB_clo()
-	 {
-		@mysqli_close();
-	 }
 }
 
 ?>
