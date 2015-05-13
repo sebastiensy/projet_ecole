@@ -5,13 +5,24 @@ require_once('../inc/data.inc.php');
 
 ?>
 
-<div id="page">
+<body>
+
+<div class="corps">
+
+	<div id="menu">
+		<?php
+		require_once('../inc/menu.inc.php');
+		?>
+	</div>
+	
+	<div id="page">
+
 	<table width="900" align="center" class="entete">
 		<tr>
 			<td ><div align="right">Les Listes</div></td>
 		</tr>
 	</table>
-	<br/><br/><br/><br/>
+	<br/><br/>
 
 	<table width="900" align="center" class="data">
 	<tr>
