@@ -57,13 +57,7 @@
 			});
 	});
 
-	/*
-		pour le suivi des commandes
-	*/
-	/*$(function() {
-    	$( "#accordion-resizer" ).accordion();
-  	});*/
-
+	
 	/*
 		pour ajouter un article
 	*/

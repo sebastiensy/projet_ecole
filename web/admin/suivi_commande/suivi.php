@@ -12,14 +12,7 @@
 	</div>
 
 	<div id="page">
-<script type="text/javascript">
-	$(function() {
-		//var nb = 2; 
-    	$( "#accordion-resizer" ).accordion();
-   	    $( "#accordion-resizer" ).accordion( "option", "active", nb );
-
-  	});
-	</script>
+		
 		<table width="900" align="center" class="entete">
 			<tr>
 				<td ><div align="right">Suivi des Commandes</div></td>
@@ -65,7 +58,7 @@ while($suiv = $db->DB_object())
 			<th width="90" ><div align="center"></div></th>
 		</tr>
 	<?php
-	$requete2 = 'SELECT p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$suiv->id_parent.'';
+	$requete2 = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$suiv->id_parent.'';
 	$db2 = new DB_connection();
 	$db2->DB_query($requete2);
 	$cpt = 1;
@@ -77,7 +70,7 @@ while($suiv = $db->DB_object())
 			$cpt++;
 			if ($commande != $suiv2->id_commande)
 			{
-			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'"/>';
+			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&id='.$suiv2->id_parent.'"/>';
 			for ($i=1; $i<=6; $i++) {
 				if($suiv2->etat == $i)
 				{
@@ -104,8 +97,9 @@ while($suiv = $db->DB_object())
 		if (isset($_POST['suivi']))
 		{
 		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
+		$var1 = $_GET['id'] - 1;
 		$db->DB_query($modifier);
-		print('<script type="text/javascript">location.href="suivi.php";</script>');
+		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
 		}
 
 		?>
@@ -115,7 +109,7 @@ while($suiv = $db->DB_object())
 	?>
 	</table>
 	<script type="text/javascript" src="../../../js/active_radio_bouton.js"></script>
-	<!--<script type="text/javascript" src="../../../js/bouton_enregistrer_suivi.js"></script>-->
+	<script type="text/javascript" src="../../../js/chargement_page_suivi.js"></script>
 	</div>
 	<?php
 }
