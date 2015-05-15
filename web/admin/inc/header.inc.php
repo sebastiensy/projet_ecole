@@ -15,7 +15,6 @@
 				background-image:none;
 				}
 	#accordion-resizer {
-    	padding-left: 200px;
     	width: 1000px;
     	height: 100px;
   	}
