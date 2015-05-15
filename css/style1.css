@@ -32,6 +32,11 @@ body
 	margin-right:80px;
 }
 
+#click
+{
+	cursor:pointer;
+}
+
 #menu-vertical, #menu-vertical ul
 {
 	padding:0;

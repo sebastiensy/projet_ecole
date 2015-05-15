@@ -56,6 +56,21 @@
 				height: '60%'
 			});
 	});
+	$(function() {
+		var offset = $("#tabd").offset();
+		var topPadding = 15;
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > offset.top) {
+				$("#tabd").stop().animate({
+					marginTop: $(window).scrollTop() - offset.top + topPadding
+				});
+			} else {
+				$("#tabd").stop().animate({
+					marginTop: 0
+				});
+			};
+		});
+	});
 
 	/*function recupererQte(champ)
 	{
