@@ -59,10 +59,12 @@ require_once('../../inc/data.inc.php');
 
 	if ($_SESSION['id_parent'] != "")
 	{
-	$requete = 'SELECT p.nom_parent, p.id_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+	//$requete = 'SELECT p.nom_parent, p.id_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+	$requete2 = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
 
 	$db = new DB_connection();
-	$db->DB_query($requete);
+	//$db->DB_query($requete);
+	$db->DB_query($requete2);
 
 	echo "<p class=\"titre\">Etat de ma commande</p>";
 	?>
@@ -74,6 +76,16 @@ require_once('../../inc/data.inc.php');
 
 	while($suiv = $db->DB_object())
 	{
+		echo "<table>
+				<tr>
+					<th>Numero de commande</th>
+					<td>".$suiv->id_commande."</td>
+				</tr>
+				<tr>
+					<th>Date de la commande</th>
+					<td>".$suiv->date_cmd."</td>
+				</tr>
+			</table>";
 		?>
 		<div class="checkout-wrap">
 	  <ul class="checkout-bar">
@@ -99,19 +111,19 @@ require_once('../../inc/data.inc.php');
 			echo "var i = ".$i.";";
 			echo "if ($suiv->etat == i && $suiv->etat != 6)
 			{
-				$('#".$i."').removeClass().addClass('active');
+				$('.".$i."').removeClass().addClass('active');
 			}
 			else if ($suiv->etat >= i)
 			{
-				$('#".$i."').removeClass().addClass('visited');
+				$('.".$i."').removeClass().addClass('visited');
 			}
 			else if ($suiv->etat < i)
 			{
-				$('#".$i."').removeClass().addClass('next');
+				$('.".$i."').removeClass().addClass('next');
 			}
 			else if ($suiv->etat == 6)
 			{
-				$('#".$i."').removeClass().addClass('visited');
+				$('.".$i."').removeClass().addClass('visited');
 			}"; 
 			echo "</script>";
 
@@ -119,16 +131,7 @@ require_once('../../inc/data.inc.php');
 
 		echo "<br><br><br><br><br><br>";
 
-		echo "<table>
-				<tr>
-					<th>Numero de commande</th>
-					<td>".$suiv->id_commande."</td>
-				</tr>
-				<tr>
-					<th>Date de la commande</th>
-					<td>".$suiv->date_cmd."</td>
-				</tr>
-			</table>";
+		
 
 		echo "<br>";
 
@@ -146,6 +149,7 @@ require_once('../../inc/data.inc.php');
 					<td>".$suiv->tel_parent."</td>
 				</tr>	
 			</table>";
+
 		
 	}
 
