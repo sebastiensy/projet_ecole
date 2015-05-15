@@ -23,18 +23,20 @@ if($_GET["reponse"] == 1)
 	$html = "";
 	if(($db->DB_count() > 0))
 	{
-		$html .= "<table>";
+		$html .= "<table class=\"data\">";
 			$html .= "<tr>";
 				$html .= "<th>Référence</th>";
 				$html .= "<th>Description</th>";
-				$html .= "<th>Prix</th>";
+				$html .= "<th>Quantité</th>";
+				$html .= "<th></th>";
 			$html .= "</tr>";
 		while($mat = $db->DB_object())
 		{
 			$html .= "<tr>";
 				$html .= "<td>".$mat->ref_mat."</td>";
 				$html .= "<td>".$mat->desc_mat."</td>";
-				$html .= "<td>".$mat->prix_mat." €</td>";
+				$html .= "<td><input type=\"number\" id=\"qte\" onClick=\"recupererQte()\"  name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				$html .= "<td><a href=\"ajouter_liste.php?id=".$mat->id_mat."&amp;qte=qte\"><img title=\"Ajouter\" src=\"../../../img/icon_add.png\"></a></td>";
 			$html .= "</tr>";
 		}
 		$html .= "</table>";

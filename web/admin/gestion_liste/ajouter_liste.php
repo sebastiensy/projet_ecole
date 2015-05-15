@@ -87,7 +87,18 @@ if(isset($_POST["select"]))
 	</div>
 
 	<div id="tabd">
-		BBBBBBBBBBBBBBBB
+
+		<form method="post" action="">
+		<p><input type="submit" name="enrListe" value="Enregistrer"></p>
+		<table class="data">
+			<tr>
+				<th>Référence</th>
+				<th>Description</th>
+				<th>Quantité</th>
+			</tr>
+		</table>
+		</form>
+
 	</div>
 
 	<?php

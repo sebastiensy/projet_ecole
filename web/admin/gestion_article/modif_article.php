@@ -73,7 +73,7 @@ if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
 	{
-		echo '<br/><br/><table width="90%" align="center">';
+		echo '<br/><br/><table class="data" width="90%" align="center">';
 		echo '<tr>';
 			echo '<th>Référence</th>';
 			echo '<th>Description</th>';
