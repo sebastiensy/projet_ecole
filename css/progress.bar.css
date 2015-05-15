@@ -98,22 +98,22 @@ li[id="1"] {
 }
 li[id="2"] {
   top: -20px;
-  left: -25px;
+  left: -30px;
 }
 li[id="3"] {
-  left: -40px;
+  left: -50px;
   top: 0px;
 }
 li[id="4"] {
-  left: -52px;
+  left: -65px;
 }
 li[id="5"] {
   top: -20px;
-  left: -70px;
+  left: -95px;
 }
 li[id="6"] {
   top: -90px;
-  left: 500px;
+  left: 550px;
 }
 div[id="encours"] {
   padding-left: 15px;
@@ -128,12 +128,15 @@ div[id="eclivr"] {
   padding-left: 24px;
 }
 div[id="livre"] {
-  padding-left: 25px;
+  padding-left: 20px;
 }
 div[id="rp"] {
   padding-left: 25px;
 }
-
+fieldset
+{
+  width:725px; 
+}
 
 
 
@@ -171,7 +174,7 @@ div[id="rp"] {
     margin: 0 auto;
     padding: 0;
     position: absolute;
-    width: 78%;
+    width: 95%;
   }
   ul.checkout-bar:before {
     background-size: 35px 35px;
