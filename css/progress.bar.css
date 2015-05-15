@@ -101,18 +101,37 @@ li[id="2"] {
   left: -25px;
 }
 li[id="3"] {
-  left: -50px;
+  left: -40px;
+  top: 0px;
 }
 li[id="4"] {
-  left: -70px;
+  left: -52px;
 }
 li[id="5"] {
   top: -20px;
-  left: -100px;
+  left: -70px;
 }
 li[id="6"] {
   top: -90px;
-  left: 575px;
+  left: 500px;
+}
+div[id="encours"] {
+  padding-left: 15px;
+}
+div[id="valide"] {
+  padding-left: 25px;
+}
+div[id="cmdfourni"] {
+  padding-left: 20px;
+}
+div[id="eclivr"] {
+  padding-left: 24px;
+}
+div[id="livre"] {
+  padding-left: 25px;
+}
+div[id="rp"] {
+  padding-left: 25px;
 }
 
 

@@ -73,14 +73,14 @@ require_once('../../inc/data.inc.php');
 
 	<?php
 
-
+	
 	while($suiv = $db->DB_object())
 	{
+		
+		echo "<fieldset>";
+		
+		echo "<legend>Commande n°".$suiv->id_commande."</legend>";
 		echo "<table>
-				<tr>
-					<th>Numero de commande</th>
-					<td>".$suiv->id_commande."</td>
-				</tr>
 				<tr>
 					<th>Date de la commande</th>
 					<td>".$suiv->date_cmd."</td>
@@ -90,17 +90,17 @@ require_once('../../inc/data.inc.php');
 		<div class="checkout-wrap">
 	  <ul class="checkout-bar">
 
-	    <li id="1" class="1">En cours</li>
+	    <li id="1" class="1"><div id="encours">En cours</div></li>
 	    
-	    <li id="2" class="2">Valide</li>
+	    <li id="2" class="2"><div id="valide">Valide</div></li>
 	    
-	    <li id="3" class="3">Commande fournisseur</li>
+	    <li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
 	    
-	    <li id="4" class="4">En cours de livraison</li>
+	    <li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
 	    
-	    <li id="5" class="5">Livre</li>
+	    <li id="5" class="5"><div id="livre">Livre</div></li>
 
-	    <li id="6" class="6">Retire et paye</li>
+	    <li id="6" class="6"><div id="rp">Retire et paye</div></li>
 	       
 	  </ul>
 	</div>
@@ -150,14 +150,15 @@ require_once('../../inc/data.inc.php');
 				</tr>	
 			</table>";
 
+		echo "</fieldset>";
+		echo "<br><br>";
 		
 	}
 
 
 	$db->DB_done();	
-
 	echo "</div>";
-	echo "</div>";
+	
 }
 else
 {
