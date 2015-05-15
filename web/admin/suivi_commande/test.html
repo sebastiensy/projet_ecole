@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>parent demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<table width="900" align="center" class="data">
+		<tr>
+			<th width="90" ><div align="center">Numero de commande</div></th>
+			<th width="90" ><div align="center">En cours de validation</div></th>
+			<th width="90" ><div align="center">Valide</div></th>
+			<th width="90" ><div align="center">Commande fournisseur</div></th>
+			<th width="90" ><div align="center">En cours de livraison</div></th>
+			<th width="90" ><div align="center">Livre</div></th>
+			<th width="90" ><div align="center">Retire et paye</div></th>
+			<th width="90" ><div align="center"></div></th>
+			<th width="90" ><div align="center"></div></th>
+			<th width="90" ><div align="center"></div></th>
+		</tr>
+		<tr>
+			<td><div align="center">1</div></td> 
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled="true"></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><textarea>My Text</textarea></div></td>
+			<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
+			<td><div align="center"><input type="submit" name="enregistrer" value="Enregistrer" disabled></input></div></td>
+		</tr>
+		<tr>
+			<td><div align="center">1</div></td> 
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled="true"></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>
+			<td><div align="center"><textarea>My Text</textarea></div></td>
+<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
+			<td><div align="center"><input type="submit" name="enregistrer" value="Enregistrer" disabled></input></div></td>
+		</tr>
+</table>
+<script>
+$('.modif').click(function(){
+    $(this).closest('tr').find('input[type=radio]').attr("disabled",false);
+});
+</script>
+ 
+</body>
+</html>

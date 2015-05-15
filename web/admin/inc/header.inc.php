@@ -15,7 +15,7 @@
 				background-image:none;
 				}
 	#accordion-resizer {
-    	padding-left: 200px;
+    	/*padding-left: 100px;*/
     	width: 1000px;
     	height: 100px;
   	}
@@ -60,9 +60,9 @@
 	/*
 		pour le suivi des commandes
 	*/
-	$(function() {
+	/*$(function() {
     	$( "#accordion-resizer" ).accordion();
-  	});
+  	});*/
 
 	/*
 		pour ajouter un article

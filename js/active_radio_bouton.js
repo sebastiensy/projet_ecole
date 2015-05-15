@@ -1,11 +1,9 @@
-function activeRadioBouton ()
-{
-	/*$("input[type=radio][name=nom]").attr({
-  		disabled: false,
-  		name: "suivi"
-	});*/
-	//$("input[type=submit][name=enregistrer]").attr('disabled',false);
-	//alert(nom);
-	//$(this).closest('tr').find('input').attr('disabled',false);
-	$(this).hide();
-}
+$('.modif').click(function(){
+    $(this).closest('tr').find('input[type=radio]').attr({
+    	disabled : false,
+    	name : 'suivi'
+    });
+    //$(this).closest('tr').find('input[type=submit]').attr("disabled",false);
+    $(this).closest('tr').find('input[name=enregistrer]').attr("disabled",false);
+    //$( "#accordion-resizer" ).accordion( "option", "active", 0 );
+});
