@@ -15,7 +15,7 @@
 				background-image:none;
 				}
 	#accordion-resizer {
-    	/*padding-left: 100px;*/
+    	padding-left: 200px;
     	width: 1000px;
     	height: 100px;
   	}
@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
 	<!--<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>-->
 	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript" src="../../../js/ajax.js"></script>
 	<script type="text/javascript">
 	$( document ).ready(function() {
 			$("#fancy").fancybox({
@@ -57,7 +58,7 @@
 			});
 	});
 
-	
+
 	/*
 		pour ajouter un article
 	*/

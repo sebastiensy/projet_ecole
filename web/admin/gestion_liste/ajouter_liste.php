@@ -5,6 +5,8 @@ require_once('../inc/data.inc.php');
 
 ?>
 
+<body onLoad="tabFournitures()">
+
 <div class="corps">
 
 	<div id="menu">
@@ -30,10 +32,35 @@ if(isset($_POST["select"]))
 	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$_POST["select"].'", 0)';
 	$db->DB_query($query);
 
+	$query = "SELECT DISTINCT(categorie) FROM Sous_categorie";
+	$db->DB_query($query);
+
 	?>
 
 	<div id="tabg">
-		AAAAAAAAAAAAAAAA
+
+			<?php
+
+			if($db->DB_count() > 0)
+			{
+				?>
+				<p><b><u>Sélectionner une rubrique :</u></b></p>
+				<select id="Fid" name="selectC" onClick="tabFournitures()"/>
+				<?php
+				while($rub = $db->DB_object())
+				{
+					echo "<option value=".urlencode($rub->categorie).">".$rub->categorie."</option>";
+				}
+				?>
+				</select>
+				<?php
+			}
+
+			?>
+
+		<p>
+			<div id="resultat"></div>
+		</p>
 	</div>
 
 	<div id="tabd">
