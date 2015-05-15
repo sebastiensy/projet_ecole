@@ -67,7 +67,15 @@ require_once('../../inc/data.inc.php');
 	echo "<p class=\"titre\">Etat de ma commande</p>";
 	?>
 
-	<div class="checkout-wrap">
+	
+
+	<?php
+
+
+	while($suiv = $db->DB_object())
+	{
+		?>
+		<div class="checkout-wrap">
 	  <ul class="checkout-bar">
 
 	    <li id="1" class="1">En cours</li>
@@ -84,12 +92,7 @@ require_once('../../inc/data.inc.php');
 	       
 	  </ul>
 	</div>
-
-	<?php
-
-
-	while($suiv = $db->DB_object())
-	{
+	<?php 
 		for ($i=1; $i<=6; $i++) 
 		{	
 			echo "<script type='text/javascript'>";
