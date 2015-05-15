@@ -19,13 +19,36 @@ require_once('../inc/data.inc.php');
 
 		<table width="900" align="center" class="entete">
 			<tr>
-				<td><div align="right">Ajouter Une Nouvelle Liste</div></td>
+				<?php
+				$db = new DB_connection();
+				if(isset($_POST["select"]))
+				{
+					$query = 'SELECT Libelle FROM Niveau WHERE code = "'.$_POST["select"].'"';
+					$db->DB_query($query);
+					if($niv = $db->DB_object())
+					{
+						?>
+						<td><div align="right">Ajouter Une Nouvelle Liste (<?php echo $niv->Libelle; ?>)</div></td>
+						<?php
+					}
+					else
+					{
+						?>
+						<td><div align="right">Ajouter Une Nouvelle Liste</div></td>
+						<?php
+					}
+				}
+				else
+				{
+					?>
+					<td><div align="right">Ajouter Une Nouvelle Liste</div></td>
+					<?php
+				}
+				?>
 			</tr>
 		</table>
 
 <?php
-
-$db = new DB_connection();
 
 if(isset($_POST["select"]))
 {
@@ -45,7 +68,7 @@ if(isset($_POST["select"]))
 			{
 				?>
 				<p><b><u>Sélectionner une rubrique :</u></b></p>
-				<select id="Fid" name="selectC" onClick="tabFournitures()"/>
+				<select id="Fid" name="selectC" onChange="tabFournitures()"/>
 				<?php
 				while($rub = $db->DB_object())
 				{
@@ -92,6 +115,8 @@ else
 		echo "</form>";
 	}
 }
+
+$db->DB_done();
 
 ?>
 
