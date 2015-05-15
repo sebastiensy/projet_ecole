@@ -82,28 +82,22 @@ require_once('../../inc/data.inc.php');
 		echo "<legend>Commande n°".$suiv->id_commande."</legend>";
 		echo "<table>
 				<tr>
-					<th>Date de la commande</th>
+					<th>Date de la commande : </th>
 					<td>".$suiv->date_cmd."</td>
 				</tr>
 			</table>";
 		?>
 		<div class="checkout-wrap">
-	  <ul class="checkout-bar">
+	  		<ul class="checkout-bar">
+	    		<li id="1" class="1"><div id="encours">En cours</div></li>
+			    <li id="2" class="2"><div id="valide">Valide</div></li>
+	    		<li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
+	    		<li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
+	    		<li id="5" class="5"><div id="livre">Livre</div></li>
+	    		<li id="6" class="6"><div id="rp">Retire et paye</div></li>
+	    	</ul>
+		</div>
 
-	    <li id="1" class="1"><div id="encours">En cours</div></li>
-	    
-	    <li id="2" class="2"><div id="valide">Valide</div></li>
-	    
-	    <li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
-	    
-	    <li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
-	    
-	    <li id="5" class="5"><div id="livre">Livre</div></li>
-
-	    <li id="6" class="6"><div id="rp">Retire et paye</div></li>
-	       
-	  </ul>
-	</div>
 	<?php 
 		for ($i=1; $i<=6; $i++) 
 		{	
@@ -129,15 +123,11 @@ require_once('../../inc/data.inc.php');
 
 		}
 
-		echo "<br><br><br><br><br><br>";
-
-		
-
-		echo "<br>";
+		echo "<br><br><br><br><br>";
 
 		echo "<table>
 				<tr>
-					<th>Parent</th>
+					<th>Parent : </th>
 					<td>".$suiv->nom_parent."</td>
 				</tr>
 				<tr>
