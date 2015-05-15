@@ -50,8 +50,6 @@ require_once('../inc/data.inc.php');
 
 <?php
 
-$tabF = array();
-
 if(isset($_POST["select"]))
 {
 	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$_POST["select"].'", 0)';
@@ -92,13 +90,11 @@ if(isset($_POST["select"]))
 
 		<form method="post" action="">
 		<p><input type="submit" name="enrListe" value="Enregistrer"></p>
-		<table class="data">
-			<tr>
-				<th>Référence</th>
-				<th>Description</th>
-				<th>Quantité</th>
-			</tr>
-		</table>
+
+		<p>
+			<div id="resultat2"></div>
+		</p>
+
 		</form>
 
 	</div>

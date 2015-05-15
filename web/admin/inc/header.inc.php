@@ -57,10 +57,29 @@
 			});
 	});
 
-	function recupererQte(champ)
+	/*function recupererQte(champ)
 	{
 		var qte = document.getElementById(champ).value;
 		document.getElementById("B"+champ).href = "ajouter_liste.php?id="+champ+"&qte="+qte;
+	}*/
+
+	function ajouterFourniture(champ)
+	{
+		var id = champ;
+		var qte = document.getElementById(champ).value;
+
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState==4 && xhr.status==200)
+			{
+				response = xhr.responseText;
+				document.getElementById('resultat2').innerHTML = response;
+			}
+		}
+		xhr.open("POST", "./reponse.php?reponse=2", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("id=" + id + "&qte=" + qte);
 	}
 
 	/*
