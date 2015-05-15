@@ -50,6 +50,8 @@ require_once('../inc/data.inc.php');
 
 <?php
 
+$tabF = array();
+
 if(isset($_POST["select"]))
 {
 	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$_POST["select"].'", 0)';

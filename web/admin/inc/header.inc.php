@@ -57,6 +57,11 @@
 			});
 	});
 
+	function recupererQte(champ)
+	{
+		var qte = document.getElementById(champ).value;
+		document.getElementById("B"+champ).href = "ajouter_liste.php?id="+champ+"&qte="+qte;
+	}
 
 	/*
 		pour ajouter un article

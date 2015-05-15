@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<meta charset="ISO-8859-1">
+		<meta charset="ISO-8859-1">
 	</head>
 	<body>
 
@@ -35,8 +35,8 @@ if($_GET["reponse"] == 1)
 			$html .= "<tr>";
 				$html .= "<td>".$mat->ref_mat."</td>";
 				$html .= "<td>".$mat->desc_mat."</td>";
-				$html .= "<td><input type=\"number\" id=\"qte\" onClick=\"recupererQte()\"  name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
-				$html .= "<td><a href=\"ajouter_liste.php?id=".$mat->id_mat."&amp;qte=qte\"><img title=\"Ajouter\" src=\"../../../img/icon_add.png\"></a></td>";
+				$html .= "<td><input type=\"number\" id=".$mat->id_mat." onChange=recupererQte(".$mat->id_mat.") name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				$html .= "<td><div id=A".$mat->id_mat."><a onClick=\"\" id=\"B".$mat->id_mat."\" href=\"ajouter_liste.php?id=".$mat->id_mat."&amp;qte=1\"><img title=\"Ajouter\" src=\"../../../img/icon_add.png\"></a></div></td>";
 			$html .= "</tr>";
 		}
 		$html .= "</table>";

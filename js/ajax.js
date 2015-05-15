@@ -14,9 +14,3 @@ function tabFournitures()
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send("id=" + id);
 }
-
-function recupererQte()
-{
-	var id = document.getElementById('qte').value;
-	alert(id);
-}
