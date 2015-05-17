@@ -103,10 +103,6 @@ require_once(LIB.'/lib_verifications.php');
 			{
 				formulaire_inscription("Le mot de passe doit comporter entre 6 et 16 caractères.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
-			/*else if(!verifEnfant($_POST["nbrenfant"]))
-			{
-				formulaire_inscription("Le nombre d'enfants doit être compris entre 1 et 10.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
-			}*/
 			else
 			{
 				// connexion a la base via la classe DB_connection

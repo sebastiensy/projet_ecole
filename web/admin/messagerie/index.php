@@ -1,3 +1,1 @@
-<?php
-header('Location: messagerie.php');
-?>
+<?php header('Location: messagerie.php'); ?>

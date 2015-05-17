@@ -1,6 +1,9 @@
-<?php 
-	require_once('../inc/header.inc.php');
-	require_once('../inc/data.inc.php');
+<?php
+
+session_start();
+require_once('../inc/header.inc.php');
+require_once('../inc/data.inc.php');
+
 ?>
 
 <body>
@@ -14,7 +17,7 @@
 	</div>
 
 	<div id="page">
-		
+
 		<table width="900" align="center" class="entete">
 			<tr>
 				<td ><div align="right">Suivi des Commandes</div></td>
@@ -118,7 +121,8 @@ while($suiv = $db->DB_object())
 ?>
 </div>
 
+<?php
 
-<?php 
-	require_once('../inc/footer.inc.php');
+require_once('../inc/footer.inc.php');
+
 ?>

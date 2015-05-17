@@ -50,7 +50,7 @@ function afficForm($message, $compte, $valeur=null)
 	{
 		?>
 		<form method="post" action="modif_compte.php">
-		<p><label class="modif_compte" for="enfant">Nombre d'enfants :</label><input type="number" size="1" min="1" max="10" name="enfant" value="<?php echo $valeur; ?>" onblur="verifEnfant(this)"/></p>
+		<p><label class="modif_compte" for="enfant">Nombre d'enfants :</label><input type="number" size="1" min="1" max="20" name="enfant" value="<?php echo $valeur; ?>" onblur="verifEnfant(this)"/></p>
 		<input type="submit" value="Enregistrer">
 		</form>
 		<?php

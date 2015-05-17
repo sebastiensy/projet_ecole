@@ -6,6 +6,7 @@
 
 <?php
 
+session_start();
 require_once('../inc/data.inc.php');
 
 ?>
@@ -49,9 +50,6 @@ if($_GET["reponse"] == 1)
 }
 else if($_GET["reponse"] == 2)
 {
-	session_start();
-	//session_unset();  
-	//session_destroy();
 	if(!isset($_SESSION["four"]))
 	{
 		$_SESSION["four"] = array();

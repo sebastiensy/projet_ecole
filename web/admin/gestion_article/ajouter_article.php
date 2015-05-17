@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../../../lib/lib_verifications.php');

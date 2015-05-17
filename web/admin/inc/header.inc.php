@@ -24,7 +24,6 @@
 	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
 	<!--<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>-->
 	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
-	<script type="text/javascript" src="../../../js/ajax.js"></script>
 	<script type="text/javascript">
 	$( document ).ready(function() {
 			$("#fancy").fancybox({
@@ -78,6 +77,23 @@
 		document.getElementById("B"+champ).href = "ajouter_liste.php?id="+champ+"&qte="+qte;
 	}*/
 
+	function tabFournitures()
+	{
+		var id = document.getElementById('Fid').value;
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState==4 && xhr.status==200)
+			{
+				response = xhr.responseText;
+				document.getElementById('resultat').innerHTML = response;
+			}
+		}
+		xhr.open("POST", "./reponse.php?reponse=1", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("id=" + id);
+	}
+
 	function ajouterFourniture(champ)
 	{
 		var id = champ;
@@ -100,10 +116,7 @@
 	/*
 		pour ajouter un article
 	*/
-	/*function subm()
-		{
-			document.getElementById('maj').submit();
-		}
+	/*
 	function verif()
 		{
 			var ref=document.f1.ref.value;

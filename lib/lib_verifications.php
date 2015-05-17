@@ -64,11 +64,10 @@ function verifTel($tel)
  */
 function verifEnfant($enfant)
 {
-	if(is_int($enfant) && $enfant <= 10 && $enfant > 0)
+	if(is_numeric($enfant))
 		return true;
 	return false;
 }
-
 
 /*
  * vérifie si c'est bien un prix
@@ -80,7 +79,5 @@ function verifPrix($prix)
 		return true;
 	return false;
 }
-
-
 
 ?>

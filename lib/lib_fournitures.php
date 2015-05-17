@@ -30,7 +30,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	$db = new DB_connection();
 
 	$db->DB_query($requete);
-	$nb_elems = 22; // nombre d'éléments par page
+	$nb_elems = 20; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 	if(!empty($_GET["page"]))

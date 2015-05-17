@@ -31,7 +31,7 @@ function mise_en_forme($idlist,$libelle,$prix)
 function head()
 {
 	?>
-	<form method="POST" action="">
+	<!-- <form method="POST" action=""> -->
 		<table id="liste">
 			<tr>
 				<th>Niveau</th>
@@ -47,7 +47,7 @@ function footer()
 {
 	?>
 		</table>
-	</form>
+	<!-- </form> -->
 	<?php 
 }
 
@@ -60,7 +60,7 @@ function affichage($panier)
 		{
 			$db = new DB_connection();
 			$panier->addList($_POST["id"], $_POST["qte"]);
-			$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau';
+			$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau AND ln.id_nivliste = "'.$_POST["id"].'"';
 			$db->DB_query($query);
 			echo "<span style=\"color:green\"><p><strong>La liste \"".$db->DB_object()->Libelle."\" a été ajouté au
 			<a href=\"../panier\">panier</a> en ".$_POST["qte"]." exemplaires.</strong></p></span>";
@@ -91,7 +91,13 @@ function affichage($panier)
 	// mise en forme
 	while(($ligne = $db->DB_object()) != null)
 	{
+		?>
+		<form method="POST" action="">
+		<?php
 		mise_en_forme($ligne->id_nivliste, $ligne->Libelle, $ligne->forfait);
+		?>
+		</form>
+		<?php
 	}
 
 	if($db->DB_count() > 0)

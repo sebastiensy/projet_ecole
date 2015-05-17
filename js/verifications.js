@@ -85,7 +85,7 @@ function champVide(champ)
 
 function verifEnfant(champ)
 {
-	if(isInt(champ.value) && champ.value <= 10 && champ.value > 0)
+	if(isInt(champ.value) && champ.value <= 20 && champ.value > 0)
 	{
 		surligne(champ, false);
 		return true;

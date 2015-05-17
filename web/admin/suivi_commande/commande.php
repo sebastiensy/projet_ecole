@@ -1,9 +1,16 @@
 <?php
-	require_once('../inc/data.inc.php');
+
+session_start();
+require_once('../inc/data.inc.php');
+
 ?>
 
-<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-
+<html>
+	<head>
+		<title>Interface Administrateur</title>
+		<link rel="stylesheet" href="../../../css/style1.css">
+	</head>
+	<body>
 
 <?php
 
@@ -51,13 +58,12 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 		
 		echo "</table>";
 
-		echo "TOTAL : ".$somme. " â‚¬";
+		echo "TOTAL : ".$somme. " €";
 
 		$db->DB_done();
 }
 
 ?>
 
-<?php
-	//require_once('../inc/footer.inc.php');
-?>
+	</body>
+</html>

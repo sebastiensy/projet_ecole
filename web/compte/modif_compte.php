@@ -169,7 +169,7 @@ echo '<p><b><u>Mon compte</u></b></p>';
 			header('Location: index.php');
 		}
 		else
-			afficForm("Le nombre d'enfants doit être compris entre 1 et 10.", "enfant", $_POST['enfant']);
+			afficForm("Veuillez renseigner le champ.", "enfant", $_POST['enfant']);
 	}
 
 $db->DB_done();	
