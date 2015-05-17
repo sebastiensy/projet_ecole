@@ -31,7 +31,6 @@ function mise_en_forme($idlist,$libelle,$prix)
 function head()
 {
 	?>
-	<!-- <form method="POST" action=""> -->
 		<table id="liste">
 			<tr>
 				<th>Niveau</th>
@@ -47,7 +46,6 @@ function footer()
 {
 	?>
 		</table>
-	<!-- </form> -->
 	<?php 
 }
 
