@@ -97,12 +97,12 @@ require_once(LIB.'/lib_listes.php');
 										{
 											
 											echo "<tr><td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\">".$liste->Libelle."</a></td>
-											<td>".$liste->forfait." €</td>
+											<td>".number_format($liste->forfait, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
 											echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
 											echo "</tr>";
 										}
-										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".$panierL." €</b></td></tr>
+										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".number_format($panierL, 2, ',', ' ')." €</b></td></tr>
 										</table>";
 										echo "<input type=\"submit\" name=\"listes\" value=\"Recalculer\">";
 										echo "<form>";
@@ -147,12 +147,12 @@ require_once(LIB.'/lib_listes.php');
 										{
 											echo "<tr><td>".$mat->ref_mat."</td>
 											<td>".$mat->desc_mat."</td>
-											<td>".$mat->prix_mat." €</td>
+											<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
 											echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
 											echo "</tr>";
 										}
-										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".$panierF." €</b></td></tr>
+										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".number_format($panierF, 2, ',', ' ')." €</b></td></tr>
 										</table>";
 										echo "<input type=\"submit\" name=\"fournitures\" value=\"Recalculer\">";
 										echo "<form>";
@@ -161,7 +161,7 @@ require_once(LIB.'/lib_listes.php');
 							}
 						}
 						$grandtotal = $panierL + $panierF;
-						echo "<hr/><div align=\"center\"><b><u>Prix total du panier</u> : ".$grandtotal." €</b></div>";
+						echo "<hr/><div align=\"center\"><b><u>Prix total du panier</u> : ".number_format($grandtotal, 2, ',', ' ')." €</b></div>";
 					}
 				?>
 			</div>

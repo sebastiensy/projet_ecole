@@ -58,7 +58,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 		
 		echo "</table>";
 
-		echo "TOTAL : ".$somme. " €";
+		echo "TOTAL : ".number_format($somme, 2, ',', ' '). " €";
 
 		$db->DB_done();
 }

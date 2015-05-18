@@ -119,9 +119,9 @@ if($ligne != NULL)
 							$ligne2=$db2->DB_object();
 						?>
 							<tr>
-								<td width="30"><div align="center"><?php echo $ligne2->ref_mat;?></div></td>
-								<td width="250"><div align="center"><?php echo $ligne2->desc_mat;?></div></td>
-								<td width="50"><div align="center"><?php echo $ligne2->prix_mat;?></div></td>
+								<td width="30"><div align="center"><?php echo $ligne2->ref_mat; ?></div></td>
+								<td width="250"><div align="center"><?php echo $ligne2->desc_mat; ?></div></td>
+								<td width="50"><div align="center"><?php echo number_format($ligne2->prix_mat, 2, ',', ' '); ?></div></td>
 								<td width="100">
 									<!-- <form method="post" action="modif_liste1.php?p=modif_qte&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
 									<form method="post" action="modif_liste1.php?p=modif_qte&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>">

@@ -38,7 +38,7 @@ if(isset($_GET["id"]))
 	$db->DB_query($query2);
 
 	echo "<b>Niveau : ".$libelle."</b><br/>";
-	echo "<b>Forfait : ".$prix." €</b><hr/>";
+	echo "<b>Forfait : ".number_format($prix, 2, ',', ' ')." €</b><hr/>";
 	if($db->DB_count() > 0)
 	{
 		echo "<table align=\"center\">";

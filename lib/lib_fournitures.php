@@ -100,7 +100,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			echo $tr;
 				echo "<td>".$mat->ref_mat."</td>
 				<td>".$mat->desc_mat."</td>
-				<td>".$mat->prix_mat." €</td>";
+				<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
 				
 				$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 				if(isset($_SESSION["id_parent"]))
