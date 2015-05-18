@@ -54,7 +54,7 @@ while($ligne=$db->DB_object())
 		<td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
 		<td width="50" ><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
 		<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"> Modifier </a></div></td>
-		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img src="../../../img/del.png"></a></div></td>
+		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
 	</tr>
 	<?php
 }

@@ -35,12 +35,10 @@ if (!isset($_POST['ref']) && !isset($_POST['desc']) && !isset($_POST['prix']))
 }
 else
 {
-
 	$db = new DB_connection();
 		
 	$req = "SELECT ref_mat FROM Materiel WHERE ref_mat = ".$_POST['ref'];
 	$db->DB_query($req);
-	
 
 	if($ligne=$db->DB_object())
 	{
@@ -65,8 +63,8 @@ else
 	}
 }
 
-?> 
-	
+?>
+
 <?php
 
 require_once('../inc/footer.inc.php');

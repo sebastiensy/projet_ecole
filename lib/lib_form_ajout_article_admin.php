@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 function formulaire_ajout_article($msg="", $ref="", $desc="", $prix="")
 {
 
 ?>
-	<?php echo $msg;?>
+	<?php echo $msg; ?>
 	<br>
 
 	<div align="center" id="add-form">
@@ -44,6 +44,5 @@ function formulaire_ajout_article($msg="", $ref="", $desc="", $prix="")
 <?php
 
 }
-	
+
 ?>
-	
