@@ -76,7 +76,13 @@ if(isset($_POST["enrListe"]))
 				$db->DB_query($query);
 				echo "<span style=\"color:green\"><p><strong>La liste a été ajoutée.</strong></p></span>";
 				echo "Retourner sur la <a href=\"../gestion_liste\">gestion des listes</a>";
+				unset($_SESSION["four"]);
 			}
+		}
+		else
+		{
+			echo "<span style=\"color:red\"><p><strong>Aucun article n'a été ajouté à la liste.</strong></p></span>";
+			echo "Retourner sur la <a href=\"../gestion_liste\">gestion des listes</a>";
 		}
 	}
 	else
