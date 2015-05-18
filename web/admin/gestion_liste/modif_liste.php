@@ -135,7 +135,7 @@ if($ligne != NULL)
 								<td width="50"><div align="center">
 								<!-- <form method="post" action="modif_liste1.php?p=del_art&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
 								<form method="post" action="modif_liste1.php?p=del_art&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>" >
-								<input border="0" src="../../../img/del.png" type="image" value="submit"></form></div></td>
+								<input border="0" title="Supprimer" src="../../../img/del.png" type="image" value="submit"></form></div></td>
 							<tr>
 						<?php 
 						}

@@ -13,7 +13,7 @@ require_once('../inc/data.inc.php');
 		require_once('../inc/menu.inc.php');
 		?>
 	</div>
-	
+
 	<div id="page">
 
 		<table width="900" align="center" class="entete">
@@ -25,7 +25,7 @@ require_once('../inc/data.inc.php');
 
 		<table width="900" align="center" class="data">
 		<tr>
-			<th width="90" ><div align="center">Niveau-Classe</div></th>
+			<th width="90" ><div align="center">Niveau</div></th>
 			<th width="50" ><div align="center">Prix (forfait)</div></th>
 			<th width="50" ><div align="center">Modifier</div></th>
 			<th width="20" ><div align="center">Supprimer</div></th>
