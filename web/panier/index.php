@@ -59,7 +59,21 @@ require_once(LIB.'/lib_listes.php');
 					{
 						echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour consulter votre panier.</strong></p></span>";
 					}
-					else
+					else if(isset($_POST["commander"]))
+					{
+						$panier->orderCart();
+						echo "<span style=\"color:green\"><p><strong>Votre commande a été passée.</strong></p></span>";
+					}
+					else if(isset($_POST["save"]))
+					{
+						$panier->saveCart();
+						echo "<span style=\"color:green\"><p><strong>Votre panier a été sauvegardé.</strong></p></span>";
+					}
+					else if(isset($_POST["delete"]))
+					{
+						$panier->delCart();
+					}
+					if(isset($_SESSION["id_parent"]))
 					{
 						$panierL = 0;
 						$panierF = 0;
@@ -95,7 +109,6 @@ require_once(LIB.'/lib_listes.php');
 										</tr>";
 										while($liste = $db->DB_object())
 										{
-											
 											echo "<tr><td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\">".$liste->Libelle."</a></td>
 											<td>".number_format($liste->forfait, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
@@ -111,7 +124,7 @@ require_once(LIB.'/lib_listes.php');
 								echo "<br/><br/>";
 							}
 						}
-						
+
 						if(isset($_SESSION['panier']))
 						{
 							if(isset($_GET["del"]))
@@ -162,6 +175,35 @@ require_once(LIB.'/lib_listes.php');
 						}
 						$grandtotal = $panierL + $panierF;
 						echo "<hr/><div align=\"center\"><b><u>Prix total du panier</u> : ".number_format($grandtotal, 2, ',', ' ')." €</b></div>";
+
+						if(isset($_SESSION['liste']) || isset($_SESSION['panier']))
+						{
+							$ids = array();
+							$ids2 = array();
+							if(isset($_SESSION['liste']))
+								$ids = array_keys($_SESSION['liste']);
+							if(isset($_SESSION['panier']))
+								$ids2 = array_keys($_SESSION['panier']);
+							if(!empty($ids) || !empty($ids2))
+							{
+								echo 
+								"<br/><table align=\"center\">
+									<tr>
+										<form method=\"post\" action=\"\">
+											<td><input type=\"submit\" name=\"commander\" value=\"Commander\"></td>
+										</form>
+
+										<form method=\"post\" action=\"\">
+											<td><input type=\"submit\" name=\"save\" value=\"Sauvegarder le panier\"></td>
+										</form>
+
+										<form method=\"post\" action=\"\">
+											<td><input type=\"submit\" name=\"delete\" value=\"Supprimer le panier\"></td>
+										</form>
+									</tr>
+								</table>";
+							}
+						}
 					}
 				?>
 			</div>
