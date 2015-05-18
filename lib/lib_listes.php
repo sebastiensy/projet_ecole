@@ -69,7 +69,7 @@ function affichage($panier)
 		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
 	}
 
-	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code';
+	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code order by ln.niveau';
 
 	// connexion a la base via la classe DB_connection
 	$db = new DB_connection();
@@ -102,7 +102,6 @@ function affichage($panier)
 	{
 		footer();
 	}
-	
 }
 
 ?>

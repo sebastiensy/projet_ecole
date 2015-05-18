@@ -78,7 +78,7 @@ require_once(LIB.'/lib_listes.php');
 							{
 								echo "<div align=\"right\"><b>Listes</b></div><hr/>";
 								$db = new DB_connection();
-								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).')';
+								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).') ORDER BY ln.niveau';
 								$db->DB_query($query);
 
 								if($db->DB_count() > 0)
