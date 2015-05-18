@@ -60,6 +60,8 @@ require_once(LIB.'/lib_hasher_mdp.php');
 					$_SESSION['email'] = $email;
 					//$_SESSION['password'] = $mdp;
 
+					$panier->loadCart();
+
 					//create_fonction(); // ?
 					
 					header('location: ../accueil/index.php?redirected=true');

@@ -119,8 +119,8 @@ class panier
 	 * panier::action($val)
 	 *
 	 * @param $val
-	 * 0 -> sauvegarde du panier
-	 * 1 -> passer la commande
+	 * 0 -> sauvegarde le panier
+	 * 1 -> passe la commande
 	 * @return void
 	 *
 	 */
@@ -138,17 +138,18 @@ class panier
 		$this->_db->DB_query($query);
 		if($this->_db->DB_count() > 0)
 		{
-			$this->_db->DB_query('UPDATE Commande set etat = 1 WHERE id_parent = "'.$_SESSION["id_parent"].'"');
-			//$idCom = $this->_db->DB_object()->id_commande;
+			if($com = $this->_db->DB_object())
+				$idCom = $com->id_commande;
+			$this->_db->DB_query('UPDATE Commande set etat = "'.$val.'" WHERE id_parent = "'.$_SESSION["id_parent"].'"');
 		}
 		else
 		{
 			$d = date("Y-m-d");
 			$query = 'INSERT INTO Commande (date_cmd, etat, id_parent) VALUES ("'.$d.'", "'.$val.'", "'.$_SESSION["id_parent"].'")';
 			$this->_db->DB_query($query);
-			//$idCom = $this->_db->DB_id();
+			$idCom = $this->_db->DB_id();
 		}
-		$idCom = $this->_db->DB_id();
+		echo "<br/>TEST : ".$idCom;
 
 		if(!empty($idsL))
 		{
@@ -156,6 +157,7 @@ class panier
 
 			if($this->_db->DB_count() > 0)
 			{
+				// OU UPDATE si la liste était déjà présente
 				$query = 'INSERT INTO Inclus (id_commande, id_nivliste, exemplaire) VALUES';
 				while($liste = $this->_db->DB_object())
 				{
@@ -171,6 +173,7 @@ class panier
 
 			if($this->_db->DB_count() > 0)
 			{
+				// OU UPDATE si le matériel était déjà présent
 				$query = 'INSERT INTO Contient (id_commande, id_mat, quantite) VALUES';
 				while($mat = $this->_db->DB_object())
 				{
@@ -184,9 +187,31 @@ class panier
 			$this->delCart();
 	}
 
-	public function getCart()
+	public function loadCart()
 	{
-		
+		$this->_db->DB_query('SELECT id_commande, etat, id_parent FROM Commande WHERE etat = 0 AND id_parent = "'.$_SESSION['id_parent'].'"');
+
+		if($this->_db->DB_count() > 0)
+		{
+			if($com = $this->_db->DB_object())
+				$idCom = $com->id_commande;
+			$this->_db->DB_query('SELECT * FROM Inclus WHERE id_commande = "'.$idCom.'"');
+			if($this->_db->DB_count() > 0)
+			{
+				while($liste = $this->_db->DB_object())
+				{
+					$this->addList($liste->id_nivliste, $liste->exemplaire);
+				}
+			}
+			$this->_db->DB_query('SELECT * FROM Contient WHERE id_commande = "'.$idCom.'"');
+			if($this->_db->DB_count() > 0)
+			{
+				while($mat = $this->_db->DB_object())
+				{
+					$this->add($mat->id_mat, $mat->quantite);
+				}
+			}
+		}
 	}
 }
 
