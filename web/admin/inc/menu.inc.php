@@ -39,6 +39,15 @@
 						<br>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../gestion_site">Gestion du site</a></li>
+						<br>
+						<br>
+					</td>
+				</tr>
 			</ul>
 			</table>
 			</nav>';
