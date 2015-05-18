@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 
@@ -31,10 +31,21 @@ require_once('../inc/data.inc.php');
 $db = new DB_connection();
 $requete = 'SELECT jma FROM Date_limite';
 $db->DB_query($requete);
-while($req = $db->DB_object())
+if ($db->DB_count() == 0)
 {
-	$jma = $req->jma;
-	$newDate = date("d/m/Y", strtotime($jma));
+	$newDate = "";
+}
+else
+{
+	while($req = $db->DB_object())
+	{
+		$jma = $req->jma;
+		$newDate = date("d/m/Y", strtotime($jma));
+		
+	}
+
+}
+
 ?>
 		<table>
 			<form method="get" action="index.php">
@@ -46,8 +57,8 @@ while($req = $db->DB_object())
 				<tr>
 			</form>
 		</table>
-<?php
-}
+		<?php
+
 ?>
 
 <?php

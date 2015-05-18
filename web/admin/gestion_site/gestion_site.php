@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 
@@ -46,9 +46,21 @@ if(isset($_GET['gestion']))
 if (isset($_POST['date_cache']))
 {
 	$db = new DB_connection();
-	$modifier = 'UPDATE Date_limite SET jma = "'.$_POST['date_cache'].'"';
-	$db->DB_query($modifier);
-	header('Location: index.php');
+	$requete = 'SELECT jma FROM Date_limite';
+	$db->DB_query($requete);
+	if ($db->DB_count() == 0)
+	{
+		$inserer = 'INSERT INTO Date_limite (jma) VALUES ("'.$_POST['date_cache'].'")';
+		$db->DB_query($inserer);
+
+	}
+	else
+	{
+		$modifier = 'UPDATE Date_limite SET jma = "'.$_POST['date_cache'].'"';
+		$db->DB_query($modifier);
+	}
+	
+	//header('Location: index.php');
 }
 
 ?>	
