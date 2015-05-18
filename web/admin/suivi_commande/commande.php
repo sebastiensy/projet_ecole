@@ -47,7 +47,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			
 			echo "<td><div align='center'>".$suiv->desc_mat."</div></td>";
 			
-			echo "<td><div align='center'>".$suiv->quantite * $suiv->prix_mat." â‚¬</div></td>";
+			echo "<td><div align='center'>".number_format($suiv->quantite * $suiv->prix_mat, 2, ',', ' ')." €</div></td>";
 			
 			echo "</tr>";
 
