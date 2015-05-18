@@ -61,12 +61,12 @@ require_once(LIB.'/lib_listes.php');
 					}
 					else if(isset($_POST["commander"]))
 					{
-						$panier->orderCart();
+						$panier->action(1);
 						echo "<span style=\"color:green\"><p><strong>Votre commande a été passée.</strong></p></span>";
 					}
 					else if(isset($_POST["save"]))
 					{
-						$panier->saveCart();
+						$panier->action(0);
 						echo "<span style=\"color:green\"><p><strong>Votre panier a été sauvegardé.</strong></p></span>";
 					}
 					else if(isset($_POST["delete"]))

@@ -114,7 +114,17 @@ class panier
 		unset($_SESSION['panier']);
 	}
 
-	public function orderCart()
+	/*
+	 * Insère le contenu du panier dans la BDD
+	 * panier::action($val)
+	 *
+	 * @param $val
+	 * 0 -> sauvegarde du panier
+	 * 1 -> passer la commande
+	 * @return void
+	 *
+	 */
+	public function action($val)
 	{
 		$idsL = array();
 		$idsP = array();
@@ -134,7 +144,7 @@ class panier
 		else
 		{
 			$d = date("Y-m-d");
-			$query = 'INSERT INTO Commande (date_cmd, etat, id_parent) VALUES ("'.$d.'", 1, "'.$_SESSION["id_parent"].'")';
+			$query = 'INSERT INTO Commande (date_cmd, etat, id_parent) VALUES ("'.$d.'", "'.$val.'", "'.$_SESSION["id_parent"].'")';
 			$this->_db->DB_query($query);
 			//$idCom = $this->_db->DB_id();
 		}
@@ -170,7 +180,8 @@ class panier
 				$this->_db->DB_query($query);
 			}
 		}
-		$this->delCart();
+		if($val == 1)
+			$this->delCart();
 	}
 
 	public function getCart()

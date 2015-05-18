@@ -6,6 +6,8 @@ require_once('../inc/data.inc.php');
 
 ?>
 
+<body>
+
 <div class="corps">
 
 	<div id="menu">
