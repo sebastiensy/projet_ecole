@@ -70,6 +70,13 @@
 			};
 		});
 	});
+	$(function() {
+    	$( "#date_limite" ).datepicker({
+    		dateFormat: "dd/mm/yy",
+    		altField: "#date_cache",
+    		altFormat : "yy-mm-dd"
+    	});
+  	});
 
 	/*function recupererQte(champ)
 	{
@@ -214,6 +221,6 @@
 
 	</script>
 </head>
-	<header class="tete">
+	<div class="tete">
 		<img src="../../../img/header.jpg" alt="header">
-	</header>
+	</div>
