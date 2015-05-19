@@ -100,9 +100,10 @@ if(!empty($ids))
 
 echo "</tr>";
 echo "</table>";
+echo "<br>";
 
 $somme = array_sum($prix);
-echo "<strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong>";
+echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
 
 
 
