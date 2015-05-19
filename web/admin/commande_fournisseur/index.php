@@ -27,6 +27,7 @@ require_once('../inc/data.inc.php');
 		<br>
 		<table width="800" align="center" class="data">
 			<tr>
+				<th width="90" ><div align="center">Reference</div></th>
 				<th width="90" ><div align="center">Materiel</div></th>
 				<th width="90" ><div align="center">Quantite</div></th>
 				<th width="90" ><div align="center">Prix</div></th>
@@ -81,14 +82,15 @@ $ids = array_keys($tab);
 
 if(!empty($ids))
 {
-	$requete3 = 'SELECT id_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
+	$requete3 = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 	$db->DB_query($requete3);
 
 	if($db->DB_count() > 0)
 	{
 		while($liste = $db->DB_object())
 		{
-			echo "<tr><td><div align='center'>".$liste->desc_mat."</div></td>";
+			echo "<tr><td><div align='center'>".$liste->ref_mat."</div></td>";
+			echo "<td><div align='center'>".$liste->desc_mat."</div></td>";
 			echo "<td><div align='center'>".$tab[$liste->id_mat]."</div></td>";
 			echo "<td><div align='center'>".$liste->prix_mat."</div></td>";
 			array_push($prix, $tab[$liste->id_mat] * $liste->prix_mat);
