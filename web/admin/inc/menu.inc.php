@@ -14,7 +14,6 @@
 						<br>
 						<br>
 						<li><a href="../gestion_article/modif_article.php">Modifier article</a></li> 
-							 
 						<li><a href="../gestion_article/ajouter_article.php">Ajouter article</a></li>
 						<br>
 						<br>
@@ -26,6 +25,7 @@
 						<br>
 						<br>
 						<li><a href="../suivi_commande">Suivre Les Commandes</a></li>
+						<li><a href="../commande_fournisseur">Commande fournisseur</a></li>
 						<br>
 						<br>
 					</td>
