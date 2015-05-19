@@ -132,7 +132,8 @@ else if(isset($_POST["select"]))
 
 		<form method="post" action="">
 		<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
-		<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Réduction : <input type="number" name="reduc" value="0" size="1" min="0" max="100"> %</td></p>
+		<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Remise : <input type="number" id ="reduc" onChange="afficPrix()" name="reduc" value="0" size="1" min="0" max="100"> % 
+		&nbsp;Prix : <span id="resultat3">0</span> €</p>
 
 		<p>
 			<div id="resultat2"></div>

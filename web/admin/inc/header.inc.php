@@ -105,6 +105,7 @@
 	{
 		var id = champ;
 		var qte = document.getElementById(champ).value;
+		var reduc = document.getElementById("reduc").value;//
 
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function()
@@ -117,13 +118,15 @@
 		}
 		xhr.open("POST", "./reponse.php?reponse=2", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("id=" + id + "&qte=" + qte);
+		//xhr.send("id=" + id + "&qte=" + qte);
+		xhr.send("id=" + id + "&qte=" + qte + "&reduc=" + reduc);
 	}
 
 	function modifierQte(champ)
 	{
 		var id = champ;
 		var qte = document.getElementById("A"+champ).value;
+		var reduc = document.getElementById("reduc").value;//
 
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function()
@@ -136,12 +139,15 @@
 		}
 		xhr.open("POST", "./reponse.php?reponse=3", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("id=" + id + "&qte=" + qte);
+		//xhr.send("id=" + id + "&qte=" + qte);
+		xhr.send("id=" + id + "&qte=" + qte + "&reduc=" + reduc);
 	}
 
 	function supprimerFourniture(champ)
 	{
 		var id = champ;
+		var reduc = document.getElementById("reduc").value;//
+		var prix = document.getElementById("prix").value;
 
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function()
@@ -154,7 +160,27 @@
 		}
 		xhr.open("POST", "./reponse.php?reponse=4", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("id=" + id);
+		//xhr.send("id=" + id);
+		xhr.send("id=" + id + "&reduc=" + reduc);//
+	}
+
+	function afficPrix()
+	{
+		var reduc = document.getElementById("reduc").value;
+		var prix = document.getElementById("prix").value;
+
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState==4 && xhr.status==200)
+			{
+				response = xhr.responseText;
+				document.getElementById('resultat3').innerHTML = response;
+			}
+		}
+		xhr.open("POST", "./reponse.php?reponse=5", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("reduc=" + reduc + "&prix=" + prix);
 	}
 
 	/*

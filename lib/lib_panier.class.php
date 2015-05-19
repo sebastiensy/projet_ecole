@@ -154,8 +154,10 @@ class panier
 		if($this->_db->DB_count() > 0)
 		{
 			if($com = $this->_db->DB_object())
+			{
 				$idCom = $com->id_commande;
-			$this->_db->DB_query('UPDATE Commande set etat = "'.$val.'" WHERE id_parent = "'.$_SESSION["id_parent"].'"');
+				$this->_db->DB_query('UPDATE Commande set etat = "'.$val.'" WHERE id_parent = "'.$_SESSION["id_parent"].'" AND id_commande = "'.$idCom.'"');
+			}
 		}
 		else
 		{

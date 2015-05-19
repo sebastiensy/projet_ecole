@@ -13,6 +13,11 @@ require_once('../inc/data.inc.php');
 
 <?php
 
+function afficherPrix()
+{
+	return $_POST["prix"] * (100-$_POST["reduc"]) / 100;
+}
+
 function newList()
 {
 	$db = new DB_connection();
@@ -20,8 +25,9 @@ function newList()
 	$ids = array_keys($_SESSION['four']);
 	if(!empty($ids))
 	{
-		$query = 'SELECT id_mat, ref_mat, desc_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
+		$query = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 		$db->DB_query($query);
+		$prix = 0;//
 
 		if($db->DB_count() > 0)
 		{
@@ -35,6 +41,7 @@ function newList()
 				$html .= "</tr>";
 				while($mat = $db->DB_object())
 				{
+					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];//
 					$html .= "<tr>";
 						$html .= "<td>".$mat->ref_mat."</td>";
 						$html .= "<td>".$mat->desc_mat."</td>";
@@ -44,6 +51,8 @@ function newList()
 				}
 				$html .= "</table>";
 				$db->DB_done();
+				$prix = $prix * (100-$_POST["reduc"]) / 100;//
+				$html .= "<input type=\"hidden\" id=\"prix\" value=".$prix.">";//
 				return $html;
 		}
 	}
@@ -119,6 +128,10 @@ else if($_GET["reponse"] == 4)
 		unset($_SESSION["four"][$_POST["id"]]);
 		echo newList();
 	}
+}
+else if($_GET["reponse"] == 5)
+{				
+	echo afficherPrix();
 }
 
 ?>
