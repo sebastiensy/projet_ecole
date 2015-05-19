@@ -45,7 +45,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	<tr>
 		<th width="90" ><div align="center">Quantite</div></th>
 		<th width="90" ><div align="center">Materiel</div></th>
-		<th width="90" ><div align="center">Prix</div></th>
+		<th width="90" ><div align="center">Prix unitaire</div></th>
 	</tr>
 
 	<?php
@@ -55,7 +55,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			
 			echo "<td><div align='center'>".$suiv->desc_mat."</div></td>";
 			
-			echo "<td><div align='center'>".number_format($suiv->quantite * $suiv->prix_mat, 2, ',', ' ')." €</div></td>";
+			echo "<td><div align='center'>".number_format($suiv->prix_mat, 2, ',', ' ')." €</div></td>";
 			
 			echo "</tr>";
 
@@ -85,7 +85,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			
 			echo "<td><div align='center'>".$suiv->libelle."</div></td>";
 			
-			echo "<td><div align='center'>".number_format($suiv->exemplaire * $suiv->forfait, 2, ',', ' ')." €</div></td>";
+			echo "<td><div align='center'>".number_format($suiv->forfait, 2, ',', ' ')." €</div></td>";
 			
 			echo "</tr>";
 

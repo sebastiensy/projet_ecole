@@ -40,6 +40,10 @@ $requete1 = 'SELECT SUM(c.quantite), m.desc_mat, m.prix_mat
 	AND com.etat >= 2
     GROUP BY c.id_mat';
 
+/*SELECT cp.qte_scat*i.exemplaire, cp.id_mat, cp.id_nivliste, mat.desc_mat, mat.prix_mat
+	FROM Compose as cp, Materiel as mat, Inclus as i
+    WHERE mat.id_mat = cp.id_mat*/
+
 
 	$db = new DB_connection();
 	$db->DB_query($requete1);
