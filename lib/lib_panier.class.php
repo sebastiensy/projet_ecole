@@ -4,7 +4,7 @@
  *
  * panier
  * Cette classe sert à gérer le panier
- * 
+ *
  * @usage :
  * @require_once(LIB.'/lib_panier.class.php');
  * $panier = new panier(new DB_connection());
@@ -108,15 +108,30 @@ class panier
 		unset($_SESSION['liste'][$list_id]);
 	}
 
-	public function delCart()
+	public function delCartS()
 	{
 		unset($_SESSION['liste']);
 		unset($_SESSION['panier']);
 	}
 
+	public function delCart()
+	{
+		$this->delCartS();
+		$this->_db->DB_query('SELECT id_commande FROM Commande WHERE etat = 0 and id_parent = "'.$_SESSION['id_parent'].'"');
+		if($this->_db->DB_count() > 0)
+		{
+			if($com = $this->_db->DB_object())
+			{
+				$this->_db->DB_query('DELETE FROM Commande WHERE id_commande = "'.$com->id_commande.'"');
+				$this->_db->DB_query('DELETE FROM Inclus WHERE id_commande = "'.$com->id_commande.'"');
+				$this->_db->DB_query('DELETE FROM Contient WHERE id_commande = "'.$com->id_commande.'"');
+			}
+		}
+	}
+
 	/*
 	 * Insère le contenu du panier dans la BDD
-	 * panier::action($val)
+	 * panier::saveCart($val)
 	 *
 	 * @param $val
 	 * 0 -> sauvegarde le panier
@@ -124,7 +139,7 @@ class panier
 	 * @return void
 	 *
 	 */
-	public function action($val)
+	public function saveCart($val)
 	{
 		$idsL = array();
 		$idsP = array();
@@ -149,7 +164,6 @@ class panier
 			$this->_db->DB_query($query);
 			$idCom = $this->_db->DB_id();
 		}
-		echo "<br/>TEST : ".$idCom;
 
 		if(!empty($idsL))
 		{
@@ -157,13 +171,15 @@ class panier
 
 			if($this->_db->DB_count() > 0)
 			{
-				// OU UPDATE si la liste était déjà présente
 				$query = 'INSERT INTO Inclus (id_commande, id_nivliste, exemplaire) VALUES';
 				while($liste = $this->_db->DB_object())
 				{
 					$query .= '("'.$idCom.'", "'.$liste->id_nivliste.'", "'.$_SESSION['liste'][$liste->id_nivliste].'"),';
 				}
 				$query = substr($query, 0, -1);
+
+				$query .= ' ON DUPLICATE KEY UPDATE exemplaire=VALUES(exemplaire)';
+
 				$this->_db->DB_query($query);
 			}
 		}
@@ -173,18 +189,20 @@ class panier
 
 			if($this->_db->DB_count() > 0)
 			{
-				// OU UPDATE si le matériel était déjà présent
 				$query = 'INSERT INTO Contient (id_commande, id_mat, quantite) VALUES';
 				while($mat = $this->_db->DB_object())
 				{
 					$query .= '("'.$idCom.'", "'.$mat->id_mat.'", "'.$_SESSION['panier'][$mat->id_mat].'"),';
 				}
 				$query = substr($query, 0, -1);
+
+				$query .= ' ON DUPLICATE KEY UPDATE quantite=VALUES(quantite)';
+
 				$this->_db->DB_query($query);
 			}
 		}
 		if($val == 1)
-			$this->delCart();
+			$this->delCartS();
 	}
 
 	public function loadCart()
