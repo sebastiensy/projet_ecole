@@ -6,25 +6,22 @@ DROP TABLE IF EXISTS Liste_niveau;
 DROP TABLE IF EXISTS Materiel;
 DROP TABLE IF EXISTS Sous_categorie;
 DROP TABLE IF EXISTS Commande;
-DROP TABLE IF EXISTS Parent;
 DROP TABLE IF EXISTS Message;
+DROP TABLE IF EXISTS Parent;
 DROP TABLE IF EXISTS Niveau;
+DROP TABLE IF EXISTS Etat;
+
+CREATE TABLE Etat(
+	id_etat INT AUTO_INCREMENT NOT NULL,
+	libelle_etat VARCHAR(50),
+	PRIMARY KEY (id_etat)
+) ENGINE=InnoDB;
 
 CREATE TABLE Niveau(
 	`code` char(1) NOT NULL,
 	`Libelle` varchar(200) NOT NULL,
 	 PRIMARY KEY (`code`)
 ) ENGINE=InnoDB;
-
-CREATE TABLE Message(
-	id_message INT AUTO_INCREMENT NOT NULL,
-	email_parent VARCHAR(40),
-	objet VARCHAR(40),
-	message VARCHAR(256),
-	jma date,
-	lu TINYINT(1),
-	PRIMARY KEY (id_message)
-) Engine=InnoDB;
 
 CREATE TABLE Parent(
 	id_parent INT AUTO_INCREMENT NOT NULL,
@@ -37,6 +34,19 @@ CREATE TABLE Parent(
 	PRIMARY KEY (id_parent)
 ) Engine=InnoDB;
 
+CREATE TABLE Message(
+	id_message INT AUTO_INCREMENT NOT NULL,
+	email_parent VARCHAR(40),
+	objet VARCHAR(40),
+	message VARCHAR(256),
+	jma date,
+	lu TINYINT(1),
+	utilisateur TINYINT(1),
+	id_parent INT NOT NULL,
+	PRIMARY KEY (id_message),
+	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent)
+) Engine=InnoDB;
+
 CREATE TABLE Commande(
 	id_commande INT AUTO_INCREMENT NOT NULL,
 	date_cmd DATE,
@@ -45,6 +55,28 @@ CREATE TABLE Commande(
 	PRIMARY KEY (id_commande),
 	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent)
 ) Engine=InnoDB;
+
+CREATE TABLE Com_archive(
+	id_comArchive INT AUTO_INCREMENT NOT NULL,
+	date_archive DATE,
+	id_parent INT,
+	PRIMARY KEY (id_commande)
+) Engine=InnoDB;
+
+/* */
+
+CREATE TABLE Mat_archive(
+	
+)
+
+CREATE TABLE ComFour_archive(
+	id_comFour INT AUTO_INCREMENT NOT NULL,
+	prix_achive DOUBLE,
+	date_fourArchive DATE,
+	PRIMARY KEY (id_comFour)
+)
+
+/* */
 
 CREATE TABLE Sous_categorie(
 	id_scat INT AUTO_INCREMENT NOT NULL,
