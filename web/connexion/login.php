@@ -120,7 +120,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 	{
 		if($_GET["redirected"] == "false" && empty($_SESSION['id_parent']))
 		{
-			echo "<span style=\"color:red\">Identifiants incorrects.</span>";
+			echo "<span id=\"msgErr\" style=\"color:red\">Identifiants incorrects.</span>";
 		}
 	}
 
