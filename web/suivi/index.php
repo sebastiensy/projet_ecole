@@ -98,7 +98,7 @@ require_once('../../inc/data.inc.php');
 		
 		echo "<fieldset>";
 		
-		echo "<legend>Commande nÂ°".$suiv->id_commande."</legend>";
+		echo "<legend>Commande n°".$suiv->id_commande."</legend>";
 		echo "<table>
 				<tr>
 					<th>Date de la commande : </th>
