@@ -113,11 +113,11 @@ body
 #messagerie
 {
   
-	/*position:absolute;*/
+	position:absolute;
 	width:150px;
 	height:90px;
 	margin-left:460px;
-	margin-top:-10px;
+	/*margin-top:-10px;*/
 	/*float:right;*/
 }
 
@@ -126,13 +126,13 @@ body
 #panier
 {
   
-	/*position:absolute;*/
+	position:absolute;
 	width:150px;
 	height:90px;
-	/*margin-left:690px;*/
+	margin-left:615px;
 	float:right;
 	margin-right:75px;
-	margin-top:-90px;
+	/*margin-top:0px;*/
 }
 
 /* admin */
@@ -144,7 +144,7 @@ body
 	width:150px;
 	height:90px;
 	margin-left:770px;
-	margin-top:-90px;
+	/*margin-top:-90px;*/
 	/*float:right;*/
 }
 
