@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS ContientFA;
+DROP TABLE IF EXISTS ContientA;
+DROP TABLE IF EXISTS InclusA;
+DROP TABLE IF EXISTS ComFour_archive;
+DROP TABLE IF EXISTS Mat_archive;
+DROP TABLE IF EXISTS Com_archive;
+DROP TABLE IF EXISTS Liste_archive;
 DROP TABLE IF EXISTS Compose;
 DROP TABLE IF EXISTS Inclus;
 DROP TABLE IF EXISTS Contient;
@@ -56,28 +63,6 @@ CREATE TABLE Commande(
 	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent)
 ) Engine=InnoDB;
 
-CREATE TABLE Com_archive(
-	id_comArchive INT AUTO_INCREMENT NOT NULL,
-	date_archive DATE,
-	id_parent INT,
-	PRIMARY KEY (id_comArchive)
-) Engine=InnoDB;
-
-/* */
-
-CREATE TABLE Mat_archive(
-	
-)
-
-CREATE TABLE ComFour_archive(
-	id_comFour INT AUTO_INCREMENT NOT NULL,
-	prix_achive DOUBLE,
-	date_fourArchive DATE,
-	PRIMARY KEY (id_comFour)
-)
-
-/* */
-
 CREATE TABLE Sous_categorie(
 	id_scat INT AUTO_INCREMENT NOT NULL,
 	categorie VARCHAR(80),
@@ -126,6 +111,61 @@ CREATE TABLE Compose(
 	id_mat VARCHAR(20) NOT NULL,
 	id_nivliste INT NOT NULL,
 	PRIMARY KEY (id_mat, id_nivliste)
+) Engine=InnoDB;
+
+CREATE TABLE Com_archive(
+	id_comArchive INT AUTO_INCREMENT NOT NULL,
+	date_archive DATE,
+	id_parent INT,
+	PRIMARY KEY (id_comArchive)
+) Engine=InnoDB;
+
+CREATE TABLE ComFour_archive(
+	id_comFour INT AUTO_INCREMENT NOT NULL,
+	prix_archive DOUBLE,
+	date_fourArchive DATE,
+	PRIMARY KEY (id_comFour)
+) Engine=InnoDB;
+
+CREATE TABLE Mat_archive(
+	id_matA INT AUTO_INCREMENT NOT NULL, /* ID INDEPENDANT */
+	ref_matA VARCHAR(20),
+	desc_matA VARCHAR(20),
+	prix_matA NUMERIC(5,2),
+	PRIMARY KEY (id_matA)
+) Engine=InnoDB;
+
+CREATE TABLE Liste_archive(
+	id_nivlisteA INT  AUTO_INCREMENT NOT NULL,
+	forfaitA DOUBLE, 
+	PRIMARY KEY (id_nivlisteA)
+) Engine=InnoDB;
+
+CREATE TABLE ContientFA(
+	id_comFour INT  AUTO_INCREMENT NOT NULL,
+	id_matA INT NOT NULL,
+	qte_matFA INT,
+	PRIMARY KEY (id_comFour,  id_matA),
+	FOREIGN KEY (id_comFour) REFERENCES ComFour_archive (id_comFour),
+	FOREIGN KEY (id_matA) REFERENCES Mat_archive (id_matA)
+) Engine=InnoDB;
+
+CREATE TABLE ContientA(
+	id_matA INT  AUTO_INCREMENT NOT NULL,
+	id_comArchive INT NOT NULL,
+	qte_matA INT,
+	PRIMARY KEY (id_matA,  id_comArchive),
+	FOREIGN KEY (id_matA) REFERENCES Mat_archive (id_matA),
+	FOREIGN KEY (id_comArchive) REFERENCES Com_archive (id_comArchive)
+) Engine=InnoDB;
+
+CREATE TABLE InclusA(
+	id_comArchive INT  AUTO_INCREMENT NOT NULL,
+	id_nivlisteA INT NOT NULL,
+	exemplaireA INT,
+	PRIMARY KEY (id_comArchive,  id_nivlisteA),
+	FOREIGN KEY (id_comArchive) REFERENCES Com_archive (id_comArchive),
+	FOREIGN KEY (id_nivlisteA) REFERENCES Liste_archive (id_nivlisteA)
 ) Engine=InnoDB;
 
 INSERT INTO `Niveau` (`code`, `Libelle`) VALUES
