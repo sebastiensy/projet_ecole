@@ -64,7 +64,6 @@ require_once(LIB.'/lib_listes.php');
 				}
 
 		?>
-		
 
 	</div>
 
