@@ -84,7 +84,7 @@ body
 }
 #connexion #co
 {
-	padding-left:11px; /* 11px*/
+	padding-left:11px;
 	font-size:11px;
 	margin-top: -150px;
 	margin-left: 150px;
@@ -96,8 +96,9 @@ body
 
 #connexion #co2
 {
+	position: absolute;
 	padding-left:20px;
-	padding-top:20px;
+	padding-top: 0px;
 	font-size:14px;
 	margin-top: -150px;
 	margin-left: 150px;
