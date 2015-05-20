@@ -60,7 +60,7 @@ CREATE TABLE Com_archive(
 	id_comArchive INT AUTO_INCREMENT NOT NULL,
 	date_archive DATE,
 	id_parent INT,
-	PRIMARY KEY (id_commande)
+	PRIMARY KEY (id_comArchive)
 ) Engine=InnoDB;
 
 /* */
