@@ -37,7 +37,7 @@ require_once('../inc/data.inc.php');
 <?php 
 
 $db = new DB_connection();
-$req = 'SELECT * FROM Message ORDER BY id_message ASC';
+$req = 'SELECT * FROM Message WHERE utilisateur = 1 ORDER BY id_message ASC';
 $db->DB_query($req);
 
 while($msg = $db->DB_object())
