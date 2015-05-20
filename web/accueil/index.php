@@ -42,9 +42,29 @@ require_once(LIB.'/lib_listes.php');
 
 		</div>
 
+		<div id="messagerie">
+			<a href="../messagerie/"><img src="../../img/menu/messagerie.png"></a>
+		</div>
+
 		<div id="panier">
 			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
+
+		<?php 
+				if(isset($_SESSION['droits']))
+				{
+					if ($_SESSION['droits'] ==1 )
+					{
+					?>
+					<div id="admin">
+						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+					</div>
+					<?php
+					}
+				}
+
+		?>
+		
 
 	</div>
 

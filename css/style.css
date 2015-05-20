@@ -68,18 +68,30 @@ body
 #connexion
 {
 	position:absolute;
-	background-image:url(../img/menu/connexion2.png);
-	background-repeat:no-repeat;
+	/*background-image:url(../img/menu/connexion2.png);*/
+	/*background-repeat:no-repeat;*/
 	width:150px;
 	height:110px; /* 90 */
 	margin-left:470px;
 	float:right;
 }
 
+#msgErr {
+	position: absolute;
+	margin-left: 160px;
+	width: 150px;
+	background-color: lightgrey;
+}
 #connexion #co
 {
-	padding-left:11px;
+	padding-left:11px; /* 11px*/
 	font-size:11px;
+	margin-top: -150px;
+	margin-left: 150px;
+	width:150px;
+	height:110px; 
+	background-image:url(../img/menu/connexion2.png);
+	background-repeat:no-repeat;
 }
 
 #connexion #co2
@@ -87,6 +99,25 @@ body
 	padding-left:20px;
 	padding-top:20px;
 	font-size:14px;
+	margin-top: -150px;
+	margin-left: 150px;
+	width:150px;
+	height:110px; 
+	background-image:url(../img/menu/connexion2.png);
+	background-repeat:no-repeat;
+}
+
+/* admin */
+
+#messagerie
+{
+  
+	/*position:absolute;*/
+	width:150px;
+	height:90px;
+	margin-left:460px;
+	margin-top:-10px;
+	/*float:right;*/
 }
 
 /* panier */
@@ -100,6 +131,20 @@ body
 	/*margin-left:690px;*/
 	float:right;
 	margin-right:75px;
+	margin-top:-90px;
+}
+
+/* admin */
+
+#admin
+{
+  
+	position:absolute;
+	width:150px;
+	height:90px;
+	margin-left:770px;
+	margin-top:-90px;
+	/*float:right;*/
 }
 
 /* page */
