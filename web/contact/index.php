@@ -48,7 +48,7 @@ require_once(LIB.'/lib_verifications.php');
 		</div>
 
 	</div>
-	
+
 	<div class="corps">
 	<div id="page">
 
@@ -94,11 +94,16 @@ require_once(LIB.'/lib_verifications.php');
 				$_POST["objet"]=htmlSpecialChars($_POST["objet"]);
 				$_POST["email"]=htmlSpecialChars($_POST["email"]);
 
-				// requête
-				$requete='insert into Message (email_parent, objet, message,jma, lu) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",NOW(), 0)';
-
-				// exécution de la requete
+				$requete='SELECT id_parent FROM Parent WHERE droits_parents = 1';
 				$db->DB_query($requete);
+				if($db->DB_count() > 0)
+				{
+						if($admin = $db->DB_object())
+						{
+							$requete = 'INSERT INTO Message (email_parent, objet, message,jma, lu, utilisateur, id_parent) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",NOW(), 0, 1, "'.$admin->id_parent.'")';
+							$db->DB_query($requete);
+						}
+				}
 				$db->DB_done();
 
 				// réaffichage du formulaire vide 
