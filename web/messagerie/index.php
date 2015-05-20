@@ -89,13 +89,13 @@ require_once(LIB.'/lib_messagerie.php');
 	if ($db->DB_count()>=1)
 	{
 		?>
-		<table width="900" align="center" class="data">
+		<table width="600" align="center" class="data">
 			<tr>
 				<th width="90" ><div align="center">N° message</div></th>
 				<th width="90" ><div align="center">Objet</div></th>
 				<th width="90" ><div align="center">Date</div></th>
-				<th width="90" ><div align="center"></div></th>
-				<th width="90" ><div align="center"></div></th>
+				<th width="40" ><div align="center"></div></th>
+				<th width="40" ><div align="center"></div></th>
 			</tr>
 		<?php 
 		while($msg = $db->DB_object())
@@ -104,8 +104,8 @@ require_once(LIB.'/lib_messagerie.php');
 				echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
 				echo "<td><div align='center'>".$msg->objet."</div></td>";
 				echo "<td><div align='center'>".$msg->jma."</div></td>";
-				echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img src="../../../img/del.png"> </a></div></td>
+				echo '<td><div align="center"><a class="fancy2" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img src="../../img/del.png"> </a></div></td>
 
 				<?php 
 				echo "</tr>";

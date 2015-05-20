@@ -51,14 +51,6 @@
 		});
 		$( "button" ).button();
 
-		// Pour le suivi des commandes (admin)
-		$("#fancy").fancybox({
-			'width':'35%',
-			'height':'50%',
-			'type':'iframe',
-			'autoScale':'false'
-        });
-
 		// Pour l'affichage des listes (accueil)
 		$(".fancy2").fancybox({
 			fitToView:false,
