@@ -6,8 +6,12 @@
 	<link rel="stylesheet" href="../../js/jquery-ui.css">
 	<link rel="stylesheet" href="../../css/style.css">
 	<link rel="stylesheet" href="../../js/fancybox/source/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="../../js/jquery.realperson.css">
 	<link rel="stylesheet" href="../../css/progress.bar.css">
-	<script src="../../js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.plugin.js"></script>
+	<script type="text/javascript" src="../../js/jquery.realperson.js"></script>
+	<!-- <script src="../../js/jquery-2.1.1.min.js"></script> -->
 	<script src="../../js/jquery-ui.js"></script>
 	<script src="../../js/fancybox/source/jquery.fancybox.pack.js"></script>
 	<script src="../../js/verifications.js"></script>
@@ -65,7 +69,14 @@
 			'type':'iframe'
 		 });
 	});
- 
+
+	$(function() {
+		$("#captcha").realperson({
+			chars: $.realperson.alphanumeric,
+			regenerate: ''
+		});
+	});
+
 	</script>
 </head>
 <body>

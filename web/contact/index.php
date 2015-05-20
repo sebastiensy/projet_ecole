@@ -101,6 +101,11 @@ require_once(LIB.'/lib_verifications.php');
 				echo "<p><span style=\"color:red\">Email invalide.</span></p>";
 				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
 			}
+			else if(rpHash($_POST['captcha']) != $_POST['captchaHash'])
+			{
+				echo "<p><span style=\"color:red\">Le captcha est incorrect.</span></p>";
+				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+			}
 			else
 			{
 				// les champs sont remplis, ecriture dans la base

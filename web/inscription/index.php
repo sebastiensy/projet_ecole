@@ -18,7 +18,7 @@ require_once(LIB.'/lib_verifications.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
 
 		<div id="menu">
 
@@ -121,6 +121,10 @@ require_once(LIB.'/lib_verifications.php');
 			else if(!verifMdp($_POST["mdp"]))
 			{
 				formulaire_inscription("Le mot de passe doit comporter entre 6 et 16 caractères.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+			}
+			else if(rpHash($_POST['captcha']) != $_POST['captchaHash'])
+			{
+				formulaire_inscription("Le captcha est incorrect.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
 			}
 			else
 			{
