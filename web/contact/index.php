@@ -76,7 +76,10 @@ require_once(LIB.'/lib_verifications.php');
 
 		if(!isset($_POST["ok"]))
 		{
-			formulaire_contacter("email", "objet", "message");
+			if(isset($_SESSION["email"]))
+				formulaire_contacter($_SESSION["email"], "objet", "message");
+			else
+				formulaire_contacter("email", "objet", "message");
 		}
 		else
 		{
