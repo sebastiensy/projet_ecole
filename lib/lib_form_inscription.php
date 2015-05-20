@@ -18,7 +18,7 @@ function formulaire_inscription($message="", $nom="", $email="", $tel="", $mdp="
 		<p> <label class="inscription" for="captcha">&nbsp;</label>
 			<table>
 				<tr>
-					<td><input type="text" id="captcha" name="captcha"></td>
+					<td><input type="text" id="captcha" name="captcha" onblur="champVide(this)"></td>
 				</tr>
 			</table>
 		</p>
