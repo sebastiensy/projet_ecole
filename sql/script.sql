@@ -183,7 +183,8 @@ INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent,
 ('2', 'toto', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'toto@test.com', '0123456789', 1, 0),
 ('3', 'titi', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'titi@test.com', '0123456789', 1, 0),
 ('4', 'azerty', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'azerty@test.com', '0123456789', 1, 0),
-('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'rrrr@test.com', '0123456789', 1, 0);
+('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'rrrr@test.com', '0123456789', 1, 0),
+('6', 'admin', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'admin@admin.com', '0123456789', 1, 1);
 
 INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('1', '2014-11-20', 1, 1),

@@ -28,7 +28,7 @@ if (isset($_GET['id']))
 
 			<table width="800" align="left" class="data">
 			<tr>
-				<th width="90" ><div align="center">NÂ° message</div></th>
+				<th width="90" ><div align="center">N° message</div></th>
 				<td><?php echo $id_msg;?></td>
 			</tr>
 			<tr>
