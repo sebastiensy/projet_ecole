@@ -52,7 +52,7 @@ else
 				<tr>
 				<td><label class="gestion" for="jma">Date limite :</label></td>
 				<td><input type="text" name="date" id="date" value="<?php echo $newDate; ?>" disabled/></td>
-				<td><a href="gestion_site.php?gestion=jma&date=<?php echo $newDate;?>"><input type="button" value="Modifier"></a></td>
+				<td><a href="gestion_site.php?gestion=jma&amp;date=<?php echo $newDate;?>"><input type="button" value="Modifier"></a></td>
 				</tr>
 				<tr>
 			</form>
