@@ -14,6 +14,22 @@
 
 function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche="")
 {
+	$db = new DB_connection();
+	$query = 'SELECT jma FROM Date_limite';
+	$db->DB_query($query);
+	$now = Date("Y-m-d");
+	$jma = Date("Y-m-d");
+	if($db->DB_count() > 0)
+	{
+		if($date = $db->DB_object())
+		{
+			$now = new DateTime($now);
+			$now = $now->format('Ymd');
+			$jma = new DateTime($date->jma);
+			$jma = $jma->format('Ymd');
+		}
+	}
+
 	if(!empty($recherche))
 	{
 		$requete = 'SELECT ref_mat, desc_mat, prix_mat FROM Materiel WHERE desc_mat LIKE \'%'.$recherche.'%\' OR ref_mat = \''.$recherche.'\'';
@@ -27,7 +43,6 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 		if(!empty($srubrique))
 			$requete .= ' AND sc.scat = \''.$srubrique.'\'';
 	}
-	$db = new DB_connection();
 
 	$db->DB_query($requete);
 	$nb_elems = 20; // nombre d'éléments par page
@@ -50,19 +65,26 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 
 	if(isset($_SESSION["id_parent"]))
 	{
-		if(isset($_GET["ref"]))
+		if($now < $jma)
 		{
-			$requete2 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
-			$db->DB_query($requete2);
-			if($db->DB_count() > 0)
+			if(isset($_GET["ref"]))
 			{
-				$str = "L'article ".$_GET["ref"]." a été ajouté au <a href=\"../panier\">panier</a>";
-				if(isset($_GET["qte"]))
+				$requete2 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+				$db->DB_query($requete2);
+				if($db->DB_count() > 0)
 				{
-					$str .= " en ".$_GET["qte"]." exemplaires.";
+					$str = "L'article ".$_GET["ref"]." a été ajouté au <a href=\"../panier\">panier</a>";
+					if(isset($_GET["qte"]))
+					{
+						$str .= " en ".$_GET["qte"]." exemplaires.";
+					}
+					echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
 				}
-				echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
 			}
+		}
+		else
+		{
+			echo "<span style=\"color:red\"><p><strong>La date limite de commande est passée.</strong></p></span>";
 		}
 	}
 	else
@@ -89,11 +111,14 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			$tr = "<tr>";
 			if(isset($_SESSION["id_parent"]))
 			{
-				if(isset($_GET["ref"]))
+				if($now < $jma)
 				{
-					if($_GET["ref"] == $mat->ref_mat)
+					if(isset($_GET["ref"]))
 					{
-						$tr = "<tr bgcolor=\"orange\">";
+						if($_GET["ref"] == $mat->ref_mat)
+						{
+							$tr = "<tr bgcolor=\"orange\">";
+						}
 					}
 				}
 			}
@@ -105,11 +130,14 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 				$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 				if(isset($_SESSION["id_parent"]))
 				{
-					if(isset($_GET["ref"]) && isset($_GET['qte']))
+					if($now < $jma)
 					{
-						if($_GET["ref"] == $mat->ref_mat)
+						if(isset($_GET["ref"]) && isset($_GET['qte']))
 						{
-							$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
+							if($_GET["ref"] == $mat->ref_mat)
+							{
+								$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
+							}
 						}
 					}
 				}
@@ -141,34 +169,18 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	{
 		if(isset($_SESSION["id_parent"]))
 		{
-			// Vérification d'erreurs si la réf n'existe pas
-			$requete3 = 'SELECT id_mat, ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
-			$db->DB_query($requete3);
-			if($db->DB_count() > 0)
-			{	
-				if($mat = $db->DB_object())
+			if($now < $jma)
+			{
+				// Vérification d'erreurs si la réf n'existe pas
+				$requete3 = 'SELECT id_mat, ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+				$db->DB_query($requete3);
+				if($db->DB_count() > 0)
 				{
-					$panier->add($mat->id_mat, htmlSpecialChars($_GET["qte"]));
+					if($mat = $db->DB_object())
+					{
+						$panier->add($mat->id_mat, htmlSpecialChars($_GET["qte"]));
+					}
 				}
-
-				/*$requete = 'SELECT c.id_commande FROM Commande as c, Parent as p WHERE Etat = 1 AND p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
-				$db->DB_query($requete);
-
-				if($commande = $db->DB_object())
-				{
-					$id = $commande->id_commande;
-
-					// pouvoir modifier quantite à l'avenir par un GET
-					$requete = 'INSERT INTO Contient (id_commande, ref_mat, quantite) VALUES ("'.$id.'", "'.$_GET["ref"].'", 1)';
-					$db->DB_query($requete);
-				}*/
-				/*else
-				{
-					// remplacer '1' avec $_SESSION['id']
-					echo "test";
-					$requete = 'INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES (\'\', \'\', \'0\', 1)';
-					$res = mysqli_query($co, $requete);
-				}*/
 			}
 		}
 	}

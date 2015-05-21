@@ -1,18 +1,21 @@
 <?php
 
 // s'occupe de la mise en forme d'une ligne du formulaire
-function mise_en_forme($idlist,$libelle,$prix)
+function mise_en_forme($idlist, $libelle, $prix, $now, $jma)
 {
 	$tr = "<tr>";
 	$qte = 1;
 	if(isset($_SESSION["id_parent"]))
 	{
-		if(isset($_POST["id"]) && isset($_POST["qte"]))
+		if($now < $jma)
 		{
-			if($idlist == $_POST["id"])
+			if(isset($_POST["id"]) && isset($_POST["qte"]))
 			{
-				$tr = "<tr bgcolor=\"orange\">";
-				$qte = $_POST["qte"];
+				if($idlist == $_POST["id"])
+				{
+					$tr = "<tr bgcolor=\"orange\">";
+					$qte = $_POST["qte"];
+				}
 			}
 		}
 	}
@@ -52,16 +55,37 @@ function footer()
 // affichage des listes
 function affichage($panier)
 {
+	$db = new DB_connection();
+	$now = Date("Y-m-d");
+	$jma = Date("Y-m-d");
 	if(isset($_SESSION["id_parent"]))
 	{
-		if(isset($_POST["id"]) && isset($_POST["qte"]))
+		$query = 'SELECT jma FROM Date_limite';
+		$db->DB_query($query);
+		if($db->DB_count() > 0)
 		{
-			$db = new DB_connection();
-			$panier->addList($_POST["id"], $_POST["qte"]);
-			$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau AND ln.id_nivliste = "'.$_POST["id"].'"';
-			$db->DB_query($query);
-			echo "<span style=\"color:green\"><p><strong>La liste \"".$db->DB_object()->Libelle."\" a été ajouté au
-			<a href=\"../panier\">panier</a> en ".$_POST["qte"]." exemplaires.</strong></p></span>";
+			if($date = $db->DB_object())
+			{
+				$now = new DateTime($now);
+				$now = $now->format('Ymd');
+				$jma = new DateTime($date->jma);
+				$jma = $jma->format('Ymd');
+			}
+		}
+		if($now < $jma)
+		{
+			if(isset($_POST["id"]) && isset($_POST["qte"]))
+			{
+				$panier->addList($_POST["id"], $_POST["qte"]);
+				$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau AND ln.id_nivliste = "'.$_POST["id"].'"';
+				$db->DB_query($query);
+				echo "<span style=\"color:green\"><p><strong>La liste \"".$db->DB_object()->Libelle."\" a été ajouté au
+				<a href=\"../panier\">panier</a> en ".$_POST["qte"]." exemplaires.</strong></p></span>";
+			}
+		}
+		else
+		{
+			echo "<span style=\"color:red\"><p><strong>La date limite de commande est passée.</strong></p></span>";
 		}
 	}
 	else
@@ -70,9 +94,6 @@ function affichage($panier)
 	}
 
 	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code order by ln.niveau';
-
-	// connexion a la base via la classe DB_connection
-	$db = new DB_connection();
 
 	// exécution de la requete
 	$db->DB_query($requete);
@@ -91,9 +112,9 @@ function affichage($panier)
 	{
 		?>
 		<form method="POST" action="">
-		<?php
-		mise_en_forme($ligne->id_nivliste, $ligne->Libelle, $ligne->forfait);
-		?>
+			<?php
+			mise_en_forme($ligne->id_nivliste, $ligne->Libelle, $ligne->forfait, $now, $jma);
+			?>
 		</form>
 		<?php
 	}
