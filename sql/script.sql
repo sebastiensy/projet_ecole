@@ -38,7 +38,9 @@ CREATE TABLE Parent(
 	tel_parent VARCHAR(20),
 	nb_enfants INT,
 	droits_parents TINYINT(1),
-	PRIMARY KEY (id_parent)
+	id_etat INT NOT NULL,
+	PRIMARY KEY (id_parent),
+	FOREIGN KEY (id_etat) REFERENCES Etat (id_etat)
 ) Engine=InnoDB;
 
 CREATE TABLE Message(
@@ -178,13 +180,21 @@ INSERT INTO `Niveau` (`code`, `Libelle`) VALUES
 ALTER TABLE `Liste_niveau`
   ADD CONSTRAINT `Liste_niveau_ibfk_1` FOREIGN KEY (`niveau`) REFERENCES `Niveau` (`code`);
 
-INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents) VALUES
-('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'dupont@test.com', '0123456789', 1, 0),
-('2', 'toto', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'toto@test.com', '0123456789', 1, 0),
-('3', 'titi', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'titi@test.com', '0123456789', 1, 0),
-('4', 'azerty', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'azerty@test.com', '0123456789', 1, 0),
-('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'rrrr@test.com', '0123456789', 1, 0),
-('6', 'admin', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'admin@admin.com', '0123456789', 1, 1);
+
+INSERT INTO `Etat` (`id_etat`, `libelle_etat`) VALUES
+('1',''),
+('2','Inscription validée'),
+('3','Remplir panier'),
+('4','Commander'),
+('5','Commande validée');
+
+INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents, id_etat) VALUES
+('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'dupont@test.com', '0123456789', 1, 0, 2),
+('2', 'toto', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'toto@test.com', '0123456789', 1, 0, 2),
+('3', 'titi', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'titi@test.com', '0123456789', 1, 0, 2),
+('4', 'azerty', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'azerty@test.com', '0123456789', 1, 0, 2),
+('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'rrrr@test.com', '0123456789', 1, 0, 2),
+('6', 'admin', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'admin@admin.com', '0123456789', 1, 1, 2);
 
 INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
 ('1', '2014-11-20', 1, 1),
@@ -460,9 +470,3 @@ INSERT INTO Materiel (ref_mat, desc_mat, prix_mat, id_scat) VALUES
 
 INSERT INTO `Liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
 (1, 'C', 0);
-
-INSERT INTO `Etat` (`libelle_etat`) VALUES
-('Inscription validée'),
-('Remplir panier'),
-('Commander'),
-('Commande validée');
