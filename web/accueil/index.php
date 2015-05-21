@@ -69,6 +69,23 @@ require_once(LIB.'/lib_listes.php');
 
 	<div class="corps">
 
+		<div id="workflow">
+			<?php
+			if(!isset($_SESSION['id_parent']))
+			{
+				?>
+				<!---<img src="../../img/workflow.png"></a>-->
+				<?php
+			}
+			else
+			{
+				?>
+				<!--<img src="../../img/workflow_c.png"></a>-->
+				<?php 
+			}
+			?>
+		</div>
+
 		<div id="page">
 
 			<p class="titre">Accueil</p>

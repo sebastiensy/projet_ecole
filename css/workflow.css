@@ -1,4 +1,10 @@
 #workflow
 {
+	position: absolute;
 	background-image:url(../img/workflow.png);
+	background-repeat: no-repeat;
+	width: 400px;
+	height: 500px;
+	margin-top:30px;
+	margin-left: -175px;
 }

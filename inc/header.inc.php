@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../../js/jquery.realperson.css">
 	<link rel="stylesheet" href="../../css/progress.bar.css">
 	<link rel="stylesheet" href="../../css/progress.bar.compte.css">
+	<link rel="stylesheet" href="../../css/workflow.css">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.plugin.js"></script>
 	<script type="text/javascript" src="../../js/jquery.realperson.js"></script>
@@ -67,6 +68,21 @@
 		$("#captcha").realperson({
 			chars: $.realperson.alphanumeric,
 			regenerate: ''
+		});
+	});
+	$(function() {
+		var offset = $("#workflow").offset();
+		var topPadding = 35;
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > offset.top) {
+				$("#workflow").stop().animate({
+					marginTop: $(window).scrollTop() - offset.top + topPadding
+				});
+			} else {
+				$("#workflow").stop().animate({
+					marginTop: 30
+				});
+			};
 		});
 	});
 
