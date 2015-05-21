@@ -36,7 +36,7 @@ function connexion()
 	{
 		//echo "<table id=\"co2\"><tr><td>Bienvenue, ".$_SESSION['email'];"</td></tr>";
 		//echo "<tr><td><a href=\"../deconnexion/logout.php\"/>Se d&eacute;connecter</a></td></tr></table>";
-		echo "<div id =\"co2\"><br>Bienvenue,<br> ".$_SESSION['email'];
+		echo "<div id =\"co2\"><br>Bienvenue,<br> ".$_SESSION['nom_parent'];
 		echo "<br>";
 		echo "<a href=\"../deconnexion/logout.php\"/>Se d&eacute;connecter</a></div>";
 	}
