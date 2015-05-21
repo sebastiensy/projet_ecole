@@ -55,6 +55,7 @@ require_once('../inc/data.inc.php');
 $requete1 = 'SELECT SUM(cp.qte_scat*i.exemplaire) as qte , mat.desc_mat, mat.prix_mat, mat.id_mat
 	FROM Compose as cp, Materiel as mat, Inclus as i, Commande as com
     WHERE mat.id_mat = cp.id_mat AND cp.id_nivliste = i.id_nivliste AND i.id_commande = com.id_commande
+    AND c.etat >= 2
     GROUP BY mat.id_mat';
 
 /*
