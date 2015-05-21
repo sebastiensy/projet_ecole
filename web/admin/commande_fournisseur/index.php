@@ -73,10 +73,9 @@ $db->DB_query($requete1);
 
 $prix = array();
 
-
 while($elem = $db->DB_object())
 {
-	if (isset($tab[$elem->id_mat]))
+	if(isset($tab[$elem->id_mat]))
 		$tab[$elem->id_mat] += $elem->qte;
 	else
 		$tab[$elem->id_mat] = $elem->qte;	
@@ -86,7 +85,7 @@ $db->DB_query($requete2);
 
 while($elem = $db->DB_object())
 {
-	if (isset($tab[$elem->id_mat]))
+	if(isset($tab[$elem->id_mat]))
 		$tab[$elem->id_mat] += $elem->qte;
 	else
 		$tab[$elem->id_mat] = $elem->qte;	
@@ -106,7 +105,7 @@ if(!empty($ids))
 			echo "<tr><td><div align='center'>".$liste->ref_mat."</div></td>";
 			echo "<td><div align='center'>".$liste->desc_mat."</div></td>";
 			echo "<td><div align='center'>".$tab[$liste->id_mat]."</div></td>";
-			echo "<td><div align='center'>".$liste->prix_mat."</div></td>";
+			echo "<td><div align='center'>".number_format($liste->prix_mat, 2, ',', ' ')." €</div></td>";
 			array_push($prix, $tab[$liste->id_mat] * $liste->prix_mat);
 		}
 	}
