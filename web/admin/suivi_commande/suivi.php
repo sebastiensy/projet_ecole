@@ -42,7 +42,7 @@ require_once('../inc/data.inc.php');
 
 <?php
 
-$requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent GROUP BY p.id_parent';
+$requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 GROUP BY p.id_parent';
 
 $db = new DB_connection();
 $db->DB_query($requete);
