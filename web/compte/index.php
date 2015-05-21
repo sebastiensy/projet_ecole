@@ -84,6 +84,23 @@ if(!isset($_SESSION["id_parent"]))
 
 <p class="titre">Mon compte</p>
 
+<div class="checkout-wrap2">
+	<ul class="checkout-bar2">
+		<li id="1" class="1"><div id="inscr">Inscription validée</div></li>
+	    <li id="2" class="2"><div id="rpanier">Remplir panier</div></li>
+		<li id="3" class="3"><div id="cmder">Commander</div></li>
+		<li id="4" class="4"><div id="cmdvld">Commande validée</div></li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
 <p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
 
 <table>

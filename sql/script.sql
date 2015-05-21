@@ -460,3 +460,9 @@ INSERT INTO Materiel (ref_mat, desc_mat, prix_mat, id_scat) VALUES
 
 INSERT INTO `Liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
 (1, 'C', 0);
+
+INSERT INTO `Etat` (`libelle_etat`) VALUES
+('Inscription validée'),
+('Remplir panier'),
+('Commander'),
+('Commande validée');

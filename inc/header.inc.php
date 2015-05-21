@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="../../js/fancybox/source/jquery.fancybox.css">
 	<link rel="stylesheet" type="text/css" href="../../js/jquery.realperson.css">
 	<link rel="stylesheet" href="../../css/progress.bar.css">
+	<link rel="stylesheet" href="../../css/progress.bar.compte.css">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.plugin.js"></script>
 	<script type="text/javascript" src="../../js/jquery.realperson.js"></script>
