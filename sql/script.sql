@@ -470,3 +470,6 @@ INSERT INTO Materiel (ref_mat, desc_mat, prix_mat, id_scat) VALUES
 
 INSERT INTO `Liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
 (1, 'C', 0);
+
+INSERT INTO Date_limite (jma) VALUES
+('2015-08-31');
