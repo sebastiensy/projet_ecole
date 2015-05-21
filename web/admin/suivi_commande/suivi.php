@@ -77,7 +77,7 @@ while($suiv = $db->DB_object())
 			<th width="90" ><div align="center"></div></th>
 		</tr>
 	<?php
-	$requete2 = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$suiv->id_parent.'';
+	$requete2 = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
 	$db2 = new DB_connection();
 	$db2->DB_query($requete2);
 	$cpt = 1;
