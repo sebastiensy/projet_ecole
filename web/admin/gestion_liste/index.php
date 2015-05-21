@@ -1,3 +1,1 @@
-<?php
-header('Location: gestion_listes.php');
-?>
+<?php header('Location: gestion_listes.php'); ?>

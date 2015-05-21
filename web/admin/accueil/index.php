@@ -19,7 +19,17 @@ require_once('../inc/data.inc.php');
 	<div id="page">
 
 		<?php
-
+		if(!isset($_SESSION['droits']))
+		{
+			header("Location: ../../index.php");
+		}
+		else
+		{
+			if($_SESSION['droits'] != 1)
+			{
+				header("Location: ../../index.php");
+			}
+		}
 		?>
 
 		<div id="text" align="center">

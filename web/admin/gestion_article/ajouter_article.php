@@ -18,6 +18,20 @@ require_once('../../../lib/lib_form_ajout_article_admin.php');
 
 	<div id="page">
 
+		<?php
+		if(!isset($_SESSION['droits']))
+		{
+			header("Location: ../../index.php");
+		}
+		else
+		{
+			if($_SESSION['droits'] != 1)
+			{
+				header("Location: ../../index.php");
+			}
+		}
+		?>
+
 		<script type="text/javascript" src="../../../js/ajout_article.js"></script>
 
 		<table width="900" align="center" class="entete">

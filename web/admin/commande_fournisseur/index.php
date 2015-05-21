@@ -18,6 +18,20 @@ require_once('../inc/data.inc.php');
 
 	<div id="page">
 
+		<?php
+		if(!isset($_SESSION['droits']))
+		{
+			header("Location: ../../index.php");
+		}
+		else
+		{
+			if($_SESSION['droits'] != 1)
+			{
+				header("Location: ../../index.php");
+			}
+		}
+		?>
+
 		<table width="900" align="center" class="entete">
 			<tr>
 				<td ><div align="right">Commande fournisseur</div></td>
@@ -103,7 +117,7 @@ echo "</table>";
 echo "<br>";
 
 $somme = array_sum($prix);
-echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " â‚¬</strong></div>";
+echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
 
 
 

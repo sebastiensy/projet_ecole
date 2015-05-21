@@ -30,8 +30,22 @@ function get_niveau($code)
 		require_once('../inc/menu.inc.php');
 		?>
 	</div>
-	
+
 	<div id="page">
+
+		<?php
+		if(!isset($_SESSION['droits']))
+		{
+			header("Location: ../../index.php");
+		}
+		else
+		{
+			if($_SESSION['droits'] != 1)
+			{
+				header("Location: ../../index.php");
+			}
+		}
+		?>
 
 		<table width="900" align="center"class="entete">
 			<tr>

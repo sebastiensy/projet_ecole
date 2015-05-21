@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-//require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 
 ?>
@@ -19,27 +18,20 @@ require_once('../inc/data.inc.php');
 	</head>
 	<body>
 
-<!--<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
-		<script type="text/javascript">
-		function subm()
+	<?php
+	if(!isset($_SESSION['droits']))
+	{
+		header("Location: ../../index.php");
+	}
+	else
+	{
+		if($_SESSION['droits'] != 1)
 		{
-			document.getElementById('maj').submit();
+			header("Location: ../../index.php");
 		}
-		
-		</script>
-		
-	</head>
-	
-	<body>
-	<style type="text/css">
-		body {
-			
-			background-color: #FEF3DB;
-			background-image:none;
-			}
-  </style>-->
+	}
+	?>
+
   <?php $idListe=$_GET['idListe'];?>
 		<br>
 		<br>
@@ -47,7 +39,7 @@ require_once('../inc/data.inc.php');
 		<form method="post" action="ajouter_article_liste1.php" id="maj">
 		<input type="hidden" name="idListe" value="<?php echo $idListe ?>">
 		<table width="75%" align="center">
-			
+
 			<tr >
 				<td width="50%">
 					<div align="Left">
@@ -58,7 +50,7 @@ require_once('../inc/data.inc.php');
 					<div align="center" >
 						<select name="idMat">
 							<option value=""></option>
-						
+
 							<?php 
 								$db = new DB_connection();
 								$req="select * from Materiel";
@@ -70,7 +62,7 @@ require_once('../inc/data.inc.php');
 							<?php
 								}
 							?>
-			
+
 						</select>
 				</td>
 			</tr>
@@ -91,7 +83,7 @@ require_once('../inc/data.inc.php');
 			</tr>
 			</table>
 			<br>
-			
+
 			<table width="75%" align="center">
 						<tr>
 							<td><div align="right"><a href="#" onclick="subm();" class="myButton" id="sub">Valider</a></div></td>
