@@ -41,8 +41,8 @@ require_once('../../inc/data.inc.php');
 
 		</div>
 
-		<div id="messagerie">
-			<a href="../messagerie/"><img src="../../img/menu/messagerie.png"></a>
+		<div id="notification">
+			<a href="../notification/"><img src="../../img/menu/messagerie.png"></a>
 		</div>
 
 		<div id="panier">
@@ -69,7 +69,7 @@ require_once('../../inc/data.inc.php');
 	<div class="corps">
 	<div id="page">
 
-	<p class="titre">Messagerie</p>
+	<p class="titre">Notification</p>
 	<?php
 	if(!isset($_SESSION["id_parent"]))
 	{

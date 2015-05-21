@@ -40,8 +40,8 @@ require_once('../../inc/data.inc.php');
 
 		</div>
 
-		<div id="messagerie">
-			<a href="../messagerie/"><img src="../../img/menu/messagerie.png"></a>
+		<div id="notification">
+			<a href="../notification/"><img src="../../img/menu/messagerie.png"></a>
 		</div>
 
 		<div id="panier">
