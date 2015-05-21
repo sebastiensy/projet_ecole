@@ -120,7 +120,7 @@ if (isset($_SESSION['id_parent']))
 	while($etat = $db->DB_object())
 	{
 		
-		for ($i=2; $i<=5; $i++) 
+		for ($i=1; $i<=4; $i++) 
 		{	
 			echo "<script type='text/javascript'>";
 			echo "var i = ".$i.";";
@@ -128,11 +128,11 @@ if (isset($_SESSION['id_parent']))
 			{
 				$('.".$i."').removeClass().addClass('active');
 			}
-			else if ($etat->id_etat >= i)
+			else if ($etat->id_etat >= i+1)
 			{
 				$('.".$i."').removeClass().addClass('visited');
 			}
-			else if ($etat->id_etat < i)
+			else if ($etat->id_etat < i+1)
 			{
 				$('.".$i."').removeClass().addClass('next');
 			}
@@ -146,12 +146,7 @@ if (isset($_SESSION['id_parent']))
 	}
 }
 
-
-
-
-
-
-
+echo '<br><br><br><br><br><br>';
 
 ?>
 <p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
