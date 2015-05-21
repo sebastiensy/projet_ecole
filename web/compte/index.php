@@ -72,8 +72,7 @@ require_once('../../inc/data.inc.php');
 
 <?php
 
-// Pour test
-//$id_parent = 3;
+
 
 if(!isset($_SESSION["id_parent"]))
 {
@@ -85,30 +84,6 @@ if(!isset($_SESSION["id_parent"]))
 <p class="titre">Mon compte</p>
 
 <?php
-
-$requete = 'SELECT * FROM Etat';
-$db = new DB_connection();
-$db->DB_query($requete);
-$cpt = 1;
-
-echo '<div class="checkout-wrap2">';
-echo '<ul class="checkout-bar2">';
-
-while ($etat = $db->DB_object())
-{
-	if ($etat->id_etat > 1)
-	{
-		?>
-		<li id="<?php echo $cpt;?>" class="<?php echo $cpt;?>"><div id="txt<?php echo $cpt;?>"><?php echo $etat->libelle_etat;?></div></li>
-			    
-		<?php
-		$cpt++;
-	}
-}
-
-echo '</ul>';
-echo '</div>';
-
 
 
 if (isset($_SESSION['id_parent']))
