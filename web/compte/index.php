@@ -84,14 +84,67 @@ if(!isset($_SESSION["id_parent"]))
 
 <p class="titre">Mon compte</p>
 
-<div class="checkout-wrap2">
-	<ul class="checkout-bar2">
-		<li id="1" class="1"><div id="inscr">Inscription validée</div></li>
-	    <li id="2" class="2"><div id="rpanier">Remplir panier</div></li>
-		<li id="3" class="3"><div id="cmder">Commander</div></li>
-		<li id="4" class="4"><div id="cmdvld">Commande validée</div></li>
-	</ul>
-</div>
+<?php
+
+$requete = 'SELECT * FROM Etat';
+$db = new DB_connection();
+$db->DB_query($requete);
+$cpt = 1;
+
+echo '<div class="checkout-wrap2">';
+echo '<ul class="checkout-bar2">';
+
+while ($etat = $db->DB_object())
+{
+	if ($etat->id_etat > 1)
+	{
+		?>
+		<li id="<?php echo $cpt;?>" class="<?php echo $cpt;?>"><div id="txt<?php echo $cpt;?>"><?php echo $etat->libelle_etat;?></div></li>
+			    
+		<?php
+		$cpt++;
+	}
+}
+
+echo '</ul>';
+echo '</div>';
+
+
+
+if (isset($_SESSION['id_parent']))
+{
+	$requete = 'SELECT e.id_etat, e.libelle_etat FROM Etat as e, Parent as p WHERE p.id_etat = e.id_etat AND p.id_parent = '.$_SESSION['id_parent'];
+	$db = new DB_connection();
+	$db->DB_query($requete);
+
+	while($etat = $db->DB_object())
+	{
+		
+		for ($i=2; $i<=5; $i++) 
+		{	
+			echo "<script type='text/javascript'>";
+			echo "var i = ".$i.";";
+			echo "if ($etat->id_etat == i && $etat->id_etat != 5)
+			{
+				$('.".$i."').removeClass().addClass('active');
+			}
+			else if ($etat->id_etat >= i)
+			{
+				$('.".$i."').removeClass().addClass('visited');
+			}
+			else if ($etat->id_etat < i)
+			{
+				$('.".$i."').removeClass().addClass('next');
+			}
+			else if ($etat->id_etat == 5)
+			{
+				$('.".$i."').removeClass().addClass('visited');
+			}"; 
+			echo "</script>";
+
+		}
+	}
+}
 
 
 
@@ -100,7 +153,7 @@ if(!isset($_SESSION["id_parent"]))
 
 
 
-
+?>
 <p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
 
 <table>
