@@ -19,7 +19,7 @@
 						<br>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>
 						<br>
@@ -35,6 +35,15 @@
 						<br>
 						<br>
 						<li><a href="../messagerie">Messagerie</a></li>
+						<br>
+						<br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<br>
+						<li><a href="../inscriptions">Nouvelles Inscriptions</a></li>
 						<br>
 						<br>
 					</td>
