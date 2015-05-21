@@ -6,6 +6,13 @@ require_once('../inc/data.inc.php');
 
 ?>
 
+<script type="text/javascript">
+function subm()
+{
+	document.getElementById('maj').submit();
+}
+</script>
+
 <div class="corps">
 
 	<div id="menu">

@@ -18,14 +18,6 @@ require_once('../inc/data.inc.php');
 
 	<div id="page">
 
-		<table width="900" align="center" class="entete">
-			<tr>
-				<td ><div align="right">Gestion du site</div></td>
-			</tr>
-		</table>
-		<br>
-		<br>
-
 <?php
 
 if(isset($_GET['gestion']) && isset($_GET['date']))
@@ -33,6 +25,12 @@ if(isset($_GET['gestion']) && isset($_GET['date']))
 		$tmp = explode('/', $_GET['date']);
 		$d = $tmp[2].'-'.$tmp[1].'-'.$tmp[0];
 		?>
+		<table width="900" align="center" class="entete">
+			<tr>
+				<td><div align="right">Gestion du site</div></td>
+			</tr>
+		</table>
+		<br><br>
 		<p>Veuillez saisir la date au format jj/mm/aaaa</p>
 		<form method="post" action="gestion_site.php">
 		<p><label class="gestion_site" for="jma">Date limite :</label><input type="text" id="date_limite" name="date_limite" value="<?php echo $_GET['date']; ?>" /></p>

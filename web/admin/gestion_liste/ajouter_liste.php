@@ -178,6 +178,8 @@ $db->DB_done();
 
 ?>
 
+<script type="text/javascript" src="../../../js/ajax.js"></script>
+
 <?php
 
 require_once('../inc/footer.inc.php');
