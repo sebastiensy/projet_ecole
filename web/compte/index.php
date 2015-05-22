@@ -1,6 +1,8 @@
 <?php
 
 require_once('../../inc/data.inc.php');
+require_once(LIB.'/lib_workflow.php');
+
 
 ?>
 
@@ -67,6 +69,19 @@ require_once('../../inc/data.inc.php');
 	</div>
 
 	<div class="corps">
+
+		<div id="workflow">
+			<?php 
+				if(!isset($_SESSION['id_parent']))
+				{
+					affiche_workflow(1);
+				}
+				else
+				{
+					affiche_workflow(2);
+				}
+			?>
+		</div>
 
 	<div id="page">
 

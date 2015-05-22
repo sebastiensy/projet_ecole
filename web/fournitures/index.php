@@ -2,6 +2,7 @@
 
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_fournitures.php');
+require_once(LIB.'/lib_workflow.php');
 
 ?>
 
@@ -69,6 +70,19 @@ require_once(LIB.'/lib_fournitures.php');
 
 	<div class="corps">
 
+		<div id="workflow">
+			<?php 
+				if(!isset($_SESSION['id_parent']))
+				{
+					affiche_workflow(1);
+				}
+				else
+				{
+					affiche_workflow(2);
+				}
+			?>
+		</div>
+		
 		<div id="categories">
 			<?php
 				$imgs = array("ecriture.png", "trousse.png", "etui.png", "cahiers.png", "protege.png", "classeur.png", "ardoise.png", "arts.png", "canson.png", "calculatrice.png");
