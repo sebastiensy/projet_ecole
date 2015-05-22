@@ -184,9 +184,8 @@ ALTER TABLE `Liste_niveau`
 INSERT INTO `Etat` (`id_etat`, `libelle_etat`) VALUES
 ('1',''),
 ('2','Inscription validée'),
-('3','Remplir panier'),
-('4','Commander'),
-('5','Commande validée');
+('3','Commander'),
+('4','Commande validée');
 
 INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents, id_etat) VALUES
 ('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'dupont@test.com', '0123456789', 1, 0, 2),
