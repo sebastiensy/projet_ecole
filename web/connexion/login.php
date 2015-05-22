@@ -27,7 +27,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			$_POST["email"]=htmlEntities($_POST["email"]);
 			$_POST["pass"]=htmlEntities($_POST["pass"]);
 
-			$requete = 'select * from Parent where email_parent = "'.$_POST["email"].'"';
+			$requete = 'select * from Parent where email_parent = "'.$_POST["email"].'" AND id_etat > 1';
 
 			// connexion a la base via la classe DB_connection
 			$db = new DB_connection();

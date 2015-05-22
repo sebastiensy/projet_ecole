@@ -160,14 +160,13 @@ require_once(LIB.'/lib_verifications.php');
 					$_POST["mdp"]=htmlEntities($_POST["mdp"]);
 					$_POST["nbrenfant"]=htmlEntities($_POST["nbrenfant"]);
 
-					// requête 
-					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0)';  
+					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents, id_etat) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0, 1)';  
 
 					// exécution de la requête 
 					$db->DB_query($requete);
 					$db->DB_done();
 					
-					echo "<span style=\"color:green\"><p><strong>Inscription réussie.</strong></p></span>";
+					echo "<span style=\"color:green\"><p><strong>Inscription en attente de validation.</strong></p></span>";
 				}
 			}
 		}
