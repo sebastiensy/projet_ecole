@@ -35,13 +35,27 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 {
 	if($_GET["a"] == "valider")
 	{
-			$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$_GET["id"].'"';
-			$db->DB_query($query);
+		$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$_GET["id"].'"';
+		$db->DB_query($query);
+
+		$query = 'SELECT nom_parent, email_parent FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
+		$db->DB_query($query);
+		if($parent = $db->DB_object())
+		{
+			$to = $parent->email_parent;
+			$subject = "Rentrée facile - Validation de l'inscription";
+			$message = "Bonjour ".$parent->nom_parent.",\r\n\r\n
+			Votre inscription sur le site \"Rentrée facile\" a été validée. Nous vous remercions de votre confiance.\r\n\r\n
+			Voici le lien pour accéder au site : ".$_SERVER['REQUEST_URI'];
+			$headers = "From: no-reply@rentree-facile.fr" . "\r\n" .
+			"Content-type: text/plain; charset=utf-8" . "\r\n";
+			$succes = mail($to, $subject, $message, $headers);
+		}
 	}
 	else if($_GET["a"] == "refuser")
 	{
-			$query = 'DELETE FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
-			$db->DB_query($query);
+		$query = 'DELETE FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
+		$db->DB_query($query);
 	}
 }
 
@@ -71,7 +85,6 @@ if($db->DB_count() > 0)
 			<td align=\"center\">".$inscription->nb_enfants."</td>
 			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=valider\"><img src=\"../../../img/icon_OK.png\" title=\"Valider\"></a></td>
 			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
-			<td align=\"center\"></td>
 		</tr>";
 	}
 }
