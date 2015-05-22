@@ -4,6 +4,7 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../../../lib/lib_message.php');
 
 ?>
 
@@ -38,18 +39,20 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 		$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$_GET["id"].'"';
 		$db->DB_query($query);
 
-		$query = 'SELECT nom_parent, email_parent FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
+		$query = 'SELECT id_parent, nom_parent, email_parent FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
 		$db->DB_query($query);
 		if($parent = $db->DB_object())
 		{
-			$to = $parent->email_parent;
+			message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
+
+			/*$to = $parent->email_parent;
 			$subject = "Rentrée facile - Validation de l'inscription";
 			$message = "Bonjour ".$parent->nom_parent.",\r\n\r\n
 			Votre inscription sur le site \"Rentrée facile\" a été validée. Nous vous remercions de votre confiance.\r\n\r\n
 			Voici le lien pour accéder au site : ".$_SERVER['REQUEST_URI'];
 			$headers = "From: no-reply@rentree-facile.fr" . "\r\n" .
 			"Content-type: text/plain; charset=utf-8" . "\r\n";
-			$succes = mail($to, $subject, $message, $headers);
+			$succes = mail($to, $subject, $message, $headers);*/
 		}
 	}
 	else if($_GET["a"] == "refuser")

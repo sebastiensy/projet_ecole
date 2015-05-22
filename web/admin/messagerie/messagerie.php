@@ -48,7 +48,7 @@ while($msg = $db->DB_object())
 		echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
 		echo "<td><div align='center'>".$msg->email_parent."</div></td>";
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
-		echo "<td><div align='center'>".$msg->jma."</div></td>";
+		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 		echo "<td><div align='center'>Non lu</div></td>";
 		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
 		?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img src="../../../img/del.png"> </a></div></td>
@@ -61,7 +61,7 @@ while($msg = $db->DB_object())
 		echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
 		echo "<td><div align='center'>".$msg->email_parent."</div></td>";
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
-		echo "<td><div align='center'>".$msg->jma."</div></td>";
+		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 		echo "<td><div align='center'>Lu</div></td>";
 		echo '<td><div align="center"><a class="fancy" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
 		?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img src="../../../img/del.png"> </a></div></td>

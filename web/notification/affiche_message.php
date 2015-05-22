@@ -7,7 +7,7 @@ require_once(LIB.'/lib_db.class.php');
 
 <html>
 	<head>
-		<title>Projet Ã©cole</title>
+		<title>Projet école</title>
 		<!--<link rel="stylesheet" href="../../css/.css">-->
 	</head>
 	<body>
@@ -31,7 +31,7 @@ if (isset($_GET['id']))
 
 			<table width="500" align="left" class="data">
 			<tr>
-				<th width="90" ><div align="center">NÂ° message</div></th>
+				<th width="90" ><div align="center">N° message</div></th>
 				<td><?php echo $id_msg;?></td>
 			</tr>
 			<tr>
@@ -40,7 +40,7 @@ if (isset($_GET['id']))
 			</tr>
 			<tr>
 				<th width="90" ><div align="center">Date</div></th>
-				<?php echo "<td>".$msg->jma."</td>";?>
+				<?php echo "<td>".date("d-m-Y", strtotime($msg->jma))."</td>";?>
 			</tr>
 			<tr>
 				<th width="90" ><div align="center">Message</div></th>
