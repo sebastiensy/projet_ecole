@@ -3,6 +3,7 @@
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_contacter.php');
 require_once(LIB.'/lib_verifications.php');
+require_once(LIB.'/lib_message.php');
 
 ?>
 
@@ -131,8 +132,7 @@ require_once(LIB.'/lib_verifications.php');
 				{
 						if($admin = $db->DB_object())
 						{
-							$requete = 'INSERT INTO Message (email_parent, objet, message,jma, lu, utilisateur, id_parent) values("'.$_POST["email"].'", "'.$_POST["objet"].'", "'.$_POST["message"].'",NOW(), 0, 1, "'.$admin->id_parent.'")';
-							$db->DB_query($requete);
+							message($_POST["email"], $_POST["objet"], $_POST["message"], 1, $admin->id_parent);
 						}
 				}
 				$db->DB_done();
