@@ -3,6 +3,7 @@
 session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
+require_once('../inc/droits.inc.php');
 
 ?>
 
@@ -15,20 +16,6 @@ require_once('../inc/data.inc.php');
 	</div>
 
 	<div id="page">
-
-		<?php
-		if(!isset($_SESSION['droits']))
-		{
-			header("Location: ../../index.php");
-		}
-		else
-		{
-			if($_SESSION['droits'] != 1)
-			{
-				header("Location: ../../index.php");
-			}
-		}
-		?>
 
 		<table width="900" align="center" class="entete">
 			<tr>
