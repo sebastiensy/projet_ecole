@@ -100,18 +100,20 @@ require_once('../../inc/data.inc.php');
 					<th width="90" ><div align="center">Etat</div></th>
 					<th width="40" ><div align="center"></div></th>
 					<th width="40" ><div align="center"></div></th>
+					<th width="40" ><div align="center"></div></th>
 				</tr>
 			<?php 
 			while($msg = $db->DB_object())
 			{
 				$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
-				echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
+				echo "<tr><td><div align='center'></div></td>";
 				echo "<td><div align='center'>".$msg->objet."</div></td>";
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
-				echo '<td><div align="center"><a onClick=actualiserLecture() class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
 				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
 				<?php 
+				echo "<td><div align='center'><input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message."></div></td>";
 				echo "</tr>";
 			}
 			echo "</table>";
