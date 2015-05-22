@@ -34,7 +34,7 @@ $db = new DB_connection();
 
 if(isset($_GET["id"]) && isset($_GET["a"]))
 {
-	if($_GET["a"] == "valider")
+	if($_GET["a"] == "accepter")
 	{
 		$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$_GET["id"].'"';
 		$db->DB_query($query);
@@ -74,7 +74,7 @@ if($db->DB_count() > 0)
 			<th width="90"><div align="center">Email</div></th>
 			<th width="90"><div align="center">Téléphone</div></th>
 			<th width="90"><div align="center">Enfants</div></th>
-			<th width="90"><div align="center">Valider</div></th>
+			<th width="90"><div align="center">Accepter</div></th>
 			<th width="90"><div align="center">Refuser</div></th>
 		</tr>
 	<?php
@@ -86,7 +86,7 @@ if($db->DB_count() > 0)
 			<td align=\"center\">".$inscription->email_parent."</td>
 			<td align=\"center\">".$inscription->tel_parent."</td>
 			<td align=\"center\">".$inscription->nb_enfants."</td>
-			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=valider\"><img src=\"../../../img/icon_OK.png\" title=\"Valider\"></a></td>
+			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=accepter\"><img src=\"../../../img/icon_OK.png\" title=\"Accepter\"></a></td>
 			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
 		</tr>";
 	}
