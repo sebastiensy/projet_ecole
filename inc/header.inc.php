@@ -92,7 +92,7 @@
 				});
 			} else {
 				$("#workflow").stop().animate({
-					marginTop: 30
+					marginTop: 15
 				});
 			};
 		});

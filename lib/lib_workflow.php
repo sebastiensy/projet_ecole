@@ -24,7 +24,15 @@ function affiche_workflow()
 		$imageUrl = "../../img/workflow.png";
 	}
 
-	return "<img src=\"".$imageUrl."\"></img>";
+	?>
+	<MAP NAME="liens_workflow">
+		<AREA SHAPE="rect" COORDS="54,256,146,306" HREF="../accueil">
+		<AREA SHAPE="rect" COORDS="157,258,290,305" HREF="../fournitures">
+		<AREA SHAPE="rect" COORDS="70,340,269,389" HREF="../panier#btncmd">
+	</MAP>
+	
+	<?php
+	return "<img src=\"".$imageUrl."\" usemap=\"#liens_workflow\"></img>";
 }
 
 ?>

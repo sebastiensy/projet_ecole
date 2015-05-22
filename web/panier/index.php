@@ -237,7 +237,7 @@ require_once(LIB.'/lib_listes.php');
 								"<br/><table align=\"center\">
 									<tr>
 										<form method=\"post\" action=\"\">
-											<td><input type=\"submit\" name=\"commander\" value=\"Commander\"></td>
+											<td><input type=\"submit\" id=\"btncmd\" name=\"commander\" value=\"Commander\"></td>
 										</form>
 
 										<form method=\"post\" action=\"\">

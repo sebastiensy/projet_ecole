@@ -69,8 +69,7 @@ require_once(LIB.'/lib_listes.php');
 
 	<div class="corps">
 
-		<div id="workflow">
-		</div>
+		<div id="workflow"></div>
 
 		<div id="page">
 
