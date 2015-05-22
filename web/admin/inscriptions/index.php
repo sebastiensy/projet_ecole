@@ -4,6 +4,7 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../../../lib/lib_message.php');
 
 ?>
 
@@ -42,9 +43,7 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 		$db->DB_query($query);
 		if($parent = $db->DB_object())
 		{
-			$query = 'INSERT INTO Message (email_parent, objet, message, jma, lu, utilisateur, id_parent) VALUES("'.$parent->email_parent.'", 
-			"Inscription", "Votre inscription a été validée !", NOW(), 0, 0, "'.$parent->id_parent.'")';
-			$db->DB_query($query);
+			message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
 
 			/*$to = $parent->email_parent;
 			$subject = "Rentrée facile - Validation de l'inscription";

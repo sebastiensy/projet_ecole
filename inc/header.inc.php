@@ -65,6 +65,16 @@
 		 });
 	});
 
+	$("a.fancy3").fancybox({	
+		type: "iframe",
+		width: '45%',
+		height: '65%',
+		onClosed: function() {
+			alert("test");
+			//parent.location.reload(true);
+		}
+	});
+
 	$(function() {
 		$("#captcha").realperson({
 			chars: $.realperson.alphanumeric,

@@ -15,7 +15,7 @@ require_once('../../inc/data.inc.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
 
 		<div id="menu">
 
@@ -61,7 +61,6 @@ require_once('../../inc/data.inc.php');
 					<?php
 					}
 				}
-
 		?>
 
 	</div>
@@ -70,7 +69,7 @@ require_once('../../inc/data.inc.php');
 
 		<div id="workflow">
 		</div>
-		
+
 	<div id="page">
 
 	<p class="titre">Notification</p>
@@ -81,18 +80,17 @@ require_once('../../inc/data.inc.php');
 	}
 
 	?>
-	
-		
+
+
 	<?php
 
 	if(isset($_SESSION["id_parent"]))
 	{
 		$db = new DB_connection();
-		$req = 'SELECT id_message, objet, message, jma FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message ASC';
+		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message ASC';
 		$db->DB_query($req);
-
 	
-		if ($db->DB_count()>=1)
+		if($db->DB_count()>=1)
 		{
 			?>
 			<table width="600" align="center" class="data">
@@ -100,32 +98,31 @@ require_once('../../inc/data.inc.php');
 					<th width="90" ><div align="center">N° message</div></th>
 					<th width="90" ><div align="center">Objet</div></th>
 					<th width="90" ><div align="center">Date</div></th>
+					<th width="90" ><div align="center">Etat</div></th>
 					<th width="40" ><div align="center"></div></th>
 					<th width="40" ><div align="center"></div></th>
 				</tr>
 			<?php 
 			while($msg = $db->DB_object())
 			{
-				
-					echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
-					echo "<td><div align='center'>".$msg->objet."</div></td>";
-					echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
-					echo '<td><div align="center"><a class="fancy2" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-					?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
-
-					<?php 
-					echo "</tr>";
+				$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
+				echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
+				echo "<td><div align='center'>".$msg->objet."</div></td>";
+				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
+				echo "<td><div align='center'>".$var."</div></td>";
+				echo '<td><div align="center"><a class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
+				<?php 
+				echo "</tr>";
 			}
 			echo "</table>";
-
 		}
 		else
 		{
 			echo "<strong>Vous n'avez aucune notification .</strong>";
 		}
 	}
-	
-	
+
 	?>
 
 	</div>
