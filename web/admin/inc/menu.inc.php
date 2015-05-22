@@ -3,7 +3,7 @@
 			echo '<br><br><br>';
 			echo '<table width="150" align="left">';
 			echo '<ul><tr><td><br><br>';
-			echo '<li><a href="../gestion_liste">G&eacute;rer Les Listes</a></li>';
+			echo '<li><a href="../gestion_liste">Gérer Les Listes</a></li>';
 			echo '			<br>
 						<br>
 					</td>
@@ -19,7 +19,6 @@
 						<br>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
 						<br>
