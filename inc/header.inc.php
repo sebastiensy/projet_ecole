@@ -17,6 +17,7 @@
 	<script src="../../js/jquery-ui.js"></script>
 	<script src="../../js/fancybox/source/jquery.fancybox.pack.js"></script>
 	<script src="../../js/verifications.js"></script>
+	<script src="../../js/workflow.js"></script>
 	<script>
 	$(function()
 	{

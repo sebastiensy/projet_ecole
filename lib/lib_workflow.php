@@ -1,10 +1,10 @@
 <?php
 
-function affiche_workflow($etat) 
+function affiche_workflow() 
 {
-	if (in_array($etat,array(2, 3)))
+	if (!empty($_SESSION['id_parent']))
 	{
-		$imageUrl = "../../img/workflow_c.png";
+		$imageUrl = "../img/workflow_c.png";
 
 		if(!empty($_SESSION['panier']) && !empty($_SESSION['liste']))
 		{
@@ -23,9 +23,8 @@ function affiche_workflow($etat)
 	{
 		$imageUrl = "../../img/workflow.png";
 	}
-
-	echo "<script type=\"text/javascript\">$(\"#workflow\").css(\"background-image\", \"url(".$imageUrl.")\");</script>";
-
+	//return $imageUrl;
+	return "<script type=\"text/javascript\">$(\"#workflow\").css(\"background-image\", \"url(".$imageUrl.")\");</script>";
 }
 
 ?>
