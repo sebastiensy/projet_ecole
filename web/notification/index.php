@@ -102,11 +102,12 @@ require_once('../../inc/data.inc.php');
 					<th width="40" ><div align="center"></div></th>
 					<th width="40" ><div align="center"></div></th>
 				</tr>
-			<?php 
+			<?php
+			$cpt = 1;
 			while($msg = $db->DB_object())
 			{
 				$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
-				echo "<tr><td><div align='center'></div></td>";
+				echo "<tr><td><div align='center'>".$cpt++."</div></td>";
 				echo "<td><div align='center'>".$msg->objet."</div></td>";
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
@@ -120,7 +121,7 @@ require_once('../../inc/data.inc.php');
 		}
 		else
 		{
-			echo "<strong>Vous n'avez aucune notification .</strong>";
+			echo "<p>Vous n'avez aucune notification.</p>";
 		}
 	}
 

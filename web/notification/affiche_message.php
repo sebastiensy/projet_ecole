@@ -30,20 +30,20 @@ if (isset($_GET['id']))
 			?>
 
 			<table width="500" align="left" class="data">
-			<tr>
+			<!-- <tr>
 				<th width="90" ><div align="center">N° message</div></th>
-				<td><?php echo $id_msg;?></td>
-			</tr>
+				<td><?php /*echo $id_msg;*/ ?></td>
+			</tr> -->
 			<tr>
-				<th width="90" ><div align="center">Objet</div></th>
+				<th width="90" ><div align="right">Objet : </div></th>
 				<?php echo "<td>".$msg->objet."</td>";?>
 			</tr>
 			<tr>
-				<th width="90" ><div align="center">Date</div></th>
+				<th width="90" ><div align="right">Date : </div></th>
 				<?php echo "<td>".date("d-m-Y", strtotime($msg->jma))."</td>";?>
 			</tr>
 			<tr>
-				<th width="90" ><div align="center">Message</div></th>
+				<th width="90" ><div align="right">Message : </div></th>
 				<?php echo "<td>".$msg->message."</td>";?>
 			</tr>
 			</table>
