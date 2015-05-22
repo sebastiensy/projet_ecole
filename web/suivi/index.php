@@ -90,18 +90,13 @@ require_once('../../inc/data.inc.php');
 	$nb_elems = 2; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
-	if(!empty($_GET["page"]))
-	{
-		$page = intval($_GET["page"]);
-		if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
-			$page = 1;
-	}
-	else
-		$page = 1;
-
-	$debut = ($page - 1) * $nb_elems;
+	$debut = 1;
 
 	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
+
+	echo $requete;
+	$db->DB_query($requete);
+
 
 
 	echo "<p class=\"titre\">Etat de ma (mes) commande(s)</p>";
@@ -111,81 +106,104 @@ require_once('../../inc/data.inc.php');
 
 	<?php
 
-	
-	while($suiv = $db->DB_object())
+	if ($db->DB_count() > 0)
 	{
-		
-		echo "<fieldset>";
-		
-		echo "<legend>Commande n°".$suiv->id_commande."</legend>";
-		echo "<table>
-				<tr>
-					<th>Date de la commande : </th>
-					<td>".$suiv->date_cmd."</td>
-				</tr>
-			</table>";
-		?>
-		<div class="checkout-wrap">
-	  		<ul class="checkout-bar">
-	    		<li id="1" class="1"><div id="encours">En cours</div></li>
-			    <li id="2" class="2"><div id="valide">Valide</div></li>
-	    		<li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
-	    		<li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
-	    		<li id="5" class="5"><div id="livre">Livre</div></li>
-	    		<li id="6" class="6"><div id="rp">Retire et paye</div></li>
-	    	</ul>
-		</div>
 
-	<?php 
-		for ($i=1; $i<=6; $i++) 
-		{	
-			echo "<script type='text/javascript'>";
-			echo "var i = ".$i.";";
-			echo "if ($suiv->etat == i && $suiv->etat != 6)
-			{
-				$('.".$i."').removeClass().addClass('active');
-			}
-			else if ($suiv->etat >= i)
-			{
-				$('.".$i."').removeClass().addClass('visited');
-			}
-			else if ($suiv->etat < i)
-			{
-				$('.".$i."').removeClass().addClass('next');
-			}
-			else if ($suiv->etat == 6)
-			{
-				$('.".$i."').removeClass().addClass('visited');
-			}"; 
-			echo "</script>";
+		while($suiv = $db->DB_object())
+		{
+			
+			echo "<fieldset>";
+			
+			echo "<legend>Commande n°".$suiv->id_commande."</legend>";
+			echo "<table>
+					<tr>
+						<th>Date de la commande : </th>
+						<td>".$suiv->date_cmd."</td>
+					</tr>
+				</table>";
+			?>
+			<div class="checkout-wrap">
+		  		<ul class="checkout-bar">
+		    		<li id="1" class="1"><div id="encours">En cours</div></li>
+				    <li id="2" class="2"><div id="valide">Valide</div></li>
+		    		<li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
+		    		<li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
+		    		<li id="5" class="5"><div id="livre">Livre</div></li>
+		    		<li id="6" class="6"><div id="rp">Retire et paye</div></li>
+		    	</ul>
+			</div>
 
+		<?php 
+			for ($i=1; $i<=6; $i++) 
+			{	
+				echo "<script type='text/javascript'>";
+				echo "var i = ".$i.";";
+				echo "if ($suiv->etat == i && $suiv->etat != 6)
+				{
+					$('.".$i."').removeClass().addClass('active');
+				}
+				else if ($suiv->etat >= i)
+				{
+					$('.".$i."').removeClass().addClass('visited');
+				}
+				else if ($suiv->etat < i)
+				{
+					$('.".$i."').removeClass().addClass('next');
+				}
+				else if ($suiv->etat == 6)
+				{
+					$('.".$i."').removeClass().addClass('visited');
+				}"; 
+				echo "</script>";
+
+			}
+
+			echo "<br><br><br><br><br>";
+
+			echo "<table>
+					<tr>
+						<th>Parent : </th>
+						<td>".$suiv->nom_parent."</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>".$suiv->email_parent."</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>".$suiv->tel_parent."</td>
+					</tr>	
+				</table>";
+
+			echo "</fieldset>";
+			echo "<br><br>";
+			
 		}
-
-		echo "<br><br><br><br><br>";
-
-		echo "<table>
-				<tr>
-					<th>Parent : </th>
-					<td>".$suiv->nom_parent."</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>".$suiv->email_parent."</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>".$suiv->tel_parent."</td>
-				</tr>	
-			</table>";
-
-		echo "</fieldset>";
-		echo "<br><br>";
-		
 	}
 
+	$db->DB_done();
 
-	$db->DB_done();	
+
+
+	// affichage des pages
+	?>
+	<div id="pages">
+	<?php if ($nb_pages > 1)
+	{
+		for($i=1; $i <= $nb_pages; ++$i)
+		{
+			echo "<span style=\"font-weight:bold; color:brown\"><a href=\"./index.php?page=".$i."\">".$i."</a></span> | ";
+		}
+	
+	}
+	?>
+	</div>
+
+	<?php
+
 	echo "</div>";
+
+
 	
 }
 else
