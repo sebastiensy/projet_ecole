@@ -4,11 +4,10 @@ require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_inscription.php');
 require_once(LIB.'/lib_hasher_mdp.php');
 require_once(LIB.'/lib_verifications.php');
-require_once(LIB.'/lib_workflow.php');
 
 ?>
 
-<body id="back">
+<body onload="afficheWorkflow()" id="back">
 
 	<div id="banner">
 	</div>
@@ -73,16 +72,6 @@ require_once(LIB.'/lib_workflow.php');
 	<div class="corps">
 
 		<div id="workflow">
-			<?php 
-				if(!isset($_SESSION['id_parent']))
-				{
-					affiche_workflow(1);
-				}
-				else
-				{
-					affiche_workflow(2);
-				}
-			?>
 		</div>
 		
 	<div id="page">

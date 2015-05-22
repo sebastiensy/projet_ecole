@@ -23,8 +23,7 @@ function affiche_workflow()
 	{
 		$imageUrl = "../../img/workflow.png";
 	}
-	//return $imageUrl;
-	//echo "<script type=\"text/javascript\">$(\"#workflow\").css(\"background-image\", \"url(".$imageUrl.")\");</script>";
+
 	return "<img src=\"".$imageUrl."\"></img>";
 }
 
