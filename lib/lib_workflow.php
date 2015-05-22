@@ -8,7 +8,7 @@ function affiche_workflow()
 
 		if(!empty($_SESSION['panier']) && !empty($_SESSION['liste']))
 		{
-			$imageUrl = "../../img/workflow_fl.png";
+			$imageUrl = "../../img/workflow_lf.png";
 		}
 		else if (!empty($_SESSION['liste']) && empty($_SESSION['panier']))
 		{
