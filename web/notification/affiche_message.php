@@ -40,7 +40,7 @@ if (isset($_GET['id']))
 			</tr>
 			<tr>
 				<th width="90" ><div align="center">Date</div></th>
-				<?php echo "<td>".$msg->jma."</td>";?>
+				<?php echo "<td>".date("d-m-Y", strtotime($msg->jma))."</td>";?>
 			</tr>
 			<tr>
 				<th width="90" ><div align="center">Message</div></th>
