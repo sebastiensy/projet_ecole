@@ -81,7 +81,6 @@ require_once('../../inc/data.inc.php');
 
 	?>
 
-
 	<?php
 
 	if(isset($_SESSION["id_parent"]))
@@ -89,7 +88,7 @@ require_once('../../inc/data.inc.php');
 		$db = new DB_connection();
 		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message ASC';
 		$db->DB_query($req);
-	
+
 		if($db->DB_count()>=1)
 		{
 			?>
@@ -109,8 +108,8 @@ require_once('../../inc/data.inc.php');
 				echo "<tr><td><div align='center'>".$msg->id_message."</div></td>";
 				echo "<td><div align='center'>".$msg->objet."</div></td>";
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
-				echo "<td><div align='center'>".$var."</div></td>";
-				echo '<td><div align="center"><a class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
+				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
+				echo '<td><div align="center"><a onClick=actualiserLecture() class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
 				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
 				<?php 
 				echo "</tr>";
