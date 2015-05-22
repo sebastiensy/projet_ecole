@@ -82,14 +82,29 @@ require_once('../../inc/data.inc.php');
 
 	if ($_SESSION['id_parent'] != "")
 	{
-	//$requete = 'SELECT p.nom_parent, p.id_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
-	$requete2 = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
 
 	$db = new DB_connection();
-	//$db->DB_query($requete);
-	$db->DB_query($requete2);
+	$db->DB_query($requete);
 
-	echo "<p class=\"titre\">Etat de ma commande</p>";
+	$nb_elems = 2; // nombre d'éléments par page
+	$nb_pages = ceil($db->DB_count() / $nb_elems);
+
+	if(!empty($_GET["page"]))
+	{
+		$page = intval($_GET["page"]);
+		if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
+			$page = 1;
+	}
+	else
+		$page = 1;
+
+	$debut = ($page - 1) * $nb_elems;
+
+	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
+
+
+	echo "<p class=\"titre\">Etat de ma (mes) commande(s)</p>";
 	?>
 
 	

@@ -125,7 +125,7 @@ if (isset($_SESSION['id_parent']))
 }
 
 ?>
-<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
+<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma (mes) commande(s)</a></p>
 
 <table>
 	<form method="get" action="index.php">
