@@ -34,7 +34,7 @@ if(isset($_GET['gestion']) && isset($_GET['date']))
 		<br><br>
 		<p>Veuillez saisir la date au format jj/mm/aaaa</p>
 		<form method="post" action="gestion_site.php">
-		<p><label class="gestion_site" for="jma">Date limite :</label><input type="text" id="date_limite" name="date_limite" value="<?php echo $_GET['date']; ?>" /></p>
+		<p><label class="gestion_site" for="jma">Date limite des commandes : </label><input type="text" id="date_limite" name="date_limite" value="<?php echo $_GET['date']; ?>" /></p>
 		<input type="text" id="date_cache" name="date_cache" value="<?php echo $d; ?>" hidden/>
 		<input type="submit" value="Enregistrer">
 		</form>

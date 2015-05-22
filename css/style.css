@@ -76,12 +76,14 @@ body
 	float:right;
 }
 
-#msgErr {
+#msgErr
+{
 	position: absolute;
 	margin-left: 160px;
 	width: 150px;
 	background-color: lightgrey;
 }
+
 #connexion #co
 {
 	padding-left:11px;
@@ -112,7 +114,6 @@ body
 
 #notification
 {
-  
 	position:absolute;
 	width:150px;
 	height:90px;
@@ -125,7 +126,6 @@ body
 
 #panier
 {
-  
 	position:absolute;
 	width:150px;
 	height:90px;
@@ -139,7 +139,6 @@ body
 
 #admin
 {
-  
 	position:absolute;
 	width:150px;
 	height:90px;
@@ -216,7 +215,7 @@ body
 #panierF
 {
 	/*background-color:white;*/
-	height:350px;
+	height:320px;
 	overflow:auto;
 }
 

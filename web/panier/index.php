@@ -118,6 +118,10 @@ require_once(LIB.'/lib_listes.php');
 					}
 					if(isset($_SESSION["id_parent"]))
 					{
+						echo "<div id=\"ancrepanier\">";
+						echo "<a href=\"../\">Ajouter des listes</a><br>";
+						echo "<a href=\"../fournitures/\">Ajouter des fournitures</a>";
+						echo "</div>";
 						$panierL = 0;
 						$panierF = 0;
 						if(isset($_SESSION['liste']))
