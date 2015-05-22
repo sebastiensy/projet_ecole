@@ -124,8 +124,6 @@ if (isset($_SESSION['id_parent']))
 	}
 }
 
-echo '<br><br><br><br><br><br>';
-
 ?>
 <p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
 
