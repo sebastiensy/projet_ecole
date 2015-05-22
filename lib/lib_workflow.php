@@ -4,7 +4,7 @@ function affiche_workflow()
 {
 	if (!empty($_SESSION['id_parent']))
 	{
-		$imageUrl = "../img/workflow_c.png";
+		$imageUrl = "../../img/workflow_c.png";
 
 		if(!empty($_SESSION['panier']) && !empty($_SESSION['liste']))
 		{
@@ -24,7 +24,8 @@ function affiche_workflow()
 		$imageUrl = "../../img/workflow.png";
 	}
 	//return $imageUrl;
-	return "<script type=\"text/javascript\">$(\"#workflow\").css(\"background-image\", \"url(".$imageUrl.")\");</script>";
+	//echo "<script type=\"text/javascript\">$(\"#workflow\").css(\"background-image\", \"url(".$imageUrl.")\");</script>";
+	return "<img src=\"".$imageUrl."\"></img>";
 }
 
 ?>
