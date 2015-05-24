@@ -82,7 +82,10 @@ require_once('../../inc/data.inc.php');
 
 	if ($_SESSION['id_parent'] != "")
 	{
-	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande ASC';
+	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
+	FROM Parent as p, Commande as c 
+	WHERE p.id_parent = c.id_parent 
+	AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande ASC';
 
 	$db = new DB_connection();
 	$db->DB_query($requete);
@@ -110,8 +113,6 @@ require_once('../../inc/data.inc.php');
 	$requete .= ' LIMIT '.$premiereEntree.', '.$nb_elems.'';
 
 	$db->DB_query($requete);
-
-
 
 	echo "<p class=\"titre\">Etat de ma (mes) commande(s)</p>";
 	?>
@@ -201,18 +202,21 @@ require_once('../../inc/data.inc.php');
 	// affichage des pages
 	?>
 	<div id="pages">
-	<?php 
-	for($i=1; $i<=$nb_pages; $i++)
+	<?php
+	if ($nb_pages > 1)
 	{
-     	if($i==$pageActuelle)
-     	{
-         	echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
-     	}	
-     	else
-     	{
-        	echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
-        	echo ' | ';
-     	}
+		for($i=1; $i<=$nb_pages; $i++)
+		{
+	     	if($i==$pageActuelle)
+	     	{
+	         	echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+	     	}	
+	     	else
+	     	{
+	        	echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+	        	echo ' | ';
+	     	}
+		}
 	}
 	?>
 	</div>
@@ -221,8 +225,6 @@ require_once('../../inc/data.inc.php');
 
 	echo "</div></div>";
 
-
-	
 }
 else
 {
