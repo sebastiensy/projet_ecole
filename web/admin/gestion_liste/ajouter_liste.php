@@ -50,6 +50,8 @@ require_once('../../../inc/redirect.inc.php');
 				?>
 			</tr>
 		</table>
+		<br>
+		<br>
 
 <?php
 

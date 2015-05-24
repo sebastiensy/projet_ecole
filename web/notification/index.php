@@ -49,19 +49,19 @@ require_once('../../inc/data.inc.php');
 			<a href="../panier/"><img src="../../img/menu/panier.png"></a>
 		</div>
 
-		<?php 
-				if(isset($_SESSION['droits']))
+			<?php 
+			if(isset($_SESSION['droits']))
+			{
+				if ($_SESSION['droits'] ==1 )
 				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
+				?>
+				<div id="admin">
+					<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+				</div>
+				<?php
 				}
-		?>
+			}
+			?>
 
 	</div>
 
@@ -89,7 +89,7 @@ require_once('../../inc/data.inc.php');
 		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message ASC';
 		$db->DB_query($req);
 
-		if($db->DB_count()>=1)
+		if($db->DB_count() > 0)
 		{
 			?>
 			<table width="600" align="center" class="data">
