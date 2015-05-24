@@ -6,8 +6,6 @@ require_once(LIB.'/lib_hasher_mdp.php');
 
 ?>
 
-	<body>
-
 	<?php
 
 	if(!isset($_POST['connexion']))

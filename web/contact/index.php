@@ -7,18 +7,21 @@ require_once(LIB.'/lib_message.php');
 
 ?>
 
-<body onload="afficheWorkflow()" id="back">
+<?php
 
-	<div id="banner">
+echo "<body onload=\"afficheWorkflow()\" id=\"back\">
+
+	<div id=\"banner\">
 	</div>
 
-	<div class="menu">
+	<div class=\"menu\">
 
-		<div id="connexion">
-			<?php
+		<div id=\"connexion\">";
 				require_once("../connexion/login.php");
-			?>
-		</div> 
+		echo "</div>";
+		require_once(INC.'/redirect.inc.php');
+
+?>
 
 		<div id="menu">
 
@@ -53,18 +56,17 @@ require_once(LIB.'/lib_message.php');
 		</div>
 
 		<?php 
-				if(isset($_SESSION['droits']))
-				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
-				}
-
+		if(isset($_SESSION['droits']))
+		{
+			if($_SESSION['droits'] == 1)
+			{
+			?>
+			<div id="admin">
+				<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+			</div>
+			<?php
+			}
+		}
 		?>
 
 	</div>
@@ -73,7 +75,7 @@ require_once(LIB.'/lib_message.php');
 
 		<div id="workflow">
 		</div>
-		
+
 	<div id="page">
 
 	<p class="titre">Contact</p>
