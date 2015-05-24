@@ -116,6 +116,7 @@ require_once('../../inc/data.inc.php');
 	echo "<p class=\"titre\">Etat de ma (mes) commande(s)</p>";
 	?>
 
+	<div id="suivcmds">
 	
 
 	<?php
@@ -195,6 +196,8 @@ require_once('../../inc/data.inc.php');
 		}
 	}
 
+	echo '</div>';
+
 	// affichage des pages
 	?>
 	<div id="pages">
@@ -216,7 +219,7 @@ require_once('../../inc/data.inc.php');
 
 	<?php
 
-	echo "</div>";
+	echo "</div></div>";
 
 
 	

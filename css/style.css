@@ -254,6 +254,13 @@ body
 	border:0px;
 }
 
+/* suivi commande */
+
+#suivcmds
+{
+	height: 795px;
+}
+
 /* formulaire contact */
 
 .lab_cont
