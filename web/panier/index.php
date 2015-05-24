@@ -240,15 +240,15 @@ require_once(LIB.'/lib_listes.php');
 								echo 
 								"<br/><table align=\"center\">
 									<tr>
-										<form method=\"post\" action=\"\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" id=\"btncmd\" name=\"commander\" value=\"Commander\"></td>
 										</form>
 
-										<form method=\"post\" action=\"\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" name=\"save\" value=\"Sauvegarder le panier\"></td>
 										</form>
 
-										<form method=\"post\" action=\"\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" name=\"delete\" value=\"Supprimer le panier\"></td>
 										</form>
 									</tr>
