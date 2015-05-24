@@ -55,14 +55,14 @@ if($db->DB_count() > 0)
 		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 		echo "<td><div align='center'>".$var."</div></td>";
 		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-		?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img src="../../../img/del.png"></a></div></td>
+		?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
 		<?php 
 		echo "</tr>";
 	}
 }
 else
 {
-	echo "<p>Vous n'avez pas de message.</p>";
+	echo "<p>Vous n'avez aucun message.</p>";
 }
 
 ?>
