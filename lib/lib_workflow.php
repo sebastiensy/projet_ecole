@@ -26,6 +26,7 @@ function affiche_workflow()
 
 	?>
 	<MAP NAME="liens_workflow">
+		<AREA SHAPE="rect" COORDS="123,182,285,225" HREF="../panier#ancrepanier">
 		<AREA SHAPE="rect" COORDS="54,256,146,306" HREF="../accueil">
 		<AREA SHAPE="rect" COORDS="157,258,290,305" HREF="../fournitures">
 		<AREA SHAPE="rect" COORDS="70,340,269,389" HREF="../panier#btncmd">
