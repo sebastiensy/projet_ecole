@@ -82,19 +82,33 @@ require_once('../../inc/data.inc.php');
 
 	if ($_SESSION['id_parent'] != "")
 	{
-	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'];
+	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande ASC';
 
 	$db = new DB_connection();
 	$db->DB_query($requete);
 
-	$nb_elems = 2; // nombre d'éléments par page
+	$nb_elems = 2;
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
-	$debut = 1;
 
-	$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
+	if(isset($_GET['page']))
+	{
+	     $pageActuelle=intval($_GET['page']);
+	 
+	     if($pageActuelle>$nb_pages)
+	     {
+	          $pageActuelle=$nb_pages;
+	     }
+	}
+	else
+	{
+	     $pageActuelle=1;   
+	}
 
-	echo $requete;
+	$premiereEntree=($pageActuelle-1)*$nb_elems;
+
+	$requete .= ' LIMIT '.$premiereEntree.', '.$nb_elems.'';
+
 	$db->DB_query($requete);
 
 
@@ -181,20 +195,21 @@ require_once('../../inc/data.inc.php');
 		}
 	}
 
-	$db->DB_done();
-
-
-
 	// affichage des pages
 	?>
 	<div id="pages">
-	<?php if ($nb_pages > 1)
+	<?php 
+	for($i=1; $i<=$nb_pages; $i++)
 	{
-		for($i=1; $i <= $nb_pages; ++$i)
-		{
-			echo "<span style=\"font-weight:bold; color:brown\"><a href=\"./index.php?page=".$i."\">".$i."</a></span> | ";
-		}
-	
+     	if($i==$pageActuelle)
+     	{
+         	echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+     	}	
+     	else
+     	{
+        	echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+        	echo ' | ';
+     	}
 	}
 	?>
 	</div>
