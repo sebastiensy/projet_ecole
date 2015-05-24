@@ -7,21 +7,21 @@ require_once(LIB.'/lib_message.php');
 
 ?>
 
-<?php
+<body onload="afficheWorkflow()" id="back">
 
-echo "<body onload=\"afficheWorkflow()\" id=\"back\">
-
-	<div id=\"banner\">
+	<div id="banner">
 	</div>
 
-	<div class=\"menu\">
+	<div class="menu">
 
-		<div id=\"connexion\">";
+		<div id="connexion">
+			<?php
 				require_once("../connexion/login.php");
-		echo "</div>";
+			?>
+		</div>
+		<?php
 		require_once(INC.'/redirect.inc.php');
-
-?>
+		?>
 
 		<div id="menu">
 

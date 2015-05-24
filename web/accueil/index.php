@@ -16,7 +16,10 @@ require_once(LIB.'/lib_listes.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
+		<?php
+		require_once(INC.'/redirect.inc.php');
+		?>
 
 		<div id="menu">
 

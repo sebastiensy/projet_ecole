@@ -2,15 +2,15 @@
 
 if(!empty($_POST))
 {
-    $_SESSION['sauvegarde'] = $_POST ;
+    $_SESSION['sauvegarde'] = $_POST;
 
-    $fichierActuel = $_SERVER['PHP_SELF'] ;
+    $page = $_SERVER['PHP_SELF'] ;
     if(!empty($_SERVER['QUERY_STRING']))
     {
-        $fichierActuel .= '?' . $_SERVER['QUERY_STRING'] ;
+        $page .= '?' . $_SERVER['QUERY_STRING'] ;
     }
 
-    header('Location: ' . $fichierActuel);
+    header('Location: ' . $page);
     exit;
 }
 

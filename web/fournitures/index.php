@@ -16,7 +16,7 @@ require_once(LIB.'/lib_fournitures.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
 
 		<div id="menu">
 

@@ -53,7 +53,7 @@ CREATE TABLE Message(
 	utilisateur TINYINT(1),
 	id_parent INT NOT NULL,
 	PRIMARY KEY (id_message),
-	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent)
+	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent) ON DELETE CASCADE
 ) Engine=InnoDB;
 
 CREATE TABLE Commande(

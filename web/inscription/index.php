@@ -19,6 +19,9 @@ require_once(LIB.'/lib_verifications.php');
 				require_once("../connexion/login.php");
 			?>
 		</div>
+		<?php
+		require_once(INC.'/redirect.inc.php');
+		?>
 
 		<div id="menu">
 
@@ -82,6 +85,7 @@ require_once(LIB.'/lib_verifications.php');
 		if(isset($_SESSION["id_parent"]))
 		{
 			header("Location: ../index.php");
+			exit;
 		}
 
 		if(!isset($_POST["sinscrire"]))

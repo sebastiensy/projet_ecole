@@ -4,6 +4,7 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../../../inc/redirect.inc.php');
 
 ?>
 
@@ -153,12 +154,12 @@ else
 		unset($_SESSION["four"]);
 	}
 
-	echo "<div align=\"center\">";
 	$query = 'SELECT * FROM Niveau WHERE code not in (select distinct(niveau) FROM Liste_niveau)';
 	$db->DB_query($query);
 
 	if($db->DB_count() > 0)
 	{
+		echo "<div align=\"center\">";
 		echo "<form method=\"post\" action=\"\">";
 		echo "<fieldset align=\"center\" class=\"gen\">";
 			echo "<legend>Niveau</legend>";
@@ -172,6 +173,11 @@ else
 		echo "<br/><input type=\"submit\" value=\"Valider\">";
 		echo "</div>";
 		echo "</form>";
+	}
+	else
+	{
+		echo "<p><strong>Il y a déjà une liste par niveau.</strong></p>";
+		echo "Retourner sur la <a href=\"../gestion_liste\">gestion des listes</a>";
 	}
 }
 
