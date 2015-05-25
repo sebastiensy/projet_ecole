@@ -114,16 +114,20 @@ require_once('../../inc/data.inc.php');
 
 	$db->DB_query($requete);
 
-	echo "<p class=\"titre\">Etat de ma (mes) commande(s)</p>";
-	?>
-
-	<div id="suivcmds">
-	
-
-	<?php
-
 	if ($db->DB_count() > 0)
 	{
+
+		if ($db->DB_count() == 1)
+			if (empty($_GET['page']))
+				echo "<p class=\"titre\">Etat de ma commande</p>";
+			else 
+				echo "<p class=\"titre\">Etat de mes commandes</p>";
+		else 
+			echo "<p class=\"titre\">Etat de mes commandes</p>";
+
+		?>
+		<div id="suivcmds">
+		<?php
 
 		while($suiv = $db->DB_object())
 		{

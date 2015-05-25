@@ -124,8 +124,28 @@ if (isset($_SESSION['id_parent']))
 	}
 }
 
+$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
+	FROM Parent as p, Commande as c 
+	WHERE p.id_parent = c.id_parent 
+	AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande ASC';
+$db->DB_query($requete);
+
+if ($db->DB_count() > 0)
+{
+	if ($db->DB_count() == 1)
+	{
+		?>
+		<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
+		<?php
+	}
+	else
+	{
+		?>
+		<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de mes commandes</a></p>
+		<?php
+	}
+}
 ?>
-<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma (mes) commande(s)</a></p>
 
 <table>
 	<form method="get" action="index.php">
