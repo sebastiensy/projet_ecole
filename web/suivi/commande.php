@@ -5,6 +5,13 @@ require_once(LIB.'/lib_db.class.php');
 
 ?>
 
+<html>
+	<head>
+		<title>Projet école</title>
+		<link rel="stylesheet" href="../../css/style1.css">
+	</head>
+	<body>
+
 <?php
 
 if (isset($_GET['com']) && isset($_GET['nom']))
