@@ -72,7 +72,6 @@
 			'width':'75%',
 			'height':'65%',
 			'autoScale': 'false',
-			'opacity': 'true',
 			'type':'iframe'
 		 });
 	});
