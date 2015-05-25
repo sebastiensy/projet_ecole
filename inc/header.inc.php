@@ -64,6 +64,17 @@
 			'autoScale': 'false',
 			'type':'iframe'
 		 });
+
+		// Pour l'affichage du contenu de la commande (suivi)
+		$(".fancycmd").fancybox({
+			fitToView:false,
+			autoSize:false,
+			'width':'75%',
+			'height':'65%',
+			'autoScale': 'false',
+			'opacity': 'true',
+			'type':'iframe'
+		 });
 	});
 
 	$("a.fancy3").fancybox({	

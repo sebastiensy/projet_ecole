@@ -135,10 +135,14 @@ require_once('../../inc/data.inc.php');
 			echo "<fieldset>";
 			
 			echo "<legend>Commande n°".$suiv->id_commande."</legend>";
-			echo "<table>
+			echo "<table width=\"300\">
 					<tr>
 						<th>Date de la commande : </th>
 						<td>".$suiv->date_cmd."</td>
+					</tr>
+					<tr>
+						<th>Contenu de la commande : </th>
+						<td><a class=\"fancycmd\" value=\"commande".$suiv->nom_parent."\" href=\"commande.php?com=".$suiv->id_commande."&nom=".$suiv->nom_parent."\">Voir</a></td>
 					</tr>
 				</table>";
 			?>
