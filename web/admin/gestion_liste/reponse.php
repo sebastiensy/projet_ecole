@@ -130,6 +130,13 @@ else if($_GET["reponse"] == 4)
 		echo newList();
 	}
 }
+else if($_GET["reponse"] == 5)
+{
+	if(isset($_SESSION["four"]))
+	{
+		echo newList();
+	}
+}
 /*else if($_GET["reponse"] == 5)
 {				
 	echo afficherPrix();

@@ -70,3 +70,19 @@ function supprimerFourniture(champ)
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send("id=" + id);
 }
+
+function afficListe()
+{
+	xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState==4 && xhr.status==200)
+		{
+			response = xhr.responseText;
+			document.getElementById('resultat2').innerHTML = response;
+		}
+	}
+	xhr.open("POST", "./reponse.php?reponse=5", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send();
+}

@@ -28,8 +28,6 @@ require_once('../inc/droits.inc.php');
 		<tr>
 			<th width="90" ><div align="center">Niveau</div></th>
 			<th width="50" ><div align="center">Prix (forfait)</div></th>
-			<!-- <th width="50" ><div align="center">Modifier</div></th>
-			<th width="20" ><div align="center">Supprimer</div></th> -->
 			<th width="50" ><div align="center">Opérations</div></th>
 		</tr>
 

@@ -4,25 +4,21 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../../../inc/redirect.inc.php');
 
 ?>
 
-<?php
+<script type="text/javascript" src="../../../js/ajax.js"></script>
 
-$idListe = $_GET['id'];
+<body>
 
-function get_niveau($code)
+<script type="text/javascript">
+window.onload = function()
 {
-	$req = 'SELECT libelle from Niveau where code = "'.$code.'"';
-	$db = new DB_connection();
-	$db->DB_query($req);
-	if($ligne=$db->DB_object())
-	{
-		return $ligne->libelle;
-	}
+	//tabFournitures();
+	afficListe();
 }
-
-?>
+</script>
 
 <div class="corps">
 
@@ -34,124 +30,132 @@ function get_niveau($code)
 
 	<div id="page">
 
-		<table width="900" align="center"class="entete">
+		<table width="900" align="center" class="entete">
 			<tr>
-				<td><div align="right">Modification de la liste</div></td>
+				<?php
+				$db = new DB_connection();
+				if(isset($_GET["id"]))
+				{
+					$query = 'SELECT n.Libelle, ln.id_nivliste FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = "'.$_GET["id"].'"';
+					$db->DB_query($query);
+					if($niv = $db->DB_object())
+					{
+						echo "<td><div align=\"right\">Modification de la liste (".$niv->Libelle.")</div></td>";
+						$idniv = $niv->id_nivliste;
+					}
+				}
+				?>
 			</tr>
 		</table>
-		<br/><br/><br/><br/>
+		<br>
+		<br>
 
 <?php
 
-$db = new DB_connection();
-$req = "select * from Liste_niveau where id_nivliste = ".$idListe;
-$db->DB_query($req);
-$ligne=$db->DB_object();
-if($ligne != NULL)
+if(isset($_POST["enrListe"]))
 {
-	?>
-	<div align="center" >
-	<fieldset align="center" class="gen"> 
-		<legend>Infos Liste</legend>
-		<div align="center">
-		<br/>
-		<br/>
-			<fieldset align="center" class="sup">
-				<legend>Infos Générales</legend>
-				<table class="infos" width="400" align="center">
-				<tr>
-				<form method="post" action="modif_liste1.php?p=modif_niv&idListe=<?php echo $idListe; ?>">
-					<td width="50"><div align="center">Niveau:</div></td>
-					<td width="100"><div align="center"><select name="niv"><option value="<?php echo $ligne->niveau; ?>" selected><?php echo get_niveau($ligne->niveau) ?></option>
-
-					<?php 
-
-					$db = new DB_connection();
-					$reqb = "select * from Niveau where code not like '".$ligne->niveau."'";
-					$db->DB_query($reqb);
-					while($ligneb=$db->DB_Object())
-					{
-						?>
-						<option value="<?php echo $ligneb->code; ?>"><?php echo $ligneb->Libelle; ?></option>
-						<?php
-					}
-
-					?>
-
-					</select>
-					<div></td>
-					<td width="50"><div align="right"><input border="0" src="../../../img/icon_OK.png" type="image" Value="submit" align="middle"><div></td>
-				</form>
-				</tr>
-
-				<tr>
-				<form method="post" action="modif_liste1.php?p=modif_for&idListe=<?php echo $idListe; ?>" >
-					<td width="50"><div align="center">Forfait:</div></td>
-					<td width="100"><div align="center"><input size="10" type="text" name="for" value="<?php echo $ligne->forfait; ?>" ><div></td>
-					<td width="50"><div align="right" ><input border="0" src="../../../img/icon_OK.png" type="image" Value="submit" align="middle" ><div></td>
-				</form>
-				</tr>
-				</table>
-			</fieldset>
-
-		</div>
-		<div align="center">
-		<br/>
-		<br/>
-			<fieldset align="center" class="sup">
-				<legend>Article</legend>
-				<table class="data" align="center" width="500">
-					<tr>
-						<th width="30"><div align="center">Ref</div></th>
-						<th width="250"><div align="center">Description</div></th>
-						<th width="50"><div align="center">Prix/unité</div></th>
-						<th width="100"><div align="center">Quantité</div></th>
-						<th width="50"><div align="center">Supprimer</div></th>
-					</tr>
-						<?php 
-						$db1 = new DB_connection();
-						$req1 = "select * from Compose where id_nivliste = ".$idListe;
-						$db1->DB_query($req1);
-						while($ligne1=$db1->DB_object())
-						{
-							$db2 = new DB_connection();
-							$req2 = 'select * from Materiel where id_mat= '.$ligne1->id_mat;
-							$db2->DB_query($req2);
-							$ligne2=$db2->DB_object();
-						?>
-							<tr>
-								<td width="30"><div align="center"><?php echo $ligne2->ref_mat; ?></div></td>
-								<td width="250"><div align="center"><?php echo $ligne2->desc_mat; ?></div></td>
-								<td width="50"><div align="center"><?php echo number_format($ligne2->prix_mat, 2, ',', ' '); ?></div></td>
-								<td width="100">
-									<!-- <form method="post" action="modif_liste1.php?p=modif_qte&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
-									<form method="post" action="modif_liste1.php?p=modif_qte&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>">
-									<div align="left">
-										<input type="number"  name="qtte" value="<?php echo $ligne1->qte_scat;?>">
-										<input border="0" src="../../../img/icon_OK.png" type="image" value="submit">
-									</div>
-									</form>
-								</td>
-
-								<td width="50"><div align="center">
-								<!-- <form method="post" action="modif_liste1.php?p=del_art&id=<?php /*echo $id;?>&ref=<?php echo $ligne2->ref_mat;*/?>" > -->
-								<form method="post" action="modif_liste1.php?p=del_art&idListe=<?php echo $idListe;?>&idMat=<?php echo $ligne2->id_mat;?>" >
-								<input border="0" title="Supprimer" src="../../../img/del.png" type="image" value="submit"></form></div></td>
-							<tr>
-						<?php 
-						}
+	if(isset($_SESSION['four']))
+	{
+		$query = 'DELETE FROM Compose WHERE id_nivliste = "'.$_POST["idniv"].'"';
+		$db->DB_query($query);
+		$query = 'UPDATE Liste_niveau SET forfait = 0 WHERE id_nivliste = "'.$_POST["idniv"].'"';
+		$db->DB_query($query);
+		$ids = array_keys($_SESSION['four']);
+		if(!empty($ids))
+		{
+			$query = 'SELECT id_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
+			$db->DB_query($query);
+			$prix = 0;
+			if($db->DB_count() > 0)
+			{
+				$query = 'INSERT INTO Compose (qte_scat, id_mat, id_nivliste) VALUES';
+				while($mat = $db->DB_object())
+				{
+					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$_POST["idniv"].'"),';
+					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
+				}
+				$prix = $prix * (100-$_POST["reduc"]) / 100;
+				$query = substr($query, 0, -1);
+				//$query .= ' ON DUPLICATE KEY UPDATE qte_scat=VALUES(qte_scat)';
+				$db->DB_query($query);
+				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$_POST["idniv"].'"';
+				$db->DB_query($query);
+			}
+		}
+		unset($_SESSION["four"]);
+	}
+	echo "<span style=\"color:green\"><p><strong>La liste a été modifiée.</strong></p></span>";
+	echo "Retourner sur la <a href=\"../gestion_liste\">gestion des listes</a>";
+	require_once('../inc/footer.inc.php');
+	exit;
 }
-	?>
 
-					</table>
-					<table width="500" align="center">
-						<tr>
-							<td><div align="right"><a id="fancy" data-fancybox-type="iframe" href="ajouter_article_liste.php?idListe=<?php echo $idListe;?>" class="myButton">Ajouter Un Article</a></div></td>
-						</tr>
-					</table>
-				</fieldset>
-			</div>
-	</fieldset>
+if(isset($_SESSION["four"]))
+{
+	unset($_SESSION["four"]);
+}
+
+$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$_GET["id"];
+$db->DB_query($query2);
+if($db->DB_count() > 0)
+{
+	while($mat = $db->DB_object())
+	{
+		$_SESSION["four"][$mat->id_mat] = $mat->qte_scat;
+	}
+}
+
+$query = "SELECT DISTINCT(categorie) FROM Sous_categorie";
+$db->DB_query($query);
+
+?>
+
+<div id="tabg">
+
+		<?php
+
+		if($db->DB_count() > 0)
+		{
+			?>
+			<p><b><u>Sélectionner une catégorie :</u></b></p>
+			<select id="Fid" name="selectC" onChange="tabFournitures()"/>
+			<?php
+			while($rub = $db->DB_object())
+			{
+				echo "<option value=".urlencode($rub->categorie).">".$rub->categorie."</option>";
+			}
+			?>
+			</select>
+			<?php
+		}
+
+		?>
+
+	<p>
+		<div id="resultat"></div>
+	</p>
+</div>
+
+<div id="tabd">
+
+	<form method="post" action="">
+	<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
+	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Remise : <input type="number" id ="reduc" onChange="" name="reduc" value="0" size="1" min="0" max="100"> % 
+	<!-- &nbsp;Prix : <span id="resultat3">0,00</span> €</p> -->
+
+	<p>
+		<div id="resultat2"></div>
+	</p>
+
+	</form>
+
+</div>
+
+<?php
+
+$db->DB_done();
+
+?>
 
 <?php
 
