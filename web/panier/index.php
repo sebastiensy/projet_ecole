@@ -146,7 +146,6 @@ require_once(LIB.'/lib_listes.php');
 							if(!empty($ids))
 							{
 								echo "<div align=\"right\"><b>Listes</b></div><hr/>";
-								//$db = new DB_connection();
 								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).') ORDER BY ln.niveau';
 								$db->DB_query($query);
 
@@ -154,25 +153,27 @@ require_once(LIB.'/lib_listes.php');
 								{
 									$panierL = $panier->totalList();
 									echo "<div id=\"panierL\">";
-										echo "<form method=\"post\" action=\"\">";
+										echo "<div class=\"liste\">";
+										echo "<form metdod=\"post\" action=\"\">";
 										echo "<table>
 										<tr>
-											<th>Niveau</th>
-											<th>Forfait</th>
-											<th>Quantité</th>
-											<th>Action</th>
+											<td>Niveau</td>
+											<td>Forfait</td>
+											<td>Quantité</td>
+											<td>Opérations</td>
 										</tr>";
 										while($liste = $db->DB_object())
 										{
-											echo "<tr><td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\">".$liste->Libelle."</a></td>
+											echo "<tr><td>".$liste->Libelle."</td>
 											<td>".number_format($liste->forfait, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
-											echo "<td><a href=\"index.php?delList=".$liste->id_nivliste."\">Supprimer</td>";
+											echo "<td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\"><img title=\"Visulaliser\" src=\"../../img/visu.png\">
+											<a href=\"index.php?delList=".$liste->id_nivliste."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
 											echo "</tr>";
 										}
 										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".number_format($panierL, 2, ',', ' ')." €</b></td></tr>
-										</table>";
-										echo "<input type=\"submit\" name=\"listes\" value=\"Recalculer\">";
+										</table></div>";
+										echo "<input type=\"submit\" name=\"listes\" class=\"btn\" value=\"Recalculer\">";
 										echo "<form>";
 									echo "</div>";
 								}
@@ -194,7 +195,6 @@ require_once(LIB.'/lib_listes.php');
 							if(!empty($ids))
 							{
 								echo "<div align=\"right\"><b>Fournitures</b></div><hr/>";
-								//$db = new DB_connection();
 								$query = 'SELECT * FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 								$db->DB_query($query);
 
@@ -202,14 +202,15 @@ require_once(LIB.'/lib_listes.php');
 								{
 									$panierF = $panier->total();
 									echo "<div id=\"panierF\">";
-										echo "<form method=\"post\" action=\"\">";
+										echo "<div class=\"liste\">";
+										echo "<form metdod=\"post\" action=\"\">";
 										echo "<table>
 										<tr>
-											<th>Référence</th>
-											<th>Description</th>
-											<th>Prix</th>
-											<th>Quantité</th>
-											<th>Action</th>
+											<td>Référence</td>
+											<td>Description</td>
+											<td>Prix</td>
+											<td>Quantité</td>
+											<td>Opération</td>
 										</tr>";
 										while($mat = $db->DB_object())
 										{
@@ -217,12 +218,12 @@ require_once(LIB.'/lib_listes.php');
 											<td>".$mat->desc_mat."</td>
 											<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
-											echo "<td><a href=\"index.php?del=".$mat->id_mat."\">Supprimer</td>";
+											echo "<td><a href=\"index.php?del=".$mat->id_mat."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
 											echo "</tr>";
 										}
 										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".number_format($panierF, 2, ',', ' ')." €</b></td></tr>
-										</table>";
-										echo "<input type=\"submit\" name=\"fournitures\" value=\"Recalculer\">";
+										</table></div>";
+										echo "<input type=\"submit\" name=\"fournitures\" class=\"btn\" value=\"Recalculer\">";
 										echo "<form>";
 									echo "</div>";
 								}
@@ -248,15 +249,15 @@ require_once(LIB.'/lib_listes.php');
 								echo 
 								"<br/><table align=\"center\">
 									<tr>
-										<form method=\"post\" action=\"index.php\">
+										<form metdod=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" id=\"btncmd\" class=\"btn\" name=\"commander\" value=\"Commander\"></td>
 										</form>
 
-										<form method=\"post\" action=\"index.php\">
+										<form metdod=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" class=\"btn\" name=\"save\" value=\"Sauvegarder le panier\"></td>
 										</form>
 
-										<form method=\"post\" action=\"index.php\">
+										<form metdod=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" class=\"btn\" name=\"delete\" value=\"Supprimer le panier\"></td>
 										</form>
 									</tr>
