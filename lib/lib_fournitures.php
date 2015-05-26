@@ -8,7 +8,7 @@
  * @return void
  *
  * @usage require_once(LIB.'/lib_fournitures.php');
- * afficherFournitures([$rubrique], [$srubrique], [$recherche]);
+ * afficherFournitures($panier, [$rubrique], [$srubrique], [$recherche]);
  *
  */
 

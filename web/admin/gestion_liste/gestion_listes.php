@@ -28,8 +28,9 @@ require_once('../inc/droits.inc.php');
 		<tr>
 			<th width="90" ><div align="center">Niveau</div></th>
 			<th width="50" ><div align="center">Prix (forfait)</div></th>
-			<th width="50" ><div align="center">Modifier</div></th>
-			<th width="20" ><div align="center">Supprimer</div></th>
+			<!-- <th width="50" ><div align="center">Modifier</div></th>
+			<th width="20" ><div align="center">Supprimer</div></th> -->
+			<th width="50" ><div align="center">Opérations</div></th>
 		</tr>
 
 <?php 
@@ -54,8 +55,9 @@ while($ligne=$db->DB_object())
 	<tr>
 		<td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
 		<td width="50" ><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
-		<td width="50" ><div align="center"><a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"> Modifier </a></div></td>
-		<td width="50" ><div align="center"><a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
+		<td width="90" ><div align="center"><a href="liste.php?id=<?php echo $ligne->id_nivliste; ?>">Visualiser </a>
+		<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>">Modifier </a>
+		<a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
 	</tr>
 	<?php
 }
