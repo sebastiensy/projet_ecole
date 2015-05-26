@@ -67,7 +67,14 @@ if(isset($_POST["enrListe"]))
 					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 				}
 				//$prix = $prix * (100-$_POST["reduc"]) / 100;
-				$prix = $_POST["reduc"];
+				$prix = 0;
+				if(is_numeric($_POST["reduc"]))
+				{
+					if($_POST["reduc"] >= 0)
+					{
+						$prix = $_POST["reduc"];
+					}
+				}
 				$query = substr($query, 0, -1);
 				//$query .= ' ON DUPLICATE KEY UPDATE qte_scat=VALUES(qte_scat)';
 				$db->DB_query($query);
@@ -134,7 +141,7 @@ $db->DB_query($query);
 
 	<form method="post" action="">
 	<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
-	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="number" id ="reduc" name="reduc" value="<?php echo $forfait; ?>" size="1" min="0"> €
+	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="text" id ="reduc" name="reduc" value="<?php echo $forfait; ?>" size="1" min="0"> €
 
 	<p>
 		<div id="resultat2"></div>
