@@ -57,6 +57,10 @@ function newList()
 				return $html;
 		}
 	}
+	/*else
+	{
+		echo "TEST123";
+	}*/
 }
 
 ?>
@@ -95,7 +99,6 @@ if($_GET["reponse"] == 1)
 		$html .= "</table>";
 	}
 	echo $html;
-
 	$db->DB_done();
 }
 else if($_GET["reponse"] == 2)

@@ -4,21 +4,12 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
-require_once('../../../inc/redirect.inc.php');
 
 ?>
 
 <script type="text/javascript" src="../../../js/ajax.js"></script>
 
 <body>
-
-<script type="text/javascript">
-window.onload = function()
-{
-	//tabFournitures();
-	afficListe();
-}
-</script>
 
 <div class="corps">
 
@@ -117,8 +108,9 @@ $db->DB_query($query);
 		if($db->DB_count() > 0)
 		{
 			?>
-			<p><b><u>Sélectionner une catégorie :</u></b></p>
+			<p><b><u>Liste des catégories :</u></b></p>
 			<select id="Fid" name="selectC" onChange="tabFournitures()"/>
+			<option value="">=== SELECTIONNER UNE CATEGORIE ===</option>";
 			<?php
 			while($rub = $db->DB_object())
 			{
@@ -156,6 +148,13 @@ $db->DB_query($query);
 $db->DB_done();
 
 ?>
+
+<script>
+window.onload = function()
+{
+	afficListe();
+}
+</script>
 
 <?php
 

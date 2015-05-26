@@ -17,6 +17,7 @@ if(isset($_GET["id"]))
 	}
 
 	$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$_GET["id"];
+	$query2 .= ' ORDER BY m.id_mat';
 	$db->DB_query($query2);
 
 	echo "<b>Niveau : ".$libelle."</b><br/>";
