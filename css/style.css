@@ -240,7 +240,7 @@ body
 
 .ajPanier
 {
-    background:url(../img/icon_add32.png);
+    background:url(../img/panier.png);
     width:32px;
 	height:32px;
 	cursor:pointer;
@@ -250,7 +250,7 @@ body
 /**/
 .liste {
 	margin:0px;padding:0px;
-	width:100%;
+	width:80%;
 	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:0px;
@@ -300,12 +300,12 @@ body
 .liste td{
 	vertical-align:middle;
 	
-	background-color:#ffffff;
+	background-color:#e5e5e5;
 
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:center;
-	padding:10px;
+	padding:5px;
 	font-size:12px;
 	font-family:Arial;
 	font-weight:bold;
@@ -318,11 +318,11 @@ body
 	border-width:0px 0px 0px 0px;
 }
 .liste tr:first-child td{
-		background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+		background:-o-linear-gradient(bottom, #ff7b00 5%, #ff7b00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7b00), color-stop(1, #ff7b00) );
+	background:-moz-linear-gradient( center top, #ff7b00 5%, #ff7b00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7b00", endColorstr="#ff7b00");	background: -o-linear-gradient(top,#ff7b00,ff7b00);
 
-	background-color:#ff7f00;
+	background-color:#ff7b00;
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
@@ -332,11 +332,11 @@ body
 	color:#ffffff;
 }
 .liste tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+	background:-o-linear-gradient(bottom, #ff7b00 5%, #ff7b00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7b00), color-stop(1, #ff7b00) );
+	background:-moz-linear-gradient( center top, #ff7b00 5%, #ff7b00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7b00", endColorstr="#ff7b00");	background: -o-linear-gradient(top,#ff7b00,ff7b00);
 
-	background-color:#ff7f00;
+	background-color:#ff7b00;
 }
 .liste tr:first-child td:first-child{
 	border-width:0px 0px 1px 0px;
