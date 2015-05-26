@@ -119,8 +119,16 @@ require_once(LIB.'/lib_listes.php');
 					if(isset($_SESSION["id_parent"]))
 					{
 						echo "<div id=\"ancrepanier\">";
-						echo "<a href=\"../\">Ajouter des listes</a><br>";
-						echo "<a href=\"../fournitures/\">Ajouter des fournitures</a>";
+						echo "<table>";
+						echo "<tr>";
+							echo "<td>";
+							echo "<a class=\"btn\" href=\"../\">Ajouter des listes</a><br>";
+							echo "</td>";
+							echo "<td>";
+							echo "<a class=\"btn\" href=\"../fournitures/\">Ajouter des fournitures</a>";
+							echo "</td>";
+						echo "</tr>";
+						echo "</table>";
 						echo "</div>";
 						$panierL = 0;
 						$panierF = 0;
@@ -241,15 +249,15 @@ require_once(LIB.'/lib_listes.php');
 								"<br/><table align=\"center\">
 									<tr>
 										<form method=\"post\" action=\"index.php\">
-											<td><input type=\"submit\" id=\"btncmd\" name=\"commander\" value=\"Commander\"></td>
+											<td><input type=\"submit\" id=\"btncmd\" class=\"btn\" name=\"commander\" value=\"Commander\"></td>
 										</form>
 
 										<form method=\"post\" action=\"index.php\">
-											<td><input type=\"submit\" name=\"save\" value=\"Sauvegarder le panier\"></td>
+											<td><input type=\"submit\" class=\"btn\" name=\"save\" value=\"Sauvegarder le panier\"></td>
 										</form>
 
 										<form method=\"post\" action=\"index.php\">
-											<td><input type=\"submit\" name=\"delete\" value=\"Supprimer le panier\"></td>
+											<td><input type=\"submit\" class=\"btn\" name=\"delete\" value=\"Supprimer le panier\"></td>
 										</form>
 									</tr>
 								</table>";

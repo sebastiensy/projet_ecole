@@ -248,6 +248,25 @@ body
 }
 
 /**/
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #ff8000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #ffae00;
+  text-decoration: none;
+}
+/**/
+
+/**/
 .liste {
 	margin:0px;padding:0px;
 	width:80%;
