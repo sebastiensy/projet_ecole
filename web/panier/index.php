@@ -154,7 +154,7 @@ require_once(LIB.'/lib_listes.php');
 									$panierL = $panier->totalList();
 									echo "<div id=\"panierL\">";
 										echo "<div class=\"liste\">";
-										echo "<form metdod=\"post\" action=\"\">";
+										echo "<form method=\"post\" action=\"\">";
 										echo "<table>
 										<tr>
 											<td>Niveau</td>
@@ -203,7 +203,7 @@ require_once(LIB.'/lib_listes.php');
 									$panierF = $panier->total();
 									echo "<div id=\"panierF\">";
 										echo "<div class=\"liste\">";
-										echo "<form metdod=\"post\" action=\"\">";
+										echo "<form method=\"post\" action=\"\">";
 										echo "<table>
 										<tr>
 											<td>Référence</td>
@@ -249,15 +249,15 @@ require_once(LIB.'/lib_listes.php');
 								echo 
 								"<br/><table align=\"center\">
 									<tr>
-										<form metdod=\"post\" action=\"index.php\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" id=\"btncmd\" class=\"btn\" name=\"commander\" value=\"Commander\"></td>
 										</form>
 
-										<form metdod=\"post\" action=\"index.php\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" class=\"btn\" name=\"save\" value=\"Sauvegarder le panier\"></td>
 										</form>
 
-										<form metdod=\"post\" action=\"index.php\">
+										<form method=\"post\" action=\"index.php\">
 											<td><input type=\"submit\" class=\"btn\" name=\"delete\" value=\"Supprimer le panier\"></td>
 										</form>
 									</tr>
