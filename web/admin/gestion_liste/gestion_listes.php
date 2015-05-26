@@ -51,9 +51,9 @@ while($ligne=$db->DB_object())
 {
 	?>
 	<tr>
-		<td width="90" ><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
-		<td width="50" ><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
-		<td width="90" ><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>
+		<td width="90"><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
+		<td width="50"><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
+		<td width="90"><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>
 		<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Modifier" src="../../../img/modif.png"></a>
 		<a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
 	</tr>

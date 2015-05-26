@@ -77,6 +77,7 @@ require_once(LIB.'/lib_listes.php');
 		<div id="page">
 
 			<p class="titre">Accueil</p>
+			<h3><u>Listes de fournitures :</u></h3>
 			<?php affichage($panier); ?>
 			<br/><a href="../fournitures"/>Rechercher d'autres fournitures</a>
 

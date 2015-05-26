@@ -21,11 +21,12 @@ function mise_en_forme($idlist, $libelle, $prix, $now, $jma)
 	}
 	echo $tr;
 	?>
-	   <td><div align="center"><a class="fancy2" href="liste.php?id=<?php echo $idlist; ?>"><?php echo $libelle; ?></a></div></td>
+	   <td><div align="center"><?php echo $libelle; ?></div></td>
 	   <td><?php echo number_format($prix, 2, ',', ' '); ?> €</td>
 	   <td><input type="number" size="2" min="1" max="20" name="qte" value="<?php echo $qte; ?>"/></td>
-	   <td><input type="submit" value="Ajouter au panier"></td>
-	   <td><input type="hidden" name="id" value="<?php echo $idlist; ?>"/></td>
+	   <td><div align="center"><a class="fancy2" href="liste.php?id=<?php echo $idlist; ?>"><img title="Visualiser" src="../../img/visu.png"></a>
+	   <input type="submit" title="Ajouter au panier" value="" class="ajPanier"></td>
+	   <input type="hidden" name="id" value="<?php echo $idlist; ?>"/></div></td>
    </tr>
 	<?php
 }
@@ -34,13 +35,14 @@ function mise_en_forme($idlist, $libelle, $prix, $now, $jma)
 function head()
 {
 	?>
-		<table id="liste">
-			<tr>
-				<th>Niveau</th>
-				<th>Prix forfaitaire</th>
-				<th>Quantité</th>
-				<th></th>
-			</tr>
+		<div class="liste">
+			<table>
+				<tr>
+					<td>Niveau</td>
+					<td>Prix forfaitaire</td>
+					<td>Quantité</td>
+					<td>Opérations</td>
+				</tr>
 	<?php 
 }
 
@@ -49,6 +51,7 @@ function footer()
 {
 	?>
 		</table>
+	</div>
 	<?php 
 }
 
