@@ -318,11 +318,11 @@ body
 	border-width:0px 0px 0px 0px;
 }
 .liste tr:first-child td{
-		background:-o-linear-gradient(bottom, #bf5f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bf5f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #bf5f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#bf5f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#bf5f00,bf5f00);
+		background:-o-linear-gradient(bottom, #ff7f00 5%, #ff7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #ff7f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #ff7f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#ff7f00");	background: -o-linear-gradient(top,#ff7f00,ff7f00);
 
-	background-color:#bf5f00;
+	background-color:#ff7f00;
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
@@ -332,11 +332,11 @@ body
 	color:#ffffff;
 }
 .liste tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #bf5f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bf5f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #bf5f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#bf5f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#bf5f00,bf5f00);
+	background:-o-linear-gradient(bottom, #ff7f00 5%, #ff7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #ff7f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #ff7f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#ff7f00");	background: -o-linear-gradient(top,#ff7f00,ff7f00);
 
-	background-color:#bf5f00;
+	background-color:#ff7f00;
 }
 .liste tr:first-child td:first-child{
 	border-width:0px 0px 1px 0px;
