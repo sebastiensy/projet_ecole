@@ -132,7 +132,7 @@ CREATE TABLE ComFour_archive(
 CREATE TABLE Mat_archive(
 	id_matA INT AUTO_INCREMENT NOT NULL, /* ID INDEPENDANT */
 	ref_matA VARCHAR(20),
-	desc_matA VARCHAR(20),
+	desc_matA VARCHAR(50),
 	prix_matA NUMERIC(5,2),
 	PRIMARY KEY (id_matA)
 ) Engine=InnoDB;
