@@ -35,6 +35,14 @@ require_once('../inc/droits.inc.php');
 						$idniv = $niv->id_nivliste;
 						$forfait = $niv->forfait;
 					}
+					else
+					{
+						?>
+						</tr></table>
+						<?php
+						require_once('../inc/footer.inc.php');
+						exit;
+					}
 				}
 				?>
 			</tr>
