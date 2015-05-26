@@ -131,56 +131,86 @@ if (isset($_POST['purger']))
 
 		$tab = array();
 
-		$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, com.id_parent 
-		FROM Contient as c, Materiel as m, Commande as com 
-		WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
+		/*
+		* affiche les materiels retire et paye
+		*/
+		$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, m.id_mat, com.id_parent
+		FROM Contient as c, Materiel as m, Commande as com
+		WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande
 		AND com.etat = 6';
 
 		$db->DB_query($requete2);
 
-		$dateJour = date('Y-m-d');
 		
-		$cpt = 1;
-		$i=0;
-
-		while($arch = $db->DB_object())
+		while($elem = $db->DB_object())
 		{
-			$tab = array(
-				'id_mat' => $cpt,
-				'ref' => $arch->ref_mat,
-				'desc' => $arch->desc_mat,
-				'prix' => $arch->prix_mat,
-				'id_parent' => $arch->id_parent
-				);
-
-	        $i = max(array_keys($tab))+1;
-
-	        $tab[$i] = $cpt;
-			$tab[$i] = $arch->ref_mat;
-			$tab[$i] = $arch->desc_mat;
-			$tab[$i] = $arch->prix_mat;
-			$tab[$i] = $arch->id_parent;
-
-
-
-			print_r($tab);
-
-			/*$tab["id_mat"] = $cpt;
-			$tab["ref"] = $arch->ref_mat;
-			$tab["desc"] = $arch->desc_mat;
-			$tab["prix"] = $arch->prix_mat;
-			$tab["id_parent"] = $arch->id_parent;*/
-
-			/*$save = 'INSERT INTO Com_archive (date_archive, id_parent) VALUES
-			("'.$dateJour.'", '.$arch->id_parent.');';*/
-
-			/*$save = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES
-			("'.$arch->ref_mat.'", "'.$arch->desc_mat.'", '.$arch->prix_mat.');';*/
-
-			/*$save .= 'INSERT INTO ContientA (id_matA, id_comArchive, qte_matA) VALUES
-			('.$db->DB_id()+1.', '.$db->DB_id()+1.', '.$arch->quantite.');';*/
-
+			if(isset($tab[$elem->id_mat]))
+				$tab[$elem->id_mat] = $elem->quantite;
+			else
+				$tab[$elem->id_mat] = $elem->quantite;
 		}
+
+		/*
+		* ajoute l'id parent et la date (table Com_archive)
+		*/
+		$requete2 .= ' GROUP BY com.id_parent';
+		$db->DB_query($requete2);
+		$dateJour = date('Y-m-d');
+		$saveCom = 'INSERT INTO Com_archive (date_archive, id_parent) VALUES';
+		while($elem = $db->DB_object())
+		{		
+			$saveCom .= '("'.$dateJour.'", '.$elem->id_parent.'),';
+		}
+		$saveCom = substr($saveCom, 0, -1);
+		$db->DB_query($saveCom);
+		$idCom = $db->DB_id();
+
+
+			
+
+		//var_dump($tab);
+
+		$ids = array_keys($tab);
+
+		if(!empty($ids))
+		{
+			$requete3 = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
+			$db->DB_query($requete3);
+			if($db->DB_count() > 0)
+			{
+				$saveMat = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES';
+				$saveQte = 'INSERT INTO ContientA (id_comArchive, qte_matA) VALUES';
+
+				while($liste = $db->DB_object())
+				{
+					$saveMat .= '("'.$liste->ref_mat.'", "'.$liste->desc_mat.'", '.$liste->prix_mat.'),';
+					$saveQte .= '('.$idCom.', '.$tab[$liste->id_mat].'),';
+				}
+
+				$saveMat = substr($saveMat, 0, -1);
+				$saveQte = substr($saveQte, 0, -1);
+    			$db->DB_query($saveMat);
+    			$db->DB_query($saveQte);
+			}
+		}
+
+		$requete4 = 'SELECT cA.id_matA, comA.id_comArchive 
+		FROM Mat_archive as mA, Materiel as m, Commande as com, ContientA as cA, Contient as c, Com_archive as comA
+		WHERE cA.id_matA = mA.id_matA AND mA.ref_matA = m.ref_mat AND m.id_mat = c.id_mat AND c.id_commande = com.id_commande AND com.id_parent = comA.id_parent
+		AND com.etat = 6';
+		$db->DB_query($requete4);
+
+		$req="";
+		while($modif = $db->DB_object())
+		{
+			$req .= 'UPDATE ContientA SET id_comArchive = '.$modif->id_comArchive.' WHERE id_matA = '.$modif->id_matA.';';
+		}
+		echo $req;
+		$db->DB_query($req);
+
+
+
+
 
 		//var_dump($tab);
 		//print_r($tab);
