@@ -247,6 +247,20 @@ body
 	border:0;
 }
 
+/* Titre des pages */
+
+/**/
+.titre
+{
+	font-size: 25px;
+	font-weight:bold;
+	text-align:center;
+	background-color:orange;
+	border:solid;
+	width:750px;
+}
+/**/
+
 /**/
 .btn {
   -webkit-border-radius: 0;
@@ -269,7 +283,7 @@ body
 /**/
 .liste {
 	margin:0px;padding:0px;
-	width:80%;
+	width:90%;
 	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:0px;
@@ -444,16 +458,6 @@ body
 	margin-left:auto;
 	margin-right:auto;
 }*/
-
-/* Titre des pages */
-
-.titre
-{
-	text-align:center;
-	font-size:25px;
-	font-weight:bold;
-	text-decoration:underline;
-}
 
 /* footer */
 
