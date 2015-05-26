@@ -14,11 +14,6 @@ require_once('../inc/droits.inc.php');
 
 <?php
 
-/*function afficherPrix()
-{
-	return number_format($_POST["prix"] * (100-$_POST["reduc"]) / 100, 2, ',', ' ');
-}*/
-
 function newList()
 {
 	$db = new DB_connection();
@@ -28,7 +23,6 @@ function newList()
 	{
 		$query = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 		$db->DB_query($query);
-		//$prix = 0;//
 
 		if($db->DB_count() > 0)
 		{
@@ -37,30 +31,25 @@ function newList()
 				$html .= "<tr>";
 					$html .= "<th>Référence</th>";
 					$html .= "<th>Description</th>";
+					$html .= "<th>Prix / unité</th>";
 					$html .= "<th>Quantité</th>";
 					$html .= "<th></th>";
 				$html .= "</tr>";
 				while($mat = $db->DB_object())
 				{
-					//$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];//
 					$html .= "<tr>";
 						$html .= "<td>".$mat->ref_mat."</td>";
 						$html .= "<td>".$mat->desc_mat."</td>";
+						$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
 						$html .= "<td><input type=\"number\" onChange=modifierQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["four"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
 						$html .= "<td><div onClick=supprimerFourniture(".$mat->id_mat.")><img id=\"click\" title=\"Supprimer\" src=\"../../../img/del2.png\"></div></td>";
 					$html .= "</tr>";
 				}
 				$html .= "</table>";
 				$db->DB_done();
-				//$prix = $prix * (100-$_POST["reduc"]) / 100;//
-				//$html .= "<input type=\"hidden\" id=\"prix\" value=".$prix.">";//
 				return $html;
 		}
 	}
-	/*else
-	{
-		echo "TEST123";
-	}*/
 }
 
 ?>
@@ -82,6 +71,7 @@ if($_GET["reponse"] == 1)
 			$html .= "<tr>";
 				$html .= "<th>Référence</th>";
 				$html .= "<th>Description</th>";
+				$html .= "<th>Prix</th>";
 				$html .= "<th>Quantité</th>";
 				$html .= "<th></th>";
 			$html .= "</tr>";
@@ -90,6 +80,7 @@ if($_GET["reponse"] == 1)
 			$html .= "<tr>";
 				$html .= "<td>".$mat->ref_mat."</td>";
 				$html .= "<td>".$mat->desc_mat."</td>";
+				$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
 				//$html .= "<td><input type=\"number\" id=".$mat->id_mat." onChange=recupererQte(".$mat->id_mat.") name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 				$html .= "<td><input type=\"number\" id=".$mat->id_mat." name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 				//$html .= "<td><div id=A".$mat->id_mat."><a onClick=\"\" id=\"B".$mat->id_mat."\" href=\"ajouter_liste.php?id=".$mat->id_mat."&amp;qte=1\"><img title=\"Ajouter\" src=\"../../../img/icon_add.png\"></a></div></td>";
@@ -140,10 +131,6 @@ else if($_GET["reponse"] == 5)
 		echo newList();
 	}
 }
-/*else if($_GET["reponse"] == 5)
-{				
-	echo afficherPrix();
-}*/
 
 ?>
 

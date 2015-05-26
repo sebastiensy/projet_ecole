@@ -73,7 +73,8 @@ if(isset($_POST["enrListe"]))
 					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$_POST["idniv"].'"),';
 					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 				}
-				$prix = $prix * (100-$_POST["reduc"]) / 100;
+				//$prix = $prix * (100-$_POST["reduc"]) / 100;
+				$prix = $_POST["reduc"];
 				$query = substr($query, 0, -1);
 				$db->DB_query($query);
 				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$_POST["idniv"].'"';
@@ -136,8 +137,7 @@ else if(isset($_POST["select"]))
 
 		<form method="post" action="">
 		<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
-		<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Remise : <input type="number" id ="reduc" onChange="" name="reduc" value="0" size="1" min="0" max="100"> % 
-		<!-- &nbsp;Prix : <span id="resultat3">0,00</span> €</p> -->
+		<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="number" id ="reduc" name="reduc" value="0" size="1" min="0"> €
 
 		<p>
 			<div id="resultat2"></div>

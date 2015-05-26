@@ -27,12 +27,13 @@ require_once('../inc/droits.inc.php');
 				$db = new DB_connection();
 				if(isset($_GET["id"]))
 				{
-					$query = 'SELECT n.Libelle, ln.id_nivliste FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = "'.$_GET["id"].'"';
+					$query = 'SELECT n.Libelle, ln.id_nivliste, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = "'.$_GET["id"].'"';
 					$db->DB_query($query);
 					if($niv = $db->DB_object())
 					{
 						echo "<td><div align=\"right\">Modification de la liste (".$niv->Libelle.")</div></td>";
 						$idniv = $niv->id_nivliste;
+						$forfait = $niv->forfait;
 					}
 				}
 				?>
@@ -65,7 +66,8 @@ if(isset($_POST["enrListe"]))
 					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$_POST["idniv"].'"),';
 					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 				}
-				$prix = $prix * (100-$_POST["reduc"]) / 100;
+				//$prix = $prix * (100-$_POST["reduc"]) / 100;
+				$prix = $_POST["reduc"];
 				$query = substr($query, 0, -1);
 				//$query .= ' ON DUPLICATE KEY UPDATE qte_scat=VALUES(qte_scat)';
 				$db->DB_query($query);
@@ -110,7 +112,7 @@ $db->DB_query($query);
 			?>
 			<p><b><u>Liste des catégories :</u></b></p>
 			<select id="Fid" name="selectC" onChange="tabFournitures()"/>
-			<option value="">=== SELECTIONNER UNE CATEGORIE ===</option>";
+			<option value="">=== SELECTIONNER UNE CATEGORIE ===</option>
 			<?php
 			while($rub = $db->DB_object())
 			{
@@ -132,8 +134,7 @@ $db->DB_query($query);
 
 	<form method="post" action="">
 	<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
-	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Remise : <input type="number" id ="reduc" onChange="" name="reduc" value="0" size="1" min="0" max="100"> % 
-	<!-- &nbsp;Prix : <span id="resultat3">0,00</span> €</p> -->
+	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="number" id ="reduc" name="reduc" value="<?php echo $forfait; ?>" size="1" min="0"> €
 
 	<p>
 		<div id="resultat2"></div>
