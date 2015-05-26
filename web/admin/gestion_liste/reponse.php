@@ -26,6 +26,7 @@ function newList()
 
 		if($db->DB_count() > 0)
 		{
+			$prix = 0;
 			$html = "";
 			$html .= "<table class=\"data\">";
 				$html .= "<tr>";
@@ -37,6 +38,7 @@ function newList()
 				$html .= "</tr>";
 				while($mat = $db->DB_object())
 				{
+					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 					$html .= "<tr>";
 						$html .= "<td>".$mat->ref_mat."</td>";
 						$html .= "<td>".$mat->desc_mat."</td>";
@@ -46,6 +48,7 @@ function newList()
 					$html .= "</tr>";
 				}
 				$html .= "</table>";
+				$html .= "<p>Total : ".number_format($prix, 2, ',', ' ')." €</p>";
 				$db->DB_done();
 				return $html;
 		}
