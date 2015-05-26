@@ -126,15 +126,82 @@ while($suiv = $db->DB_object())
 
 <?php 
 if (isset($_POST['purger']))
-		{
+	{
 		//$purger = 'DELETE FROM Commande WHERE etat = 6';
-		//$save = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES
-		//() ';
+
+		$tab = array();
+
+		$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, com.id_parent 
+		FROM Contient as c, Materiel as m, Commande as com 
+		WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
+		AND com.etat = 6';
+
+		$db->DB_query($requete2);
+
+		$dateJour = date('Y-m-d');
+		
+		$cpt = 1;
+		$i=0;
+
+		while($arch = $db->DB_object())
+		{
+			$tab = array(
+				'id_mat' => $cpt,
+				'ref' => $arch->ref_mat,
+				'desc' => $arch->desc_mat,
+				'prix' => $arch->prix_mat,
+				'id_parent' => $arch->id_parent
+				);
+
+	        $i = max(array_keys($tab))+1;
+
+	        $tab[$i] = $cpt;
+			$tab[$i] = $arch->ref_mat;
+			$tab[$i] = $arch->desc_mat;
+			$tab[$i] = $arch->prix_mat;
+			$tab[$i] = $arch->id_parent;
+
+
+
+			print_r($tab);
+
+			/*$tab["id_mat"] = $cpt;
+			$tab["ref"] = $arch->ref_mat;
+			$tab["desc"] = $arch->desc_mat;
+			$tab["prix"] = $arch->prix_mat;
+			$tab["id_parent"] = $arch->id_parent;*/
+
+			/*$save = 'INSERT INTO Com_archive (date_archive, id_parent) VALUES
+			("'.$dateJour.'", '.$arch->id_parent.');';*/
+
+			/*$save = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES
+			("'.$arch->ref_mat.'", "'.$arch->desc_mat.'", '.$arch->prix_mat.');';*/
+
+			/*$save .= 'INSERT INTO ContientA (id_matA, id_comArchive, qte_matA) VALUES
+			('.$db->DB_id()+1.', '.$db->DB_id()+1.', '.$arch->quantite.');';*/
+
+		}
+
+		//var_dump($tab);
+		//print_r($tab);
+
+		/*$test = array(1=>3,2=>4);
+        print_r($test);
+        
+        $i = max(array_keys($test))+1;
+
+        $test[$i]=5;
+        print_r($test);*/
+
+		//$db->DB_query($save);
+
+
+		//echo $save;
 
 		//$db->DB_query($save);
 		//print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
 		//header('Location: suivi.php');
-		}
+	}
 ?>
 
 </div>
