@@ -65,15 +65,16 @@ while($suiv = $db->DB_object())
 		</tr>
 	<?php
 	$requete2 = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
+	
 	$db2 = new DB_connection();
+	
 	$db2->DB_query($requete2);
-	$cpt = 1;
+
 	while($suiv2 = $db2->DB_object())
 	{
 	?>
 		<?php
-			echo "<tr><td><div align='center'>".$cpt."</div></td>";
-			$cpt++;
+			echo "<tr><td><div align='center'>".$suiv2->id_commande."</div></td>";
 			if ($commande != $suiv2->id_commande)
 			{
 			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&id='.$suiv2->id_parent.'"/>';
@@ -120,6 +121,22 @@ while($suiv = $db->DB_object())
 	<?php
 }
 ?>
+
+<form method="POST" action="suivi.php"><input type="submit" class="purger" name="purger" value="Purger"></input></form>
+
+<?php 
+if (isset($_POST['purger']))
+		{
+		//$purger = 'DELETE FROM Commande WHERE etat = 6';
+		//$save = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES
+		//() ';
+
+		//$db->DB_query($save);
+		//print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
+		//header('Location: suivi.php');
+		}
+?>
+
 </div>
 
 <?php
