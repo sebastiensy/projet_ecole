@@ -14,7 +14,7 @@ function mise_en_forme($idlist, $libelle, $prix, $now, $jma)
 				if($idlist == $_POST["id"])
 				{
 					$tr = "<tr bgcolor=\"orange\">";
-					$qte = $_POST["qte"];
+					//$qte = $_POST["qte"];
 				}
 			}
 		}
@@ -41,7 +41,7 @@ function head()
 					<td>Niveau</td>
 					<td>Prix forfaitaire</td>
 					<td>Quantité</td>
-					<td>Opérations</td>
+					<td>Actions</td>
 				</tr>
 	<?php 
 }

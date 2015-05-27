@@ -45,7 +45,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	}
 
 	$db->DB_query($requete);
-	$nb_elems = 20; // nombre d'éléments par page
+	$nb_elems = 10; // nombre d'éléments par page
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 	if(!empty($_GET["page"]))
@@ -96,13 +96,14 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 
 	if($db->DB_count() > 0)
 	{
+		echo "<div class=\"liste\">";
 		echo "<table>
 				<tr>
-					<th>Référence</th>
-					<th>Description</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-					<th></th>
+					<td>Référence</td>
+					<td>Description</td>
+					<td>Prix</td>
+					<td>Quantité</td>
+					<td>Action</td>
 				</tr>";
 
 		while($mat = $db->DB_object())
@@ -136,7 +137,8 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 						{
 							if($_GET["ref"] == $mat->ref_mat)
 							{
-								$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
+								//$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
+								$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
 							}
 						}
 					}
@@ -144,17 +146,19 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 				echo $td;
 				//echo "<td><a href=\"index.php?page=".$page."&amp;ref=".$mat->ref_mat."&amp;qte=".$i."\">Ajouter au panier</td>";
 
-				echo "<td><input type=\"submit\" value=\"Ajouter au panier\"></td>";
-				echo "<td><input type=\"hidden\" name=\"page\" value=\"$page\"></td>";
+				echo "<td><input type=\"submit\" title=\"Ajouter au panier\" value=\"\" class=\"ajPanier\"></td>";
+
+				echo "</tr>";
+				echo "<tr>";
+				echo "<input type=\"hidden\" name=\"page\" value=\"$page\">";
 				if($recherche!="")
 				{
-					echo "<td><input type=\"hidden\" name=\"find\" value=\"$recherche\"></td>";
+					echo "<input type=\"hidden\" name=\"find\" value=\"$recherche\">";
 				}
-				echo "<td><input type=\"hidden\" name=\"cat\" value=\"$rubrique\"></td>";
-				echo "<td><input type=\"hidden\" name=\"ref\" value=\"$mat->ref_mat\"></td>";
-
-			echo "</tr>";
-			echo "</form>";
+				echo "<input type=\"hidden\" name=\"cat\" value=\"$rubrique\">";
+				echo "<input type=\"hidden\" name=\"ref\" value=\"$mat->ref_mat\">";
+				echo "</tr>";
+				echo "</form>";
 		}
 		echo "</table>";
 	}
@@ -163,7 +167,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 		echo "<p>Aucun produit trouvé.</p>";
 	}
 
-	echo "</div>";
+	echo "</div></div>";
 
 	if(!empty($_GET["ref"]))
 	{

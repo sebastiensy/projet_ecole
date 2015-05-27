@@ -72,9 +72,9 @@ require_once(LIB.'/lib_fournitures.php');
 		<div id="workflow">
 		</div>
 		
-		<div id="categories">
+		<!-- <div id="categories"> -->
 			<?php
-				$imgs = array("ecriture.png", "trousse.png", "etui.png", "cahiers.png", "protege.png", "classeur.png", "ardoise.png", "arts.png", "canson.png", "calculatrice.png");
+				/*$imgs = array("ecriture.png", "trousse.png", "etui.png", "cahiers.png", "protege.png", "classeur.png", "ardoise.png", "arts.png", "canson.png", "calculatrice.png");
 				$i = 0;
 				$db = new DB_connection();
 				$requete = "SELECT DISTINCT(categorie) FROM Sous_categorie order by id_scat";
@@ -88,17 +88,38 @@ require_once(LIB.'/lib_fournitures.php');
 					$i++;
 				}
 				echo "</ul>";
-				$db->DB_done();
+				$db->DB_done();*/
 			?>
-		</div>
+		<!-- </div> -->
 
 		<div id="page">
+
+			<div id="sse50">
+				<div id="sses50">
+					<ul>
+						<?php
+						$i = 0;
+						$titres = array("Ecriture", "Trousse", "Crayons - Feutres", "Cahiers", "Protège-cahiers", "Classeurs", "Petit matériel", "Arts plastiques", "Papier dessin", "Dictionnaires - Calculatrices");
+						$db = new DB_connection();
+						$requete = "SELECT DISTINCT(categorie) FROM Sous_categorie order by id_scat";
+						$db->DB_query($requete);
+						while($rub = $db->DB_object())
+						{
+							$str = trim($rub->categorie);
+							echo "<li><a title=\"$str\" href=\"?cat=".urlencode($rub->categorie)."\">".$titres[$i++]."</a></li>";
+						}
+						$db->DB_done();
+						?>
+					</ul>
+				</div>
+			</div><br>
+
 			<form method="get" action="index.php">
 				<table>
 					<tr>
 						<td>Rechercher un produit : </td>
 						<td><input type="text" size="12" name="find"/></td>
-						<td><input type="submit" value="Rechercher"/></td>
+						<td><input type="submit" class="btn" value="Rechercher"/></td>
 					</tr>
 				</table>
 			</form>

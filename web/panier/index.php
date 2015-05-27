@@ -145,7 +145,7 @@ require_once(LIB.'/lib_listes.php');
 							$ids = array_keys($_SESSION['liste']);
 							if(!empty($ids))
 							{
-								echo "<div align=\"right\"><b>Listes</b></div><hr/>";
+								echo "<div id=\"alistes\" align=\"right\"><b>Listes</b></div><hr/>";
 								$query = 'SELECT ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND id_nivliste IN ('.implode(',',$ids).') ORDER BY ln.niveau';
 								$db->DB_query($query);
 
@@ -154,13 +154,13 @@ require_once(LIB.'/lib_listes.php');
 									$panierL = $panier->totalList();
 									echo "<div id=\"panierL\">";
 										echo "<div class=\"liste\">";
-										echo "<form method=\"post\" action=\"\">";
+										echo "<form method=\"post\" action=\"index.php#alistes\">";
 										echo "<table>
 										<tr>
 											<td>Niveau</td>
 											<td>Forfait</td>
 											<td>Quantité</td>
-											<td>Opérations</td>
+											<td>Actions</td>
 										</tr>";
 										while($liste = $db->DB_object())
 										{
@@ -174,7 +174,7 @@ require_once(LIB.'/lib_listes.php');
 										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".number_format($panierL, 2, ',', ' ')." €</b></td></tr>
 										</table></div>";
 										echo "<input type=\"submit\" name=\"listes\" class=\"btn\" value=\"Recalculer\">";
-										echo "<form>";
+										echo "</form>";
 									echo "</div>";
 								}
 								echo "<br/><br/>";
@@ -194,7 +194,7 @@ require_once(LIB.'/lib_listes.php');
 							$ids = array_keys($_SESSION['panier']);
 							if(!empty($ids))
 							{
-								echo "<div align=\"right\"><b>Fournitures</b></div><hr/>";
+								echo "<div id=\"afour\" align=\"right\"><b>Fournitures</b></div><hr/>";
 								$query = 'SELECT * FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
 								$db->DB_query($query);
 
@@ -203,14 +203,14 @@ require_once(LIB.'/lib_listes.php');
 									$panierF = $panier->total();
 									echo "<div id=\"panierF\">";
 										echo "<div class=\"liste\">";
-										echo "<form method=\"post\" action=\"\">";
+										echo "<form method=\"post\" action=\"index.php#afour\">";
 										echo "<table>
 										<tr>
 											<td>Référence</td>
 											<td>Description</td>
 											<td>Prix</td>
 											<td>Quantité</td>
-											<td>Opération</td>
+											<td>Action</td>
 										</tr>";
 										while($mat = $db->DB_object())
 										{
@@ -218,13 +218,13 @@ require_once(LIB.'/lib_listes.php');
 											<td>".$mat->desc_mat."</td>
 											<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
-											echo "<td><a href=\"index.php?del=".$mat->id_mat."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
+											echo "<td><a href=\"index.php?del=".$mat->id_mat."#afour\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
 											echo "</tr>";
 										}
 										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".number_format($panierF, 2, ',', ' ')." €</b></td></tr>
 										</table></div>";
 										echo "<input type=\"submit\" name=\"fournitures\" class=\"btn\" value=\"Recalculer\">";
-										echo "<form>";
+										echo "</form>";
 									echo "</div>";
 								}
 							}

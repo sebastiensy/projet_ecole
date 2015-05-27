@@ -199,7 +199,8 @@ body
 
 	padding-top:60px;
 	padding-left:50px;
-	padding-right:10px;
+	/*padding-right:10px;*/
+	padding-right:40px;
 
 	/*margin-left:180px;*/
 	height:970px; /* 1030 */
@@ -235,7 +236,7 @@ body
 #produits
 {
 	margin-top:30px;
-	min-height:770px; /* 810 */
+	min-height:680px; /* 770 */
 }
 
 .ajPanier
@@ -506,4 +507,47 @@ body
 	width:195px;
 	float:right;
 	min-height:135px;
+}
+
+/***********************/
+
+#sse50 
+{
+    border: solid 1px black;
+    background-color:#444;
+    padding:0px;/*changing its value will give menu margins to its container*/
+    text-align:center;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+#sses50
+{
+    border-right: solid 1px #777;
+    margin:0 auto;/*If you don't want the menu center aligned, remove this line and above text-align:center*/
+    font-size:0;    
+    box-sizing:content-box;
+}
+        
+#sses50 ul, #sses50 li
+{
+    display: inline;
+    list-style-type: none;padding: 0;margin: 0;border:0;background-image:none;
+}
+        
+#sses50 a
+{
+    text-align: center;
+    display: inline-block;
+    font: normal 11px Verdana;
+    background: url('../img/mb50_2.gif') no-repeat left top;
+    padding: 10px 20px;/*This defines the size of each menu item*/
+    color: white;
+    text-decoration: none;
+}
+        
+#sses50 a:hover, #sses50 a.current
+{
+    background-position: 0% -60px;
+    color: white;
 }
