@@ -28,11 +28,12 @@ function newList()
 		{
 			$prix = 0;
 			$html = "";
+			$html .= "<div id=\"newList\">";
 			$html .= "<table class=\"data\">";
 				$html .= "<tr>";
 					$html .= "<th>Référence</th>";
 					$html .= "<th>Description</th>";
-					$html .= "<th>Prix / unité</th>";
+					$html .= "<th>Prix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 					$html .= "<th>Quantité</th>";
 					$html .= "<th></th>";
 				$html .= "</tr>";
@@ -44,11 +45,12 @@ function newList()
 						$html .= "<td>".$mat->desc_mat."</td>";
 						$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
 						$html .= "<td><input type=\"number\" onChange=modifierQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["four"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+						//$html .= "<td>".$_SESSION["four"][$mat->id_mat]."</td>";
 						$html .= "<td><div onClick=supprimerFourniture(".$mat->id_mat.")><img id=\"click\" title=\"Supprimer\" src=\"../../../img/del2.png\"></div></td>";
 					$html .= "</tr>";
 				}
 				$html .= "</table>";
-				$html .= "<p>Total : ".number_format($prix, 2, ',', ' ')." €</p>";
+				$html .= "<p><div id=\"ptotal\" value=".$prix.">Total : ".number_format($prix, 2, ',', ' ')." €</div></div></p>";
 				$db->DB_done();
 				return $html;
 		}

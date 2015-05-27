@@ -84,6 +84,12 @@ table.entete
 	font-style: italic;
 }
 
+div#newList
+{
+	height:650px;
+	overflow:auto;
+}
+
 table.data
 {
 	border-width:0px 0px 2px 0px;
@@ -238,14 +244,4 @@ input.in
 	height:100%;
 	width:100%;
 	border: 0px solid;
-}
-
-#impCmdF
-{
-	margin-left: 550px;
-}
-
-#btnCmdF
-{
-	margin-left: 100px;
 }
