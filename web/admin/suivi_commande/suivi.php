@@ -101,26 +101,17 @@ while($suiv = $db->DB_object())
 			echo '</tr>';
 			echo '</form>';
 		}
+	}
 
-		if(isset($_POST['suivi']))
-		{
-			?>
-			<!-- <script type="text/javascript">
-				alert("test");
-			</script> -->
-			<?php
-			$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
-			message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
+	if(isset($_POST['suivi']))
+	{
+		$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
+		message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
 
-			$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
-			$var1 = $_GET['id'] - 1;
-			$db->DB_query($modifier);
-			print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
-		}
-
-		?>
-
-	<?php 
+		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
+		$var1 = $_GET['id'] - 1;
+		$db->DB_query($modifier);
+		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
 	}
 	?>
 	</table>
