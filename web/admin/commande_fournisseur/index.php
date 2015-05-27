@@ -124,20 +124,31 @@ $somme = array_sum($prix);
 echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
 
 
-/*
-*	ecriture du prix total
-*/
-//fputs($fichierCmdF, number_format($somme, 2, ',', ' ').';');
-
-
-
 
 /*
 *	fermeture du fichier
 */
 fclose($fichierCmdF);
 
+
+/*
+*	imprimer en pdf
+*/
 echo "<a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' border='0'></a>";
+
+/*
+*	passer la commande au fournisseur
+*/
+echo "<form method='POST' action='index.php'><input type='submit' name='cmdFournisseur' value='Passer commande fournisseur'></input></form>";
+
+
+if (isset($_POST['cmdFournisseur']))
+{
+	$requete = 'UPDATE Commande SET etat = 3 WHERE etat = 2';
+	$db->DB_query($requete);
+	echo $requete;
+	//echo "";
+}
 
 ?>
 
