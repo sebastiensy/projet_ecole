@@ -91,5 +91,6 @@
 	</script>
 </head>
 	<div class="tete">
+		<div id="site"><a href="../../"><img src="../../../img/porte.png" title="Retour"></a></div>
 		<img src="../../../img/header.jpg" alt="header">
 	</div>

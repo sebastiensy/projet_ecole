@@ -3,12 +3,21 @@ div#fournituresA
 	background-color:red;
 }
 
-.tete{
+.tete
+{
 	margin-left:auto;
 	margin-right:auto;
 	width: 1161px;
-	
-	}
+}
+
+div#site
+{
+	position:absolute;
+	background-color:red;
+	height:100px;
+	width:100px;
+}
+
 .menu{
 	padding: 0; 
 	margin: 0; 
