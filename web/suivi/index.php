@@ -93,14 +93,13 @@ require_once('../../inc/data.inc.php');
 	$nb_elems = 2;
 	$nb_pages = ceil($db->DB_count() / $nb_elems);
 
-
 	if(isset($_GET['page']))
 	{
-	     $pageActuelle=intval($_GET['page']);
-	 
-	     if($pageActuelle>$nb_pages)
+	     $pageActuelle = intval($_GET['page']);
+
+	     if($pageActuelle > $nb_pages || $pageActuelle < 1)
 	     {
-	          $pageActuelle=$nb_pages;
+	          $pageActuelle = 1;
 	     }
 	}
 	else
@@ -211,7 +210,7 @@ require_once('../../inc/data.inc.php');
 	?>
 	<div id="pages">
 	<?php
-	if ($nb_pages > 1)
+	if($nb_pages > 1)
 	{
 		for($i=1; $i<=$nb_pages; $i++)
 		{

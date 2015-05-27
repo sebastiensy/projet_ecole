@@ -171,16 +171,19 @@ require_once('../../inc/data.inc.php');
 	?>
 	<div id="pages">
 	<?php
-	for($i=1; $i<=$nb_pages; $i++)
+	if($nb_pages > 1)
 	{
-		if($i==$page)
+		for($i=1; $i<=$nb_pages; $i++)
 		{
-			echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
-		}	
-		else
-		{
-			echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
-			echo ' | ';
+			if($i==$page)
+			{
+				echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+			}	
+			else
+			{
+				echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+				echo ' | ';
+			}
 		}
 	}
 	?>
