@@ -85,7 +85,7 @@ require_once('../../inc/data.inc.php');
 	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
 	FROM Parent as p, Commande as c 
 	WHERE p.id_parent = c.id_parent 
-	AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande ASC';
+	AND c.etat > 0 AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande DESC';
 
 	$db = new DB_connection();
 	$db->DB_query($requete);
