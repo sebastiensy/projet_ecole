@@ -135,13 +135,13 @@ if ($db->DB_count() > 0)
 	if ($db->DB_count() == 1)
 	{
 		?>
-		<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
+		<p><a class="btn" id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de ma commande</a></p>
 		<?php
 	}
 	else
 	{
 		?>
-		<p><a id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de mes commandes</a></p>
+		<p><a class="btn" id="suivi_commande" value="suivi_commande" href="../suivi/index.php">Suivi de mes commandes</a></p>
 		<?php
 	}
 }

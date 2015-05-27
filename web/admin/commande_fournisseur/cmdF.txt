@@ -1,4 +1,7 @@
-00010;BIC CRISTAL Pointe Moyenne BLEU;4;0,22;
-12793;BESCHERELLE Conjugaison;2;8,30;
-58211;Feutre moyen 1mm MBudget;3;0,22;
-65386;Roller Effaçable PILOT FRIXION VERT;1;1,74;
+00011;BIC CRISTAL Pointe Moyenne NOIR;6;0,22;
+01260;Feutre VELLEDA Pointe Fine BLEU;3;0,48;
+01261;Feutre VELLEDA Pointe Fine NOIR;3;0,48;
+34466;BIC 4 couleurs Pointe Moyenne;3;1,55;
+38403;Paper Mate FLEXGrip Ultra Mine Rétractable BLEU;1;1,25;
+42599;Stylo Plume ECOLIER;1;1,94;
+80351;Stylo Plume Spécial GAUCHER Bleu;1;3,45;
