@@ -125,14 +125,33 @@ while($suiv = $db->DB_object())
 <?php 
 if (isset($_POST['purger']))
 	{
-		//$purger = 'DELETE FROM Commande WHERE etat = 6';
+		/*
+		*	purge les commandes retirées et payées
+		*/
+		$select = 'SELECT id_commande FROM Commande WHERE etat = 6';
+		$db->DB_query($select);
 
-		$tab = array();
+		if ($db->DB_count() > 0)
+		{
+			$purgerCon = 'DELETE FROM Contient WHERE id_commande IN ('.$select.')';
+			$db->DB_query($purgerCon);
+
+			$purgerInc = 'DELETE FROM Inclus WHERE id_commande IN ('.$select.')';
+			$db->DB_query($purgerInc);
+
+			$purgerCom = 'DELETE FROM Commande WHERE etat = 6';
+			$db->DB_query($purgerCom);
+		}
+
+
+
+
+		/*$tab = array();
 
 		/*
 		* affiche les materiels retire et paye
 		*/
-		$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, m.id_mat, com.id_parent
+		/*$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, m.id_mat, com.id_parent
 		FROM Contient as c, Materiel as m, Commande as com
 		WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande
 		AND com.etat = 6';
@@ -146,12 +165,12 @@ if (isset($_POST['purger']))
 				$tab[$elem->id_mat] = $elem->quantite;
 			else
 				$tab[$elem->id_mat] = $elem->quantite;
-		}
+		}*/
 
 		/*
 		* ajoute l'id parent et la date (table Com_archive)
 		*/
-		$requete2 .= ' GROUP BY com.id_parent';
+		/*$requete2 .= ' GROUP BY com.id_parent';
 		$db->DB_query($requete2);
 		$dateJour = date('Y-m-d');
 		$saveCom = 'INSERT INTO Com_archive (date_archive, id_parent) VALUES';
@@ -204,31 +223,8 @@ if (isset($_POST['purger']))
 			$req .= 'UPDATE ContientA SET id_comArchive = '.$modif->id_comArchive.' WHERE id_matA = '.$modif->id_matA.';';
 		}
 		echo $req;
-		$db->DB_query($req);
+		$db->DB_query($req);*/
 
-
-
-
-
-		//var_dump($tab);
-		//print_r($tab);
-
-		/*$test = array(1=>3,2=>4);
-        print_r($test);
-        
-        $i = max(array_keys($test))+1;
-
-        $test[$i]=5;
-        print_r($test);*/
-
-		//$db->DB_query($save);
-
-
-		//echo $save;
-
-		//$db->DB_query($save);
-		//print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
-		//header('Location: suivi.php');
 	}
 ?>
 
