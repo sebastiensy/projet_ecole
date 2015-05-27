@@ -15,7 +15,14 @@ require_once('../../inc/data.inc.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
+		<?php
+		if(!isset($_SESSION["id_parent"]))
+		{
+			header("Location: ../index.php");
+			exit;
+		}
+		?>
 
 		<div id="menu">
 
@@ -74,13 +81,6 @@ require_once('../../inc/data.inc.php');
 	<div id="page">
 
 <?php
-
-
-
-if(!isset($_SESSION["id_parent"]))
-{
-	header("Location: ../index.php");
-}
 
 ?>
 

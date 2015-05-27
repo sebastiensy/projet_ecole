@@ -28,7 +28,7 @@ require_once('../inc/droits.inc.php');
 <?php
 
 $db = new DB_connection();
-$req = 'SELECT * FROM Message WHERE utilisateur = 1 ORDER BY id_message ASC';
+$req = 'SELECT * FROM Message WHERE utilisateur = 1 ORDER BY id_message DESC';
 $db->DB_query($req);
 
 if($db->DB_count() > 0)
@@ -41,21 +41,21 @@ if($db->DB_count() > 0)
 		<th width="90" ><div align="center">Objet</div></th>
 		<th width="90" ><div align="center">Date</div></th>
 		<th width="90" ><div align="center">Etat</div></th>
-		<th width="90" ><div align="center"></div></th>
+		<th width="90" ><div align="center">Opérations</div></th>
 		<th width="90" ><div align="center"></div></th>
 	</tr>
 	<?php
-	$cpt = 1;
+	$cpt = $db->DB_count();
 	while($msg = $db->DB_object())
 	{
 		$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
-		echo "<tr><td><div align='center'>".$cpt++."</div></td>";
+		echo "<tr><td><div align='center'>".$cpt--."</div></td>";
 		echo "<td><div align='center'>".$msg->email_parent."</div></td>";
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
 		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 		echo "<td><div align='center'>".$var."</div></td>";
-		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-		?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
+		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../../img/visu.png"></a>';
+		?> <a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
 		<?php 
 		echo "</tr>";
 	}
