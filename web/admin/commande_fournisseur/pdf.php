@@ -13,7 +13,7 @@ class PDF extends FPDF
 	    // Décalage à droite
 	    $this->Cell(100);
 	    // Titre
-	    $this->Cell(80,10,'Commande fournisseur',1,0,'C');
+	    $this->Cell(90,10,'Commande fournisseur',1,0,'C');
 	    // Saut de ligne
 	    $this->Ln(20);
 	}
@@ -60,7 +60,7 @@ class PDF extends FPDF
 	function ImprovedTable($header, $data)
 	{
 	    // Largeurs des colonnes
-	    $w = array(30,100, 30, 30);
+	    $w = array(25,125, 20, 20);
 	    // En-tête
 	    for($i=0;$i<count($header);$i++)
 	        $this->Cell($w[$i],7,$header[$i],1,0,'C');
@@ -71,13 +71,12 @@ class PDF extends FPDF
 	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
 	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
 	        $this->Cell($w[2],6,$row[2],'LR',0,'C');
-	        $this->Cell($w[3],6,$row[3],'LR',0,'C');
-	        //$this->Cell($w[2],6,number_format($row[2],0,',',' '),'LR',0,'R');
-	        //$this->Cell($w[3],6,number_format($row[3],0,',',' '),'LR',0,'R');
+	        $this->Cell($w[3],6,$row[3] ." ".EURO,'LR',0,'C');
 	        $this->Ln();
 	    }
 	    // Trait de terminaison
 	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Ln(2);
 	}
 
 	// Tableau coloré
@@ -114,19 +113,29 @@ class PDF extends FPDF
 	}
 }
 
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Arial','',12);
+
+if (isset($_GET['pt']))
+{
+	$pdf = new PDF();
+	$pdf->AliasNbPages();
+	$pdf->AddPage();
+	$pdf->SetFont('Arial','',12);
+
+	define('EURO', chr(128));
 
 
-// Titres des colonnes
-$header = array('Reference', 'Materiel', 'Quantite', 'Prix');
+	// Titres des colonnes
+	$header = array('Reference', 'Materiel', 'Quantite', 'Prix');
 
-// Chargement des données
-$data = $pdf->LoadData('cmdF.txt');
-$pdf->SetFont('Arial','',12);
-$pdf->ImprovedTable($header,$data);
+	// Chargement des données du fichier
+	$data = $pdf->LoadData('cmdF.txt');
+	$pdf->SetFont('Arial','',12);
+	$pdf->ImprovedTable($header,$data);
 
-$pdf->Output();
+	// Affiche le prix total
+	$pdf->Cell(190,10,'Prix Total : '.$_GET['pt']." ".EURO,0,0,'R',false);
+
+	$pdf->Output();
+}
+
 ?>

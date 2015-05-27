@@ -42,7 +42,7 @@ require_once('../inc/droits.inc.php');
 $requete1 = 'SELECT SUM(cp.qte_scat*i.exemplaire) as qte , mat.desc_mat, mat.prix_mat, mat.id_mat
 	FROM Compose as cp, Materiel as mat, Inclus as i, Commande as com
     WHERE mat.id_mat = cp.id_mat AND cp.id_nivliste = i.id_nivliste AND i.id_commande = com.id_commande
-    AND com.etat >= 2
+    AND com.etat = 2
     GROUP BY mat.id_mat';
 
 /*
@@ -51,7 +51,7 @@ $requete1 = 'SELECT SUM(cp.qte_scat*i.exemplaire) as qte , mat.desc_mat, mat.pri
 $requete2 = 'SELECT SUM(c.quantite) as qte, m.desc_mat, m.prix_mat, m.id_mat 
 	FROM Contient as c, Materiel as m, Commande as com 
 	WHERE c.id_mat = m.id_mat AND com.id_commande = c.id_commande 
-	AND com.etat >= 2
+	AND com.etat = 2
     GROUP BY c.id_mat';
 
 $tab = array();
@@ -125,11 +125,19 @@ echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($so
 
 
 /*
+*	ecriture du prix total
+*/
+//fputs($fichierCmdF, number_format($somme, 2, ',', ' ').';');
+
+
+
+
+/*
 *	fermeture du fichier
 */
 fclose($fichierCmdF);
 
-echo "<a href='test.php'><img src='../../../img/imprimer.png' border='0'></a>";
+echo "<a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' border='0'></a>";
 
 ?>
 
