@@ -392,6 +392,13 @@ body
 	height: 795px;
 }
 
+/* notifications */
+
+#notif
+{
+	min-height:770px;
+}
+
 /* formulaire contact */
 
 .lab_cont

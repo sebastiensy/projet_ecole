@@ -89,9 +89,30 @@ require_once('../../inc/data.inc.php');
 		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message DESC';
 		$db->DB_query($req);
 
+		//
+		$nb_elems = 10; // nombre d'éléments par page
+		$nb_pages = ceil($db->DB_count() / $nb_elems);
+
+		if(!empty($_GET["page"]))
+		{
+			$page = intval($_GET["page"]);
+			if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
+				$page = 1;
+		}
+		else
+			$page = 1;
+
+		$debut = ($page - 1) * $nb_elems;
+
+		$req .= ' LIMIT '.$debut.', '.$nb_elems.'';
+		//
+
+		$db->DB_query($req);
+
 		if($db->DB_count() > 0)
 		{
 			?>
+			<div id="notif">
 			<div class="liste">
 			<table width="600" align="center">
 				<tr>
@@ -122,15 +143,23 @@ require_once('../../inc/data.inc.php');
 				{
 					echo "<td><div align='center'>".$msg->objet."</div></td>";
 				}
+				if(isset($_GET["page"]))
+				{
+					$p = $page;
+				}
+				else
+				{
+					$p = 1;
+				}
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
 				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>';
-				?> <a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
+				?> <a href="suppr_message.php?id=<?php echo $msg->id_message; ?>&amp;page=<?php echo $p; ?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
 				<?php 
 				echo "<input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message.">";
 				echo "</tr>";
 			}
-			echo "</table></div>";
+			echo "</table></div></div>";
 		}
 		else
 		{
@@ -138,7 +167,24 @@ require_once('../../inc/data.inc.php');
 		}
 	}
 
+	// affichage des pages
 	?>
+	<div id="pages">
+	<?php
+	for($i=1; $i<=$nb_pages; $i++)
+	{
+		if($i==$page)
+		{
+			echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+		}	
+		else
+		{
+			echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+			echo ' | ';
+		}
+	}
+	?>
+	</div>
 
 	</div>
 	</div>
