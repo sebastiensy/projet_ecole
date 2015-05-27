@@ -25,14 +25,7 @@ require_once('../inc/droits.inc.php');
 			</tr>
 		</table>
 
-		<br>
-		<table width="800" align="center" class="data">
-			<tr>
-				<th width="90" ><div align="center">Reference</div></th>
-				<th width="90" ><div align="center">Materiel</div></th>
-				<th width="90" ><div align="center">Quantite</div></th>
-				<th width="90" ><div align="center">Prix</div></th>
-			</tr>
+		<br>		
 
 <?php
 
@@ -96,6 +89,15 @@ if(!empty($ids))
 
 	if($db->DB_count() > 0)
 	{
+		?>
+		<table width="800" align="center" class="data">
+			<tr>
+				<th width="90" ><div align="center">Reference</div></th>
+				<th width="90" ><div align="center">Materiel</div></th>
+				<th width="90" ><div align="center">Quantite</div></th>
+				<th width="90" ><div align="center">Prix</div></th>
+			</tr>
+		<?php
 		while($liste = $db->DB_object())
 		{
 			echo "<tr><td><div align='center'>".$liste->ref_mat."</div></td>";
@@ -113,38 +115,39 @@ if(!empty($ids))
 			fputs($fichierCmdF, number_format($liste->prix_mat, 2, ',', ' ').';');
 			fputs($fichierCmdF, "\r\n");
 		}
+	
+		echo "</tr>";
+		echo "</table>";
+		echo "<br>";
+
+		$somme = array_sum($prix);
+		echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
+
+
+		/*
+		*	fermeture du fichier
+		*/
+		fclose($fichierCmdF);
+
+		/*
+		*	imprimer en pdf
+		*/
+		echo "<form method='POST' action='index.php'><a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' id='impCmdF' border='0'></a>";
+
+		/*
+		*	passer la commande au fournisseur
+		*/
+		echo "<input type='submit' id='btnCmdF' name='cmdFournisseur' value='Passer commande fournisseur'></input></form>";
+
 	}
 }
-
-echo "</tr>";
-echo "</table>";
-echo "<br>";
-
-$somme = array_sum($prix);
-echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
-
-
-
-/*
-*	fermeture du fichier
-*/
-fclose($fichierCmdF);
-
-
-/*
-*	imprimer en pdf
-*/
-echo "<a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' id='impCmdF' border='0'></a>";
-
-/*
-*	passer la commande au fournisseur
-*/
-echo "<form method='POST' action='index.php'><input type='submit' id='btnCmdF' name='cmdFournisseur' value='Valider commande fournisseur'></input></form>";
-
+else
+{
+	echo "<p>Il n'y a pas de commandes validées.</p>";
+}
 
 if (isset($_POST['cmdFournisseur']))
 {
-
 	/*
 	*	envoi une notification aux parents qui passent de validé à commande fournisseur
 	*/
@@ -172,6 +175,7 @@ if (isset($_POST['cmdFournisseur']))
 	$update = 'UPDATE Commande SET etat = 3 WHERE etat = 2';
 	$db->DB_query($update);
 
+	echo "<p>Toutes les commandes validées sont passées à l'état \"Commande fournisseur\".</p>";
 
 }
 
