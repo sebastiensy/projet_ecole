@@ -92,15 +92,16 @@ require_once('../../inc/data.inc.php');
 		if($db->DB_count() > 0)
 		{
 			?>
-			<table width="600" align="center" class="data">
+			<div class="liste">
+			<table width="600" align="center">
 				<tr>
-					<th width="90" ><div align="center">N° message</div></th>
-					<th width="90" ><div align="center">Objet</div></th>
-					<th width="90" ><div align="center">Date</div></th>
-					<th width="90" ><div align="center">Etat</div></th>
-					<th width="40" ><div align="center"></div></th>
-					<th width="40" ><div align="center"></div></th>
-					<th width="40" ><div align="center"></div></th>
+					<td width="90"><div align="center">N° message</div></td>
+					<td width="90"><div align="center">Objet</div></td>
+					<td width="90"><div align="center">Date</div></td>
+					<td width="90"><div align="center">Etat</div></td>
+					<td width="40"><div align="center"></div></td>
+					<td width="40"><div align="center"></div></td>
+					<td width="40"><div align="center"></div></td>
 				</tr>
 			<?php
 			$cpt = 1;
@@ -117,7 +118,7 @@ require_once('../../inc/data.inc.php');
 				echo "<td><div align='center'><input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message."></div></td>";
 				echo "</tr>";
 			}
-			echo "</table>";
+			echo "</table></div>";
 		}
 		else
 		{
