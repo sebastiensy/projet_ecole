@@ -81,6 +81,14 @@ while($elem = $db->DB_object())
 
 $ids = array_keys($tab);
 
+
+/*
+*	ouverture du fichier
+*/
+$fichierCmdF = fopen('cmdF.txt', 'w+');
+
+
+
 if(!empty($ids))
 {
 	$requete3 = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
@@ -95,6 +103,15 @@ if(!empty($ids))
 			echo "<td><div align='center'>".$tab[$liste->id_mat]."</div></td>";
 			echo "<td><div align='center'>".number_format($liste->prix_mat, 2, ',', ' ')." €</div></td>";
 			array_push($prix, $tab[$liste->id_mat] * $liste->prix_mat);
+
+			/*
+			*	ecriture dans le fichier
+			*/
+			fputs($fichierCmdF, $liste->ref_mat.';');
+			fputs($fichierCmdF, $liste->desc_mat.';');
+			fputs($fichierCmdF, $tab[$liste->id_mat].';');
+			fputs($fichierCmdF, number_format($liste->prix_mat, 2, ',', ' ').';');
+			fputs($fichierCmdF, "\r\n");
 		}
 	}
 }
@@ -107,6 +124,12 @@ $somme = array_sum($prix);
 echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
 
 
+/*
+*	fermeture du fichier
+*/
+fclose($fichierCmdF);
+
+echo "<a href='test.php'><img src='../../../img/imprimer.png' border='0'></a>";
 
 ?>
 
