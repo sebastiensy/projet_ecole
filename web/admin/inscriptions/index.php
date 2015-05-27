@@ -43,7 +43,7 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 		$db->DB_query($query);
 		if($parent = $db->DB_object())
 		{
-			message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
+			//message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
 
 			/*$to = $parent->email_parent;
 			$subject = "Rentrée facile - Validation de l'inscription";

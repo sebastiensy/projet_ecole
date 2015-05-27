@@ -72,7 +72,7 @@ require_once('../../inc/data.inc.php');
 
 	<div id="page">
 
-	<p class="titre">Notification</p>
+	<p class="titre">Notifications</p>
 	<?php
 	if(!isset($_SESSION["id_parent"]))
 	{
@@ -92,32 +92,38 @@ require_once('../../inc/data.inc.php');
 		if($db->DB_count() > 0)
 		{
 			?>
-			<table width="600" align="center" class="data">
+			<div class="liste">
+			<table width="600" align="center">
 				<tr>
-					<th width="90" ><div align="center">N° message</div></th>
-					<th width="90" ><div align="center">Objet</div></th>
-					<th width="90" ><div align="center">Date</div></th>
-					<th width="90" ><div align="center">Etat</div></th>
-					<th width="40" ><div align="center"></div></th>
-					<th width="40" ><div align="center"></div></th>
-					<th width="40" ><div align="center"></div></th>
+					<td width="90"><div align="center">N° message</div></td>
+					<td width="90"><div align="center">Objet</div></td>
+					<td width="90"><div align="center">Date</div></td>
+					<td width="90"><div align="center">Etat</div></td>
+					<td width="40"><div align="center">Opérations</div></td>
 				</tr>
 			<?php
 			$cpt = 1;
 			while($msg = $db->DB_object())
 			{
+				$str = $msg->objet;
+				$idCom = 0;
+				if(@preg_match('#^([^0-9]+)([0-9]+)$#', $str, $part))
+				{
+					$idCom = $part[2];
+				}
+
 				$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
 				echo "<tr><td><div align='center'>".$cpt++."</div></td>";
-				echo "<td><div align='center'>".$msg->objet."</div></td>";
+				echo "<td><div align='center'><a class=\"fancycmd\" href=\"../suivi/commande.php?com=".$idCom."&nom=".$_SESSION["nom_parent"]."\">".$msg->objet."</a></div></td>";
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
-				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'">Afficher</a></div></td>';
-				?> <td><div align="center"><a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
+				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>';
+				?> <a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
 				<?php 
-				echo "<td><div align='center'><input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message."></div></td>";
+				echo "<input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message.">";
 				echo "</tr>";
 			}
-			echo "</table>";
+			echo "</table></div>";
 		}
 		else
 		{

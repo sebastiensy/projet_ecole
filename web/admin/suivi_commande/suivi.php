@@ -4,6 +4,7 @@ session_start();
 require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../../../lib/lib_message.php');
 
 ?>
 
@@ -54,20 +55,20 @@ while($suiv = $db->DB_object())
 		<tr>
 			<th width="90" ><div align="center">Numero de commande</div></th>
 			<th width="90" ><div align="center">En cours de validation</div></th>
-			<th width="90" ><div align="center">Valide</div></th>
+			<th width="90" ><div align="center">Validé</div></th>
 			<th width="90" ><div align="center">Commande fournisseur</div></th>
 			<th width="90" ><div align="center">En cours de livraison</div></th>
-			<th width="90" ><div align="center">Livre</div></th>
-			<th width="90" ><div align="center">Retire et paye</div></th>
+			<th width="90" ><div align="center">Livré</div></th>
+			<th width="90" ><div align="center">Retiré et payé</div></th>
 			<th width="90" ><div align="center"></div></th>
 			<th width="90" ><div align="center"></div></th>
 			<th width="90" ><div align="center"></div></th>
 		</tr>
 	<?php
-	$requete2 = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
-	
+	$requete2 = 'SELECT p.id_parent, p.nom_parent, p.email_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
+
 	$db2 = new DB_connection();
-	
+
 	$db2->DB_query($requete2);
 
 	while($suiv2 = $db2->DB_object())
@@ -77,7 +78,7 @@ while($suiv = $db->DB_object())
 			echo "<tr><td><div align='center'>".$suiv2->id_commande."</div></td>";
 			if ($commande != $suiv2->id_commande)
 			{
-			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&id='.$suiv2->id_parent.'"/>';
+			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&amp;id='.$suiv2->id_parent.'&amp;email='.$suiv2->email_parent.'"/>';
 			for ($i=1; $i<=6; $i++) {
 				if($suiv2->etat == $i)
 				{
@@ -91,7 +92,7 @@ while($suiv = $db->DB_object())
 			}
 			$nom = 'suivi'.$suiv2->nom_parent.$suiv2->id_commande;
 			?>
-			
+
 			<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
 			<td><div align="center"><input type="submit" class="save" name="enregistrer" value="Enregistrer" disabled></input></div></td>
 			<?php
@@ -101,16 +102,19 @@ while($suiv = $db->DB_object())
 			echo '</form>';
 		}
 
-		if (isset($_POST['suivi']))
+		if(isset($_POST['suivi']))
 		{
-		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
-		$var1 = $_GET['id'] - 1;
-		$db->DB_query($modifier);
-		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
+			$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
+			message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
+
+			$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
+			$var1 = $_GET['id'] - 1;
+			$db->DB_query($modifier);
+			print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
 		}
 
 		?>
-	
+
 	<?php 
 	}
 	?>
@@ -141,7 +145,7 @@ if (isset($_POST['purger']))
 
 		$db->DB_query($requete2);
 
-		
+
 		while($elem = $db->DB_object())
 		{
 			if(isset($tab[$elem->id_mat]))
@@ -166,7 +170,7 @@ if (isset($_POST['purger']))
 		$idCom = $db->DB_id();
 
 
-			
+
 
 		//var_dump($tab);
 
