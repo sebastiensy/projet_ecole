@@ -76,7 +76,7 @@ require_once('../../inc/data.inc.php');
 	<?php
 	if(!isset($_SESSION["id_parent"]))
 	{
-		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour consulter votre messagerie.</strong></p></span>";
+		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour consulter vos notifications.</strong></p></span>";
 	}
 
 	?>
@@ -171,18 +171,21 @@ require_once('../../inc/data.inc.php');
 	?>
 	<div id="pages">
 	<?php
-	if($nb_pages > 1)
+	if(isset($nb_pages))
 	{
-		for($i=1; $i<=$nb_pages; $i++)
+		if($nb_pages > 1)
 		{
-			if($i==$page)
+			for($i=1; $i<=$nb_pages; $i++)
 			{
-				echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
-			}	
-			else
-			{
-				echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
-				echo ' | ';
+				if($i==$page)
+				{
+					echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+				}	
+				else
+				{
+					echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+					echo ' | ';
+				}
 			}
 		}
 	}

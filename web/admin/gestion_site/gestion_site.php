@@ -28,8 +28,8 @@ require_once('../inc/droits.inc.php');
 			$modifier = 'UPDATE Date_limite SET jma = "'.$_POST['date_cache'].'"';
 			$db->DB_query($modifier);
 		}
-
 		header('Location: index.php');
+		exit;
 	}
 
 	?>

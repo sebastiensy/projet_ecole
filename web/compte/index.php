@@ -147,6 +147,7 @@ if ($db->DB_count() > 0)
 }
 ?>
 
+<br>
 <table>
 	<form method="get" action="index.php">
 		<tr>

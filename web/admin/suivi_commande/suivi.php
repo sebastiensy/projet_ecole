@@ -35,11 +35,9 @@ $requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent 
 $db = new DB_connection();
 $db->DB_query($requete);
 
-
-if (isset($_GET['com']))
+if(isset($_GET['com']))
 {
 	$commande = $_GET['com'];
- 
 }
 else
 {
