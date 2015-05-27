@@ -134,20 +134,45 @@ fclose($fichierCmdF);
 /*
 *	imprimer en pdf
 */
-echo "<a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' border='0'></a>";
+echo "<a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' id='impCmdF' border='0'></a>";
 
 /*
 *	passer la commande au fournisseur
 */
-echo "<form method='POST' action='index.php'><input type='submit' name='cmdFournisseur' value='Passer commande fournisseur'></input></form>";
+echo "<form method='POST' action='index.php'><input type='submit' id='btnCmdF' name='cmdFournisseur' value='Valider commande fournisseur'></input></form>";
 
 
 if (isset($_POST['cmdFournisseur']))
 {
-	$requete = 'UPDATE Commande SET etat = 3 WHERE etat = 2';
-	$db->DB_query($requete);
-	echo $requete;
-	//echo "";
+
+	/*
+	*	envoi une notification aux parents qui passent de validé à commande fournisseur
+	*/
+	$select = 'SELECT p.id_parent, p.email_parent, c.id_commande
+				FROM Parent as p, Commande as c
+				WHERE p.id_parent = c.id_parent
+				AND c.etat = 2';
+	$db->DB_query($select);
+
+	$notif = 'INSERT INTO Message (email_parent, objet, message, jma, lu, utilisateur, id_parent) VALUES';
+
+	if($db->DB_count() > 0)
+	{
+		while($parent = $db->DB_object())
+		{
+			$notif .= '("'.$parent->email_parent.'", "Commande n° '.$parent->id_commande.'", "Modification de l\'état de la commande n° '.$parent->id_commande.' : Commande fournisseur", NOW(), 0, 0, '.$parent->id_parent.'),';
+		}
+	}
+	$notif = substr($notif, 0, -1);
+	$db->DB_query($notif);
+
+	/*
+	*	passe les commandes validées à commande fournisseur
+	*/
+	$update = 'UPDATE Commande SET etat = 3 WHERE etat = 2';
+	$db->DB_query($update);
+
+
 }
 
 ?>
