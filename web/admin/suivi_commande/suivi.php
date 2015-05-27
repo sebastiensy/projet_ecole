@@ -55,11 +55,11 @@ while($suiv = $db->DB_object())
 		<tr>
 			<th width="90" ><div align="center">Numero de commande</div></th>
 			<th width="90" ><div align="center">En cours de validation</div></th>
-			<th width="90" ><div align="center">Valide</div></th>
+			<th width="90" ><div align="center">Validé</div></th>
 			<th width="90" ><div align="center">Commande fournisseur</div></th>
 			<th width="90" ><div align="center">En cours de livraison</div></th>
-			<th width="90" ><div align="center">Livre</div></th>
-			<th width="90" ><div align="center">Retire et paye</div></th>
+			<th width="90" ><div align="center">Livré</div></th>
+			<th width="90" ><div align="center">Retiré et payé</div></th>
 			<th width="90" ><div align="center"></div></th>
 			<th width="90" ><div align="center"></div></th>
 			<th width="90" ><div align="center"></div></th>
@@ -104,7 +104,8 @@ while($suiv = $db->DB_object())
 
 		if(isset($_POST['suivi']))
 		{
-			message($_GET["email"], "Commande", "Modification de l'état de la commande ".$_GET["com"]." : ".$_POST["suivi"], 0, $_GET["id"]);
+			$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
+			message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
 
 			$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
 			$var1 = $_GET['id'] - 1;

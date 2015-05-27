@@ -93,7 +93,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			
 			echo "<td><div align='center'>".$suiv->quantite."</div></td>";
 			
-			echo "<td><div align='center'>".number_format($suiv->prix_mat, 2, ',', ' ')." â‚¬</div></td>";
+			echo "<td><div align='center'>".number_format($suiv->prix_mat, 2, ',', ' ')." €</div></td>";
 			
 			echo "</tr>";
 
@@ -109,7 +109,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 		
 		echo "<br>";
 
-		echo "<strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " â‚¬</strong>";
+		echo "<strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong>";
 
 	
 }
