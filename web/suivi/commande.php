@@ -50,7 +50,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	<table width="800" align="center" class="data">
 	<tr>
 		<th width="90" ><div align="center">Liste</div></th>
-		<th width="90" ><div align="center">Quantite</div></th>
+		<th width="90" ><div align="center">Quantité</div></th>
 		<th width="90" ><div align="center">Forfait</div></th>
 	</tr>
 	<br><br>
@@ -63,7 +63,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			
 			echo "<td><div align='center'>".$suiv->exemplaire."</div></td>";
 			
-			echo "<td><div align='center'>".number_format($suiv->forfait, 2, ',', ' ')." â‚¬</div></td>";
+			echo "<td><div align='center'>".number_format($suiv->forfait, 2, ',', ' ')." €</div></td>";
 			
 			echo "</tr>";
 
@@ -78,9 +78,9 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	<br>
 	<table width="800" align="center" class="data">
 	<tr>
-		<th width="90" ><div align="center">Reference</div></th>
-		<th width="90" ><div align="center">Materiel</div></th>
-		<th width="90" ><div align="center">Quantite</div></th>
+		<th width="90" ><div align="center">Référence</div></th>
+		<th width="90" ><div align="center">Matériel</div></th>
+		<th width="90" ><div align="center">Quantité</div></th>
 		<th width="90" ><div align="center">Prix unitaire</div></th>
 	</tr>
 

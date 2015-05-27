@@ -86,7 +86,7 @@ require_once('../../inc/data.inc.php');
 	if(isset($_SESSION["id_parent"]))
 	{
 		$db = new DB_connection();
-		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message ASC';
+		$req = 'SELECT id_message, objet, message, jma, lu FROM Message WHERE utilisateur = 0 AND id_parent = '.$_SESSION['id_parent'].' ORDER BY id_message DESC';
 		$db->DB_query($req);
 
 		if($db->DB_count() > 0)
@@ -102,7 +102,7 @@ require_once('../../inc/data.inc.php');
 					<td width="40"><div align="center">Opérations</div></td>
 				</tr>
 			<?php
-			$cpt = 1;
+			$cpt = $db->DB_count();
 			while($msg = $db->DB_object())
 			{
 				$str = $msg->objet;
@@ -113,8 +113,15 @@ require_once('../../inc/data.inc.php');
 				}
 
 				$var = ($msg->lu == 0) ? 'Non lu' : 'Lu';
-				echo "<tr><td><div align='center'>".$cpt++."</div></td>";
-				echo "<td><div align='center'><a class=\"fancycmd\" href=\"../suivi/commande.php?com=".$idCom."&nom=".$_SESSION["nom_parent"]."\">".$msg->objet."</a></div></td>";
+				echo "<tr><td><div align='center'>".$cpt--."</div></td>";
+				if(strstr($msg->objet, "Commande"))
+				{
+					echo "<td><div align='center'><a class=\"fancycmd\" href=\"../suivi/commande.php?com=".$idCom."&nom=".$_SESSION["nom_parent"]."\">".$msg->objet."</a></div></td>";
+				}
+				else
+				{
+					echo "<td><div align='center'>".$msg->objet."</div></td>";
+				}
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
 				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>';
