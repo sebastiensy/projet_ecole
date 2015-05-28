@@ -18,7 +18,8 @@ class PDF extends FPDF
 	    // Décalage à droite
 	    $this->Cell(100);
 	    // Titre
-	    $this->Cell(90,10,'Commande n°'.$_GET['id'],1,0,'C');
+	    $str = utf8_decode('Commande n°');
+	    $this->Cell(90,10,$str.$_GET['id'],1,0,'C');
 	    // Saut de ligne
 	    $this->Ln(20);
 	}
@@ -91,6 +92,8 @@ class PDF extends FPDF
 	}*/
 	function ImprovedTableListe($header, $data)
 	{
+
+		$this->Cell(20);
 		$this->SetFillColor(254,243,219);
 	    // Largeurs des colonnes
 	    $w = array(50,50,50);
@@ -101,6 +104,7 @@ class PDF extends FPDF
         }
 	    $this->Ln();
 	    // Données
+	    $this->Cell(20);
 	    foreach($data as $row)
 	    {
 	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
@@ -108,6 +112,7 @@ class PDF extends FPDF
 	        $this->Cell($w[2],6,$row[2] ." ".EURO,'LR',0,'C');
 	        $this->Ln();
 	    }
+	    $this->Cell(20);
 	    // Trait de terminaison
 	    $this->Cell(array_sum($w),0,'','T');
 	    $this->Ln(2);

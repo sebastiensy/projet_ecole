@@ -4,10 +4,7 @@ require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
 require_once(LIB.'/lib_pdf.class.php');
 
-
 ?>
-
-
 
 <?php
 if (isset($_GET['id']))
@@ -23,7 +20,37 @@ if (isset($_GET['id']))
 	$db = new DB_connection();
 
 	/*
-	 * pour affiche les listes
+	*	pour afficher les infos sur le parent et commande
+	*/
+	$requete = 'SELECT p.nom_parent, p.email_parent, p.tel_parent, c.date_cmd
+				FROM Parent as p, Commande as c
+				WHERE p.id_parent = c.id_parent
+				AND c.id_commande = '.$_GET['id'];
+
+	$db->DB_query($requete);
+
+	$pdf->SetFont('Arial','',12);
+
+	if ($db->DB_count() > 0)
+	{
+		while($info = $db->DB_object())
+		{
+			$pdf->Cell(40,10,'Nom : '.$info->nom_parent);
+			$pdf->Ln(5);
+			$pdf->Cell(40,10,'Email : '.$info->email_parent);
+			$pdf->Ln(5);
+			$pdf->Cell(40,10,'Tel : '.$info->tel_parent);
+			$pdf->Ln(5);
+			$pdf->Cell(40,10,'Date de la commande : '.$info->date_cmd);
+		}
+	}
+
+	$pdf->Ln(25);
+
+	$prix = array();
+
+	/*
+	 * pour afficher les listes
 	 */
 	$requete1 = 'SELECT n.libelle, i.exemplaire, ln.forfait
 	FROM Commande as com, Inclus as i, Liste_niveau as ln, Niveau as n 
@@ -41,6 +68,8 @@ if (isset($_GET['id']))
 
 	if ($db->DB_count() > 0)
 	{
+		$pdf->Cell(40,10,'Liste :');
+		$pdf->Ln(10);
 		$pdf->ImprovedTableListe($headerListe,$data);
 	}
 
@@ -59,11 +88,12 @@ if (isset($_GET['id']))
 
 	$data = $db->DB_all();
 
-	$pdf->Ln(2);
-	$pdf->Ln();
+	$pdf->Ln(20);
 
 	if ($db->DB_count() > 0)
 	{
+		$pdf->Cell(40,10,'Materiels :');
+		$pdf->Ln(10);
 		$pdf->ImprovedTableMat($headerMat,$data);
 	}
 		
