@@ -29,11 +29,17 @@ if (isset($_GET['id']))
 
 	$db->DB_query($requete);
 
+	$data = $db->DB_all();
+
 	$pdf->SetFont('Arial','',12);
+
+	$headerInfo = array('Nom :', 'Email :', 'Tel :', 'Date de la commande :');
+
+
 
 	if ($db->DB_count() > 0)
 	{
-		while($info = $db->DB_object())
+		/*while($info = $db->DB_object())
 		{
 			$pdf->Cell(40,10,'Nom : '.$info->nom_parent);
 			$pdf->Ln(5);
@@ -42,7 +48,8 @@ if (isset($_GET['id']))
 			$pdf->Cell(40,10,'Tel : '.$info->tel_parent);
 			$pdf->Ln(5);
 			$pdf->Cell(40,10,'Date de la commande : '.$info->date_cmd);
-		}
+		}*/
+		$pdf->TableInfo($headerInfo,$data);
 	}
 
 	$pdf->Ln(25);

@@ -90,9 +90,23 @@ class PDF extends FPDF
 			$this->Ln();
 		}
 	}*/
+	function TableInfo($header, $data)
+	{
+		$this->SetFillColor(254,243,219); //cellule de l'entête
+		$this->SetTextColor(0); //texte en noir
+		$this->SetFont('Arial', '', 12); //Arial 12
+		// En-tête
+		$cpt=0;
+		foreach($header as $col)
+		{
+			$this->Cell(50,7,$col,1,0,'C',true); //true pour afficher la couleur
+			$this->Cell(40,7,$data[0][$cpt],1,0,'C');
+			$cpt++;
+			$this->Ln();
+		}
+	}
 	function ImprovedTableListe($header, $data)
 	{
-
 		$this->Cell(20);
 		$this->SetFillColor(254,243,219);
 	    // Largeurs des colonnes
