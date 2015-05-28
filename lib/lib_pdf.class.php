@@ -23,11 +23,22 @@ class PDF extends FPDF
 	    $this->Ln(20);
 	}
 
+	// Pied de page
+	public function Footer()
+	{
+	    // Positionnement à 1,5 cm du bas
+	    $this->SetY(-15);
+	    // Police Arial italique 8
+	    $this->SetFont('Arial','I',8);
+	    // Numéro de page
+	    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+	}
+
 	public function BasicTableListe($header)
 	{
 		$this->SetFillColor(254,243,219); //cellule de l'entête
 		$this->SetTextColor(0); //texte en noir
-		$this->SetFont('Arial', '', 16); //Arial 16
+		$this->SetFont('Arial', '', 12); //Arial 12
 		// En-tête
 		foreach($header as $col)
 			$this->Cell(40,7,$col,1,0,'C',true); //true pour afficher la couleur
@@ -48,11 +59,11 @@ class PDF extends FPDF
 		}
 	}
 
-	public function BasicTableMat($header)
+	/*public function BasicTableMat($header)
 	{
 		$this->SetFillColor(254,243,219); //cellule de l'entête
 		$this->SetTextColor(0); //texte en noir
-		$this->SetFont('Arial', '', 16); //Arial 16
+		$this->SetFont('Arial', '', 12); //Arial 12
 		// En-tête
 		foreach($header as $col)
 			$this->Cell(40,7,$col,1,0,'C',true); //true pour afficher la couleur
@@ -62,15 +73,68 @@ class PDF extends FPDF
 
 	public function TableMat($data)
 	{
+		// Largeurs des colonnes
+	    $w = array(25,125, 20, 20);
 		// Données
 		foreach($data as $row) 
 		{
-			foreach($row as $col)
-			{
-				$this->Cell(40,7,$col,1,0,'C');
-			}
+			//foreach($row as $col)
+			//{
+				//$this->Cell(40,7,$col,1,0,'C');
+				$this->Cell($w[0],6,$row[0],'LR',0,'C');
+	        	$this->Cell($w[1],6,$row[1],'LR',0,'C');
+	        	$this->Cell($w[2],6,$row[2],'LR',0,'C');
+	        	$this->Cell($w[3],6,$row[3] ." ".EURO,'LR',0,'C');
+			//}
 			$this->Ln();
 		}
+	}*/
+	function ImprovedTableListe($header, $data)
+	{
+		$this->SetFillColor(254,243,219);
+	    // Largeurs des colonnes
+	    $w = array(50,50,50);
+	    // En-tête
+	    for($i=0;$i<count($header);$i++)
+        {
+        	$this->Cell($w[$i],7,$header[$i],1,0,'C',true);
+        }
+	    $this->Ln();
+	    // Données
+	    foreach($data as $row)
+	    {
+	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
+	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
+	        $this->Cell($w[2],6,$row[2] ." ".EURO,'LR',0,'C');
+	        $this->Ln();
+	    }
+	    // Trait de terminaison
+	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Ln(2);
+	}
+	function ImprovedTableMat($header, $data)
+	{
+		$this->SetFillColor(254,243,219);
+	    // Largeurs des colonnes
+	    $w = array(25,120, 20, 30);
+	    // En-tête
+	    for($i=0;$i<count($header);$i++)
+        {
+        	$this->Cell($w[$i],7,$header[$i],1,0,'C',true);
+        }
+	    $this->Ln();
+	    // Données
+	    foreach($data as $row)
+	    {
+	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
+	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
+	        $this->Cell($w[2],6,$row[2],'LR',0,'C');
+	        $this->Cell($w[3],6,$row[3] ." ".EURO,'LR',0,'C');
+	        $this->Ln();
+	    }
+	    // Trait de terminaison
+	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Ln(2);
 	}
 }
 ?>

@@ -14,6 +14,8 @@ if (isset($_GET['id']))
 {
 	$pdf = new PDF();
 
+	define('EURO', chr(128));
+
 	$pdf->AliasNbPages();
 
 	$pdf->AddPage();
@@ -34,45 +36,35 @@ if (isset($_GET['id']))
 
 	$data = $db->DB_all();
 
-	
-	
-
 	$pdf->SetFont('Arial','',12);
 
 
 	if ($db->DB_count() > 0)
 	{
-		$pdf->BasicTableListe($headerListe);
-		$pdf->TableListe($data);
+		$pdf->ImprovedTableListe($headerListe,$data);
 	}
 
 	
-
-
 	/*
 	 * pour afficher les founitures seules
 	 */
-	$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat 
+	$requete2 = 'SELECT m.ref_mat, m.desc_mat, c.quantite, m.prix_mat  
 	FROM Contient as c, Materiel as m, Commande as com 
 	WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
 	AND com.etat >= 1 AND c.id_commande = '.$_GET['id'];
 
 	$headerMat = array('Reference', 'Materiel', 'Quantite', 'Prix unitaire');
 
-	//$result  = mysqli_query($bdd, $requete2);
-	//$data = mysqli_fetch_all($result);
-
 	$db->DB_query($requete2);
 
-	//$data = mysqli_fetch_all($result);
 	$data = $db->DB_all();
 
+	$pdf->Ln(2);
 	$pdf->Ln();
 
 	if ($db->DB_count() > 0)
 	{
-		$pdf->BasicTableMat($headerMat);
-		$pdf->TableMat($data);
+		$pdf->ImprovedTableMat($headerMat,$data);
 	}
 		
 
