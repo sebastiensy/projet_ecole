@@ -76,6 +76,18 @@ class DB_connection
 	}
 
 	/**
+	 * remonte tous les enregistrements dans le résultat, sous forme de tableau
+	 * DB_connection::DB_all()
+	 *
+	 * @return array
+	 */
+	public function DB_all()
+	{
+		$this->_row = @mysqli_fetch_all($this->_result);
+		return $this->_row;
+	}
+
+	/**
 	 * remonte le nombre de lignes dans la reponse
 	 * DB_connection::DB_count()
 	 *
