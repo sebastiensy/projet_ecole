@@ -1791,6 +1791,56 @@ function _enddoc()
 	$this->_out('%%EOF');
 	$this->state = 3;
 }
+
+function BasicTableListe($header)
+	{
+		$this->SetFillColor(254,243,219); //cellule de l'entête
+		$this->SetTextColor(0); //texte en noir
+		$this->SetFont('Arial', '', 16); //Arial 16
+		// En-tête
+		foreach($header as $col)
+			$this->Cell(40,7,$col,1,0,'C',true); //true pour afficher la couleur
+		$this->Ln(); //saut de ligne
+		$this->SetFont('Arial', '', 12); //remettre en Arial 12
+	}
+
+	function TableListe($data)
+	{
+		// Données
+		foreach($data as $row) 
+		{
+			foreach($row as $col)
+			{
+				$this->Cell(40,7,$col,1,0,'C');
+			}
+			$this->Ln();
+		}
+	}
+
+	function BasicTableMat($header)
+	{
+		$this->SetFillColor(254,243,219); //cellule de l'entête
+		$this->SetTextColor(0); //texte en noir
+		$this->SetFont('Arial', '', 16); //Arial 16
+		// En-tête
+		foreach($header as $col)
+			$this->Cell(40,7,$col,1,0,'C',true); //true pour afficher la couleur
+		$this->Ln(); //saut de ligne
+		$this->SetFont('Arial', '', 12); //remettre en Arial 12
+	}
+
+	function TableMat($data)
+	{
+		// Données
+		foreach($data as $row) 
+		{
+			foreach($row as $col)
+			{
+				$this->Cell(40,7,$col,1,0,'C');
+			}
+			$this->Ln();
+		}
+	}
 // End of class
 }
 
