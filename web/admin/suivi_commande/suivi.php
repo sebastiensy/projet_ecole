@@ -153,7 +153,7 @@ else
 
 while($suiv = $db->DB_object())
 {
-	echo '<h3 id="'.$suiv->id_parent.'">'.$suiv->nom_parent.'</h3>';
+	echo '<h3>'.$suiv->nom_parent.'</h3>';
 	?>
 	<div>
 	<table width="900" align="center" class="data">
