@@ -26,105 +26,11 @@ require_once('../../../lib/lib_message.php');
 			</tr>
 		</table>
 
-		<div id="accordion-resizer">
-
-<?php
-
-$requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 GROUP BY p.id_parent';
-
-$db = new DB_connection();
-$db->DB_query($requete);
-
-if(isset($_GET['com']))
-{
-	$commande = $_GET['com'];
-}
-else
-{
-	$commande = "";
-}
-
-while($suiv = $db->DB_object())
-{
-	echo '<h3>'.$suiv->nom_parent.'</h3>';
-	?>
-	<div>
-	<table width="900" align="center" class="data">
-		<tr>
-			<th width="90" ><div align="center">Numero de commande</div></th>
-			<th width="90" ><div align="center">En cours de validation</div></th>
-			<th width="90" ><div align="center">Validé</div></th>
-			<th width="90" ><div align="center">Commande fournisseur</div></th>
-			<th width="90" ><div align="center">En cours de livraison</div></th>
-			<th width="90" ><div align="center">Livré</div></th>
-			<th width="90" ><div align="center">Retiré et payé</div></th>
-			<th width="90" ><div align="center"></div></th>
-			<th width="90" ><div align="center"></div></th>
-			<th width="90" ><div align="center"></div></th>
-		</tr>
-	<?php
-	$requete2 = 'SELECT p.id_parent, p.nom_parent, p.email_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
-
-	$db2 = new DB_connection();
-
-	$db2->DB_query($requete2);
-
-	while($suiv2 = $db2->DB_object())
-	{
-	?>
-		<?php
-			echo "<tr><td><div align='center'>".$suiv2->id_commande."</div></td>";
-			if ($commande != $suiv2->id_commande)
-			{
-			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&amp;id='.$suiv2->id_parent.'&amp;email='.$suiv2->email_parent.'"/>';
-			for ($i=1; $i<=6; $i++) {
-				if($suiv2->etat == $i)
-				{
-					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled></input></div></td>';
-				}
-				else
-				{
-					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>';
-				}
-
-			}
-			$nom = 'suivi'.$suiv2->nom_parent.$suiv2->id_commande;
-			?>
-
-			<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
-			<td><div align="center"><input type="submit" class="save" name="enregistrer" value="Enregistrer" disabled></input></div></td>
-			<?php
-
-			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.$suiv2->nom_parent.'">Etat de la commande</a></div></td>';		
-			echo '</tr>';
-			echo '</form>';
-		}
-	}
-
-	if(isset($_POST['suivi']))
-	{
-		$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
-		message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
-
-		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
-		$var1 = $_GET['id'] - 1;
-		$db->DB_query($modifier);
-		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
-	}
-	?>
-	</table>
-	<script type="text/javascript" src="../../../js/active_radio_bouton.js"></script>
-	<script type="text/javascript" src="../../../js/chargement_page_suivi.js"></script>
-	</div>
-	<?php
-}
-?>
-
-<form method="POST" action="suivi.php"><input type="submit" class="purger" name="purger" value="Purger"></input></form>
-
 <?php 
 if (isset($_POST['purger']))
 	{
+		$db = new DB_connection();
+
 		/*
 		*	purge les commandes retirées et payées
 		*/
@@ -226,7 +132,104 @@ if (isset($_POST['purger']))
 		$db->DB_query($req);*/
 
 	}
+?>		
+
+		<div id="accordion-resizer">
+<?php
+
+$requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 GROUP BY p.id_parent';
+
+$db = new DB_connection();
+$db->DB_query($requete);
+
+if(isset($_GET['com']))
+{
+	$commande = $_GET['com'];
+}
+else
+{
+	$commande = "";
+}
+
+while($suiv = $db->DB_object())
+{
+	echo '<h3>'.$suiv->nom_parent.'</h3>';
+	?>
+	<div>
+	<table width="900" align="center" class="data">
+		<tr>
+			<th width="90" ><div align="center">Numero de commande</div></th>
+			<th width="90" ><div align="center">En cours de validation</div></th>
+			<th width="90" ><div align="center">Validé</div></th>
+			<th width="90" ><div align="center">Commande fournisseur</div></th>
+			<th width="90" ><div align="center">En cours de livraison</div></th>
+			<th width="90" ><div align="center">Livré</div></th>
+			<th width="90" ><div align="center">Retiré et payé</div></th>
+			<th width="90" ><div align="center"></div></th>
+			<th width="90" ><div align="center"></div></th>
+			<th width="90" ><div align="center"></div></th>
+		</tr>
+	<?php
+	$requete2 = 'SELECT p.id_parent, p.nom_parent, p.email_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 AND p.id_parent = '.$suiv->id_parent.'';
+
+	$db2 = new DB_connection();
+
+	$db2->DB_query($requete2);
+
+	while($suiv2 = $db2->DB_object())
+	{
+	?>
+		<?php
+			echo "<tr><td><div align='center'>".$suiv2->id_commande."</div></td>";
+			if ($commande != $suiv2->id_commande)
+			{
+			echo '<form method="POST" action="suivi.php?com='.$suiv2->id_commande.'&amp;id='.$suiv2->id_parent.'&amp;email='.$suiv2->email_parent.'"/>';
+			for ($i=1; $i<=6; $i++) {
+				if($suiv2->etat == $i)
+				{
+					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" checked disabled></input></div></td>';
+				}
+				else
+				{
+					echo '<td><div align="center"><input type="radio" class="test" name="suivi'.$suiv2->nom_parent.$suiv2->id_commande.'" value="'.$i.'" disabled></input></div></td>';
+				}
+
+			}
+			$nom = 'suivi'.$suiv2->nom_parent.$suiv2->id_commande;
+			?>
+
+			<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
+			<td><div align="center"><input type="submit" class="save" name="enregistrer" value="Enregistrer" disabled></input></div></td>
+			<?php
+
+			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.$suiv2->nom_parent.'">Etat de la commande</a></div></td>';		
+			echo '</tr>';
+			echo '</form>';
+		}
+	}
+
+	if(isset($_POST['suivi']))
+	{
+		$etats = array("En cours de validation", "Validé", "Commande fournisseur", "En cours de livraison", "Livré", "Retiré et payé");
+		message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
+
+		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
+		$var1 = $_GET['id'] - 1;
+		$db->DB_query($modifier);
+		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
+	}
+	?>
+	</table>
+	<script type="text/javascript" src="../../../js/active_radio_bouton.js"></script>
+	<script type="text/javascript" src="../../../js/chargement_page_suivi.js"></script>
+	</div>
+	<?php
+}
 ?>
+
+<form method="POST" action="suivi.php"><input type="submit" class="purger" name="purger" value="Purger"></input></form>
+
+
 
 </div>
 
