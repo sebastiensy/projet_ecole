@@ -551,3 +551,9 @@ body
     background-position: 0% -60px;
     color: white;
 }
+
+/* suivi commande */
+#impFacture
+{
+	margin-left: 700px;
+}

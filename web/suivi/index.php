@@ -144,6 +144,7 @@ require_once('../../inc/data.inc.php');
 						<td><a class=\"fancycmd\" value=\"commande".$suiv->nom_parent."\" href=\"commande.php?com=".$suiv->id_commande."&nom=".$suiv->nom_parent."\">Voir</a></td>
 					</tr>
 				</table>";
+			echo "<a href='pdf.php' width='25px'><img src='../../img/imprimer.png' id='impFacture' border='0'></a>";
 			?>
 			<div class="checkout-wrap">
 		  		<ul class="checkout-bar">
