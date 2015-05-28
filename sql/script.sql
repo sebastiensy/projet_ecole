@@ -62,7 +62,7 @@ CREATE TABLE Commande(
 	etat INT,
 	id_parent INT NOT NULL,
 	PRIMARY KEY (id_commande),
-	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent)
+	FOREIGN KEY (id_parent) REFERENCES Parent (id_parent) ON DELETE CASCADE
 ) Engine=InnoDB;
 
 CREATE TABLE Sous_categorie(

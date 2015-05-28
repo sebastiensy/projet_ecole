@@ -5,6 +5,7 @@ require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
 require_once('../../../lib/lib_message.php');
+require_once('../../../lib/lib_mail.php');
 
 ?>
 
@@ -45,14 +46,8 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 		{
 			message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
 
-			/*$to = $parent->email_parent;
-			$subject = "Rentrée facile - Validation de l'inscription";
-			$message = "Bonjour ".$parent->nom_parent.",\r\n\r\n
-			Votre inscription sur le site \"Rentrée facile\" a été validée. Nous vous remercions de votre confiance.\r\n\r\n
-			Voici le lien pour accéder au site : ".$_SERVER['REQUEST_URI'];
-			$headers = "From: no-reply@rentree-facile.fr" . "\r\n" .
-			"Content-type: text/plain; charset=utf-8" . "\r\n";
-			$succes = mail($to, $subject, $message, $headers);*/
+			$succes = envoiMail($parent->email_parent, "Rentrée facile - Validation de l'inscription", "Votre inscription sur le site \"Rentrée facile\" a été validée. Nous vous remercions de votre confiance.\r\n\r\n
+			Voici le lien pour accéder au site : ".$_SERVER['REQUEST_URI']);
 		}
 	}
 	else if($_GET["a"] == "refuser")
@@ -80,14 +75,15 @@ if($db->DB_count() > 0)
 	<?php
 	while($inscription = $db->DB_object())
 	{
-		echo
+		echo "<input type=\"hidden\" name=\"res\"".$inscription->id_parent." value=\"\">";
+		echo 
 		"<tr>
 			<td align=\"center\">".$inscription->nom_parent."</td>
 			<td align=\"center\">".$inscription->email_parent."</td>
 			<td align=\"center\">".$inscription->tel_parent."</td>
 			<td align=\"center\">".$inscription->nb_enfants."</td>
 			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=accepter\"><img src=\"../../../img/icon_OK.png\" title=\"Accepter\"></a></td>
-			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
+			<td align=\"center\"><a onClick=\"confir(".$inscription->id_parent.")\" href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
 		</tr>";
 	}
 }
@@ -97,6 +93,18 @@ else
 }
 
 ?>
+
+<script>
+function confir(id) {
+    var x;
+    if (confirm("Press a button!") == true) {
+        x = "OK";
+    } else {
+        x = "Cancel";
+    }
+    document.getElementById("res"+id).innerHTML = x;
+}
+</script>
 
 <?php
 
