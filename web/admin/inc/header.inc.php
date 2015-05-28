@@ -94,8 +94,8 @@
 			resizable: false,
 			modal: true,
 			title: "Confirmation",
-			height: 250,
-			width: 400,
+			height: 180,
+			width: 350,
 			buttons: {
 				"Oui": function () {
 					$(this).dialog('close');

@@ -24,13 +24,6 @@ require_once('../inc/droits.inc.php');
 		</table>
 		<br/><br/>
 
-		<table width="900" align="center" class="data">
-		<tr>
-			<th width="90" ><div align="center">Niveau</div></th>
-			<th width="50" ><div align="center">Prix (forfait)</div></th>
-			<th width="50" ><div align="center">Actions</div></th>
-		</tr>
-
 <?php 
 
 function get_niveau($code)
@@ -47,18 +40,33 @@ function get_niveau($code)
 $db = new DB_connection();
 $req="select * from Liste_niveau order by niveau";
 $db->DB_query($req);
-while($ligne=$db->DB_object())
+if($db->DB_count() > 0)
 {
 	?>
+	<table width="900" align="center" class="data">
 	<tr>
-		<td width="90"><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
-		<td width="50"><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
-		<td width="90"><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;
-		<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Modifier" src="../../../img/modif.png"></a>&nbsp;&nbsp;
-		<!-- <a href="del_liste.php?id=<?php /*echo $ligne->id_nivliste;*/ ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td> -->
-		<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$ligne->id_nivliste.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
+		<th width="90" ><div align="center">Niveau</div></th>
+		<th width="50" ><div align="center">Prix (forfait)</div></th>
+		<th width="50" ><div align="center">Actions</div></th>
 	</tr>
 	<?php
+	while($ligne=$db->DB_object())
+	{
+		?>
+		<tr>
+			<td width="90"><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
+			<td width="50"><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
+			<td width="90"><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;
+			<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Modifier" src="../../../img/modif.png"></a>&nbsp;&nbsp;
+			<!-- <a href="del_liste.php?id=<?php /*echo $ligne->id_nivliste;*/ ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td> -->
+			<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$ligne->id_nivliste.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
+		</tr>
+		<?php
+	}
+}
+else
+{
+	echo "<p>Il n'y a aucune liste.</p>";
 }
 
 ?>
