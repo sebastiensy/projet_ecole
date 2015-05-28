@@ -46,18 +46,17 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	
 	$db->DB_query($requete1);
 	
-	?>
-	
-	<table width="800" align="center" class="data">
-	<tr>
-		<th width="90" ><div align="center">Liste</div></th>
-		<th width="90" ><div align="center">Quantite</div></th>
-		<th width="90" ><div align="center">Forfait</div></th>
-	</tr>
-	<br><br>
-
-
-	<?php
+	if ($db->DB_count() > 0)
+	{
+		?>
+		<table width="800" align="center" class="data">
+		<tr>
+			<th width="90" ><div align="center">Liste</div></th>
+			<th width="90" ><div align="center">Quantite</div></th>
+			<th width="90" ><div align="center">Forfait</div></th>
+		</tr>
+		<br><br>
+		<?php
 		while($suiv = $db->DB_object())
 		{
 			echo "<tr><td><div align='center'>".$suiv->libelle."</div></td>";
@@ -71,21 +70,28 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 			array_push($prix, $suiv->exemplaire * $suiv->forfait);
 		}
 		echo "</table>";
+	}
+	else
+	{
+		echo "<p>Il n'y a aucune liste.</p>";
+	}
+	
 
 	
 	$db->DB_query($requete2);
 	
-	?>
-	<br>
-	<table width="800" align="center" class="data">
-	<tr>
-		<th width="90" ><div align="center">Reference</div></th>
-		<th width="90" ><div align="center">Materiel</div></th>
-		<th width="90" ><div align="center">Quantite</div></th>
-		<th width="90" ><div align="center">Prix unitaire</div></th>
-	</tr>
-
-	<?php
+	if ($db->DB_count() > 0)
+	{
+		?>
+		<br>
+		<table width="800" align="center" class="data">
+		<tr>
+			<th width="90" ><div align="center">Reference</div></th>
+			<th width="90" ><div align="center">Materiel</div></th>
+			<th width="90" ><div align="center">Quantite</div></th>
+			<th width="90" ><div align="center">Prix unitaire</div></th>
+		</tr>
+		<?php
 		while($suiv = $db->DB_object())
 		{
 			echo "<tr><td><div align='center'>".$suiv->ref_mat."</div></td>";
@@ -102,15 +108,17 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 		}
 
 		echo "</table>";
+	}
+	else
+	{
+		echo "<p>Il n'y a aucun matériel.</p>";
+	}
 
+	$somme = array_sum($prix);
+	
+	echo "<br>";
 
-		
-		$somme = array_sum($prix);
-		
-		
-		echo "<br>";
-
-		echo "<strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong>";
+	echo "<strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong>";
 
 	
 }
