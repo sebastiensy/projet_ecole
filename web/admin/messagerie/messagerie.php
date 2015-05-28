@@ -42,7 +42,6 @@ if($db->DB_count() > 0)
 		<th width="90" ><div align="center">Date</div></th>
 		<th width="90" ><div align="center">Etat</div></th>
 		<th width="90" ><div align="center">Opérations</div></th>
-		<th width="90" ><div align="center"></div></th>
 	</tr>
 	<?php
 	$cpt = $db->DB_count();
@@ -54,11 +53,14 @@ if($db->DB_count() > 0)
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
 		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 		echo "<td><div align='center'>".$var."</div></td>";
-		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../../img/visu.png"></a>';
-		?> <a href="suppr_message.php?id=<?php echo $msg->id_message;?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
+		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;';
+		?> <!-- <a href="suppr_message.php?id=<?php /*echo $msg->id_message;*/ ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td> -->
+		<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$msg->id_message.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
 		<?php 
 		echo "</tr>";
 	}
+	echo "</table>";
+	echo "<input type=\"hidden\" value=\"\" id=\"iden\">";
 }
 else
 {
@@ -66,6 +68,17 @@ else
 }
 
 ?>
+
+<script>
+$('.btnOpenDialog').click(fnOpenNormalDialog);
+function callback(value) {
+	var _id = document.getElementById("iden").value;
+	if (value) {
+		location.href = "suppr_message.php?id="+_id;
+	} else {
+	}
+}
+</script>
 
 <?php
 

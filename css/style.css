@@ -248,6 +248,15 @@ body
 	border:0;
 }
 
+.del
+{
+    background:url(../img/del.png);
+    width:32px;
+	height:32px;
+	cursor:pointer;
+	border:0;
+}
+
 /* Titre des pages */
 
 /**/

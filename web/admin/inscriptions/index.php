@@ -69,8 +69,7 @@ if($db->DB_count() > 0)
 			<th width="90"><div align="center">Email</div></th>
 			<th width="90"><div align="center">Téléphone</div></th>
 			<th width="90"><div align="center">Enfants</div></th>
-			<th width="90"><div align="center">Accepter</div></th>
-			<th width="90"><div align="center">Refuser</div></th>
+			<th width="90"><div align="center">Actions</div></th>
 		</tr>
 	<?php
 	while($inscription = $db->DB_object())
@@ -80,12 +79,13 @@ if($db->DB_count() > 0)
 			<td align=\"center\">".$inscription->nom_parent."</td>
 			<td align=\"center\">".$inscription->email_parent."</td>
 			<td align=\"center\">".$inscription->tel_parent."</td>
-			<td align=\"center\">".$inscription->nb_enfants."</td>
-			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=accepter\"><img src=\"../../../img/icon_OK.png\" title=\"Accepter\"></a></td>
-			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
+			<td align=\"center\">".$inscription->nb_enfants."</td>";
+			//<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
+			echo "<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=accepter\"><img src=\"../../../img/icon_OK.png\" title=\"Accepter\"></a>&nbsp;&nbsp;
+			<input type=\"button\" title=\"Supprimer\" onClick=setId(".$inscription->id_parent.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>
 		</tr>";
 	}
-	?> <a id="simpleConfirm" href="" class="btn btn-primary">Click me</a> <?php
+	echo "<input type=\"hidden\" value=\"\" id=\"iden\">";
 }
 else
 {
@@ -95,7 +95,14 @@ else
 ?>
 
 <script>
-$("#simpleConfirm").confirm();
+$('.btnOpenDialog').click(fnOpenNormalDialog);
+function callback(value) {
+	var _id = document.getElementById("iden").value;
+	if (value) {
+		location.href = "index.php?id="+_id+"&a=refuser";
+	} else {
+	}
+}
 </script>
 
 <?php

@@ -153,13 +153,16 @@ require_once('../../inc/data.inc.php');
 				}
 				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
-				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>';
-				?> <a href="suppr_message.php?id=<?php echo $msg->id_message; ?>&amp;page=<?php echo $p; ?>"><img title="Supprimer" src="../../img/del.png"> </a></div></td>
+				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>&nbsp;&nbsp;';
+				?> <!-- <a href="suppr_message.php?id=<?php /*echo $msg->id_message;*/ ?>&amp;page=<?php /*echo $p;*/ ?>"><img title="Supprimer" src="../../img/del.png"></a></div></td> -->
+				<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$msg->id_message.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
 				<?php 
 				echo "<input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message.">";
 				echo "</tr>";
 			}
 			echo "</table></div></div>";
+			echo "<input type=\"hidden\" value=\"\" id=\"iden\">";
+			echo "<input type=\"hidden\" value=".$p." id=\"pag\">";
 		}
 		else
 		{
@@ -194,6 +197,18 @@ require_once('../../inc/data.inc.php');
 
 	</div>
 	</div>
+
+<script>
+$('.btnOpenDialog').click(fnOpenNormalDialog);
+function callback(value) {
+	var _id = document.getElementById("iden").value;
+	var _page = document.getElementById("pag").value;
+	if (value) {
+		location.href = "suppr_message.php?id="+_id+"&page="+_page;
+	} else {
+	}
+}
+</script>
 
 <?php
 

@@ -121,6 +121,15 @@ table.data td
 	background-color: #ffffff;
 }
 
+.del
+{
+    background:url(../img/del.png);
+    width:32px;
+	height:32px;
+	cursor:pointer;
+	border:0;
+}
+
 .gen
 {
 	border: 2px solid #FEF3DB;

@@ -174,21 +174,15 @@ else
 			*	passer la commande au fournisseur
 			*/
 			echo "<input type='submit' id='btnCmdF' name='cmdFournisseur' value='Passer commande fournisseur'></input></form>";
-
 		}
 	}
 	else
 	{
 		echo "<p>Il n'y a pas de commandes validées.</p>";
 	}
-
 }
 
-
-
-
 ?>
-
 
 <?php
 

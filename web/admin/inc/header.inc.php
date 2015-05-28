@@ -23,8 +23,6 @@
 	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
 	<!-- <script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script> -->
 	<script src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.confirm.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.confirm.min.js"></script>
 	<script type="text/javascript">
 	$( document ).ready(function() {
 			$("#fancy").fancybox({
@@ -88,6 +86,32 @@
     		altFormat : "yy-mm-dd"
     	});
   	});
+	function fnOpenNormalDialog() {
+		$("#dialog-confirm").html("Voulez-vous confirmer la suppression ?");
+
+		// Define the Dialog and its properties.
+		$("#dialog-confirm").dialog({
+			resizable: false,
+			modal: true,
+			title: "Confirmation",
+			height: 250,
+			width: 400,
+			buttons: {
+				"Oui": function () {
+					$(this).dialog('close');
+					callback(true);
+				},
+					"Non": function () {
+					$(this).dialog('close');
+					callback(false);
+				}
+			}
+		});
+	}
+	function setId(id)
+	{
+		document.getElementById("iden").value = id;
+	}
 	</script>
 </head>
 	<div class="tete">

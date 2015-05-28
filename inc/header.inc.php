@@ -107,7 +107,32 @@
 			};
 		});
 	});
+	function fnOpenNormalDialog() {
+		$("#dialog-confirm").html("Voulez-vous confirmer la suppression ?");
 
+		// Define the Dialog and its properties.
+		$("#dialog-confirm").dialog({
+			resizable: false,
+			modal: true,
+			title: "Confirmation",
+			height: 250,
+			width: 400,
+			buttons: {
+				"Oui": function () {
+					$(this).dialog('close');
+					callback(true);
+				},
+					"Non": function () {
+					$(this).dialog('close');
+					callback(false);
+				}
+			}
+		});
+	}
+	function setId(id)
+	{
+		document.getElementById("iden").value = id;
+	}
 	</script>
 </head>
 <body>

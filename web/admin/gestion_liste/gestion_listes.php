@@ -28,7 +28,7 @@ require_once('../inc/droits.inc.php');
 		<tr>
 			<th width="90" ><div align="center">Niveau</div></th>
 			<th width="50" ><div align="center">Prix (forfait)</div></th>
-			<th width="50" ><div align="center">Opérations</div></th>
+			<th width="50" ><div align="center">Actions</div></th>
 		</tr>
 
 <?php 
@@ -53,14 +53,17 @@ while($ligne=$db->DB_object())
 	<tr>
 		<td width="90"><div align="center"><?php echo get_niveau($ligne->niveau); ?></div></td>
 		<td width="50"><div align="center"><?php echo number_format($ligne->forfait, 2, ',', ' '); ?> €</div></td>
-		<td width="90"><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>
-		<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Modifier" src="../../../img/modif.png"></a>
-		<a href="del_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td>
+		<td width="90"><div align="center"><a class="fancy" href="liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;
+		<a href="modif_liste.php?id=<?php echo $ligne->id_nivliste; ?>"><img title="Modifier" src="../../../img/modif.png"></a>&nbsp;&nbsp;
+		<!-- <a href="del_liste.php?id=<?php /*echo $ligne->id_nivliste;*/ ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td> -->
+		<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$ligne->id_nivliste.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
 	</tr>
 	<?php
 }
 
 ?>
+
+<input type="hidden" value="" id="iden">
 
 </table>
 <br/>
@@ -69,6 +72,17 @@ while($ligne=$db->DB_object())
 		<td><div align="right"><a href="ajouter_liste.php" class="myButton">Ajouter Une liste</a></div></td>
 	</tr>
 </table>
+
+<script>
+$('.btnOpenDialog').click(fnOpenNormalDialog);
+function callback(value) {
+	var _id = document.getElementById("iden").value;
+	if (value) {
+		location.href = "del_liste.php?id="+_id;
+	} else {
+	}
+}
+</script>
 
 <?php
 
