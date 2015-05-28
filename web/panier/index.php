@@ -167,8 +167,8 @@ require_once(LIB.'/lib_listes.php');
 											echo "<tr><td>".$liste->Libelle."</td>
 											<td>".number_format($liste->forfait, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
-											echo "<td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\"><img title=\"Visulaliser\" src=\"../../img/visu.png\">
-											<a href=\"index.php?delList=".$liste->id_nivliste."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
+											echo "<td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\"><img title=\"Visualiser\" src=\"../../img/visu.png\"></a>&nbsp;&nbsp;
+											<a href=\"index.php?delList=".$liste->id_nivliste."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></a></td>";
 											echo "</tr>";
 										}
 										echo "<tr><td colspan=\"4\" align=\"right\"><b>Prix total : ".number_format($panierL, 2, ',', ' ')." €</b></td></tr>
@@ -218,7 +218,7 @@ require_once(LIB.'/lib_listes.php');
 											<td>".$mat->desc_mat."</td>
 											<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>
 											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
-											echo "<td><a href=\"index.php?del=".$mat->id_mat."#afour\"><img title=\"Supprimer\" src=\"../../img/del.png\"></td>";
+											echo "<td><a href=\"index.php?del=".$mat->id_mat."#afour\"><img title=\"Supprimer\" src=\"../../img/del.png\"></a></td>";
 											echo "</tr>";
 										}
 										echo "<tr><td colspan=\"5\" align=\"right\"><b>Prix total : ".number_format($panierF, 2, ',', ' ')." €</b></td></tr>

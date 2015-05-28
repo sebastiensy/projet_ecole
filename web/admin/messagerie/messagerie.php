@@ -41,7 +41,7 @@ if($db->DB_count() > 0)
 		<th width="90" ><div align="center">Objet</div></th>
 		<th width="90" ><div align="center">Date</div></th>
 		<th width="90" ><div align="center">Etat</div></th>
-		<th width="90" ><div align="center">Opérations</div></th>
+		<th width="90" ><div align="center">Actions</div></th>
 	</tr>
 	<?php
 	$cpt = $db->DB_count();
