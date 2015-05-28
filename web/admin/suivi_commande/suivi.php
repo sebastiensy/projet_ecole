@@ -153,7 +153,7 @@ else
 
 while($suiv = $db->DB_object())
 {
-	echo '<h3>'.$suiv->nom_parent.'</h3>';
+	echo '<h3 id="'.$suiv->id_parent.'">'.$suiv->nom_parent.'</h3>';
 	?>
 	<div>
 	<table width="900" align="center" class="data">
@@ -198,8 +198,9 @@ while($suiv = $db->DB_object())
 			$nom = 'suivi'.$suiv2->nom_parent.$suiv2->id_commande;
 			?>
 
-			<td><div align="center"><input type="button" class="modif" value="Modifier"></input></div></td>
+			<td><div align="center"><input type="button" class="modif" value="Modifier" onClick="activeAccordeon()"></input></div></td>
 			<td><div align="center"><input type="submit" class="save" name="enregistrer" value="Enregistrer" disabled></input></div></td>
+			<input type="text" class="idcache" name="idcache" value="" hidden></input>
 			<?php
 
 			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.$suiv2->nom_parent.'">Etat de la commande</a></div></td>';		
@@ -214,9 +215,9 @@ while($suiv = $db->DB_object())
 		message($_GET["email"], "Commande n° ".$_GET["com"], "Modification de l'état de la commande n° ".$_GET["com"]." : ".$etats[$_POST["suivi"]-1], 0, $_GET["id"]);
 
 		$modifier = 'UPDATE Commande SET etat = '.$_POST['suivi'].' WHERE id_commande = '.$_GET['com'];
-		$var1 = $_GET['id'] - 1;
 		$db->DB_query($modifier);
-		print('<script type="text/javascript">location.href="suivi.php?nb='.$var1.'";</script>');
+
+		print('<script type="text/javascript">location.href="suivi.php?nb='.$_POST['idcache'].'";</script>');
 	}
 	?>
 	</table>

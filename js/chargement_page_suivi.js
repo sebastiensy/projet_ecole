@@ -13,3 +13,8 @@ $( document ).ready(function() {
 	    	$("#accordion-resizer").accordion({ header: "h3", active: false, collapsible: true });
 		}
 });
+
+function activeAccordeon() {
+	var active = $( "#accordion-resizer" ).accordion( "option", "active" );
+	$(".idcache").attr("value", active);
+}
