@@ -75,7 +75,6 @@ if($db->DB_count() > 0)
 	<?php
 	while($inscription = $db->DB_object())
 	{
-		echo "<input type=\"hidden\" name=\"res\"".$inscription->id_parent." value=\"\">";
 		echo 
 		"<tr>
 			<td align=\"center\">".$inscription->nom_parent."</td>
@@ -83,9 +82,10 @@ if($db->DB_count() > 0)
 			<td align=\"center\">".$inscription->tel_parent."</td>
 			<td align=\"center\">".$inscription->nb_enfants."</td>
 			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=accepter\"><img src=\"../../../img/icon_OK.png\" title=\"Accepter\"></a></td>
-			<td align=\"center\"><a onClick=\"confir(".$inscription->id_parent.")\" href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
+			<td align=\"center\"><a href=\"index.php?id=".$inscription->id_parent."&amp;a=refuser\"><img src=\"../../../img/del.png\" title=\"Refuser\"></a></td>
 		</tr>";
 	}
+	?> <a id="simpleConfirm" href="" class="btn btn-primary">Click me</a> <?php
 }
 else
 {
@@ -95,15 +95,7 @@ else
 ?>
 
 <script>
-function confir(id) {
-    var x;
-    if (confirm("Press a button!") == true) {
-        x = "OK";
-    } else {
-        x = "Cancel";
-    }
-    document.getElementById("res"+id).innerHTML = x;
-}
+$("#simpleConfirm").confirm();
 </script>
 
 <?php

@@ -77,14 +77,13 @@
 		 });
 	});
 
-	$("a.fancy3").fancybox({	
+	$("a.fancy3").fancybox({
+		fitToView:false,
+		autoSize:false,
 		type: "iframe",
 		width: '45%',
-		height: '65%',
-		onClosed: function() {
-			alert("test");
-			//parent.location.reload(true);
-		}
+		height: '50%',
+		'autoScale': 'false'
 	});
 
 	$(function() {

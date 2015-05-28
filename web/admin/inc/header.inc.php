@@ -4,12 +4,11 @@
 	<meta charset="ISO-8859-1">
 	<title>Interface Administrateur</title>
 	<link rel="stylesheet" href="../../../js/jquery-ui.css">
-	<!--<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox.css">-->
-	<!--<link rel="stylesheet" href="../../../css/progress.bar.css">-->
 	<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/myButton.css" />
-	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+	<!-- <link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css" media="screen" /> -->
+	<link rel="stylesheet" href="../../../js/fancybox/source/jquery.fancybox.css">
 	<style type="text/css">
 			body{
 				background-image:none;
@@ -19,51 +18,52 @@
     	height: 100px;
   	}
 	</style>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="../../../js/jquery-ui.js"></script>
-	<!--<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>-->
-	<script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script>
+	<!-- <script type="text/javascript" src="../../../js/fancybox/source/jquery.fancybox-1.3.4.pack.js"></script> -->
+	<script src="../../../js/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.confirm.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.confirm.min.js"></script>
 	<script type="text/javascript">
 	$( document ).ready(function() {
 			$("#fancy").fancybox({
-				
+				fitToView:false,
+				autoSize:false,
 				type: "iframe",
 				width: '70%',
 				height: '60%',
-				onClosed: function() {   
-				parent.location.reload(true); 
-    ;}
-								});
+				'autoScale': 'false'
+			});
 	});
 	$( document ).ready(function() {
 			$("a.fancyMsg").fancybox({
-				
+				fitToView:false,
+				autoSize:false,
 				type: "iframe",
-				width: '70%',
-				height: '60%',
-				onClosed: function() {   
-				parent.location.reload(true); 
-    ;}
-								});
+				width: '60%',
+				height: '50%',
+				'autoScale': 'false'
+			});
 	});
 	$( document ).ready(function() {
 			$("#fancy1").fancybox({
-				
+				fitToView:false,
+				autoSize:false,
 				type: "iframe",
 				width: '70%',
 				height: '60%',
-				onClosed: function() {   
-				parent.location.reload(true);
-				;}
-								});
+				'autoScale': 'false'
+			});
 	});
 	$( document ).ready(function() {
 			$("a.fancy").fancybox({
-				
+				fitToView:false,
+				autoSize:false,
 				type: "iframe",
 				width: '70%',
-				height: '60%'
+				height: '60%',
+				'autoScale': 'false'
 			});
 	});
 	$(function() {
