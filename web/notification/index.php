@@ -178,7 +178,7 @@ require_once('../../inc/data.inc.php');
 	{
 		if($nb_pages > 1)
 		{
-			for($i=1; $i<=$nb_pages; $i++)
+			for($i=1; $i <= $nb_pages; $i++)
 			{
 				if($i==$page)
 				{

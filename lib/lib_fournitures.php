@@ -202,17 +202,20 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	else
 		$param = explode('&amp;page', $chemin)[0];
 
-	for($i=1; $i <= $nb_pages; ++$i)
+	if($nb_pages > 1)
 	{
-		if($page == $i)
-			echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | ";
-		else
+		for($i=1; $i <= $nb_pages; ++$i)
 		{
-			if(aucun_arg($chemin))
-				echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."?page=".$i.">".$i."</a>";
+			if($page == $i)
+				echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | ";
 			else
-				echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."&amp;page=".$i.">".$i."</a>";
-			echo " | ";
+			{
+				if(aucun_arg($chemin))
+					echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."?page=".$i.">".$i."</a>";
+				else
+					echo "<a href=".formater_url($script, urlencode($rubrique), urlencode($srubrique), urlencode($recherche))."&amp;page=".$i.">".$i."</a>";
+				echo " | ";
+			}
 		}
 	}
 	echo "</div>";
