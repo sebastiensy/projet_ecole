@@ -125,8 +125,8 @@ class PDF extends FPDF
 	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
 	        $this->Cell($w[2],6,$row[2] ." ".EURO,'LR',0,'C');
 	        $this->Ln();
+	        $this->Cell(20);
 	    }
-	    $this->Cell(20);
 	    // Trait de terminaison
 	    $this->Cell(array_sum($w),0,'','T');
 	    $this->Ln(2);
