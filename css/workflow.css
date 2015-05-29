@@ -5,18 +5,18 @@
 	background-repeat: no-repeat;*/
 	width: 350px;
 	height: 500px;
-	margin-top:-80px;/*30*/
+	margin-top:30px;/*-80*/
 	margin-left: -180px;
 }
 
 #infocmd
 {
-	/*position: absolute;*/
-	position: relative;
+	position: absolute;
+	/*position: relative;*/
 	width: 350px;
 	height: 100px;
-	/*margin-left: 70px;*/
-	/*margin-top: 20px;*/
-	left: 70px;
-	top:120px;
+	margin-left: 70px;
+	margin-top: 20px;
+	/*left: 70px;
+	top:120px;*/
 }

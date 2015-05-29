@@ -101,7 +101,7 @@
 				});
 			} else {
 				$("#workflow").stop().animate({
-					marginTop: -80/*15*/
+					marginTop: 15/*-80*/
 				});
 			};
 		});
