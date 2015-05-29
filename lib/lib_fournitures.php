@@ -33,7 +33,6 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 	if(!empty($recherche))
 	{
 		$requete = 'SELECT ref_mat, desc_mat, prix_mat FROM Materiel WHERE desc_mat LIKE \'%'.$recherche.'%\' OR ref_mat = \''.$recherche.'\'';
-		//$requete = $db->prepare('SELECT ref_mat, desc_mat, prix_mat FROM Materiel WHERE desc_mat LIKE ? OR ref_mat = ?');
 	}
 	else
 	{

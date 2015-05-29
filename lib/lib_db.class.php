@@ -111,23 +111,6 @@ class DB_connection
 		return @mysqli_insert_id($this->_connection);
 	}
 
-	public function ref_values($array)
-	{
-		$refs = array();
-		foreach($array as $key => $value)
-		{
-			$refs[key] = &$array[$key];
-		}
-		return $refs;
-	}
-
-	public function prepare($requete, $data)
-	{
-		$this->_connection->prepare($requete);
-		call_user_func_array(array($this->_connection, 'bind_param'), $this->ref_values($data));
-		$this->_connection->execute();
-	}
-
 	/**
 	 * échappe une chaîne de caractères pour l'injecter dans une requête SQL
 	 * DB_connection::quote($string)
