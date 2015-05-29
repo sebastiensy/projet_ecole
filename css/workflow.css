@@ -8,3 +8,12 @@
 	margin-top:30px;
 	margin-left: -180px;
 }
+
+#infocmd
+{
+	position: absolute;
+	width: 350px;
+	height: 100px;
+	margin-left: 70px;
+	margin-top: 20px;
+}
