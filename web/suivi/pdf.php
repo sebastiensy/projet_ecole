@@ -1,8 +1,10 @@
 <?php
 
+session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
 require_once(LIB.'/lib_pdf.class.php');
+require_once(INC.'/droits.inc.php');
 
 ?>
 
@@ -35,20 +37,9 @@ if (isset($_GET['id']))
 
 	$headerInfo = array('Nom :', 'Email :', 'Tel :', 'Date de la commande :');
 
-
-
 	if ($db->DB_count() > 0)
 	{
-		/*while($info = $db->DB_object())
-		{
-			$pdf->Cell(40,10,'Nom : '.$info->nom_parent);
-			$pdf->Ln(5);
-			$pdf->Cell(40,10,'Email : '.$info->email_parent);
-			$pdf->Ln(5);
-			$pdf->Cell(40,10,'Tel : '.$info->tel_parent);
-			$pdf->Ln(5);
-			$pdf->Cell(40,10,'Date de la commande : '.$info->date_cmd);
-		}*/
+		$pdf->Ln(10);
 		$pdf->TableInfo($headerInfo,$data);
 	}
 
@@ -68,16 +59,33 @@ if (isset($_GET['id']))
 
 	$db->DB_query($requete1);
 
-	$data = $db->DB_all();
-
 	$pdf->SetFont('Arial','',12);
 
 
 	if ($db->DB_count() > 0)
 	{
+		$pdf->SetFont('Arial', 'BU', 14);
 		$pdf->Cell(40,10,'Liste :');
 		$pdf->Ln(10);
+		while($liste = $db->DB_object())
+		{
+			array_push($prix,$liste->forfait * $liste->exemplaire);
+		}
+		$db->DB_query($requete1);
+		$data = $db->DB_all();
 		$pdf->ImprovedTableListe($headerListe,$data);
+
+		/*
+		*	pour afficher le prix total des listes
+		*/
+		$pdf->Ln(1);
+		$somme = array_sum($prix);
+
+		$pdf->Cell(120);
+		$pdf->SetFillColor(254,243,219);
+		$pdf->SetFont('Arial', 'BI', 12);
+		$pdf->Cell(50,10,'Total Listes : '.$somme.' '.EURO,1,0,'C',true);	
+
 	}
 
 	
@@ -93,23 +101,48 @@ if (isset($_GET['id']))
 
 	$db->DB_query($requete2);
 
-	$data = $db->DB_all();
-
 	$pdf->Ln(20);
+
+	$prixMat = array();
+
 
 	if ($db->DB_count() > 0)
 	{
-		$pdf->Cell(40,10,'Materiels :');
+		$pdf->SetFont('Arial', 'BU', 14);
+		$pdf->Cell(40,10,'Materiel :');
 		$pdf->Ln(10);
+		while($mat = $db->DB_object())
+		{
+			array_push($prix,$mat->prix_mat * $mat->quantite);
+			array_push($prixMat,$mat->prix_mat * $mat->quantite);
+		}
+		$db->DB_query($requete2);
+		$data = $db->DB_all();
 		$pdf->ImprovedTableMat($headerMat,$data);
+
+		/*
+		*	pour afficher le prix total des materiels
+		*/
+		$pdf->Ln(1);
+		$somme = array_sum($prixMat);
+
+		$pdf->Cell(140);
+		$pdf->SetFillColor(254,243,219);
+		$pdf->SetFont('Arial', 'BI', 12);
+		$pdf->Cell(50,10,'Total Materiels : '.$somme.' '.EURO,1,0,'C',true);	
 	}
-		
+
+	/*
+	*	pour afficher le prix total
+	*/
+	$pdf->Ln(30);
+	$somme = array_sum($prix);
+
+	$pdf->Cell(100);
+	$pdf->SetFillColor(254,243,219);
+	$pdf->SetFont('Arial', 'BIU', 15);
+	$pdf->Cell(70,10,'Prix Total : '.$somme.' '.EURO,1,0,'C',true);	
 
 	$pdf->Output();
-
-
 }
-
-
-
 ?>
