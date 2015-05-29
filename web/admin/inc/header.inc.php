@@ -108,6 +108,10 @@
 			}
 		});
 	}
+	function actualiserLecture(champ)
+	{
+		document.getElementById('lu'+champ).innerHTML = "Lu";
+	}
 	function setId(id)
 	{
 		document.getElementById("iden").value = id;

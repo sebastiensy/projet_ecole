@@ -52,8 +52,8 @@ if($db->DB_count() > 0)
 		echo "<td><div align='center'>".$msg->email_parent."</div></td>";
 		echo "<td><div align='center'>".$msg->objet."</div></td>";
 		echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
-		echo "<td><div align='center'>".$var."</div></td>";
-		echo '<td><div align="center"><a class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;';
+		echo "<td><div div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
+		echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancyMsg" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../../img/visu.png"></a>&nbsp;&nbsp;';
 		?> <!-- <a href="suppr_message.php?id=<?php /*echo $msg->id_message;*/ ?>"><img title="Supprimer" src="../../../img/del.png"></a></div></td> -->
 		<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$msg->id_message.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
 		<?php 

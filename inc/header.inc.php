@@ -19,7 +19,6 @@
 	<script src="../../js/fancybox/source/jquery.fancybox.pack.js"></script>
 	<script src="../../js/verifications.js"></script>
 	<script src="../../js/workflow.js"></script>
-	<script src="../../js/ajaxClient.js"></script>
 	<script>
 	$(function()
 	{
@@ -128,6 +127,10 @@
 				}
 			}
 		});
+	}
+	function actualiserLecture(champ)
+	{
+		document.getElementById('lu'+champ).innerHTML = "Lu";
 	}
 	function setId(id)
 	{
