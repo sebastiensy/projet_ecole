@@ -140,7 +140,7 @@ require_once(INC.'/droits.inc.php');
 						<td><a class=\"fancycmd\" value=\"commande".$suiv->nom_parent."\" href=\"commande.php?com=".$suiv->id_commande."\">Voir</a></td>
 					</tr>
 				</table>";
-			echo "<a href='pdf.php?id=".$suiv->id_commande."'><img src='../../img/imprimer.png' id='impFacture' border='0'></a>";
+			echo "<a href='pdf.php?id=".$suiv->id_commande."' target='_blank'><img src='../../img/imprimer.png' id='impFacture' border='0'></a>";
 			?>
 			<div class="checkout-wrap">
 		  		<ul class="checkout-bar">

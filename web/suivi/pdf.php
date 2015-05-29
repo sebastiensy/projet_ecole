@@ -3,7 +3,7 @@
 session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
-require_once(LIB.'/lib_pdf.class.php');
+require_once(LIB.'/lib_pdfparent.class.php');
 require_once(INC.'/droits.inc.php');
 
 ?>
@@ -11,7 +11,7 @@ require_once(INC.'/droits.inc.php');
 <?php
 if (isset($_GET['id']))
 {
-	$pdf = new PDF();
+	$pdf = new PDFParent();
 
 	define('EURO', chr(128));
 

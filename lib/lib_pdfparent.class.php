@@ -6,7 +6,7 @@ require_once('/fpdf17/fpdf.php');
 
 <?php
 
-class PDF extends FPDF
+class PDFParent extends FPDF
 {
 	// En-tête
 	public function Header()
@@ -33,31 +33,6 @@ class PDF extends FPDF
 	    $this->SetFont('Arial','I',8);
 	    // Numéro de page
 	    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-	}
-
-	public function BasicTableListe($header)
-	{
-		$this->SetFillColor(254,243,219); //cellule de l'entête
-		$this->SetTextColor(0); //texte en noir
-		$this->SetFont('Arial', '', 12); //Arial 12
-		// En-tête
-		foreach($header as $col)
-			$this->Cell(40,7,$col,1,0,'C',true); //true pour afficher la couleur
-		$this->Ln(); //saut de ligne
-		$this->SetFont('Arial', '', 12); //remettre en Arial 12
-	}
-
-	public function TableListe($data)
-	{
-		// Données
-		foreach($data as $row) 
-		{
-			foreach($row as $col)
-			{
-				$this->Cell(40,7,$col,1,0,'C');
-			}
-			$this->Ln();
-		}
 	}
 
 	public function TableInfo($header, $data)

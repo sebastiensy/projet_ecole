@@ -110,14 +110,6 @@ else
 
 	$ids = array_keys($tab);
 
-
-	/*
-	*	ouverture du fichier
-	*/
-	//$fichierCmdF = fopen('cmdF.txt', 'w+');
-
-
-
 	if(!empty($ids))
 	{
 		$requete3 = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
@@ -141,15 +133,6 @@ else
 				echo "<td><div align='center'>".$tab[$liste->id_mat]."</div></td>";
 				echo "<td><div align='center'>".number_format($liste->prix_mat, 2, ',', ' ')." €</div></td>";
 				array_push($prix, $tab[$liste->id_mat] * $liste->prix_mat);
-
-				/*
-				*	ecriture dans le fichier
-				*/
-				/*fputs($fichierCmdF, $liste->ref_mat.';');
-				fputs($fichierCmdF, $liste->desc_mat.';');
-				fputs($fichierCmdF, $tab[$liste->id_mat].';');
-				fputs($fichierCmdF, number_format($liste->prix_mat, 2, ',', ' ').';');
-				fputs($fichierCmdF, "\r\n");*/
 			}
 		
 			echo "</tr>";
@@ -159,16 +142,10 @@ else
 			$somme = array_sum($prix);
 			echo "<div align='center'><strong style='color: red'>TOTAL : ".number_format($somme, 2, ',', ' '). " €</strong></div>";
 
-
-			/*
-			*	fermeture du fichier
-			*/
-			//fclose($fichierCmdF);
-
 			/*
 			*	imprimer en pdf
 			*/
-			echo "<form method='POST' action='index.php'><a href='pdf.php?pt=".$somme."'><img src='../../../img/imprimer.png' id='impCmdF' border='0'></a>";
+			echo "<form method='POST' action='index.php'><a href='pdf.php' target='_blank'><img src='../../../img/imprimer.png' id='impCmdF' border='0'></a>";
 
 			/*
 			*	passer la commande au fournisseur
