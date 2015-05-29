@@ -19,9 +19,6 @@ require_once(INC.'/redirect.inc.php');
 				require_once("../connexion/login.php");
 			?>
 		</div>
-		<?php
-		//require_once(INC.'/redirect.inc.php');
-		?>
 
 		<div id="menu">
 
