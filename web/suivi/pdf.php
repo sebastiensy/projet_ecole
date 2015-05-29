@@ -143,6 +143,6 @@ if (isset($_GET['id']))
 	$pdf->SetFont('Arial', 'BIU', 15);
 	$pdf->Cell(70,10,'Prix Total : '.$somme.' '.EURO,1,0,'C',true);	
 
-	$pdf->Output();
+	$pdf->Output($_SESSION['nom_parent']."-Commande_n".$_GET['id'].".pdf","I");
 }
 ?>

@@ -71,7 +71,7 @@ class PDF extends FPDF
 			$this->SetFont('Arial', 'B', 12); //Arial Gras 12
 			$this->Cell(50,7,$col,1,0,'C',true); //true pour afficher la couleur
 			$this->SetFont('Arial', '', 12); //Arial 12
-			$this->Cell(40,7,$data[0][$cpt],1,0,'C');
+			$this->Cell(50,7,$data[0][$cpt],1,0,'C');
 			$cpt++;
 			$this->Ln();
 		}
