@@ -2,7 +2,7 @@
 
 function connexion()
 {
-	if(!isset($_SESSION['nom_parent'])) 
+	if(!isset($_SESSION['id_parent'])) 
 	{
 
 	?>
