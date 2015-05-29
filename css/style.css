@@ -564,5 +564,7 @@ body
 /* suivi commande */
 #impFacture
 {
+	position: absolute;
 	margin-left: 700px;
+	margin-top: -50px;
 }
