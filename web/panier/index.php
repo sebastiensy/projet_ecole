@@ -88,14 +88,17 @@ require_once(INC.'/redirect.inc.php');
 						if($date = $db->DB_object())
 						{
 							$now = new DateTime($now);
-							$now = $now->format('Ymd');
 							$jma = new DateTime($date->jma);
+							$datel = new DateTime($date->jma);
+							$interval = $now->diff($datel);
+							$now = $now->format('Ymd');
 							$jma = $jma->format('Ymd');
+							$datel = $datel->format('d/m/Y');
 						}
 					}
 					if(!isset($_SESSION["id_parent"]))
 					{
-						echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour consulter votre panier.</strong></p></span>";
+						echo "<span style=\"color:red; font-size:13pt\"><p><strong>Veuillez vous connecter pour consulter votre panier.</strong></p></span>";
 					}
 					else if(isset($_POST["commander"]))
 					{
@@ -119,6 +122,10 @@ require_once(INC.'/redirect.inc.php');
 					}
 					if(isset($_SESSION["id_parent"]))
 					{
+						if($interval->days <= 31 && $now <= $jma)
+						{
+							echo "<span style=\"color:red; font-size:13pt\"><strong>La date limite des commandes est le : ".$datel."</strong></span><br><br>";
+						}
 						echo "<div id=\"ancrepanier\">";
 						echo "<table>";
 						echo "<tr>";
@@ -233,7 +240,7 @@ require_once(INC.'/redirect.inc.php');
 						$grandtotal = $panierL + $panierF;
 						if(isset($_SESSION['id_parent']) && $now > $jma)
 						{
-							echo "<span align=\"center\" style=\"color:red\"><p><strong>La date limite de commande est passée.</strong></p></span>";
+							echo "<span align=\"center\" style=\"color:red; font-size:13pt\"><p><strong>La date limite de commande est passée.</strong></p></span>";
 						}
 						echo "<hr/><div align=\"center\"><b><u>Prix total du panier</u> : ".number_format($grandtotal, 2, ',', ' ')." €</b></div>";
 

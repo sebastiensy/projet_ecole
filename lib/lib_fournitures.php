@@ -84,12 +84,12 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 		}
 		else
 		{
-			echo "<span style=\"color:red\"><p><strong>La date limite de commande est passée.</strong></p></span>";
+			echo "<span style=\"color:red; font-size:13pt\"><p><strong>La date limite de commande est passée.</strong></p></span>";
 		}
 	}
 	else
 	{
-		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des produits au panier.</strong></p></span>";
+		echo "<span style=\"color:red; font-size:13pt\"><p><strong>Veuillez vous connecter pour ajouter des produits au panier.</strong></p></span>";
 	}
 
 	$db->DB_query($requete);

@@ -209,14 +209,14 @@ body
 #panierL
 {
 	/*background-color:white;*/
-	height:250px;
+	height:220px;
 	overflow:auto;
 }
 
 #panierF
 {
 	/*background-color:white;*/
-	height:320px;
+	height:300px;
 	overflow:auto;
 }
 

@@ -52,18 +52,17 @@ require_once(INC.'/droits.inc.php');
 		</div>
 
 		<?php 
-				if(isset($_SESSION['droits']))
-				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
-				}
-
+		if(isset($_SESSION['droits']))
+		{
+			if ($_SESSION['droits'] ==1 )
+			{
+			?>
+			<div id="admin">
+				<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+			</div>
+			<?php
+			}
+		}
 		?>
 
 	</div>
@@ -82,7 +81,6 @@ require_once(INC.'/droits.inc.php');
 <p class="titre">Mon compte</p>
 
 <?php
-
 
 if (isset($_SESSION['id_parent']))
 {
@@ -140,6 +138,19 @@ if ($db->DB_count() > 0)
 		<?php
 	}
 }
+
+$query = 'SELECT jma FROM Date_limite';
+$db->DB_query($query);
+if($db->DB_count() > 0)
+{
+	if($date = $db->DB_object())
+	{
+		$jma = new DateTime($date->jma);
+		$jma = $jma->format('d/m/Y');
+		echo "<br><span style=\"color:red; font-size:13pt\"><strong>La date limite des commandes est le : ".$jma."</strong></span><br>";
+	}
+}
+
 ?>
 
 <br>

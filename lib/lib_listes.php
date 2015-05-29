@@ -88,12 +88,12 @@ function affichage($panier)
 		}
 		else
 		{
-			echo "<span style=\"color:red\"><p><strong>La date limite de commande est passée.</strong></p></span>";
+			echo "<span style=\"color:red; font-size:13pt\"><p><strong>La date limite de commande est passée.</strong></p></span>";
 		}
 	}
 	else
 	{
-		echo "<span style=\"color:red\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
+		echo "<span style=\"color:red; font-size:13pt\"><p><strong>Veuillez vous connecter pour ajouter des listes au panier.</strong></p></span>";
 	}
 
 	$requete = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code order by ln.niveau';
