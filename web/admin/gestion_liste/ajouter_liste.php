@@ -10,7 +10,7 @@ require_once('../../../inc/redirect.inc.php');
 
 <body onLoad="tabFournitures()">
 
-<div class="corps">
+<div class="corps2">
 
 	<div id="menu">
 		<?php

@@ -8,6 +8,16 @@ body
 {
 	/*background-color:blue;*/
 	position:above;
+	width:1400px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-15px;
+}
+
+.corps2
+{
+	/*background-color:blue;*/
+	position:above;
 	width:1500px;
 	margin-left:auto;
 	margin-right:auto;

@@ -11,7 +11,7 @@ require_once('../inc/droits.inc.php');
 
 <body>
 
-<div class="corps">
+<div class="corps2">
 
 	<div id="menu">
 		<?php
