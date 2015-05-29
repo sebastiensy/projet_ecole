@@ -3,6 +3,7 @@
 session_start();
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_listes.php');
+require_once(INC.'/redirect.inc.php');
 
 ?>
 
@@ -52,18 +53,17 @@ require_once(LIB.'/lib_listes.php');
 		</div>
 
 		<?php 
-				if(isset($_SESSION['droits']))
-				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
-				}
-
+		if(isset($_SESSION['droits']))
+		{
+			if ($_SESSION['droits'] ==1 )
+			{
+			?>
+			<div id="admin">
+				<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+			</div>
+			<?php
+			}
+		}
 		?>
 
 	</div>
@@ -102,7 +102,7 @@ require_once(LIB.'/lib_listes.php');
 						if($now < $jma)
 						{
 							$panier->saveCart(1);
-							echo "<span style=\"color:green\"><p><strong>Votre commande a été passée.</strong></p></span>";
+							echo "<span style=\"color:green; font-size:13pt\"><p><strong>Votre commande a été passée&nbsp;</strong><img src=\"../../img/icon_OK.png\"></p></span>";
 						}
 					}
 					else if(isset($_POST["save"]))
@@ -110,7 +110,7 @@ require_once(LIB.'/lib_listes.php');
 						if($now < $jma)
 						{
 							$panier->saveCart(0);
-							echo "<span style=\"color:green\"><p><strong>Votre panier a été sauvegardé.</strong></p></span>";
+							echo "<span style=\"color:green; font-size:13pt\"><p><strong>Votre panier a été sauvegardé&nbsp;</strong><img src=\"../../img/icon_OK.png\"></p></span>";
 						}
 					}
 					else if(isset($_POST["delete"]))

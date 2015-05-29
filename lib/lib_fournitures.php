@@ -76,9 +76,9 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 					$str = "L'article ".$_GET["ref"]." a été ajouté au <a href=\"../panier\">panier</a>";
 					if(isset($_GET["qte"]))
 					{
-						$str .= " en ".$_GET["qte"]." exemplaires.";
+						$str .= " en ".$_GET["qte"]." exemplaires&nbsp;";
 					}
-					echo "<span style=\"color:green\"><p><strong>$str</strong></p></span>";
+					echo "<span style=\"color:green; font-size:13pt\"><p><strong>$str</strong><img src=\"../../img/icon_OK.png\"></p></span>";
 				}
 			}
 		}
