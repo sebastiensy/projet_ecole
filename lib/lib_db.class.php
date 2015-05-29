@@ -40,7 +40,7 @@ class DB_connection
 
 	/**
 	 * lance la requête
-	 * DB_connection::DB_query()
+	 * DB_connection::DB_query($requete)
 	 *
 	 * @param $requete - chaine contenant la requete SQL à exécuter
 	 * @return void
@@ -109,6 +109,36 @@ class DB_connection
 	public function DB_id()
 	{
 		return @mysqli_insert_id($this->_connection);
+	}
+
+	public function ref_values($array)
+	{
+		$refs = array();
+		foreach($array as $key => $value)
+		{
+			$refs[key] = &$array[$key];
+		}
+		return $refs;
+	}
+
+	public function prepare($requete, $data)
+	{
+		$this->_connection->prepare($requete);
+		call_user_func_array(array($this->_connection, 'bind_param'), $this->ref_values($data));
+		$this->_connection->execute();
+	}
+
+	/**
+	 * échappe une chaîne de caractères pour l'injecter dans une requête SQL
+	 * DB_connection::quote($string)
+	 *
+	 * @param $string - chaîne de caractères à échapper.
+	 * @return string - chaîne de caractères échappée.
+	 *
+	 */
+	public function quote($string)
+	{
+		return $this->_connection->real_escape_string($string);
 	}
 
 	/**

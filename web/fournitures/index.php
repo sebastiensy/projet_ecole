@@ -127,26 +127,26 @@ require_once(LIB.'/lib_fournitures.php');
 		<?php
 			function stripAccents($string)
 			{
-				return strtr($string,'Ã Ã¡Ã¢Ã£Ã¤Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã±Ã²Ã³Ã´ÃµÃ¶Ã¹ÃºÃ»Ã¼Ã½Ã¿Ã€ÃÃ‚ÃƒÃ„Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃÃŽÃÃ‘Ã’Ã“Ã”Ã•Ã–Ã™ÃšÃ›ÃœÃ',
+				return strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
 				'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 			}
 			if(!empty($_GET["find"]))
 			{
-				$str = "R&eacute;sultats de la recherche \"".$_GET["find"]."\" : ";
+				$str = "Résultats de la recherche \"".htmlspecialchars($_GET["find"])."\" : ";
 				echo "<p class=\"tprod\">$str</p>";
 
-				afficherFournitures($panier, "", "", stripAccents($_GET["find"]));
+				afficherFournitures($panier, "", "", $db->quote(stripAccents($_GET["find"])));
 			}
 			else if(!empty($_GET["cat"]))
 			{
 				echo "<p class=\"tprod\">".$_GET["cat"]." :</p>";
 				if(!empty($_GET["scat"]))
 				{
-					afficherFournitures($panier, htmlSpecialChars($_GET["cat"]), htmlSpecialChars($_GET["scat"]));
+					afficherFournitures($panier, $db->quote($_GET["cat"]), $db->quote($_GET["scat"]));
 				}
 				else
 				{
-					afficherFournitures($panier, htmlSpecialChars($_GET["cat"]));
+					afficherFournitures($panier, $db->quote($_GET["cat"]));
 				}
 			}
 			else
