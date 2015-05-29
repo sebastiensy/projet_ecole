@@ -1,7 +1,9 @@
 <?php
 
+session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
+require_once(INC.'/droits.inc.php');
 
 ?>
 
@@ -49,7 +51,6 @@ if(isset($_GET['id']))
 		$db->DB_query($requete2);
 		$db->DB_done();
 	}
-		
 }
 
 ?>

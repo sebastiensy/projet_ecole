@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
+require_once(INC.'/droits.inc.php');
 
 ?>
 
@@ -16,13 +18,6 @@ require_once('../../inc/data.inc.php');
 				require_once("../connexion/login.php");
 			?>
 		</div>
-		<?php
-		if(!isset($_SESSION["id_parent"]))
-		{
-			header("Location: ../index.php");
-			exit;
-		}
-		?>
 
 		<div id="menu">
 

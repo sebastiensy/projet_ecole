@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
 
 ?>
@@ -137,7 +138,7 @@ require_once('../../inc/data.inc.php');
 				echo "<tr><td><div align='center'>".$cpt--."</div></td>";
 				if(strstr($msg->objet, "Commande"))
 				{
-					echo "<td><div align='center'><a class=\"fancycmd\" href=\"../suivi/commande.php?com=".$idCom."&nom=".$_SESSION["nom_parent"]."\">".$msg->objet."</a></div></td>";
+					echo "<td><div align='center'><a class=\"fancycmd\" href=\"../suivi/commande.php?com=".$idCom."\">".$msg->objet."</a></div></td>";
 				}
 				else
 				{

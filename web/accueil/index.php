@@ -1,7 +1,9 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_listes.php');
+require_once(INC.'/redirect.inc.php');
 
 ?>
 
@@ -18,7 +20,7 @@ require_once(LIB.'/lib_listes.php');
 			?>
 		</div>
 		<?php
-		require_once(INC.'/redirect.inc.php');
+		//require_once(INC.'/redirect.inc.php');
 		?>
 
 		<div id="menu">

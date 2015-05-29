@@ -1,9 +1,11 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_contacter.php');
 require_once(LIB.'/lib_verifications.php');
 require_once(LIB.'/lib_message.php');
+require_once(INC.'/redirect.inc.php');
 
 ?>
 
@@ -20,7 +22,7 @@ require_once(LIB.'/lib_message.php');
 			?>
 		</div>
 		<?php
-		require_once(INC.'/redirect.inc.php');
+		//require_once(INC.'/redirect.inc.php');
 		?>
 
 		<div id="menu">

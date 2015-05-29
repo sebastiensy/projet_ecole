@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_fournitures.php');
 

@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
 

@@ -56,12 +56,9 @@ require_once(LIB.'/lib_hasher_mdp.php');
 					$_SESSION['nb_enfants'] = $nb_enfants;
 					$_SESSION['droits'] = $droits;
 					$_SESSION['email'] = $email;
-					//$_SESSION['password'] = $mdp;
 
 					$panier->loadCart();
 
-					//create_fonction(); // ?
-					
 					header('location: ../accueil/index.php?redirected=true');
 
 					/*
@@ -95,8 +92,8 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			else
 			{
 				/*
-				quand le resultat de la requete est null on rÃ©affiche 
-				le formulaire avec son Ã©tat prÃ©cÃ©dent
+				quand le resultat de la requête est nul on réaffiche 
+				le formulaire avec son état précédent
 				avec un message d'erreur
 				*/
 				header('location: ../accueil/index.php?redirected=false');
@@ -108,7 +105,7 @@ require_once(LIB.'/lib_hasher_mdp.php');
 			/*
 			si l'un des champs est vemaile
 			on affiche un message 
-			et le formulaire avec son Ã©tat precedent
+			et le formulaire avec son état précédent
 			*/
 			header('location: ../accueil/index.php?redirected=false');
 		}

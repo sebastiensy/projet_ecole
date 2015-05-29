@@ -1,23 +1,25 @@
 <?php
 
+session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
+require_once(INC.'/droits.inc.php');
 
 ?>
 
 <html>
 	<head>
-		<title>Projet Ã©cole</title>
+		<title>Projet école</title>
 		<link rel="stylesheet" href="../../css/style1.css">
 	</head>
 	<body>
 
 <?php
 
-if (isset($_GET['com']) && isset($_GET['nom']))
+if (isset($_GET['com']))
 {
 	$id_commande = $_GET['com'];
-	$parent = $_GET['nom'];
+	$parent = $_SESSION['nom_parent'];
 
 	/*
 	 * pour affiche les listes

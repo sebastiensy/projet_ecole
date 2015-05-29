@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
+require_once(INC.'/droits.inc.php');
 
 ?>
 
@@ -15,7 +17,7 @@ require_once('../../inc/data.inc.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
 
 		<div id="menu">
 
@@ -75,11 +77,6 @@ require_once('../../inc/data.inc.php');
 
 <?php
 
-	if(!isset($_SESSION["id_parent"]))
-	{
-		header("Location: ../index.php");
-	}
-
 	if ($_SESSION['id_parent'] != "")
 	{
 	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
@@ -115,7 +112,6 @@ require_once('../../inc/data.inc.php');
 
 	if ($db->DB_count() > 0)
 	{
-
 		if ($db->DB_count() == 1)
 			if (empty($_GET['page']))
 				echo "<p class=\"titre\">Etat de ma commande</p>";
@@ -141,7 +137,7 @@ require_once('../../inc/data.inc.php');
 					</tr>
 					<tr>
 						<th>Contenu de la commande : </th>
-						<td><a class=\"fancycmd\" value=\"commande".$suiv->nom_parent."\" href=\"commande.php?com=".$suiv->id_commande."&nom=".$suiv->nom_parent."\">Voir</a></td>
+						<td><a class=\"fancycmd\" value=\"commande".$suiv->nom_parent."\" href=\"commande.php?com=".$suiv->id_commande."\">Voir</a></td>
 					</tr>
 				</table>";
 			echo "<a href='pdf.php?id=".$suiv->id_commande."'><img src='../../img/imprimer.png' id='impFacture' border='0'></a>";

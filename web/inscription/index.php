@@ -1,10 +1,20 @@
 <?php
 
+session_start();
 require_once('../../inc/data.inc.php');
 require_once(LIB.'/lib_form_inscription.php');
 require_once(LIB.'/lib_hasher_mdp.php');
 require_once(LIB.'/lib_verifications.php');
+require_once(INC.'/redirect.inc.php');
 
+?>
+
+<?php
+if(isset($_SESSION["id_parent"]))
+{
+	header("Location: ../index.php");
+	exit;
+}
 ?>
 
 <body onload="afficheWorkflow()" id="back">
@@ -20,7 +30,7 @@ require_once(LIB.'/lib_verifications.php');
 			?>
 		</div>
 		<?php
-		require_once(INC.'/redirect.inc.php');
+		//require_once(INC.'/redirect.inc.php');
 		?>
 
 		<div id="menu">
@@ -81,12 +91,6 @@ require_once(LIB.'/lib_verifications.php');
 
 	<p class="titre">Inscription</p>
 	<?php
-
-		if(isset($_SESSION["id_parent"]))
-		{
-			header("Location: ../index.php");
-			exit;
-		}
 
 		if(!isset($_POST["sinscrire"]))
 		{
