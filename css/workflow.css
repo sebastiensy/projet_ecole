@@ -13,10 +13,17 @@
 {
 	position: absolute;
 	/*position: relative;*/
-	width: 350px;
-	height: 100px;
-	margin-left: 70px;
+	width: 250px;
+	height: 50px;
+	margin-left: 60px;
 	margin-top: 20px;
 	/*left: 70px;
 	top:120px;*/
+}
+
+.txtinfocmd
+{
+	font-weight: bold;
+	/*color: rgb(185,122,87);*/
+	color: rgb(126,79,52);
 }
