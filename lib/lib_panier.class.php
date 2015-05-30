@@ -16,6 +16,12 @@ class panier
 {
 	private $_db;
 	
+	/**
+	 * constructeur
+	 *
+	 * @param $db - instance DB_connection
+	 * 
+	 */
 	public function __construct($db)
 	{
 		if(!isset($_SESSION['panier']))
@@ -167,10 +173,9 @@ class panier
 			$idCom = $this->_db->DB_id();
 		}
 
+		$this->_db->DB_query('DELETE FROM Inclus WHERE id_commande = "'.$idCom.'"');
 		if(!empty($idsL))
 		{
-			$this->_db->DB_query('DELETE FROM Inclus WHERE id_commande = "'.$idCom.'"');
-
 			$this->_db->DB_query('SELECT id_nivliste FROM Liste_niveau WHERE id_nivliste IN ('.implode(',',$idsL).')');
 
 			if($this->_db->DB_count() > 0)
@@ -187,10 +192,10 @@ class panier
 				$this->_db->DB_query($query);
 			}
 		}
+
+		$this->_db->DB_query('DELETE FROM Contient WHERE id_commande = "'.$idCom.'"');
 		if(!empty($idsP))
 		{
-			$this->_db->DB_query('DELETE FROM Contient WHERE id_commande = "'.$idCom.'"');
-
 			$this->_db->DB_query('SELECT id_mat FROM Materiel WHERE id_mat IN ('.implode(',',$idsP).')');
 
 			if($this->_db->DB_count() > 0)
