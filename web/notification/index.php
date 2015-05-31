@@ -96,7 +96,7 @@ require_once('../../inc/data.inc.php');
 
 		if(!empty($_GET["page"]))
 		{
-			$page = intval(htmlentities($_GET["page"], ENT_QUOTES);
+			$page = intval(htmlentities($_GET["page"], ENT_QUOTES));
 			if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
 				$page = 1;
 		}
