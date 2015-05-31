@@ -17,8 +17,10 @@ require_once('../inc/droits.inc.php');
 
 if (isset($_GET['com']) && isset($_GET['nom']))
 {
-	$id_commande = $_GET['com'];
-	$parent = $_GET['nom'];
+	$db = new DB_connection();
+
+	$id_commande = $db->quote($_GET['com']);
+	$parent = htmlentities($_GET['nom'], ENT_QUOTES);
 
 	/*
 	 * pour affiche les listes
@@ -38,7 +40,6 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	AND com.etat >= 1 AND c.id_commande = '.$id_commande;
 
 
-	$db = new DB_connection();
 
 	$prix = array();
 
