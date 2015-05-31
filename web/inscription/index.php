@@ -29,9 +29,6 @@ if(isset($_SESSION["id_parent"]))
 				require_once("../connexion/login.php");
 			?>
 		</div>
-		<?php
-		//require_once(INC.'/redirect.inc.php');
-		?>
 
 		<div id="menu">
 
@@ -66,18 +63,17 @@ if(isset($_SESSION["id_parent"]))
 		</div>
 
 		<?php 
-				if(isset($_SESSION['droits']))
-				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
-				}
-
+		if(isset($_SESSION['droits']))
+		{
+			if ($_SESSION['droits'] ==1 )
+			{
+			?>
+			<div id="admin">
+				<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+			</div>
+			<?php
+			}
+		}
 		?>
 
 	</div>
@@ -108,6 +104,11 @@ if(isset($_SESSION["id_parent"]))
 			if(empty($_POST["cmdp"])){ $bol=false;}
 			if(empty($_POST["nbrenfant"])){ $bol=false;}
 
+			$nom = htmlentities($_POST["nom"], ENT_QUOTES);
+			$email = htmlentities($_POST["email"], ENT_QUOTES);
+			$tel = htmlentities($_POST["tel"], ENT_QUOTES);
+			$mdp = htmlentities($_POST["mdp"], ENT_QUOTES);
+			$nbrenfant = htmlentities($_POST["nbrenfant"], ENT_QUOTES);
 			if(!$bol)
 			{
 				/*
@@ -115,27 +116,27 @@ if(isset($_SESSION["id_parent"]))
 				on affiche un message 
 				et le formulaire avec son état précédent
 				*/
-				formulaire_inscription("Veuillez remplir tous les champs.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Veuillez remplir tous les champs.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else if(!verifLogin($_POST["nom"]))
 			{
-				formulaire_inscription("Le nom ne doit pas dépasser 40 caractères.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Le nom ne doit pas dépasser 40 caractères.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else if(!verifEmail($_POST["email"]))
 			{
-				formulaire_inscription("Email invalide.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Email invalide.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else if(!verifTel($_POST["tel"]))
 			{
-				formulaire_inscription("Téléphone invalide.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Téléphone invalide.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else if(!verifMdp($_POST["mdp"]))
 			{
-				formulaire_inscription("Le mot de passe doit comporter entre 6 et 16 caractères.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Le mot de passe doit comporter entre 6 et 16 caractères.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else if(rpHash($_POST['captcha']) != $_POST['captchaHash'])
 			{
-				formulaire_inscription("Le captcha est incorrect.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+				formulaire_inscription("Le captcha est incorrect.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 			}
 			else
 			{
@@ -147,9 +148,9 @@ if(isset($_SESSION["id_parent"]))
 				sinon réaffichage du formulaire avec son état précédent
 				et un message 
 				*/
-				if(!emailLibre($_POST["email"], $db))
+				if(!emailLibre($db->quote($_POST["email"]), $db))
 				{
-					formulaire_inscription("Cet email existe déjà." ,$_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+					formulaire_inscription("Cet email existe déjà.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 				}
 				else if($_POST["mdp"] != $_POST["cmdp"])
 				{
@@ -158,20 +159,13 @@ if(isset($_SESSION["id_parent"]))
 					sinon réaffichage du formulaire avec son état précédent
 					et un message 
 					*/
-					formulaire_inscription("Les mots de passe ne correspondent pas.", $_POST["nom"], $_POST["email"], $_POST["tel"], $_POST["mdp"], "", $_POST["nbrenfant"]);
+					formulaire_inscription("Les mots de passe ne correspondent pas.", $nom, $email, $tel, $mdp, "", $nbrenfant);
 				}
 				else
 				{
-					// toutes les conditions sont vérifiées, insertion dans la base 
+					// toutes les conditions sont vérifiées, insertion dans la base
 
-					// purification des variables
-					$_POST["nom"]=htmlEntities($_POST["nom"]);
-					$_POST["email"]=htmlEntities($_POST["email"]);
-					$_POST["tel"]=htmlEntities($_POST["tel"]);
-					$_POST["mdp"]=htmlEntities($_POST["mdp"]);
-					$_POST["nbrenfant"]=htmlEntities($_POST["nbrenfant"]);
-
-					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents, id_etat) values("'.$_POST['nom'].'","'.$_POST['email'].'","'.$_POST['tel'].'","'.hasher_mdp($_POST['mdp']).'",'.$_POST['nbrenfant'].', 0, 1)';  
+					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents, id_etat) values("'.$db->quote($_POST['nom']).'","'.$db->quote($_POST['email']).'","'.$db->quote($_POST['tel']).'","'.hasher_mdp($db->quote($_POST['mdp'])).'",'.$db->quote($_POST['nbrenfant']).', 0, 1)';  
 
 					// exécution de la requête 
 					$db->DB_query($requete);

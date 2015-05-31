@@ -131,7 +131,7 @@ require_once(INC.'/redirect.inc.php');
 				{
 						if($admin = $db->DB_object())
 						{
-							message($db->quote($email), $db->quote($objet), $db->quote($message), 1, $admin->id_parent);
+							message($db->quote($_POST["email"]), $db->quote($_POST["objet"]), $db->quote($_POST["message"]), 1, $admin->id_parent);
 						}
 				}
 				$db->DB_done();
