@@ -21,14 +21,10 @@ else
 
 	if($bool)
 	{
-		// purification des variables
-		$_POST["email"]=htmlEntities($_POST["email"]);
-		$_POST["pass"]=htmlEntities($_POST["pass"]);
-
-		$requete = 'select * from Parent where email_parent = "'.$_POST["email"].'" AND id_etat > 1';
-
 		// connexion a la base via la classe DB_connection
 		$db = new DB_connection();
+
+		$requete = 'select * from Parent where email_parent = "'.$db->quote($_POST["email"]).'" AND id_etat > 1';
 
 		$db->DB_query($requete);
 
