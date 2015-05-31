@@ -18,7 +18,9 @@ require_once(INC.'/droits.inc.php');
 
 if (isset($_GET['com']))
 {
-	$id_commande = $_GET['com'];
+	$db = new DB_connection();
+
+	$id_commande = $db->quote($_GET['com']);
 	$parent = $_SESSION['nom_parent'];
 
 	/*
@@ -37,9 +39,6 @@ if (isset($_GET['com']))
 	FROM Contient as c, Materiel as m, Commande as com 
 	WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
 	AND com.etat >= 1 AND c.id_commande = '.$id_commande;
-
-
-	$db = new DB_connection();
 
 	$prix = array();
 
