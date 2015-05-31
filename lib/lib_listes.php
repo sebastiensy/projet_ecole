@@ -79,10 +79,10 @@ function affichage($panier)
 		{
 			if(isset($_POST["id"]) && isset($_POST["qte"]))
 			{
-				$panier->addList($_POST["id"], $_POST["qte"]);
+				$panier->addList(htmlentities($_POST["id"], ENT_QUOTES), htmlentities($_POST["qte"], ENT_QUOTES));
 				$query = 'SELECT n.Libelle FROM Niveau n, Liste_niveau ln WHERE n.code = ln.niveau AND ln.id_nivliste = "'.$db->quote($_POST["id"]).'"';
 				$db->DB_query($query);
-				$s = $_POST["qte"] > 1 ? "s" : "";
+				$s = htmlentities($_POST["qte"], ENT_QUOTES) > 1 ? "s" : "";
 				echo "<span style=\"color:green; font-size:13pt\"><p><strong>La liste \"".$db->DB_object()->Libelle."\" a été ajouté au
 				<a href=\"../panier\">panier</a> en ".htmlentities($_POST["qte"], ENT_QUOTES)." exemplaire".$s."&nbsp;</strong><img src=\"../../img/icon_OK.png\"></p></span>";
 			}

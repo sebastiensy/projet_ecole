@@ -3,7 +3,7 @@
 if(isset($_GET["id"]))
 {
 	$db = new DB_connection();
-	$query = 'SELECT n.Libelle, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = '.$_GET["id"];
+	$query = 'SELECT n.Libelle, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = \''.$db->quote($_GET["id"]).'\'';
 	$db->DB_query($query);
 	$libelle = "";
 	$prix = 0;
@@ -16,7 +16,7 @@ if(isset($_GET["id"]))
 		}
 	}
 
-	$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$_GET["id"];
+	$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = \''.$db->quote($_GET["id"]).'\'';
 	$query2 .= ' ORDER BY m.id_mat';
 	$db->DB_query($query2);
 
