@@ -11,8 +11,8 @@ require_once(INC.'/droits.inc.php');
 
 if(isset($_GET['id']))
 {
-	$id=$_GET['id'];
 	$db = new DB_connection();
+	$id=$db->quote($_GET['id']);
 
 	$req="DELETE from Message where id_message='".$id."'";
 

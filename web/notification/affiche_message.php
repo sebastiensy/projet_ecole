@@ -18,13 +18,14 @@ require_once(INC.'/droits.inc.php');
 
 if(isset($_GET['id']))
 {
-	$id_msg = $_GET['id'];
+	$db = new DB_connection();
+
+	$id_msg = $db->quote($_GET['id']);
 
 	$requete2 = 'UPDATE Message set lu = 1 WHERE id_message = '.$id_msg;
 
 	$requete = 'SELECT objet, message, jma FROM Message WHERE id_message = '.$id_msg;
 
-	$db = new DB_connection();
 	$db->DB_query($requete);
 
 	if ($db->DB_count() > 0)
