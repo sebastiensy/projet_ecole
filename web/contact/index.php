@@ -95,6 +95,9 @@ require_once(INC.'/redirect.inc.php');
 			if(empty($_POST["objet"])){ $bool=false;}
 			if(empty($_POST["message"])){ $bool=false;}
 
+			$email = htmlentities($_POST["email"], ENT_QUOTES);
+			$objet = htmlentities($_POST["objet"], ENT_QUOTES);
+			$message = htmlentities($_POST["message"], ENT_QUOTES);
 			if(!$bool)
 			{
 				/*
@@ -103,29 +106,24 @@ require_once(INC.'/redirect.inc.php');
 				et le formulaire avec sont état précédent
 				*/
 				echo "<p><span style=\"color:red\">Vous devez remplir tous les champs.</span></p>";
-				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+				formulaire_contacter($email, $objet, $message);
 			}
 			else if(!verifEmail($_POST["email"]))
 			{
 				echo "<p><span style=\"color:red\">Email invalide.</span></p>";
-				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+				formulaire_contacter($email, $objet, $message);
 			}
 			else if(rpHash($_POST['captcha']) != $_POST['captchaHash'])
 			{
 				echo "<p><span style=\"color:red\">Le captcha est incorrect.</span></p>";
-				formulaire_contacter($_POST["email"],$_POST["objet"],$_POST["message"]);
+				formulaire_contacter($email, $objet, $message);
 			}
 			else
 			{
-				// les champs sont remplis, ecriture dans la base
+				// les champs sont remplis, écriture dans la base
 
 				// connexion a la base via la classe DB_connection
 				$db = new DB_connection();
-
-				// purification des variables
-				$_POST["message"]=htmlSpecialChars($_POST["message"]);
-				$_POST["objet"]=htmlSpecialChars($_POST["objet"]);
-				$_POST["email"]=htmlSpecialChars($_POST["email"]);
 
 				$requete='SELECT id_parent FROM Parent WHERE droits_parents = 1';
 				$db->DB_query($requete);
@@ -133,7 +131,7 @@ require_once(INC.'/redirect.inc.php');
 				{
 						if($admin = $db->DB_object())
 						{
-							message($_POST["email"], $_POST["objet"], $_POST["message"], 1, $admin->id_parent);
+							message($db->quote($email), $db->quote($objet), $db->quote($message), 1, $admin->id_parent);
 						}
 				}
 				$db->DB_done();
