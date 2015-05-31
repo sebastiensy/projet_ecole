@@ -132,14 +132,14 @@ require_once(LIB.'/lib_fournitures.php');
 			}
 			if(!empty($_GET["find"]))
 			{
-				$str = "Résultats de la recherche \"".htmlspecialchars($_GET["find"])."\" : ";
+				$str = "Résultats de la recherche \"".htmlentities($_GET["find"], ENT_QUOTES)."\" : ";
 				echo "<p class=\"tprod\">$str</p>";
 
 				afficherFournitures($panier, "", "", $db->quote(stripAccents($_GET["find"])));
 			}
 			else if(!empty($_GET["cat"]))
 			{
-				echo "<p class=\"tprod\">".$_GET["cat"]." :</p>";
+				echo "<p class=\"tprod\">".htmlentities($_GET["cat"], ENT_QUOTES)." :</p>";
 				if(!empty($_GET["scat"]))
 				{
 					afficherFournitures($panier, $db->quote($_GET["cat"]), $db->quote($_GET["scat"]));

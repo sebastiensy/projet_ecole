@@ -50,7 +50,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 
 	if(!empty($_GET["page"]))
 	{
-		$page = intval($_GET["page"]);
+		$page = intval(htmlentities($_GET["page"], ENT_QUOTES));
 		if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
 			$page = 1;
 	}
@@ -69,15 +69,15 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 		{
 			if(isset($_GET["ref"]))
 			{
-				$requete2 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+				$requete2 = 'SELECT ref_mat FROM Materiel WHERE ref_mat = "'.$db->quote($_GET["ref"]).'"';
 				$db->DB_query($requete2);
 				if($db->DB_count() > 0)
 				{
-					$str = "L'article ".$_GET["ref"]." a été ajouté au <a href=\"../panier\">panier</a>";
+					$str = "L'article ".htmlentities($_GET["ref"], ENT_QUOTES)." a été ajouté au <a href=\"../panier\">panier</a>";
 					if(isset($_GET["qte"]))
 					{
-						$s = $_GET["qte"] > 1 ? "s" : "";
-						$str .= " en ".$_GET["qte"]." exemplaire".$s."&nbsp;";
+						$s = htmlentities($_GET["qte"], ENT_QUOTES) > 1 ? "s" : "";
+						$str .= " en ".htmlentities($_GET["qte"], ENT_QUOTES)." exemplaire".$s."&nbsp;";
 					}
 					echo "<span style=\"color:green; font-size:13pt\"><p><strong>$str</strong><img src=\"../../img/icon_OK.png\"></p></span>";
 				}
@@ -177,13 +177,13 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 			if($now < $jma)
 			{
 				// Vérification d'erreurs si la réf n'existe pas
-				$requete3 = 'SELECT id_mat, ref_mat FROM Materiel WHERE ref_mat = "'.htmlSpecialChars($_GET["ref"]).'"';
+				$requete3 = 'SELECT id_mat, ref_mat FROM Materiel WHERE ref_mat = "'.$db->quote($_GET["ref"]).'"';
 				$db->DB_query($requete3);
 				if($db->DB_count() > 0)
 				{
 					if($mat = $db->DB_object())
 					{
-						$panier->add($mat->id_mat, htmlSpecialChars($_GET["qte"]));
+						$panier->add($mat->id_mat, htmlentities($_GET["qte"], ENT_QUOTES));
 					}
 				}
 			}
