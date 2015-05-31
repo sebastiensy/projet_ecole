@@ -82,30 +82,43 @@ if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
 	{
-		echo '<br/><br/><table class="data" width="90%" align="center">';
-		echo '<tr>';
-			echo '<th>Référence</th>';
-			echo '<th>Description</th>';
-			echo '<th>Prix</th>';
-			echo '<th>Supprimer</th>';
-		echo '</tr>';
-		while($ligne=$db->DB_object())
+		if ($db->DB_count() > 0)
 		{
-			echo '<tr><td width="10%"><div align="center">';
-			echo $ligne->ref_mat;
-			echo '</div>';
-			echo '</td><td width="60%"><div align="center"><form method="post" action="modif_article1.php?p=modif_desc&ref='.$ligne->ref_mat.'" >
-			<div><input size=50 type=text name="desc" value="'.$ligne->desc_mat.'" >			
-			<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit ></div></form></div></td>';
-			
-			echo '<td width="30%"><div align="center"><form method="post" action="modif_article1.php?p=modif_prix&ref='.$ligne->ref_mat.'&prix='.$ligne->prix_mat.'&id='.$ligne->id_mat.'" >
-			<div><input size=10 type=text name="pr" value="'.$ligne->prix_mat.'">			
-			<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit></div></form></div></td>';
-			echo '<td width="5%"><div align="center"><form method="post" action="modif_article1.php?p=delete&ref='.$ligne->ref_mat.'&prix='.$ligne->prix_mat.'&id='.$ligne->id_mat.'" >
-			<INPUT border=0 src="../../../img/del.png" type=image Value=submit></div></form></div></td>';
+			echo '<br/><br/><table class="data" width="90%" align="center">';
+			echo '<tr>';
+				echo '<th>Référence</th>';
+				echo '<th>Description</th>';
+				echo '<th>Prix</th>';
+				echo '<th>Supprimer</th>';
 			echo '</tr>';
+			while($ligne=$db->DB_object())
+			{
+				echo '<tr><td width="10%"><div align="center">';
+				echo $ligne->ref_mat;
+				echo '</div>';
+				echo '</td><td width="60%"><div align="center"><form method="post" action="modif_article1.php?p=modif_desc&ref='.$ligne->ref_mat.'" >
+				<div><input size=50 type=text name="desc" value="'.$ligne->desc_mat.'" >			
+				<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit ></div></form></div></td>';
+				
+				echo '<td width="30%"><div align="center"><form method="post" action="modif_article1.php?p=modif_prix&ref='.$ligne->ref_mat.'&prix='.$ligne->prix_mat.'&id='.$ligne->id_mat.'" >
+				<div><input size=10 type=text name="pr" value="'.$ligne->prix_mat.'">			
+				<INPUT border=0 src="../../../img/icon_OK.png" type=image Value=submit></div></form></div></td>';
+				echo '<td width="5%"><div align="center"><form method="post" action="modif_article1.php?p=delete&ref='.$ligne->ref_mat.'&prix='.$ligne->prix_mat.'&id='.$ligne->id_mat.'" >
+				<INPUT border=0 src="../../../img/del.png" type=image Value=submit></div></form></div></td>';
+				echo '</tr>';
+			}
+			echo '</table>';
 		}
-		echo '</table>';
+		else
+		{
+			if (!empty($_POST['ref']) && empty($_POST['desc']))
+				echo "<br><span style=\"color:red\">Aucun résultat pour la recherche ayant pour référence ".htmlentities($_POST['ref'],ENT_QUOTES).".</span>";
+			if (empty($_POST['ref']) && !empty($_POST['desc']))
+				echo "<br><span style=\"color:red\">Aucun résultat pour la recherche ayant pour description ".htmlentities($_POST['desc'],ENT_QUOTES).".</span>";
+			if (!empty($_POST['ref']) && !empty($_POST['desc']))
+				echo "<br><span style=\"color:red\">Aucun résultat pour la recheche ayant pour référence ".htmlentities($_POST['ref'],ENT_QUOTES)." et pour description ".htmlentities($_POST['desc'], ENT_QUOTES).".</span>";
+		}
+		
 	}
 }
 
