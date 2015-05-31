@@ -20,12 +20,12 @@ require_once('../inc/droits.inc.php');
 		$db->DB_query($requete);
 		if ($db->DB_count() == 0)
 		{
-			$inserer = 'INSERT INTO Date_limite (jma) VALUES ("'.$_POST['date_cache'].'")';
+			$inserer = 'INSERT INTO Date_limite (jma) VALUES ("'.$db->quote($_POST['date_cache']).'")';
 			$db->DB_query($inserer);
 		}
 		else
 		{
-			$modifier = 'UPDATE Date_limite SET jma = "'.$_POST['date_cache'].'"';
+			$modifier = 'UPDATE Date_limite SET jma = "'.$db->quote($_POST['date_cache']).'"';
 			$db->DB_query($modifier);
 		}
 		header('Location: index.php');
@@ -46,7 +46,7 @@ require_once('../inc/droits.inc.php');
 
 if(isset($_GET['gestion']) && isset($_GET['date']))
 {
-	$tmp = explode('/', $_GET['date']);
+	$tmp = explode('/', htmlentities($_GET['date'], ENT_QUOTES));
 	$d = $tmp[2].'-'.$tmp[1].'-'.$tmp[0];
 	?>
 	<table width="900" align="center" class="entete">
