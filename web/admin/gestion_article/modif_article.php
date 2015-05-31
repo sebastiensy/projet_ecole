@@ -53,6 +53,7 @@ if(isset($_GET['p']))
 {
 	if($_GET['p']=="recherche")
 	{
+		$db = new DB_connection();
 		$req="select * from Materiel where";
 		if(!empty($_POST["ref"]) && !empty($_POST["desc"]))
 		{
@@ -72,7 +73,6 @@ if(isset($_GET['p']))
 		{
 			$req.="1";
 		}
-		$db = new DB_connection();
 		$db->DB_query($req);
 	}
 	
