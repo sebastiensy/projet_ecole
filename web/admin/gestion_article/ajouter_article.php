@@ -38,28 +38,28 @@ else
 {
 	$db = new DB_connection();
 		
-	$req = "SELECT ref_mat FROM Materiel WHERE ref_mat = ".$_POST['ref'];
+	$req = "SELECT ref_mat FROM Materiel WHERE ref_mat = ".$db->quote($_POST['ref']);
 	$db->DB_query($req);
 
 	if($ligne=$db->DB_object())
 	{
-		formulaire_ajout_article("<span style=\"color:red\"><p><strong>Le produit ayant pour reference ".$_POST['ref']." existe deja. Veuillez modifier la reference !</strong></p></span>",$_POST['ref'],$_POST['desc'],$_POST['prix']);
+		formulaire_ajout_article("<span style=\"color:red\"><p><strong>Le produit ayant pour reference ".htmlentities($_POST['ref'], ENT_QUOTES)." existe deja. Veuillez modifier la reference !</strong></p></span>",htmlentities($_POST['ref'], ENT_QUOTES),htmlentities($_POST['desc'], ENT_QUOTES),htmlentities($_POST['prix'], ENT_QUOTES));
 	}
 	else
 	{
 		if(verifPrix($_POST['prix']))
 		{
-			$req1="insert into Sous_categorie values('','".$_POST['categorie']."','')";
+			$req1="insert into Sous_categorie values('','".$db->quote($_POST['categorie'])."','')";
 			$db->DB_query($req1);
 			$id=$db->DB_id();
 
-			$req1="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$_POST['ref']."','".$_POST['desc']."','".$_POST['prix']."','".$id."')";
+			$req1="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$db->quote($_POST['ref'])."','".$db->quote($_POST['desc'])."','".$db->quote($_POST['prix'])."','".$id."')";
 			$db->DB_query($req1);
-			formulaire_ajout_article("<span style=\"color:green\"><p><strong>Le produit \"".$_POST['desc']."\" ayant pour reference ".$_POST['ref']." a bien ete ajoute.</strong></p></span>","","","");
+			formulaire_ajout_article("<span style=\"color:green\"><p><strong>Le produit \"".htmlentities($_POST['desc'], ENT_QUOTES)."\" ayant pour reference ".htmlentities($_POST['ref'], ENT_QUOTES)." a bien ete ajoute.</strong></p></span>","","","");
 		}
 		else
 		{
-			formulaire_ajout_article("<span style=\"color:red\"><p><strong>Veuillez saisir un prix valide!</strong></p></span>",$_POST['ref'],$_POST['desc'],$_POST['prix']);
+			formulaire_ajout_article("<span style=\"color:red\"><p><strong>Veuillez saisir un prix valide!</strong></p></span>",htmlentities($_POST['ref'], ENT_QUOTES),htmlentities($_POST['desc'], ENT_QUOTES),htmlentities($_POST['prix'], ENT_QUOTES));
 		}
 	}
 }
