@@ -65,7 +65,7 @@ if($_GET["reponse"] == 1)
 {
 	$db = new DB_connection();
 	$query = 'SELECT m.id_mat, m.ref_mat, m.desc_mat, m.prix_mat, sc.categorie, sc.scat FROM Materiel as m, Sous_categorie as sc WHERE m.id_scat = sc.id_scat';
-	$query .= '  AND sc.categorie = "'.$_POST['id'].'"';
+	$query .= '  AND sc.categorie = "'.$db->quote($_POST['id']).'"';
 	$query .= ' ORDER BY id_mat';
 	$db->DB_query($query);
 

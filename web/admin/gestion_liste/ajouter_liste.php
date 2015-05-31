@@ -26,7 +26,7 @@ require_once('../../../inc/redirect.inc.php');
 				$db = new DB_connection();
 				if(isset($_POST["select"]))
 				{
-					$query = 'SELECT Libelle FROM Niveau WHERE code = "'.$_POST["select"].'"';
+					$query = 'SELECT Libelle FROM Niveau WHERE code = "'.$db->quote($_POST["select"]).'"';
 					$db->DB_query($query);
 					if($niv = $db->DB_object())
 					{
@@ -70,7 +70,7 @@ if(isset($_POST["enrListe"]))
 				$query = 'INSERT INTO Compose (qte_scat, id_mat, id_nivliste) VALUES';
 				while($mat = $db->DB_object())
 				{
-					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$_POST["idniv"].'"),';
+					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$db->quote($_POST["idniv"]).'"),';
 					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 				}
 				//$prix = $prix * (100-$_POST["reduc"]) / 100;
@@ -79,12 +79,12 @@ if(isset($_POST["enrListe"]))
 				{
 					if($_POST["reduc"] >= 0)
 					{
-						$prix = $_POST["reduc"];
+						$prix = $db->quote($_POST["reduc"]);
 					}
 				}
 				$query = substr($query, 0, -1);
 				$db->DB_query($query);
-				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$_POST["idniv"].'"';
+				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$db->quote($_POST["idniv"]).'"';
 				$db->DB_query($query);
 				echo "<span style=\"color:green\"><p><strong>La liste a été ajoutée.</strong></p></span>";
 				echo "Retourner sur la <a href=\"../gestion_liste\">gestion des listes</a>";
@@ -105,7 +105,7 @@ if(isset($_POST["enrListe"]))
 }
 else if(isset($_POST["select"]))
 {
-	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$_POST["select"].'", 0)';
+	$query = 'INSERT INTO Liste_niveau(niveau, forfait) VALUES ("'.$db->quote($_POST["select"]).'", 0)';
 	$db->DB_query($query);
 	$idniv = $db->DB_id();
 

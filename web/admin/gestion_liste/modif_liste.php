@@ -27,7 +27,7 @@ require_once('../inc/droits.inc.php');
 				$db = new DB_connection();
 				if(isset($_GET["id"]))
 				{
-					$query = 'SELECT n.Libelle, ln.id_nivliste, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = "'.$_GET["id"].'"';
+					$query = 'SELECT n.Libelle, ln.id_nivliste, ln.forfait FROM Niveau n, Liste_niveau ln WHERE ln.niveau = n.code AND ln.id_nivliste = "'.$db->quote($_GET["id"]).'"';
 					$db->DB_query($query);
 					if($niv = $db->DB_object())
 					{
@@ -56,9 +56,9 @@ if(isset($_POST["enrListe"]))
 {
 	if(isset($_SESSION['four']))
 	{
-		$query = 'DELETE FROM Compose WHERE id_nivliste = "'.$_POST["idniv"].'"';
+		$query = 'DELETE FROM Compose WHERE id_nivliste = "'.$db->quote($_POST["idniv"]).'"';
 		$db->DB_query($query);
-		$query = 'UPDATE Liste_niveau SET forfait = 0 WHERE id_nivliste = "'.$_POST["idniv"].'"';
+		$query = 'UPDATE Liste_niveau SET forfait = 0 WHERE id_nivliste = "'.$db->quote($_POST["idniv"]).'"';
 		$db->DB_query($query);
 		$ids = array_keys($_SESSION['four']);
 		if(!empty($ids))
@@ -71,7 +71,7 @@ if(isset($_POST["enrListe"]))
 				$query = 'INSERT INTO Compose (qte_scat, id_mat, id_nivliste) VALUES';
 				while($mat = $db->DB_object())
 				{
-					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$_POST["idniv"].'"),';
+					$query .= '("'.$_SESSION["four"][$mat->id_mat].'", "'.$mat->id_mat.'", "'.$db->quote($_POST["idniv"]).'"),';
 					$prix += $mat->prix_mat * $_SESSION["four"][$mat->id_mat];
 				}
 				//$prix = $prix * (100-$_POST["reduc"]) / 100;
@@ -80,13 +80,13 @@ if(isset($_POST["enrListe"]))
 				{
 					if($_POST["reduc"] >= 0)
 					{
-						$prix = $_POST["reduc"];
+						$prix = $db->quote($_POST["reduc"]);
 					}
 				}
 				$query = substr($query, 0, -1);
 				//$query .= ' ON DUPLICATE KEY UPDATE qte_scat=VALUES(qte_scat)';
 				$db->DB_query($query);
-				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$_POST["idniv"].'"';
+				$query = 'UPDATE Liste_niveau SET forfait = "'.$prix.'" WHERE id_nivliste = "'.$db->quote($_POST["idniv"]).'"';
 				$db->DB_query($query);
 			}
 		}
@@ -103,7 +103,7 @@ if(isset($_SESSION["four"]))
 	unset($_SESSION["four"]);
 }
 
-$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$_GET["id"];
+$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$db->quote($_GET["id"]);
 $db->DB_query($query2);
 if($db->DB_count() > 0)
 {
