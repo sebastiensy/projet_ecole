@@ -111,32 +111,32 @@ if(isset($_POST['nom_parent']))
 	{
 		$modifier = 'UPDATE Parent SET nom_parent = "'.$db->quote($_POST['nom_parent']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
-		$_SESSION["nom_parent"] = $_POST["nom_parent"];
+		$_SESSION["nom_parent"] = htmlentities($_POST["nom_parent"],ENT_QUOTES);
 		afficForm("", "nom", $_SESSION["nom_parent"]);
 		print('<script type="text/javascript">location.href="index.php";</script>');
 		/*header('Location: index.php');
 		exit;*/
 	}
 	else
-		afficForm("Le nom doit comporter entre 1 et 40 caractères.", "nom", $_POST["nom_parent"]);
+		afficForm("Le nom doit comporter entre 1 et 40 caractères.", "nom", htmlentities($_POST["nom_parent"], ENT_QUOTES));
 }
 if(isset($_POST['email_parent']))
 {
 	if(verifEmail($_POST["email_parent"]))
 	{
-		if(emailLibre($_POST["email_parent"], $db))
+		if(emailLibre(htmlentities($_POST["email_parent"], ENT_QUOTES), $db))
 		{
 			$modifier = 'UPDATE Parent SET email_parent = "'.$db->quote($_POST['email_parent']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 			$db->DB_query($modifier);
-			$_SESSION["email"] = $_POST["email_parent"];
+			$_SESSION["email"] = htmlentities($_POST["email_parent"], ENT_QUOTES);
 			afficForm("", "email", $_SESSION["email"]);
 			print('<script type="text/javascript">location.href="index.php";</script>');
 		}
 		else
-			afficForm("Cet email existe déjà.", "email", $_POST["email_parent"]);
+			afficForm("Cet email existe déjà.", "email", htmlentities($_POST["email_parent"], ENT_QUOTES));
 	}
 	else
-		afficForm("Email invalide.", "email", $_POST["email_parent"]);
+		afficForm("Email invalide.", "email", htmlentities($_POST["email_parent"], ENT_QUOTES));
 }
 if(isset($_POST['tel']))
 {
@@ -144,12 +144,12 @@ if(isset($_POST['tel']))
 	{
 		$modifier = 'UPDATE Parent SET tel_parent = "'.$db->quote($_POST['tel']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
-		$_SESSION["tel_parent"] = $_POST["tel"];
+		$_SESSION["tel_parent"] = htmlentities($_POST["tel"], ENT_QUOTES);
 		afficForm("", "tel", $_SESSION["tel_parent"]);
 		print('<script type="text/javascript">location.href="index.php";</script>');
 	}
 	else
-		afficForm("Téléphone invalide.", "tel", $_POST["tel"]);
+		afficForm("Téléphone invalide.", "tel", htmlentities($_POST["tel"], ENT_QUOTES));
 }
 if(isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 {
@@ -161,7 +161,7 @@ if(isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 		{
 			if(verifMdp($_POST['mdp1']))
 			{
-				if ($_POST['mdp1'] == $_POST['mdp2'])
+				if (htmlentities($_POST['mdp1'], ENT_QUOTES) == htmlentities($_POST['mdp2'], ENT_QUOTES))
 				{
 					$modifier = 'UPDATE Parent SET mdp_parent = "'.$db->quote(hasher_mdp($_POST['mdp2'])).'" WHERE id_parent = '.$_SESSION['id_parent'];
 					$db->DB_query($modifier);
@@ -184,12 +184,12 @@ if(isset($_POST['enfant']))
 	{
 		$modifier = 'UPDATE Parent SET nb_enfants = "'.$db->quote($_POST['enfant']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
-		$_SESSION["nb_enfants"] = $_POST["enfant"];
+		$_SESSION["nb_enfants"] = htmlentities($_POST["enfant"], ENT_QUOTES);
 		afficForm("", "enfant", $_SESSION["nb_enfants"]);
 		print('<script type="text/javascript">location.href="index.php";</script>');
 	}
 	else
-		afficForm("Veuillez renseigner le champ.", "enfant", $_POST['enfant']);
+		afficForm("Veuillez renseigner le champ.", "enfant", htmlentities($_POST['enfant'], ENT_QUOTES));
 }
 
 $db->DB_done();	
