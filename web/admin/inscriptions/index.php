@@ -37,10 +37,10 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 {
 	if($_GET["a"] == "accepter")
 	{
-		$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$_GET["id"].'"';
+		$query = 'UPDATE Parent set id_etat = 2 WHERE id_parent = "'.$db->quote($_GET["id"]).'"';
 		$db->DB_query($query);
 
-		$query = 'SELECT id_parent, nom_parent, email_parent FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
+		$query = 'SELECT id_parent, nom_parent, email_parent FROM Parent WHERE id_parent = "'.$db->quote($_GET["id"]).'"';
 		$db->DB_query($query);
 		if($parent = $db->DB_object())
 		{
@@ -52,8 +52,13 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 	}
 	else if($_GET["a"] == "refuser")
 	{
-		$query = 'DELETE FROM Parent WHERE id_parent = "'.$_GET["id"].'"';
+		$query = 'SELECT p.id_parent FROM Parent p, Etat e WHERE p.id_etat = e.id_etat AND p.id_etat = 1 AND p.id_parent = "'.$db->quote($_GET["id"]).'"';
 		$db->DB_query($query);
+		if($db->DB_count() > 0)
+		{
+			$query = 'DELETE FROM Parent WHERE id_parent = "'.$db->quote($_GET["id"]).'"';
+			$db->DB_query($query);
+		}
 	}
 }
 
