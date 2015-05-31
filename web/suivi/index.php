@@ -126,14 +126,16 @@ require_once(INC.'/droits.inc.php');
 
 		while($suiv = $db->DB_object())
 		{
-			
+			$tmp = explode('-', $suiv->date_cmd);
+			$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
+
 			echo "<fieldset>";
 			
 			echo "<legend>Commande n°".$suiv->id_commande."</legend>";
 			echo "<table width=\"300\">
 					<tr>
 						<th>Date de la commande : </th>
-						<td>".$suiv->date_cmd."</td>
+						<td>".$date."</td>
 					</tr>
 					<tr>
 						<th>Contenu de la commande : </th>
