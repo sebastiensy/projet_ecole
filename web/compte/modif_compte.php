@@ -109,7 +109,7 @@ if(isset($_POST['nom_parent']))
 {
 	if(verifLogin($_POST["nom_parent"]) && !empty($_POST["nom_parent"]))
 	{
-		$modifier = 'UPDATE Parent SET nom_parent = "'.$_POST['nom_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$modifier = 'UPDATE Parent SET nom_parent = "'.$db->quote($_POST['nom_parent']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		$_SESSION["nom_parent"] = $_POST["nom_parent"];
 		afficForm("", "nom", $_SESSION["nom_parent"]);
@@ -126,7 +126,7 @@ if(isset($_POST['email_parent']))
 	{
 		if(emailLibre($_POST["email_parent"], $db))
 		{
-			$modifier = 'UPDATE Parent SET email_parent = "'.$_POST['email_parent'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+			$modifier = 'UPDATE Parent SET email_parent = "'.$db->quote($_POST['email_parent']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 			$db->DB_query($modifier);
 			$_SESSION["email"] = $_POST["email_parent"];
 			afficForm("", "email", $_SESSION["email"]);
@@ -142,7 +142,7 @@ if(isset($_POST['tel']))
 {
 	if(verifTel($_POST["tel"]))
 	{
-		$modifier = 'UPDATE Parent SET tel_parent = "'.$_POST['tel'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$modifier = 'UPDATE Parent SET tel_parent = "'.$db->quote($_POST['tel']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		$_SESSION["tel_parent"] = $_POST["tel"];
 		afficForm("", "tel", $_SESSION["tel_parent"]);
@@ -163,7 +163,7 @@ if(isset($_POST['anc_mdp']) && isset($_POST['mdp1']) && isset($_POST['mdp2']))
 			{
 				if ($_POST['mdp1'] == $_POST['mdp2'])
 				{
-					$modifier = 'UPDATE Parent SET mdp_parent = "'.hasher_mdp($_POST['mdp2']).'" WHERE id_parent = '.$_SESSION['id_parent'];
+					$modifier = 'UPDATE Parent SET mdp_parent = "'.$db->quote(hasher_mdp($_POST['mdp2'])).'" WHERE id_parent = '.$_SESSION['id_parent'];
 					$db->DB_query($modifier);
 					afficForm("", "mdp");
 					print('<script type="text/javascript">location.href="index.php";</script>');
@@ -182,7 +182,7 @@ if(isset($_POST['enfant']))
 {
 	if(verifEnfant($_POST["enfant"]))
 	{
-		$modifier = 'UPDATE Parent SET nb_enfants = "'.$_POST['enfant'].'" WHERE id_parent = '.$_SESSION['id_parent'];
+		$modifier = 'UPDATE Parent SET nb_enfants = "'.$db->quote($_POST['enfant']).'" WHERE id_parent = '.$_SESSION['id_parent'];
 		$db->DB_query($modifier);
 		$_SESSION["nb_enfants"] = $_POST["enfant"];
 		afficForm("", "enfant", $_SESSION["nb_enfants"]);
