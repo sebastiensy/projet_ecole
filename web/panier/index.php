@@ -144,7 +144,7 @@ require_once(INC.'/redirect.inc.php');
 						{
 							if(isset($_GET["delList"]))
 							{
-								$panier->delList($_GET['delList']);
+								$panier->delList(htmlentities($_GET['delList']), ENT_QUOTES);
 							}
 							if(isset($_POST["liste"]["qte"]) && isset($_POST["listes"]))
 							{
@@ -193,7 +193,7 @@ require_once(INC.'/redirect.inc.php');
 						{
 							if(isset($_GET["del"]))
 							{
-								$panier->del($_GET['del']);
+								$panier->del(htmlentities($_GET['del']), ENT_QUOTES);
 							}
 							if(isset($_POST["panier"]["qte"]) && isset($_POST["fournitures"]))
 							{
