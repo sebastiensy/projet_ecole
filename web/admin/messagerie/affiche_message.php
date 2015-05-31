@@ -12,13 +12,14 @@ require_once('../inc/droits.inc.php');
 
 if (isset($_GET['id']))
 {
-	$id_msg = $_GET['id'];
+	$db = new DB_connection();
+
+	$id_msg = $db->quote($_GET['id']);
 
 	$requete2 = 'UPDATE Message set lu = 1 WHERE id_message = '.$id_msg;
 
 	$requete = 'SELECT email_parent, objet, message, jma FROM Message WHERE id_message = '.$id_msg;
 
-	$db = new DB_connection();
 	$db->DB_query($requete);
 
 	while($msg = $db->DB_object())
