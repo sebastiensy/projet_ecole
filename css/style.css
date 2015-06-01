@@ -152,6 +152,15 @@ li a, div#co2 a, a#faq
 	/*float:right;*/
 }
 
+/* faq */
+
+#faq
+{
+	position:absolute;
+	margin-left:780px;
+	margin-top:-120px;
+}
+
 /* page */
 
 .corps
