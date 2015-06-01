@@ -72,7 +72,7 @@ class PDFParent extends FPDF
 	    {
 	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
 	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
-	        $this->Cell($w[2],6,$row[2] ." ".EURO,'LR',0,'C');
+	        $this->Cell($w[2],6,number_format($row[2], 2, ',', ' ') ." ".EURO,'LR',0,'C');
 	        $this->Ln();
 	        $this->Cell(20);
 	    }
@@ -100,7 +100,7 @@ class PDFParent extends FPDF
 	        $this->Cell($w[0],6,$row[0],'LR',0,'C');
 	        $this->Cell($w[1],6,$row[1],'LR',0,'C');
 	        $this->Cell($w[2],6,$row[2],'LR',0,'C');
-	        $this->Cell($w[3],6,$row[3] ." ".EURO,'LR',0,'C');
+	        $this->Cell($w[3],6,number_format($row[3], 2, ',', ' ') ." ".EURO,'LR',0,'C');
 	        $this->Ln();
 	    }
 	    // Trait de terminaison

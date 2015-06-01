@@ -94,7 +94,7 @@ if (isset($_GET['id']))
 		$pdf->Cell(120);
 		$pdf->SetFillColor(254,243,219);
 		$pdf->SetFont('Arial', 'BI', 12);
-		$pdf->Cell(50,10,'Total Listes : '.$somme.' '.EURO,1,0,'C',true);	
+		$pdf->Cell(50,10,'Total Listes : '.number_format($somme, 2, ',', ' ').' '.EURO,1,0,'C',true);	
 
 	}
 
@@ -139,7 +139,7 @@ if (isset($_GET['id']))
 		$pdf->Cell(140);
 		$pdf->SetFillColor(254,243,219);
 		$pdf->SetFont('Arial', 'BI', 12);
-		$pdf->Cell(50,10,'Total Materiels : '.$somme.' '.EURO,1,0,'C',true);	
+		$pdf->Cell(50,10,'Total Materiels : '.number_format($somme, 2, ',', ' ').' '.EURO,1,0,'C',true);	
 	}
 
 	/*
@@ -151,7 +151,7 @@ if (isset($_GET['id']))
 	$pdf->Cell(100);
 	$pdf->SetFillColor(254,243,219);
 	$pdf->SetFont('Arial', 'BIU', 15);
-	$pdf->Cell(70,10,'Prix Total : '.$somme.' '.EURO,1,0,'C',true);	
+	$pdf->Cell(70,10,'Prix Total : '.number_format($somme, 2, ',', ' ').' '.EURO,1,0,'C',true);	
 
 	$pdf->Output($_SESSION['nom_parent']."-Commande_n".htmlentities($_GET['id'], ENT_QUOTES).".pdf","I");
 }
