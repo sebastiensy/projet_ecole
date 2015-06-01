@@ -22,9 +22,9 @@ if(isset($_GET['id']))
 
 	$id_msg = $db->quote($_GET['id']);
 
-	$requete2 = 'UPDATE Message set lu = 1 WHERE id_message = '.$id_msg;
+	$requete2 = 'UPDATE Message set lu = 1 WHERE id_message = \''.$id_msg.'\'';
 
-	$requete = 'SELECT objet, message, jma FROM Message WHERE id_message = '.$id_msg;
+	$requete = 'SELECT m.id_parent, m.objet, m.message, m.jma FROM Message m, Parent p WHERE utilisateur = 0 AND m.id_parent = p.id_parent AND m.id_parent = "'.$_SESSION["id_parent"].'" AND id_message = \''.$id_msg.'\'';
 
 	$db->DB_query($requete);
 
