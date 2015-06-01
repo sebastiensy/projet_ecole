@@ -116,18 +116,19 @@ require_once('../../inc/data.inc.php');
 			?>
 			<div id="notif">
 			<div class="liste">
-			<table width="600" align="center">
+			<table class="sortable">
 				<tr>
-					<td width="90"><div align="center">N° message</div></td>
-					<td width="90"><div align="center">Objet</div></td>
-					<td width="90"><div align="center">Date</div></td>
-					<td width="90"><div align="center">Etat</div></td>
-					<td width="40"><div align="center">Actions</div></td>
+					<td id="sort">N° message</td>
+					<td id="sort">Objet</td>
+					<td id="sort">Date</td>
+					<td id="sort">Etat</td>
+					<td class="sorttable_nosort">Actions</td>
 				</tr>
 			<?php
 			$cpt = $db->DB_count();
 			while($msg = $db->DB_object())
 			{
+				?> <form method="POST" action=""> <?php
 				$str = $msg->objet;
 				$idCom = 0;
 				if(@preg_match('#^([^0-9]+)([0-9]+)$#', $str, $part))
@@ -160,7 +161,7 @@ require_once('../../inc/data.inc.php');
 				<?php echo "<input type=\"button\" title=\"Supprimer\" onClick=setId(".$msg->id_message.") class=\"del btnOpenDialog\"/><div id=\"dialog-confirm\"></div></td>"; ?>
 				<?php 
 				echo "<input type=\"hidden\" value=".$msg->id_message." id=".$msg->id_message.">";
-				echo "</tr>";
+				echo "</tr></form>";
 			}
 			echo "</table></div></div>";
 			echo "<input type=\"hidden\" value=\"\" id=\"iden\">";
