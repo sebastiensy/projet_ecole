@@ -154,7 +154,9 @@ require_once('../../inc/data.inc.php');
 				{
 					$p = 1;
 				}
-				echo "<td><div align='center'>".date("d-m-Y", strtotime($msg->jma))."</div></td>";
+				$date = new DateTime($msg->jma);
+				$date = $date->format('d/m/Y');
+				echo "<td><div align='center'>".$date."</div></td>";
 				echo "<td><div id=lu".$msg->id_message." align='center'>".$var."</div></td>";
 				echo '<td><div align="center"><a onClick=actualiserLecture('.$msg->id_message.') class="fancy3" value="Afficher" href="affiche_message.php?id='.$msg->id_message.'"><img title="Visualiser" src="../../img/visu.png"></a>&nbsp;&nbsp;';
 				?> <!-- <a href="suppr_message.php?id=<?php /*echo $msg->id_message;*/ ?>&amp;page=<?php /*echo $p;*/ ?>"><img title="Supprimer" src="../../img/del.png"></a></div></td> -->
