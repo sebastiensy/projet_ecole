@@ -27,11 +27,12 @@ if (isset($_GET['id']))
 	$requete = 'SELECT p.nom_parent, p.email_parent, p.tel_parent, c.date_cmd
 				FROM Parent as p, Commande as c
 				WHERE p.id_parent = c.id_parent
-				AND c.id_commande = '.$_GET['id'];
+				AND c.id_commande = \''.$db->quote($_GET['id']).'\' AND c.id_parent = '.$_SESSION['id_parent'];
 
 	$db->DB_query($requete);
 
 	$data = $db->DB_all();
+
 
 	$pdf->SetFont('Arial','',12);
 
@@ -40,6 +41,15 @@ if (isset($_GET['id']))
 	if ($db->DB_count() > 0)
 	{
 		$pdf->Ln(10);
+		$db->DB_query($requete);
+
+		while ($d = $db->DB_object())
+		{
+			$tmp = explode('-', $d->date_cmd);
+			$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
+			$data[0][3]	= $date;
+		}
+		
 		$pdf->TableInfo($headerInfo,$data);
 	}
 
@@ -53,7 +63,7 @@ if (isset($_GET['id']))
 	$requete1 = 'SELECT n.libelle, i.exemplaire, ln.forfait
 	FROM Commande as com, Inclus as i, Liste_niveau as ln, Niveau as n 
 	WHERE com.id_commande = i.id_commande AND i.id_nivliste = ln.id_nivliste AND ln.niveau = n.code 
-	AND com.etat >= 1 AND i.id_commande = '.$_GET['id'];
+	AND com.etat >= 1 AND i.id_commande = \''.$db->quote($_GET['id']).'\' AND com.id_parent = '.$_SESSION['id_parent'];
 
 	$headerListe = array('Liste', 'Quantite', 'Forfait');
 
@@ -95,7 +105,7 @@ if (isset($_GET['id']))
 	$requete2 = 'SELECT m.ref_mat, m.desc_mat, c.quantite, m.prix_mat  
 	FROM Contient as c, Materiel as m, Commande as com 
 	WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
-	AND com.etat >= 1 AND c.id_commande = '.$_GET['id'];
+	AND com.etat >= 1 AND c.id_commande = \''.$db->quote($_GET['id']).'\' AND com.id_parent = '.$_SESSION['id_parent'];
 
 	$headerMat = array('Reference', 'Materiel', 'Quantite', 'Prix unitaire');
 
@@ -143,6 +153,6 @@ if (isset($_GET['id']))
 	$pdf->SetFont('Arial', 'BIU', 15);
 	$pdf->Cell(70,10,'Prix Total : '.$somme.' '.EURO,1,0,'C',true);	
 
-	$pdf->Output($_SESSION['nom_parent']."-Commande_n".$_GET['id'].".pdf","I");
+	$pdf->Output($_SESSION['nom_parent']."-Commande_n".htmlentities($_GET['id'], ENT_QUOTES).".pdf","I");
 }
 ?>
