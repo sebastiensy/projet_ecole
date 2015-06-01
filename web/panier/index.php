@@ -18,7 +18,8 @@ require_once(INC.'/redirect.inc.php');
 			<?php
 				require_once("../connexion/login.php");
 			?>
-		</div> 
+		</div>
+		<div id="faq"><a href="../faq/"><img src="../../img/aide.png"></a></div>
 
 		<div id="menu">
 
