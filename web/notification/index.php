@@ -121,7 +121,7 @@ require_once('../../inc/data.inc.php');
 					<td width="90"><div align="center">Objet</div></td>
 					<td width="90"><div align="center">Date</div></td>
 					<td width="90"><div align="center">Etat</div></td>
-					<td width="40"><div align="center">Opérations</div></td>
+					<td width="40"><div align="center">Actions</div></td>
 				</tr>
 			<?php
 			$cpt = $db->DB_count();
