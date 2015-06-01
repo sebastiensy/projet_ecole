@@ -79,8 +79,8 @@
 		$(".fancyworkcmd").fancybox({
 			fitToView:false,
 			autoSize:false,
-			'width':'100%',
-			'height':'10%',
+			'width':'66%',
+			'height':'40%',
 			'autoScale': 'false',
 			'type':'iframe'
 		 });

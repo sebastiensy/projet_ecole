@@ -292,7 +292,7 @@ if(isset($_SESSION["id_parent"]))
 			else 
 				echo "<p class=\"titre\">Etat de mes commandes</p>";
 			?>
-			<div id="suivi">
+			<div id="suivcmds">
 			<div class="liste">
 			<table width="600" align="center">
 				<tr>
@@ -306,7 +306,7 @@ if(isset($_SESSION["id_parent"]))
 			while($suivi = $db->DB_object())
 			{
 				echo "<tr>";
-				echo "<td><div align=\"center\"><a class=\"fancycmd\" href=\"etat.php?com=".$suivi->id_commande."\">Commande n°".$suivi->id_commande."</a></div></td>";
+				echo "<td><div align=\"center\"><a class=\"fancyworkcmd\" href=\"etat.php?com=".$suivi->id_commande."\">Commande n°".$suivi->id_commande."</a></div></td>";
 				
 				$tmp = explode('-', $suivi->date_cmd);
 				$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
@@ -325,7 +325,7 @@ if(isset($_SESSION["id_parent"]))
 				if ($suivi->etat == 6)
 					echo "<td><div align=\"center\">Retiré et payé</div></td>";
 
-				echo '<td><div align="center"><a class="fancyworkcmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a>';
+				echo '<td><div align="center"><a class="fancycmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a>';
 				echo "<a href='pdf.php?id=".$suivi->id_commande."' target='_blank'><img src='../../img/imprimer.png' id='impFacture' border='0'></a></div></td>";
 
 				echo "</tr>";
@@ -362,7 +362,7 @@ if(isset($_SESSION["id_parent"]))
 	}
 
 ?>
-</div></div>
+</div></div></div>
 
 <?php
 
