@@ -9,6 +9,15 @@ li a, div#co2 a, a#fa
 	color:brown;
 }
 
+table.sortable td#sort:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE";
+}
+
+.sortable td#sort
+{
+	cursor:pointer;
+}
+
 #banner
 {
 	width:901px; /* 901px */

@@ -295,40 +295,44 @@ if(isset($_SESSION["id_parent"]))
 		?>
 		<div id="suivcmds">
 		<div class="liste">
-		<table class="sortable" width="600" align="center">
+		<table class="sortable">
 			<tr>
-				<td width="90"><div align="center">Commande</div></td>
-				<td width="90"><div align="center">Date</div></td>
-				<td width="90"><div align="center">Etat</div></td>
-				<td width="40"><div align="center">Actions</div></td>
+				<td id="sort">Commande</td>
+				<td id="sort">Date</td>
+				<td id="sort">Etat</td>
+				<td class="sorttable_nosort">Actions</td>
 			</tr>
 		<?php
 		while($suivi = $db->DB_object())
 		{
+			?> <form method="POST" action=""> <?php
 			echo "<tr>";
-			echo "<td><div align=\"center\"><a class=\"fancyworkcmd\" href=\"etat.php?com=".$suivi->id_commande."\">Commande n°".$suivi->id_commande."</a></div></td>";
-			
-			$tmp = explode('-', $suivi->date_cmd);
-			$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
-			echo "<td><div align=\"center\">".$date."</div></td>";
+			echo "<td><a class=\"fancyworkcmd\" href=\"etat.php?com=".$suivi->id_commande."\">Commande n°".$suivi->id_commande."</a></td>";
+
+			$date = new DateTime($suivi->date_cmd);
+			$date = $date->format('d/m/Y');
+
+			//$tmp = explode('-', $suivi->date_cmd);
+			//$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
+			echo "<td>".$date."</td>";
 
 			if ($suivi->etat == 1)
-				echo "<td><div align=\"center\">En cours</div></td>";
+				echo "<td>En cours</td>";
 			if ($suivi->etat == 2)
-				echo "<td><div align=\"center\">Validé</div></td>";
+				echo "<td>Validé</td>";
 			if ($suivi->etat == 3)
-				echo "<td><div align=\"center\">Commande fournisseur</div></td>";
+				echo "<td>Commande fournisseur</td>";
 			if ($suivi->etat == 4)
-				echo "<td><div align=\"center\">En cours de livraison</div></td>";
+				echo "<td>En cours de livraison</td>";
 			if ($suivi->etat == 5)
-				echo "<td><div align=\"center\">Livré</div></td>";
+				echo "<td>Livré</td>";
 			if ($suivi->etat == 6)
-				echo "<td><div align=\"center\">Retiré et payé</div></td>";
+				echo "<td>Retiré et payé</td>";
 
-			echo '<td><div align="center"><a class="fancycmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a>';
+			echo '<td><div align="center"><a class="fancycmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a>&nbsp;&nbsp;';
 			echo "<a href='pdf.php?id=".$suivi->id_commande."' target='_blank'><img src='../../img/imprimer.png' id='impFacture' border='0'></a></div></td>";
 
-			echo "</tr>";
+			echo "</tr></form>";
 		}
 		echo "</table></div></div>";
 	}
