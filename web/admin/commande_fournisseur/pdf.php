@@ -98,7 +98,7 @@ if(!empty($ids))
 		$pdf->Cell(120);
 		$pdf->SetFillColor(254,243,219);
 		$pdf->SetFont('Arial', 'BIU', 15);
-		$pdf->Cell(70,10,'Prix Total : '.$somme.' '.EURO,1,0,'C',true);	
+		$pdf->Cell(70,10,'Prix Total : '.number_format($somme, 2, ',', ' ').' '.EURO,1,0,'C',true);	
 
 	}
 }
