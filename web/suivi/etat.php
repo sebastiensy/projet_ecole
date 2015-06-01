@@ -34,7 +34,7 @@ if (isset($_GET['com']))
 		while($suiv = $db->DB_object())
 		{
 			?>
-			<div class="checkout-wrap">
+			<div align="center" class="checkout-wrap">
 		  		<ul class="checkout-bar">
 		    		<li id="1" class="1"><div id="encours">En cours</div></li>
 				    <li id="2" class="2"><div id="valide">Valide</div></li>

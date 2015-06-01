@@ -74,6 +74,16 @@
 			'autoScale': 'false',
 			'type':'iframe'
 		 });
+
+		// Pour l'affichage du workflow de la commande (suivi)
+		$(".fancyworkcmd").fancybox({
+			fitToView:false,
+			autoSize:false,
+			'width':'100%',
+			'height':'10%',
+			'autoScale': 'false',
+			'type':'iframe'
+		 });
 	});
 
 	$("a.fancy3").fancybox({

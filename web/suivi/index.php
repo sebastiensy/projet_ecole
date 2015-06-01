@@ -318,7 +318,7 @@ if(isset($_SESSION["id_parent"]))
 				if ($suivi->etat == 6)
 					echo "<td><div align=\"center\">Retiré et payé</div></td>";
 
-				echo '<td><div align="center"><a class="fancycmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a></td>';
+				echo '<td><div align="center"><a class="fancyworkcmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a></td>';
 
 				echo "</tr>";
 			}
