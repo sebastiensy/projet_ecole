@@ -87,34 +87,34 @@ require_once('../../inc/data.inc.php');
 		<hr>
 
 		<p id="aun"><u>Comment ajouter une/des liste(s) au panier ?</u></p>
-		Rendez-vous sur la page nommée Accueil, renseignez la quantité pour la liste souhaitée 
+		Rendez-vous sur la page nommée <a id="faq" href="../accueil">Accueil</a>, renseignez la quantité pour la liste souhaitée 
 		puis cliquez sur l'icône d'ajout au panier.
 
 		<p id="adeux"><u>Comment ajouter une/des fourniture(s) au panier ?</u></p>
-		Rendez-vous sur la page nommée Articles, renseignez la quantité pour la fourniture 
+		Rendez-vous sur la page nommée <a id="faq" href="../fournitures">Articles</a>, renseignez la quantité pour la fourniture 
 		souhaitée puis cliquez sur l'icône d'ajout au panier.
 
 		<p id="atrois"><u>Comment supprimer un article du panier ?</u></p>
-		Rendez-vous sur la page du panier, cliquez sur l'icône représentant une corbeille 
+		Rendez-vous sur la page du <a id="faq" href="../panier">panier</a>, cliquez sur l'icône représentant une corbeille 
 		au niveau du tableau des listes ou celui des fouritures.
 
 		<p id="aquatre"><u>Comment modifier la quantité d'un article du panier ?</u></p>
-		Rendez-vous sur la page du panier, renseignez la nouvelle quantité pour la liste ou 
+		Rendez-vous sur la page du <a id="faq" href="../panier">panier</a>, renseignez la nouvelle quantité pour la liste ou 
 		la fourniture considérée, puis cliquez sur le bouton "Recalculer" associé.
 
 		<p id="acinq"><u>Comment sauvegarder le panier ?</u></p>
-		Rendez-vous sur la page du panier, celui-ci doit contenir au moins une liste ou 
+		Rendez-vous sur la page du <a id="faq" href="../panier">panier</a>, celui-ci doit contenir au moins une liste ou 
 		une fourniture, puis cliquez sur le bouton "Sauvegarder le panier". A votre prochaine 
 		connexion, le contenu du panier sera automatiquement restitué si la commande 
 		n'a pas encore été passée.
 
 		<p id="asix"><u>Comment passer une commande ?</u></p>
-		Rendez-vous sur la page du panier, celui-ci doit contenir au moins une liste ou 
+		Rendez-vous sur la page du <a id="faq" href="../panier">panier</a>, celui-ci doit contenir au moins une liste ou 
 		une fourniture, puis cliquez sur le bouton "Commander". Le contenu du panier sera 
 		automatiquement vidé et vous pourrez entamer une nouvelle commande.
 
 		<p id="asept"><u>Comment consulter l'état de mes commandes ?</u></p>
-		Après vous être connecté, rendez-vous sur la page nommée Compte, puis cliquez 
+		Après vous être connecté, rendez-vous sur la page nommée <a id="faq" href="../compte">Compte</a>, puis cliquez 
 		sur le bouton "Suivi de mes commandes". (Vous devez avoir au moins une commande 
 		pour que celui-ci apparaisse.)
 
