@@ -47,7 +47,16 @@ if(isset($_GET["id"]) && isset($_GET["a"]))
 			message($parent->email_parent, "Inscription", "Votre inscription a été validée !", 0, $parent->id_parent);
 
 			$succes = envoiMail($parent->email_parent, "Rentrée facile - Validation de l'inscription", "Votre inscription sur le site \"Rentrée facile\" a été validée. Nous vous remercions de votre confiance.\r\n\r\n
-			Voici le lien pour accéder au site : ".$_SERVER['REQUEST_URI']);
+			");
+
+			if($succes)
+			{
+				echo "<span style=\"color:green\"><p><strong>Un mail d'acceptation a été envoyé à l'adresse ".$parent->email_parent.".</strong></p></span>";
+			}
+			else
+			{
+				echo "<span style=\"color:red\"><p><strong>L'envoi du mail d'acceptation à l'adresse ".$parent->email_parent." a échoué.</strong></p></span>";
+			}
 		}
 	}
 	else if($_GET["a"] == "refuser")
