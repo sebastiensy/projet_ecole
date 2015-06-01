@@ -77,14 +77,14 @@ require_once(INC.'/droits.inc.php');
 
 <?php
 
-	if ($_SESSION['id_parent'] != "")
-	{
-	$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
-	FROM Parent as p, Commande as c 
-	WHERE p.id_parent = c.id_parent 
-	AND c.etat > 0 AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande DESC';
+/*if ($_SESSION['id_parent'] != "")
+{
+		$db = new DB_connection();
 
-	$db = new DB_connection();
+$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
+			FROM Parent as p, Commande as c 
+			WHERE p.id_parent = c.id_parent 
+			AND c.etat > 0 AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande DESC';
 	$db->DB_query($requete);
 
 	$nb_elems = 2;
@@ -121,6 +121,20 @@ require_once(INC.'/droits.inc.php');
 			echo "<p class=\"titre\">Etat de mes commandes</p>";
 
 		?>
+		<!--<form method="get" action="index.php">
+			<p>
+	 			<select name="liste">>
+					<option value="0">Afficher toutes les commandes</option>
+					<option value="1">En cours</option>
+					<option value="2">Valid�</option>
+					<option value="3">Commande fournisseur</option>
+					<option value="4">En cours de livraison</option>
+					<option value="5">Livr�</option>
+					<option value="6">Retir� et pay�</option>
+	     		</select>
+	 			<input type="submit" value="OK" title="valider" />
+			</p>
+		</form>-->
 		<div id="suivcmds">
 		<?php
 
@@ -199,9 +213,10 @@ require_once(INC.'/droits.inc.php');
 
 			echo "</fieldset>";
 			echo "<br><br>";
-			
 		}
 	}
+
+	
 
 	echo '</div>';
 
@@ -235,9 +250,108 @@ require_once(INC.'/droits.inc.php');
 else
 {
 	header('location: ../accueil/index.php');
-}
+}*/
+
+if(isset($_SESSION["id_parent"]))
+	{
+		$db = new DB_connection();
+		$requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.etat, c.date_cmd, c.id_commande 
+			FROM Parent as p, Commande as c 
+			WHERE p.id_parent = c.id_parent 
+			AND c.etat > 0 AND p.id_parent = '.$_SESSION['id_parent'].' ORDER BY c.id_commande DESC';		
+
+		$db->DB_query($requete);
+
+		//
+		$nb_elems = 10; // nombre d'�l�ments par page
+		$nb_pages = ceil($db->DB_count() / $nb_elems);
+
+		if(!empty($_GET["page"]))
+		{
+			$page = intval(htmlentities($_GET["page"], ENT_QUOTES));
+			if($_GET["page"] > $nb_pages || $_GET["page"] < 1)
+				$page = 1;
+		}
+		else
+			$page = 1;
+
+		$debut = ($page - 1) * $nb_elems;
+
+		$requete .= ' LIMIT '.$debut.', '.$nb_elems.'';
+		//
+
+		$db->DB_query($requete);
+
+		if($db->DB_count() > 0)
+		{
+			?>
+			<div id="suivi">
+			<div class="liste">
+			<table width="600" align="center">
+				<tr>
+					<td width="90"><div align="center">Date</div></td>
+					<td width="90"><div align="center">Etat</div></td>
+					<td width="40"><div align="center">Actions</div></td>
+				</tr>
+			<?php
+			$cpt = $db->DB_count();
+			while($suivi = $db->DB_object())
+			{
+				echo "<tr>";
+				
+				$tmp = explode('-', $suivi->date_cmd);
+				$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
+				echo "<td><div align=\"center\">".$date."</div></td>";
+
+				if ($suivi->etat == 1)
+					echo "<td><div align=\"center\">En cours</div></td>";
+				if ($suivi->etat == 2)
+					echo "<td><div align=\"center\">Valid�</div></td>";
+				if ($suivi->etat == 3)
+					echo "<td><div align=\"center\">Commande fournisseur</div></td>";
+				if ($suivi->etat == 4)
+					echo "<td><div align=\"center\">En cours de livraison</div></td>";
+				if ($suivi->etat == 5)
+					echo "<td><div align=\"center\">Livr�</div></td>";
+				if ($suivi->etat == 6)
+					echo "<td><div align=\"center\">Retir� et pay�</div></td>";
+
+
+				echo "</tr>";
+			}
+			echo "</table></div></div>";
+		}
+		else
+		{
+			echo "<p>Vous n'avez aucune commande.</p>";
+		}
+	}
+
+	// affichage des pages
+	?>
+	<div id="pages">
+	<?php
+	if(isset($nb_pages))
+	{
+		if($nb_pages > 1)
+		{
+			for($i=1; $i <= $nb_pages; $i++)
+			{
+				if($i==$page)
+				{
+					echo "<span style=\"font-weight:bold; color:brown\">".$i."</span> | "; 
+				}	
+				else
+				{
+					echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+					echo ' | ';
+				}
+			}
+		}
+	}
 
 ?>
+</div></div>
 
 <?php
 
