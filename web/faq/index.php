@@ -88,7 +88,7 @@ require_once('../../inc/data.inc.php');
 		<hr>
 
 		<p id="aun"><u>Comment ajouter une/des liste(s) au panier ?</u></p>
-		Cliquez sur l'onglet accueil
+		Rendez-vous sur la page d'accueil
 
 		<p id="adeux"><u>Comment ajouter une/des fourniture(s) au panier ?</u></p>
 		

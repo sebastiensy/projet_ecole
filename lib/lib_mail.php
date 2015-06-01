@@ -14,8 +14,10 @@ function envoiMail($dest, $sujet, $messageTxt)
 
 	$boundary = "-----=".md5(rand());
 
-	$header = "From: \"Rentree.Facile\" <rentree.facile@gmail.com>".$n;
-	$header .= "Reply-to: \"Rentree.Facile\" <rentree.facile@gmail.com>".$n;
+	//$header = "From: \"Rentree.Facile\" <rentree.facile@gmail.com>".$n;
+	$header = "From: \"Rentree.Facile\" <contact@rentree-facile.fr.nf>".$n;
+	//$header .= "Reply-to: \"Rentree.Facile\" <rentree.facile@gmail.com>".$n;
+	$header .= "Reply-to: \"Rentree.Facile\" <contact@rentree-facile.fr.nf>".$n;
 	$header.= "MIME-Version: 1.0".$n;
 	$header.= "Content-Type: multipart/alternative;".$n." boundary=\"$boundary\"".$n;
 
