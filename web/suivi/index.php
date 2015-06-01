@@ -126,11 +126,11 @@ $requete = 'SELECT p.id_parent, p.nom_parent, p.email_parent, p.tel_parent, c.et
 	 			<select name="liste">>
 					<option value="0">Afficher toutes les commandes</option>
 					<option value="1">En cours</option>
-					<option value="2">Validï¿½</option>
+					<option value="2">Validé</option>
 					<option value="3">Commande fournisseur</option>
 					<option value="4">En cours de livraison</option>
-					<option value="5">Livrï¿½</option>
-					<option value="6">Retirï¿½ et payï¿½</option>
+					<option value="5">Livré</option>
+					<option value="6">Retiré et payé</option>
 	     		</select>
 	 			<input type="submit" value="OK" title="valider" />
 			</p>
@@ -263,7 +263,7 @@ if(isset($_SESSION["id_parent"]))
 		$db->DB_query($requete);
 
 		//
-		$nb_elems = 10; // nombre d'ï¿½lï¿½ments par page
+		$nb_elems = 10; // nombre d'éléments par page
 		$nb_pages = ceil($db->DB_count() / $nb_elems);
 
 		if(!empty($_GET["page"]))
@@ -289,6 +289,7 @@ if(isset($_SESSION["id_parent"]))
 			<div class="liste">
 			<table width="600" align="center">
 				<tr>
+					<td width="90"><div align="center">Commande</div></td>
 					<td width="90"><div align="center">Date</div></td>
 					<td width="90"><div align="center">Etat</div></td>
 					<td width="40"><div align="center">Actions</div></td>
@@ -298,6 +299,7 @@ if(isset($_SESSION["id_parent"]))
 			while($suivi = $db->DB_object())
 			{
 				echo "<tr>";
+				echo "<td><div align=\"center\"><a class=\"fancycmd\" href=\"etat.php?com=".$suivi->id_commande."\">Commande n°".$suivi->id_commande."</a></div></td>";
 				
 				$tmp = explode('-', $suivi->date_cmd);
 				$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
@@ -306,16 +308,17 @@ if(isset($_SESSION["id_parent"]))
 				if ($suivi->etat == 1)
 					echo "<td><div align=\"center\">En cours</div></td>";
 				if ($suivi->etat == 2)
-					echo "<td><div align=\"center\">Validï¿½</div></td>";
+					echo "<td><div align=\"center\">Validé</div></td>";
 				if ($suivi->etat == 3)
 					echo "<td><div align=\"center\">Commande fournisseur</div></td>";
 				if ($suivi->etat == 4)
 					echo "<td><div align=\"center\">En cours de livraison</div></td>";
 				if ($suivi->etat == 5)
-					echo "<td><div align=\"center\">Livrï¿½</div></td>";
+					echo "<td><div align=\"center\">Livré</div></td>";
 				if ($suivi->etat == 6)
-					echo "<td><div align=\"center\">Retirï¿½ et payï¿½</div></td>";
+					echo "<td><div align=\"center\">Retiré et payé</div></td>";
 
+				echo '<td><div align="center"><a class="fancycmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a></td>';
 
 				echo "</tr>";
 			}
