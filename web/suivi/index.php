@@ -284,6 +284,13 @@ if(isset($_SESSION["id_parent"]))
 
 		if($db->DB_count() > 0)
 		{
+			if ($db->DB_count() == 1)
+				if (empty($_GET['page']))
+					echo "<p class=\"titre\">Etat de ma commande</p>";
+				else 
+					echo "<p class=\"titre\">Etat de mes commandes</p>";
+			else 
+				echo "<p class=\"titre\">Etat de mes commandes</p>";
 			?>
 			<div id="suivi">
 			<div class="liste">
@@ -318,7 +325,8 @@ if(isset($_SESSION["id_parent"]))
 				if ($suivi->etat == 6)
 					echo "<td><div align=\"center\">Retiré et payé</div></td>";
 
-				echo '<td><div align="center"><a class="fancyworkcmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a></td>';
+				echo '<td><div align="center"><a class="fancyworkcmd" value="Afficher" href="commande.php?com='.$suivi->id_commande.'"><img title="Visualiser" src="../../img/visu.png"></a>';
+				echo "<a href='pdf.php?id=".$suivi->id_commande."' target='_blank'><img src='../../img/imprimer.png' id='impFacture' border='0'></a></div></td>";
 
 				echo "</tr>";
 			}
