@@ -73,7 +73,43 @@ require_once('../../inc/data.inc.php');
 
 		<div id="page">
 
-		<p class="titre">Aide</p>
+		<p class="titre">Foire aux questions</p>
+
+		<ul>
+		<li><a href="#aun">Comment ajouter une/des liste(s) au panier ?</a></li>
+		<li><a href="#adeux">Comment ajouter une/des fourniture(s) au panier ?</a></li>
+		<li><a href="#atrois">Comment supprimer un article du panier ?</a></li>
+		<li><a href="#aquatre">Comment modifier la quantité d'un article du panier ?</a></li>
+		<li><a href="#acinq">Comment sauvegarder le panier ?</a></li>
+		<li><a href="#asix">Comment passer une commande ?</a></li>
+		<li><a href="#asept">Comment consulter l'état de mes commandes ?</a></li>
+		<li><a href="#ahuit">Comment obtenir le récapitulatif d'une commande ?</a></li>
+		</ul>
+		<hr>
+
+		<p id="aun"><u>Comment ajouter une/des liste(s) au panier ?</u></p>
+		Cliquez sur l'onglet accueil
+
+		<p id="adeux"><u>Comment ajouter une/des fourniture(s) au panier ?</u></p>
+		
+
+		<p id="atrois"><u>Comment supprimer un article du panier ?</u></p>
+		
+
+		<p id="aquatre"><u>Comment modifier la quantité d'un article du panier ?</u></p>
+		
+
+		<p id="acinq"><u>Comment sauvegarder le panier ?</u></p>
+		
+
+		<p id="asix"><u>Comment passer une commande ?</u></p>
+		
+
+		<p id="asept"><u>Comment consulter l'état de mes commandes ?</u></p>
+		
+
+		<p id="ahuit"><u>Comment obtenir le récapitulatif d'une commande ?</u></p>
+		
 
 
 			</div>
