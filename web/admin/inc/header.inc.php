@@ -3,6 +3,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Interface Administrateur</title>
+	<link rel="icon" type="image/png" href="../../../img/icone.png"/>
 	<link rel="stylesheet" href="../../../js/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="../../../css/style_page.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />

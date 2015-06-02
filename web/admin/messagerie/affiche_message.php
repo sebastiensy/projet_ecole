@@ -6,7 +6,13 @@ require_once('../inc/droits.inc.php');
 
 ?>
 
-<link rel="stylesheet" type="text/css" href="../../../css/style1.css" />
+<html>
+	<head>
+		<title>Interface Administrateur</title>
+		<link rel="icon" type="image/png" href="../../../img/icone.png"/>
+		<link rel="stylesheet" href="../../../css/style1.css">
+	</head>
+	<body>
 
 <?php
 
@@ -53,3 +59,6 @@ if (isset($_GET['id']))
 	$db->DB_done();
 }
 ?>
+
+	</body>
+</html>

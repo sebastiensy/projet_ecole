@@ -9,6 +9,7 @@ require_once('../inc/droits.inc.php');
 <html>
 	<head>
 		<title>Interface Administrateur</title>
+		<link rel="icon" type="image/png" href="../../../img/icone.png"/>
 		<link rel="stylesheet" href="../../../css/style1.css">
 	</head>
 	<body>

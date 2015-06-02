@@ -8,7 +8,8 @@ require_once(LIB.'/lib_db.class.php');
 
 <html>
 	<head>
-		<title>Projet école</title>
+		<title>Rentrée Facile</title>
+		<link rel="icon" type="image/png" href="../../img/icone.png"/>
 		<link rel="stylesheet" href="../../css/progress.bar.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	</head>

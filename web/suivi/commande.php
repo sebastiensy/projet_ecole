@@ -9,7 +9,8 @@ require_once(INC.'/droits.inc.php');
 
 <html>
 	<head>
-		<title>Projet école</title>
+		<title>Rentrée Facile</title>
+		<link rel="icon" type="image/png" href="../../img/icone.png"/>
 		<link rel="stylesheet" href="../../css/style1.css">
 	</head>
 	<body>

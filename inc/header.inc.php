@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Projet &eacute;cole</title>
+	<title>Rentr&eacute; Facile</title>
+	<link rel="icon" type="image/png" href="../../img/icone.png"/>
 	<link rel="stylesheet" href="../../js/jquery-ui.css">
 	<link rel="stylesheet" href="../../css/style.css">
 	<link rel="stylesheet" href="../../js/fancybox/source/jquery.fancybox.css">
