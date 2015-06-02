@@ -97,8 +97,8 @@ require_once(INC.'/redirect.inc.php');
 			if(empty($_POST["message"])){ $bool=false;}
 
 			$email = htmlentities($_POST["email"], ENT_QUOTES);
-			$objet = htmlentities($_POST["objet"], ENT_QUOTES);
-			$message = htmlentities($_POST["message"], ENT_QUOTES);
+			$objet = htmlentities(trim($_POST["objet"]), ENT_QUOTES);
+			$message = htmlentities(trim($_POST["message"]), ENT_QUOTES);
 			if(!$bool)
 			{
 				/*
@@ -132,7 +132,7 @@ require_once(INC.'/redirect.inc.php');
 				{
 						if($admin = $db->DB_object())
 						{
-							message($db->quote($_POST["email"]), $db->quote($_POST["objet"]), $db->quote($_POST["message"]), 1, $admin->id_parent);
+							message($db->quote($_POST["email"]), $db->quote(trim($_POST["objet"])), $db->quote(trim($_POST["message"])), 1, $admin->id_parent);
 						}
 				}
 				$db->DB_done();

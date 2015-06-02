@@ -105,7 +105,7 @@ if(isset($_SESSION["id_parent"]))
 			if(empty($_POST["cmdp"])){ $bol=false;}
 			if(empty($_POST["nbrenfant"])){ $bol=false;}
 
-			$nom = htmlentities($_POST["nom"], ENT_QUOTES);
+			$nom = htmlentities(trim($_POST["nom"]), ENT_QUOTES);
 			$email = htmlentities($_POST["email"], ENT_QUOTES);
 			$tel = htmlentities($_POST["tel"], ENT_QUOTES);
 			$mdp = htmlentities($_POST["mdp"], ENT_QUOTES);
@@ -166,7 +166,7 @@ if(isset($_SESSION["id_parent"]))
 				{
 					// toutes les conditions sont vérifiées, insertion dans la base
 
-					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents, id_etat) values("'.$db->quote($_POST['nom']).'","'.$db->quote($_POST['email']).'","'.$db->quote($_POST['tel']).'","'.hasher_mdp($db->quote($_POST['mdp'])).'",'.$db->quote($_POST['nbrenfant']).', 0, 1)';  
+					$requete = 'insert into Parent (nom_parent, email_parent, tel_parent, mdp_parent, nb_enfants, droits_parents, id_etat) values("'.$db->quote(trim($_POST['nom'])).'","'.$db->quote($_POST['email']).'","'.$db->quote($_POST['tel']).'","'.hasher_mdp($db->quote($_POST['mdp'])).'",'.$db->quote($_POST['nbrenfant']).', 0, 1)';  
 
 					// exécution de la requête 
 					$db->DB_query($requete);
