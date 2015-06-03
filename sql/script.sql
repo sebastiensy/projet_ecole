@@ -1,10 +1,3 @@
-DROP TABLE IF EXISTS ContientFA;
-DROP TABLE IF EXISTS ContientA;
-DROP TABLE IF EXISTS InclusA;
-DROP TABLE IF EXISTS ComFour_archive;
-DROP TABLE IF EXISTS Mat_archive;
-DROP TABLE IF EXISTS Com_archive;
-DROP TABLE IF EXISTS Liste_archive;
 DROP TABLE IF EXISTS Compose;
 DROP TABLE IF EXISTS Inclus;
 DROP TABLE IF EXISTS Contient;
@@ -115,61 +108,6 @@ CREATE TABLE Compose(
 	PRIMARY KEY (id_mat, id_nivliste)
 ) Engine=InnoDB;
 
-CREATE TABLE Com_archive(
-	id_comArchive INT AUTO_INCREMENT NOT NULL,
-	date_archive DATE,
-	id_parent INT,
-	PRIMARY KEY (id_comArchive)
-) Engine=InnoDB;
-
-CREATE TABLE ComFour_archive(
-	id_comFour INT AUTO_INCREMENT NOT NULL,
-	prix_archive DOUBLE,
-	date_fourArchive DATE,
-	PRIMARY KEY (id_comFour)
-) Engine=InnoDB;
-
-CREATE TABLE Mat_archive(
-	id_matA INT AUTO_INCREMENT NOT NULL, /* ID INDEPENDANT */
-	ref_matA VARCHAR(20),
-	desc_matA VARCHAR(50),
-	prix_matA NUMERIC(5,2),
-	PRIMARY KEY (id_matA)
-) Engine=InnoDB;
-
-CREATE TABLE Liste_archive(
-	id_nivlisteA INT  AUTO_INCREMENT NOT NULL,
-	forfaitA DOUBLE, 
-	PRIMARY KEY (id_nivlisteA)
-) Engine=InnoDB;
-
-CREATE TABLE ContientFA(
-	id_comFour INT  AUTO_INCREMENT NOT NULL,
-	id_matA INT NOT NULL,
-	qte_matFA INT,
-	PRIMARY KEY (id_comFour,  id_matA),
-	FOREIGN KEY (id_comFour) REFERENCES ComFour_archive (id_comFour),
-	FOREIGN KEY (id_matA) REFERENCES Mat_archive (id_matA)
-) Engine=InnoDB;
-
-CREATE TABLE ContientA(
-	id_matA INT  AUTO_INCREMENT NOT NULL,
-	id_comArchive INT NOT NULL,
-	qte_matA INT,
-	PRIMARY KEY (id_matA,  id_comArchive),
-	FOREIGN KEY (id_matA) REFERENCES Mat_archive (id_matA),
-	FOREIGN KEY (id_comArchive) REFERENCES Com_archive (id_comArchive)
-) Engine=InnoDB;
-
-CREATE TABLE InclusA(
-	id_comArchive INT  AUTO_INCREMENT NOT NULL,
-	id_nivlisteA INT NOT NULL,
-	exemplaireA INT,
-	PRIMARY KEY (id_comArchive,  id_nivlisteA),
-	FOREIGN KEY (id_comArchive) REFERENCES Com_archive (id_comArchive),
-	FOREIGN KEY (id_nivlisteA) REFERENCES Liste_archive (id_nivlisteA)
-) Engine=InnoDB;
-
 INSERT INTO `Niveau` (`code`, `Libelle`) VALUES
 ('A', 'CP'),
 ('B', 'CE1'),
@@ -188,19 +126,7 @@ INSERT INTO `Etat` (`id_etat`, `libelle_etat`) VALUES
 ('4','Commande validée');
 
 INSERT INTO Parent (id_parent, nom_parent, mdp_parent, email_parent, tel_parent, nb_enfants, droits_parents, id_etat) VALUES
-('1', 'dupont', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'dupont@test.com', '0123456789', 1, 0, 2),
-('2', 'toto', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'toto@test.com', '0123456789', 1, 0, 2),
-('3', 'titi', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'titi@test.com', '0123456789', 1, 0, 2),
-('4', 'azerty', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'azerty@test.com', '0123456789', 1, 0, 2),
-('5', 'rrrr', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'rrrr@test.com', '0123456789', 1, 0, 2),
-('6', 'admin', 'f44d643325b128cef74bd4a0a37d9af00fad56d7', 'admin@admin.com', '0123456789', 1, 1, 2);
-
-INSERT INTO Commande (id_commande, date_cmd, etat, id_parent) VALUES
-('1', '2014-11-20', 1, 1),
-('2', '2014-11-01', 2, 2),
-('3', '2014-12-01', 3, 3),
-('4', '2015-01-01', 4, 4),
-('5', '2014-11-01', 5, 5);
+('6', 'admin', 'a419f1c93a9606c2f72a5b58142439723e445753', 'rentree.facile@gmail.com', '0123456789', 1, 1, 2);
 
 INSERT INTO Sous_categorie (id_scat, categorie, scat) VALUES
 (474, 'ECRITURE', ''),
@@ -466,9 +392,6 @@ INSERT INTO Materiel (ref_mat, desc_mat, prix_mat, id_scat) VALUES
 ('83203', '96p  21x29,7 gds carreaux Couverture Polypro ORANGE', 0.90, 485),
 ('83204', '96p  21x29,7 gds carreaux Couverture Polypro GRIS', 0.90, 485),
 ('83205', '96p  21x29,7 gds carreaux Couverture Polypro INCOLORE', 0.90, 485);
-
-INSERT INTO `Liste_niveau` (`id_nivliste`, `niveau`, `forfait`) VALUES
-(1, 'C', 0);
 
 INSERT INTO Date_limite (jma) VALUES
 ('2015-08-31');
