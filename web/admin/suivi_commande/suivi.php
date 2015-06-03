@@ -144,12 +144,12 @@ while($suiv = $db->DB_object())
 	<?php
 }
 ?>
+</div>
 
 <form method="POST" action="suivi.php"><input type="submit" class="purger" name="purger" value="Purger"></input></form>
 
 
 
-</div>
 
 <?php
 
