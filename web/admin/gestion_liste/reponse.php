@@ -76,7 +76,7 @@ if($_GET["reponse"] == 1)
 			$html .= "<tr>";
 				$html .= "<th>Référence</th>";
 				$html .= "<th>Description</th>";
-				$html .= "<th>Prix</th>";
+				$html .= "<th>Prix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 				$html .= "<th>Quantité</th>";
 				$html .= "<th></th>";
 			$html .= "</tr>";

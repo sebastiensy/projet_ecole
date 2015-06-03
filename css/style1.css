@@ -31,12 +31,14 @@ body
 
 #tabg
 {
+	width:600px;
 	margin-top:20px;
 	float:left;
 }
 
 #tabd
 {
+	width:600px;
 	margin-top:20px;
 	float:right;
 	margin-right:80px;
@@ -124,6 +126,7 @@ table.data th
 
 table.data td
 {
+	word-wrap:break-word;
 	border-width: 0px;
 	padding: 8px;
 	border-style: solid;

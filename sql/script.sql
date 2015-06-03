@@ -68,7 +68,7 @@ CREATE TABLE Sous_categorie(
 CREATE TABLE Materiel(
 	id_mat INT AUTO_INCREMENT NOT NULL,
 	ref_mat VARCHAR(20) NOT NULL,
-	desc_mat VARCHAR(50),
+	desc_mat VARCHAR(80),
 	prix_mat numeric(5,2),
 	id_scat INT NOT NULL,
 	PRIMARY KEY (id_mat),
