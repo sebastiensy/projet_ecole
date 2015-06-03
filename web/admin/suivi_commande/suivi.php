@@ -48,89 +48,6 @@ if (isset($_POST['purger']))
 			$purgerCom = 'DELETE FROM Commande WHERE etat = 6';
 			$db->DB_query($purgerCom);
 		}
-
-
-
-
-		/*$tab = array();
-
-		/*
-		* affiche les materiels retire et paye
-		*/
-		/*$requete2 = 'SELECT c.quantite, m.desc_mat, m.prix_mat, m.ref_mat, m.id_mat, com.id_parent
-		FROM Contient as c, Materiel as m, Commande as com
-		WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande
-		AND com.etat = 6';
-
-		$db->DB_query($requete2);
-
-
-		while($elem = $db->DB_object())
-		{
-			if(isset($tab[$elem->id_mat]))
-				$tab[$elem->id_mat] = $elem->quantite;
-			else
-				$tab[$elem->id_mat] = $elem->quantite;
-		}*/
-
-		/*
-		* ajoute l'id parent et la date (table Com_archive)
-		*/
-		/*$requete2 .= ' GROUP BY com.id_parent';
-		$db->DB_query($requete2);
-		$dateJour = date('Y-m-d');
-		$saveCom = 'INSERT INTO Com_archive (date_archive, id_parent) VALUES';
-		while($elem = $db->DB_object())
-		{		
-			$saveCom .= '("'.$dateJour.'", '.$elem->id_parent.'),';
-		}
-		$saveCom = substr($saveCom, 0, -1);
-		$db->DB_query($saveCom);
-		$idCom = $db->DB_id();
-
-
-
-
-		//var_dump($tab);
-
-		$ids = array_keys($tab);
-
-		if(!empty($ids))
-		{
-			$requete3 = 'SELECT id_mat, ref_mat, desc_mat, prix_mat FROM Materiel WHERE id_mat IN ('.implode(',',$ids).')';
-			$db->DB_query($requete3);
-			if($db->DB_count() > 0)
-			{
-				$saveMat = 'INSERT INTO Mat_archive (ref_matA, desc_matA, prix_matA) VALUES';
-				$saveQte = 'INSERT INTO ContientA (id_comArchive, qte_matA) VALUES';
-
-				while($liste = $db->DB_object())
-				{
-					$saveMat .= '("'.$liste->ref_mat.'", "'.$liste->desc_mat.'", '.$liste->prix_mat.'),';
-					$saveQte .= '('.$idCom.', '.$tab[$liste->id_mat].'),';
-				}
-
-				$saveMat = substr($saveMat, 0, -1);
-				$saveQte = substr($saveQte, 0, -1);
-    			$db->DB_query($saveMat);
-    			$db->DB_query($saveQte);
-			}
-		}
-
-		$requete4 = 'SELECT cA.id_matA, comA.id_comArchive 
-		FROM Mat_archive as mA, Materiel as m, Commande as com, ContientA as cA, Contient as c, Com_archive as comA
-		WHERE cA.id_matA = mA.id_matA AND mA.ref_matA = m.ref_mat AND m.id_mat = c.id_mat AND c.id_commande = com.id_commande AND com.id_parent = comA.id_parent
-		AND com.etat = 6';
-		$db->DB_query($requete4);
-
-		$req="";
-		while($modif = $db->DB_object())
-		{
-			$req .= 'UPDATE ContientA SET id_comArchive = '.$modif->id_comArchive.' WHERE id_matA = '.$modif->id_matA.';';
-		}
-		echo $req;
-		$db->DB_query($req);*/
-
 	}
 ?>		
 
@@ -203,7 +120,7 @@ while($suiv = $db->DB_object())
 			<input type="text" class="idcache" name="idcache" value="" hidden></input>
 			<?php
 
-			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.$suiv2->nom_parent.'">Etat de la commande</a></div></td>';		
+			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.utf8_encode($suiv2->nom_parent).'">Etat de la commande</a></div></td>';		
 			echo '</tr>';
 			echo '</form>';
 		}

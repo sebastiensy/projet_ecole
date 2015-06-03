@@ -21,7 +21,7 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	$db = new DB_connection();
 
 	$id_commande = $db->quote($_GET['com']);
-	$parent = htmlentities($_GET['nom'], ENT_QUOTES);
+	$parent = htmlentities(utf8_decode($_GET['nom']), ENT_QUOTES);
 
 	/*
 	 * pour affiche les listes
