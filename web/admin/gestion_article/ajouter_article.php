@@ -26,7 +26,7 @@ require_once('../../../lib/lib_form_ajout_article_admin.php');
 				<td ><div align="right">Ajouter des articles</div></td>
 			</tr>
 		</table>
-		<br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/>
 
 <?php
 

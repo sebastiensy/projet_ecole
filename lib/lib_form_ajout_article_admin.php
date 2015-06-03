@@ -7,7 +7,7 @@ function formulaire_ajout_article($msg="", $ref="", $desc="", $prix="")
 	<?php echo $msg; ?>
 	<br>
 
-	<div align="center" id="add-form">
+	<div align="center">
 	<form method="post" action="ajouter_article.php" name="f1" id="maj">
 		<table width="90%" align="center">
 			<tr>
