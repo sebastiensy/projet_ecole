@@ -31,14 +31,14 @@ body
 
 #tabg
 {
-	width:600px;
+	width:550px;
 	margin-top:20px;
 	float:left;
 }
 
 #tabd
 {
-	width:600px;
+	width:550px;
 	margin-top:20px;
 	float:right;
 	margin-right:80px;
@@ -98,7 +98,7 @@ table.entete
 
 div#newList
 {
-	height:650px;
+	height:600px;
 	overflow:auto;
 }
 
