@@ -3,6 +3,7 @@
 session_start();
 require_once('../../data/config.php');
 require_once(LIB.'/lib_db.class.php');
+require_once(LIB.'/fpdf17/fpdf.php');
 require_once(LIB.'/lib_pdfparent.class.php');
 require_once(INC.'/droits.inc.php');
 
@@ -31,7 +32,7 @@ if (isset($_GET['id']))
 
 	$db->DB_query($requete);
 
-	$data = $db->DB_all();
+	$dataInfo = array();
 
 
 	$pdf->SetFont('Arial','',12);
@@ -42,19 +43,20 @@ if (isset($_GET['id']))
 	{
 		$pdf->Ln(10);
 		$db->DB_query($requete);
-
+		$cpt = 0;
 		while ($d = $db->DB_object())
 		{
 			$tmp = explode('-', $d->date_cmd);
 			$date = $tmp[2].'/'.$tmp[1].'/'.$tmp[0];
-			$data[0][3]	= $date;
+			$dataInfo[$cpt++] = array($d->nom_parent, $d->email_parent, $d->tel_parent, $date);
 		}
 		
-		$pdf->TableInfo($headerInfo,$data);
+		$pdf->TableInfo($headerInfo,$dataInfo);
 	}
 
 	$pdf->Ln(25);
 
+	$dataListe = array();
 	$prix = array();
 
 	/*
@@ -77,13 +79,14 @@ if (isset($_GET['id']))
 		$pdf->SetFont('Arial', 'BU', 14);
 		$pdf->Cell(40,10,'Liste :');
 		$pdf->Ln(10);
+		$cpt = 0;
 		while($liste = $db->DB_object())
 		{
+			$dataListe[$cpt++] = array($liste->libelle, $liste->exemplaire, $liste->forfait);
 			array_push($prix,$liste->forfait * $liste->exemplaire);
 		}
 		$db->DB_query($requete1);
-		$data = $db->DB_all();
-		$pdf->ImprovedTableListe($headerListe,$data);
+		$pdf->ImprovedTableListe($headerListe,$dataListe);
 
 		/*
 		*	pour afficher le prix total des listes
@@ -113,6 +116,7 @@ if (isset($_GET['id']))
 
 	$pdf->Ln(20);
 
+	$dataMat = array();
 	$prixMat = array();
 
 
@@ -121,14 +125,15 @@ if (isset($_GET['id']))
 		$pdf->SetFont('Arial', 'BU', 14);
 		$pdf->Cell(40,10,'Materiel :');
 		$pdf->Ln(10);
+		$cpt = 0;
 		while($mat = $db->DB_object())
 		{
+			$dataMat[$cpt++] = array($mat->ref_mat, $mat->desc_mat, $mat->quantite, $mat->prix_mat);
 			array_push($prix,$mat->prix_mat * $mat->quantite);
 			array_push($prixMat,$mat->prix_mat * $mat->quantite);
 		}
 		$db->DB_query($requete2);
-		$data = $db->DB_all();
-		$pdf->ImprovedTableMat($headerMat,$data);
+		$pdf->ImprovedTableMat($headerMat,$dataMat);
 
 		/*
 		*	pour afficher le prix total des materiels
