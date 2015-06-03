@@ -28,29 +28,46 @@ require_once('../../../lib/lib_message.php');
 
 <?php 
 if (isset($_POST['purger']))
+{
+	$db = new DB_connection();
+
+	/*
+	*	purge les commandes retirées et payées
+	*/
+	$select = 'SELECT id_commande FROM Commande WHERE etat = 6';
+	$db->DB_query($select);
+
+	if ($db->DB_count() > 0)
 	{
-		$db = new DB_connection();
+		$purgerCon = 'DELETE FROM Contient WHERE id_commande IN ('.$select.')';
+		$db->DB_query($purgerCon);
 
-		/*
-		*	purge les commandes retirées et payées
-		*/
-		$select = 'SELECT id_commande FROM Commande WHERE etat = 6';
-		$db->DB_query($select);
+		$purgerInc = 'DELETE FROM Inclus WHERE id_commande IN ('.$select.')';
+		$db->DB_query($purgerInc);
 
-		if ($db->DB_count() > 0)
-		{
-			$purgerCon = 'DELETE FROM Contient WHERE id_commande IN ('.$select.')';
-			$db->DB_query($purgerCon);
-
-			$purgerInc = 'DELETE FROM Inclus WHERE id_commande IN ('.$select.')';
-			$db->DB_query($purgerInc);
-
-			$purgerCom = 'DELETE FROM Commande WHERE etat = 6';
-			$db->DB_query($purgerCom);
-		}
+		$purgerCom = 'DELETE FROM Commande WHERE etat = 6';
+		$db->DB_query($purgerCom);
 	}
-?>		
+}
+?>
 
+<?php
+$requete = 'SELECT p.id_parent, p.nom_parent, c.etat, c.id_commande FROM Parent as p, Commande as c WHERE p.id_parent = c.id_parent AND c.etat > 0 GROUP BY p.id_parent';
+$db = new DB_connection();
+$db->DB_query($requete);
+
+if ($db->DB_count() > 0)
+{	
+	?>
+	<form method="POST" action="suivi.php"><input type="submit" id="btnpurger" class="purger" name="purger" value="Purger"></input></form>
+	<?php
+}
+else
+{
+	echo "<p>Il n'y pas de commande en cours.</p>";
+}
+
+		?>
 		<div id="accordion-resizer">
 <?php
 
@@ -145,10 +162,6 @@ while($suiv = $db->DB_object())
 }
 ?>
 </div>
-
-<form method="POST" action="suivi.php"><input type="submit" class="purger" name="purger" value="Purger"></input></form>
-
-
 
 
 <?php
