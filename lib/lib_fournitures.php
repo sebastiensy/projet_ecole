@@ -102,7 +102,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 				<tr>
 					<td>Référence</td>
 					<td>Description</td>
-					<td>Prix</td>
+					<td>Prix&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td>Quantité</td>
 					<td>Action</td>
 				</tr>";
