@@ -18,7 +18,7 @@ if(isset($_GET['id']))
 	$db->DB_query($query);
 	if($db->DB_count() > 0)
 	{
-		$req = "DELETE from Message where id_message = '".$id."'";
+		$req = 'DELETE from Message where id_message = "'.$id.'"';
 		$db->DB_query($req);
 	}
 }
