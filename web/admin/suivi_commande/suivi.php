@@ -120,7 +120,7 @@ while($suiv = $db->DB_object())
 			<input type="text" class="idcache" name="idcache" value="" hidden></input>
 			<?php
 
-			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&nom='.utf8_encode($suiv2->nom_parent).'">Etat de la commande</a></div></td>';		
+			echo '<td><div align="center"><a class="fancy" value="commande'.$suiv2->nom_parent.'" href="commande.php?com='.$suiv2->id_commande.'&id='.$suiv2->id_parent.'">Etat de la commande</a></div></td>';		
 			echo '</tr>';
 			echo '</form>';
 		}

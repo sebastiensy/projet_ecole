@@ -16,12 +16,12 @@ require_once('../inc/droits.inc.php');
 
 <?php
 
-if (isset($_GET['com']) && isset($_GET['nom']))
+if (isset($_GET['com']) && isset($_GET['id']))
 {
 	$db = new DB_connection();
 
 	$id_commande = $db->quote($_GET['com']);
-	$parent = htmlentities(utf8_decode($_GET['nom']), ENT_QUOTES);
+	$id_parent = htmlentities($_GET['id'], ENT_QUOTES);
 
 	/*
 	 * pour affiche les listes
@@ -41,11 +41,20 @@ if (isset($_GET['com']) && isset($_GET['nom']))
 	AND com.etat >= 1 AND c.id_commande = '.$id_commande;
 
 
+	/*
+	*	pour afficher le nom du parent
+	*/
+	$requete3 = 'SELECT nom_parent FROM Parent WHERE id_parent ='.$id_parent;
+	$db->DB_query($requete3);
 
+	if ($db->DB_count() > 0)
+	{
+		if ($nom = $db->DB_object())
+			echo '<strong>Parent : '.$nom->nom_parent.'</strong>';
+	}
+	
 	$prix = array();
 
-	echo '<strong>Parent : '.$parent.'</strong>';
-	
 	$db->DB_query($requete1);
 	
 	if ($db->DB_count() > 0)
