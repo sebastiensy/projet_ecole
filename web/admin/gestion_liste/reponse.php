@@ -86,8 +86,8 @@ if($_GET["reponse"] == 1)
 				$html .= "<td>".$mat->ref_mat."</td>";
 				$html .= "<td>".$mat->desc_mat."</td>";
 				$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
-				//$html .= "<td><input type=\"number\" id=".$mat->id_mat." onChange=recupererQte(".$mat->id_mat.") name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
-				$html .= "<td><input type=\"number\" id=".$mat->id_mat." name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				//$html .= "<td><input type=\"number\" id=".$mat->id_mat." onChange=recupererQte(".$mat->id_mat.") name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"100\"></td>";
+				$html .= "<td><input type=\"number\" id=".$mat->id_mat." name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"100\"></td>";
 				//$html .= "<td><div id=A".$mat->id_mat."><a onClick=\"\" id=\"B".$mat->id_mat."\" href=\"ajouter_liste.php?id=".$mat->id_mat."&amp;qte=1\"><img title=\"Ajouter\" src=\"../../../img/icon_add.png\"></a></div></td>";
 				$html .= "<td><div onClick=ajouterFourniture(".$mat->id_mat.")><img id=\"click\" title=\"Ajouter\" src=\"../../../img/icon_add.png\"></div></td>";
 			$html .= "</tr>";
