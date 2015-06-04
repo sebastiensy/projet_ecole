@@ -38,11 +38,11 @@ if (isset($_GET['com']))
 			<div align="right" class="checkout-wrap">
 		  		<ul class="checkout-bar">
 		    		<li id="1" class="1"><div id="encours">En cours</div></li>
-				    <li id="2" class="2"><div id="valide">Valide</div></li>
+				    <li id="2" class="2"><div id="valide">Validé</div></li>
 		    		<li id="3" class="3"><div id="cmdfourni">Commande fournisseur</div></li>
 		    		<li id="4" class="4"><div id="eclivr">En cours de livraison</div></li>
-		    		<li id="5" class="5"><div id="livre">Livre</div></li>
-		    		<li id="6" class="6"><div id="rp">Retire et paye</div></li>
+		    		<li id="5" class="5"><div id="livre">Livré</div></li>
+		    		<li id="6" class="6"><div id="rp">Retiré et payé</div></li>
 		    	</ul>
 			</div>
 

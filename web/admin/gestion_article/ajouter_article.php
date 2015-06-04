@@ -43,7 +43,7 @@ else
 
 	if($ligne=$db->DB_object())
 	{
-		formulaire_ajout_article("<span style=\"color:red\"><p><strong>Le produit ayant pour reference ".htmlentities($_POST['ref'], ENT_QUOTES)." existe deja. Veuillez modifier la reference !</strong></p></span>",htmlentities($_POST['ref'], ENT_QUOTES),htmlentities($_POST['desc'], ENT_QUOTES),htmlentities($_POST['prix'], ENT_QUOTES));
+		formulaire_ajout_article("<span style=\"color:red\"><p><strong>Le produit ayant pour référence ".htmlentities($_POST['ref'], ENT_QUOTES)." existe déjà. Veuillez modifier la référence !</strong></p></span>",htmlentities($_POST['ref'], ENT_QUOTES),htmlentities($_POST['desc'], ENT_QUOTES),htmlentities($_POST['prix'], ENT_QUOTES));
 	}
 	else
 	{
@@ -55,7 +55,7 @@ else
 
 			$req1="insert into Materiel (ref_mat, desc_mat, prix_mat, id_scat) values ('".$db->quote($_POST['ref'])."','".$db->quote($_POST['desc'])."','".$db->quote($_POST['prix'])."','".$id."')";
 			$db->DB_query($req1);
-			formulaire_ajout_article("<span style=\"color:green\"><p><strong>Le produit \"".htmlentities($_POST['desc'], ENT_QUOTES)."\" ayant pour reference ".htmlentities($_POST['ref'], ENT_QUOTES)." a bien ete ajoute.</strong></p></span>","","","");
+			formulaire_ajout_article("<span style=\"color:green\"><p><strong>Le produit \"".htmlentities($_POST['desc'], ENT_QUOTES)."\" ayant pour référence ".htmlentities($_POST['ref'], ENT_QUOTES)." a bien été ajouté.</strong></p></span>","","","");
 		}
 		else
 		{

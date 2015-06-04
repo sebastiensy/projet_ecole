@@ -120,9 +120,9 @@ else
 			?>
 			<table width="800" align="center" class="data">
 				<tr>
-					<th width="90" ><div align="center">Reference</div></th>
-					<th width="90" ><div align="center">Materiel</div></th>
-					<th width="90" ><div align="center">Quantite</div></th>
+					<th width="90" ><div align="center">Référence</div></th>
+					<th width="90" ><div align="center">Matériel</div></th>
+					<th width="90" ><div align="center">Quantité</div></th>
 					<th width="90" ><div align="center">Prix</div></th>
 				</tr>
 			<?php

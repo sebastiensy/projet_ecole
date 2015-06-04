@@ -67,7 +67,7 @@ if (isset($_GET['id']))
 	WHERE com.id_commande = i.id_commande AND i.id_nivliste = ln.id_nivliste AND ln.niveau = n.code 
 	AND com.etat >= 1 AND i.id_commande = \''.$db->quote($_GET['id']).'\' AND com.id_parent = '.$_SESSION['id_parent'];
 
-	$headerListe = array('Liste', 'Quantite', 'Forfait');
+	$headerListe = array('Liste', 'Quantité', 'Forfait');
 
 	$db->DB_query($requete1);
 
@@ -110,7 +110,7 @@ if (isset($_GET['id']))
 	WHERE c.id_mat = m.id_mat AND c.id_commande = com.id_commande 
 	AND com.etat >= 1 AND c.id_commande = \''.$db->quote($_GET['id']).'\' AND com.id_parent = '.$_SESSION['id_parent'];
 
-	$headerMat = array('Reference', 'Materiel', 'Quantite', 'Prix unitaire');
+	$headerMat = array('Référence', 'Matériel', 'Quantité', 'Prix unitaire');
 
 	$db->DB_query($requete2);
 

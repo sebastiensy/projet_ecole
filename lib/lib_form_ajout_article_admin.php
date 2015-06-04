@@ -11,7 +11,7 @@ function formulaire_ajout_article($msg="", $ref="", $desc="", $prix="")
 	<form method="post" action="ajouter_article.php" name="f1" id="maj">
 		<table width="90%" align="center">
 			<tr>
-				<td>Reference</td>
+				<td>Référence</td>
 				<td>Description</td>
 				<td>Prix</td>  
 			</tr>
@@ -21,7 +21,7 @@ function formulaire_ajout_article($msg="", $ref="", $desc="", $prix="")
 				<td><span><input size="10" type="text" name="prix" value="<?php echo $prix;?>" required></span></td>
 			</tr>
 			<tr>
-				<td colspan="3">Categorie
+				<td colspan="3">Catégorie
 					<select name="categorie">
 					<?php
 						$db = new DB_connection();

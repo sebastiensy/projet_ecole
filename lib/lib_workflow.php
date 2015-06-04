@@ -47,7 +47,7 @@ function affiche_workflow()
 			$imageUrl = "../../img/workflow_f.png";
 		}
 		
-		return "<div id=\"infocmd\"><span class=\"txtinfocmd\">Nombre de commande en cours : ".$nbEnCours."<br>Nombre de commande Ã  retirer : ".$nbARetirer."</span></div>
+		return "<div id=\"infocmd\"><span class=\"txtinfocmd\">Nombre de commande en cours : ".$nbEnCours."<br>Nombre de commande à retirer : ".$nbARetirer."</span></div>
 		<img src=\"".$imageUrl."\" usemap=\"#liens_workflow\"></img>";
 	}
 	else

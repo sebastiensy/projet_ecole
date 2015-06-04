@@ -66,7 +66,7 @@ if(!empty($ids))
 			array_push($prix, $tab[$liste->id_mat] * $liste->prix_mat);
 		}
 		$pdf->SetFont('Arial','',12);
-		$header = array('Reference', 'Materiel', 'Quantite', 'Prix unitaire');
+		$header = array('Référence', 'Matériel', 'Quantité', 'Prix unitaire');
 		$pdf->Ln(5);
 		$pdf->ImprovedTableMat($header,$tab2);
 		$somme = array_sum($prix);
