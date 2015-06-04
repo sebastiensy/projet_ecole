@@ -144,7 +144,10 @@ require_once(INC.'/redirect.inc.php');
 		}
 
 	?>
-
+	<br>
+	<p class="titre">À propos</p>
+	<p>Créé par Florian Durosier, étudiant en informatique, et Sébastien SY, étudiant en MIAGE, 
+	dans le cadre d'un projet orienté Web encadré par M. DUBAIL à l'Université Haute-Alsace.</p>
 	</div>
 	</div>
 
