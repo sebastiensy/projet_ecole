@@ -1,9 +1,10 @@
 <?php
 
 session_start();
-require_once('../inc/header.inc.php');
 require_once('../inc/data.inc.php');
 require_once('../inc/droits.inc.php');
+require_once('../inc/header.inc.php');
+
 
 ?>
 
@@ -58,7 +59,62 @@ else
 		</table>
 		<?php
 
+if (isset($_GET["id"]) && isset($_GET["a"]))
+{
+	if ($_GET["a"] == "accorder")
+	{
+		$req = 'UPDATE Parent set droits_parents = 1 WHERE id_parent = "'.$db->quote($_GET["id"]).'"';
+		$db->DB_query($req);	
+	}
+	else if ($_GET["a"] == "retirer")
+	{
+		$admin = 'SELECT id_parent FROM Parent WHERE droits_parents = 1';
+		$db->DB_query($admin);
+
+		if ($db->DB_count() > 1)  
+		{
+			$req = 'UPDATE Parent set droits_parents = 0 WHERE id_parent = "'.$db->quote($_GET["id"]).'"';
+			$db->DB_query($req);
+		}
+	}
+}
+$requete = 'SELECT id_parent, nom_parent, email_parent, droits_parents FROM Parent ORDER BY droits_parents DESC';
+$db->DB_query($requete);
+if ($db->DB_count() > 0)
+{
+	?>
+	<br><div align="left" style="text-decoration:underline">Gestion des droits</div>
+	<p>Il est impossible de retirer les droits administrateur s'il n'y a qu'un seul administrateur.</p>
+	<table width="900" align="center" class="data">
+		<tr>
+			<th width="90"><div align="center">Nom</div></th>
+			<th width="90"><div align="center">Email</div></th>
+			<th width="90"><div align="center">Droit</div></th>
+			<th width="90"><div align="center">Action</div></th>
+		</tr>
+	<?php
+	while($parent = $db->DB_object())
+	{
+		echo 
+			"<tr>
+				<td align=\"center\">".$parent->nom_parent."</td>
+				<td align=\"center\">".$parent->email_parent."</td>";
+		if ($parent->droits_parents == 0)
+		{
+			echo "<td align=\"center\">Parent</td>";
+			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=accorder\"><img src=\"../../../img/admin.png\" title=\"Accorder\"></a></tr>";
+		}			
+		else
+		{
+			echo "<td align=\"center\">Administrateur</td>";
+			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=retirer\"><img src=\"../../../img/no_admin.png\" title=\"Retirer\"></a></tr>";
+		}
+	}
+	echo "</table>";
+
+}
 ?>
+
 
 <?php
 
