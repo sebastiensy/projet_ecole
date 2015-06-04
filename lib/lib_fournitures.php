@@ -129,7 +129,7 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 				<td>".$mat->desc_mat."</td>
 				<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
 				
-				$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+				$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"100\"></td>";
 				if(isset($_SESSION["id_parent"]))
 				{
 					if($now < $jma)
@@ -138,8 +138,8 @@ function afficherFournitures($panier, $rubrique="", $srubrique="", $recherche=""
 						{
 							if($_GET["ref"] == $mat->ref_mat)
 							{
-								//$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"20\"></td>";
-								$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"20\"></td>";
+								//$td = "<td><input type=\"number\" name=\"qte\" value=".$_GET['qte']." size=\"1\" min=\"1\" max=\"100\"></td>";
+								$td = "<td><input type=\"number\" name=\"qte\" value=\"1\" size=\"1\" min=\"1\" max=\"100\"></td>";
 							}
 						}
 					}

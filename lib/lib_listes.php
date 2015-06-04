@@ -23,7 +23,7 @@ function mise_en_forme($idlist, $libelle, $prix, $now, $jma)
 	?>
 	   <td><div align="center"><?php echo $libelle; ?></div></td>
 	   <td><?php echo number_format($prix, 2, ',', ' '); ?> €</td>
-	   <td><input type="number" size="2" min="1" max="20" name="qte" value="<?php echo $qte; ?>"/></td>
+	   <td><input type="number" size="2" min="1" max="100" name="qte" value="<?php echo $qte; ?>"/></td>
 	   <td><div align="center"><a class="fancy2" href="liste.php?id=<?php echo $idlist; ?>"><img title="Visualiser" src="../../img/visu.png"></a>&nbsp;&nbsp;
 	   <input type="submit" title="Ajouter au panier" value="" class="ajPanier"></td>
 	   <input type="hidden" name="id" value="<?php echo $idlist; ?>"/></div></td>

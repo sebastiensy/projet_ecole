@@ -175,7 +175,7 @@ require_once(INC.'/redirect.inc.php');
 										{
 											echo "<tr><td>".$liste->Libelle."</td>
 											<td>".number_format($liste->forfait, 2, ',', ' ')." €</td>
-											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"20\"></td>";
+											<td><input type=\"number\" name=\"liste[qte][".$liste->id_nivliste."]\" value=".$_SESSION['liste'][$liste->id_nivliste]." size=\"1\" min=\"1\" max=\"100\"></td>";
 											echo "<td><a class=\"fancy2\" href=\"../accueil/liste.php?id=".$liste->id_nivliste."\"><img title=\"Visualiser\" src=\"../../img/visu.png\"></a>&nbsp;&nbsp;
 											<a href=\"index.php?delList=".$liste->id_nivliste."\"><img title=\"Supprimer\" src=\"../../img/del.png\"></a></td>";
 											echo "</tr>";
@@ -226,7 +226,7 @@ require_once(INC.'/redirect.inc.php');
 											echo "<tr><td>".$mat->ref_mat."</td>
 											<td>".$mat->desc_mat."</td>
 											<td>".number_format($mat->prix_mat, 2, ',', ' ')." €</td>
-											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+											<td><input type=\"number\" name=\"panier[qte][".$mat->id_mat."]\" value=".$_SESSION['panier'][$mat->id_mat]." size=\"1\" min=\"1\" max=\"100\"></td>";
 											echo "<td><a href=\"index.php?del=".$mat->id_mat."#afour\"><img title=\"Supprimer\" src=\"../../img/del.png\"></a></td>";
 											echo "</tr>";
 										}
