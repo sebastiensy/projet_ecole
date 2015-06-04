@@ -27,7 +27,7 @@ function modif_liste()
 			$html = "";
 			$html .= "<table align=\"center\" class=\"data\">";
 				$html .= "<tr>";
-					$html .= "<th>Rérérence</th>";
+					$html .= "<th>Référence</th>";
 					$html .= "<th>Description</th>";
 					$html .= "<th>Prix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 					$html .= "<th>Quantité</th>";
