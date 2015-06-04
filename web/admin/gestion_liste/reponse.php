@@ -44,7 +44,7 @@ function newList()
 						$html .= "<td>".$mat->ref_mat."</td>";
 						$html .= "<td>".$mat->desc_mat."</td>";
 						$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
-						$html .= "<td><input type=\"number\" onChange=modifierQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["four"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+						$html .= "<td><input type=\"number\" onChange=modifierQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["four"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"100\"></td>";
 						//$html .= "<td>".$_SESSION["four"][$mat->id_mat]."</td>";
 						$html .= "<td><div onClick=supprimerFourniture(".$mat->id_mat.")><img id=\"click\" title=\"Supprimer\" src=\"../../../img/del2.png\"></div></td>";
 					$html .= "</tr>";

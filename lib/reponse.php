@@ -40,7 +40,7 @@ function modif_liste()
 						$html .= "<td>".$mat->ref_mat."</td>";
 						$html .= "<td>".$mat->desc_mat."</td>";
 						$html .= "<td align=\"center\">".number_format($mat->prix_mat, 2, ',', ' ')." €</td>";
-						$html .= "<td><input type=\"number\" onChange=modifQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["listeM"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"20\"></td>";
+						$html .= "<td><input type=\"number\" onChange=modifQte(".$mat->id_mat.") id=A".$mat->id_mat." name=\"qte\" value=".$_SESSION["listeM"][$mat->id_mat]." size=\"1\" min=\"1\" max=\"100\"></td>";
 						$html .= "<td><div onClick=supprFour(".$mat->id_mat.")><img id=\"click\" title=\"Supprimer\" src=\"../../img/del.png\"></div></td>";
 					$html .= "</tr>";
 				}
