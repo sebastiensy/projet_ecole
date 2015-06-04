@@ -102,12 +102,12 @@ if ($db->DB_count() > 0)
 		if ($parent->droits_parents == 0)
 		{
 			echo "<td align=\"center\">Parent</td>";
-			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=accorder\"><img src=\"../../../img/admin.png\" title=\"Accorder\"></a></tr>";
+			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=accorder\"><img src=\"../../../img/admin.png\" title=\"Accorder les droits administrateur\"></a></tr>";
 		}			
 		else
 		{
 			echo "<td align=\"center\">Administrateur</td>";
-			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=retirer\"><img src=\"../../../img/no_admin.png\" title=\"Retirer\"></a></tr>";
+			echo "<td align=\"center\"><a href=\"index.php?id=".$parent->id_parent."&amp;a=retirer\"><img src=\"../../../img/no_admin.png\" title=\"Retirer les droits administrateur\"></a></tr>";
 		}
 	}
 	echo "</table>";
