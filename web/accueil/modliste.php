@@ -52,7 +52,7 @@ $panier = new panier($dbs);
 			unset($_SESSION["listeM"]);
 		}
 
-		$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = '.$db->quote($_GET["id"]);
+		$query2 = 'SELECT * FROM Compose c, Materiel m, Liste_niveau ln, Niveau n WHERE c.id_mat = m.id_mat AND c.id_nivliste = ln.id_nivliste AND n.code = ln.niveau AND ln.id_nivliste = \''.$db->quote($_GET["id"]).'\'';
 		$db->DB_query($query2);
 		if($db->DB_count() > 0)
 		{
@@ -64,10 +64,6 @@ $panier = new panier($dbs);
 
 		?>
 		<div id="listeM"></div>
-
-		<form method="post" action="">
-			<input type="submit" title="Ajouter au panier" name="enr" value="Ajouter au panier">
-		</form>
 		<?php
 	}
 	?>

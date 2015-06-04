@@ -46,6 +46,9 @@ function modif_liste()
 				}
 				$html .= "</table>";
 				$html .= "<p><div id=\"ptotal\" value=".$prix.">Total : ".number_format($prix, 2, ',', ' ')." €</div></p>";
+				$html .= "<form method=\"post\" action=\"\">";
+					$html .= "<input type=\"submit\" title=\"Ajouter au panier\" name=\"enr\" value=\"Ajouter au panier\">";
+				$html .= "</form>";
 				$db->DB_done();
 				return $html;
 		}
