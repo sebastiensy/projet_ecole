@@ -149,7 +149,7 @@ $db->DB_query($query);
 
 	<form method="post" action="">
 	<input type="hidden" name="idniv" value="<?php echo $idniv; ?>">
-	<p><input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="text" id ="reduc" name="reduc" value="<?php echo $forfait; ?>" size="1" min="0"> €
+	<input type="submit" name="enrListe" value="Enregistrer">&nbsp;&nbsp;Forfait : <input type="text" id ="reduc" name="reduc" value="<?php echo $forfait; ?>" size="1" min="0"> €
 
 	<p>
 		<div id="resultat2"></div>

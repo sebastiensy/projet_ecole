@@ -134,6 +134,15 @@ table.data td
 	background-color: #ffffff;
 }
 
+.ajPanier
+{
+    background:url(../img/panier.png);
+    width:32px;
+	height:32px;
+	cursor:pointer;
+	border:0;
+}
+
 .del
 {
     background:url(../img/del.png);

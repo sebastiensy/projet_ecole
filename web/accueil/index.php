@@ -7,6 +7,14 @@ require_once(INC.'/redirect.inc.php');
 
 ?>
 
+<script>
+function afficLink()
+{
+	var id = document.getElementById("selniv").value;
+	document.getElementById("lienfancy").innerHTML = "<a class=fancy2 href=modliste.php?id="+id+"><img title=Visualiser src=../../img/icon_OK.png></a>";
+}
+</script>
+
 <body onload="afficheWorkflow()" id="back">
 
 	<div id="banner">
@@ -54,18 +62,17 @@ require_once(INC.'/redirect.inc.php');
 		</div>
 
 		<?php 
-				if(isset($_SESSION['droits']))
-				{
-					if ($_SESSION['droits'] ==1 )
-					{
-					?>
-					<div id="admin">
-						<a href="../admin/"><img src="../../img/menu/admin.png"></a>
-					</div>
-					<?php
-					}
-				}
-
+		if(isset($_SESSION['droits']))
+		{
+			if ($_SESSION['droits'] ==1 )
+			{
+			?>
+			<div id="admin">
+				<a href="../admin/"><img src="../../img/menu/admin.png"></a>
+			</div>
+			<?php
+			}
+		}
 		?>
 
 	</div>
@@ -79,6 +86,37 @@ require_once(INC.'/redirect.inc.php');
 			<p class="titre">Accueil</p>
 			<h3><u>Listes de fournitures :</u></h3>
 			<?php affichage($panier); ?>
+
+			<?php
+			if(isset($_SESSION['id_parent']))
+			{
+				$db = new DB_connection();
+				$query = 'select ln.id_nivliste, ln.forfait, n.Libelle from Niveau n, Liste_niveau ln WHERE ln.niveau = n.code order by ln.niveau';
+				$db->DB_query($query);
+				if($db->DB_count() > 0)
+				{
+				?>
+				<p><table><tr>
+				<td>Retirer des articles basés sur la liste :</td>
+				<td><select id="selniv" onChange="afficLink()">
+					<?php
+					$tab = array();
+					while($liste = $db->DB_object())
+					{
+						echo "<option value=".$liste->id_nivliste.">".$liste->Libelle."</option>";
+						array_push($tab, $liste->id_nivliste);
+					}
+					?>
+				</select></td><?php $id = $tab[0]; ?>
+				<?php
+				echo "<td><div id=\"lienfancy\"><a class=\"fancy2\" href=\"modliste.php?id=".$id."\"><img title=\"Visualiser\" src=\"../../img/icon_OK.png\"></a></div></td>";
+				?>
+				</tr></table></p>
+				<?php
+				}
+			}
+			?>
+
 			<br/><p><a class="btn" href="../fournitures"/>Autres fournitures</a></p>
 
 		</div>
