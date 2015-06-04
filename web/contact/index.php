@@ -146,7 +146,7 @@ require_once(INC.'/redirect.inc.php');
 	?>
 	<br>
 	<p class="titre">À propos</p>
-	<p>Créé par <a href="mailto:florian.durosier@uha.fr">Florian Durosier</a>, étudiant en informatique, et <a href="mailto:sebastien.sy@uha.fr">Sébastien SY</a>, étudiant en MIAGE, 
+	<p>Créé par <a href="mailto:florian.durosier@uha.fr">Florian DUROSIER</a>, étudiant en informatique, et <a href="mailto:sebastien.sy@uha.fr">Sébastien SY</a>, étudiant en MIAGE, 
 	dans le cadre d'un projet orienté Web encadré par M. DUBAIL à l'Université Haute-Alsace.</p>
 	</div>
 	</div>
